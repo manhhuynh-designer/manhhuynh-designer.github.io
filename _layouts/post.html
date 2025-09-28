@@ -12,9 +12,6 @@ layout: default
         <a href="https://www.facebook.com/sharer/sharer.php?u={{ page.url | absolute_url }}" target="_blank" rel="noopener noreferrer" aria-label="Share on Facebook" class="social-share-icon facebook">
           <i class="fab fa-facebook-f"></i>
         </a>
-        <a href="https://twitter.com/intent/tweet?url={{ page.url | absolute_url }}&text={{ page.title | url_encode }}" target="_blank" rel="noopener noreferrer" aria-label="Share on Twitter" class="social-share-icon twitter">
-          <i class="fab fa-twitter"></i>
-        </a>
         <a href="https://www.linkedin.com/shareArticle?mini=true&url={{ page.url | absolute_url }}&title={{ page.title | url_encode }}&summary={{ page.excerpt | strip_html | truncatewords: 20 | url_encode }}" target="_blank" rel="noopener noreferrer" aria-label="Share on LinkedIn" class="social-share-icon linkedin">
           <i class="fab fa-linkedin-in"></i>
         </a>
@@ -76,7 +73,7 @@ layout: default
 </main>
             
 <!-- Back to Top Button -->
-<button id="back-to-top" class="back-to-top">
+<button id="back-to-top" class="back-to-top" aria-label="Back to top">
   <i class="fas fa-arrow-up"></i>
 </button>
 
