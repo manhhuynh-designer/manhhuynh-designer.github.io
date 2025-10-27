@@ -928,6 +928,50 @@ body[data-theme='light'] #mobile-toggle {
 .post-list li.bg-card > a.link-primary {
     padding-bottom: 1.5rem; /* pb-6 */
 }
+
+/* --- Post content: ensure light callout boxes remain readable in dark theme --- */
+/* Some content boxes intentionally keep a light background even in dark theme (e.g., bg-blue-50).
+   Force dark text inside those boxes to avoid white text on a light bg. */
+body[data-theme='dark'] .post-content .bg-blue-50 {
+    background-color: #eff6ff !important; /* Tailwind blue-50 */
+    color: #111827 !important; /* gray-900 text for readability */
+}
+body[data-theme='dark'] .post-content .bg-blue-50 h1,
+body[data-theme='dark'] .post-content .bg-blue-50 h2,
+body[data-theme='dark'] .post-content .bg-blue-50 h3,
+body[data-theme='dark'] .post-content .bg-blue-50 h4,
+body[data-theme='dark'] .post-content .bg-blue-50 h5,
+body[data-theme='dark'] .post-content .bg-blue-50 h6,
+body[data-theme='dark'] .post-content .bg-blue-50 p,
+body[data-theme='dark'] .post-content .bg-blue-50 li,
+body[data-theme='dark'] .post-content .bg-blue-50 a,
+body[data-theme='dark'] .post-content .bg-blue-50 strong,
+body[data-theme='dark'] .post-content .bg-blue-50 small {
+    color: #111827 !important; /* Keep dark text for all common elements */
+}
+/* Optional: accent heading color inside the blue callout */
+body[data-theme='dark'] .post-content .bg-blue-50 h5 {
+    color: #1e40af !important; /* blue-800 */
+}
+
+/* Keep gray-50 info boxes light in dark mode as well */
+body[data-theme='dark'] .post-content .bg-gray-50 {
+    background-color: #f9fafb !important; /* Tailwind gray-50 */
+    color: #111827 !important; /* gray-900 */
+}
+body[data-theme='dark'] .post-content .bg-gray-50 h1,
+body[data-theme='dark'] .post-content .bg-gray-50 h2,
+body[data-theme='dark'] .post-content .bg-gray-50 h3,
+body[data-theme='dark'] .post-content .bg-gray-50 h4,
+body[data-theme='dark'] .post-content .bg-gray-50 h5,
+body[data-theme='dark'] .post-content .bg-gray-50 h6,
+body[data-theme='dark'] .post-content .bg-gray-50 p,
+body[data-theme='dark'] .post-content .bg-gray-50 li,
+body[data-theme='dark'] .post-content .bg-gray-50 a,
+body[data-theme='dark'] .post-content .bg-gray-50 strong,
+body[data-theme='dark'] .post-content .bg-gray-50 small {
+    color: #111827 !important;
+}
 /* CSS Variables for theming */
 /* --- Styles for All Buttons (Category Filters & Pagination) --- */
 
@@ -973,10 +1017,7 @@ body[data-theme='light'] #mobile-toggle {
 /* --- Light Mode overrides --- */
 
 /* Light Mode specific base styles (no color here, inherited or overridden below) */
-body[data-theme='light'] .filter-btn,
-body[data-theme='light'] #pagination button {
-    /* No direct color property here, they are defined in inactive/active states below */
-}
+/* Removed empty light mode base ruleset to satisfy linters */
 
 /* Inactive button styles (Light Mode) */
 body[data-theme='light'] .filter-btn:not(.bg-primary-button),
@@ -1269,7 +1310,8 @@ body[data-theme='light'] #pagination button.bg-primary-button {
   opacity: 0; /* opacity-0 */
   pointer-events: none; /* pointer-events-none */
   background-color: rgba(236, 236, 236, 0.1) !important; /* background-color từ inline style */
-  backdrop-filter: blur(10px); /* backdrop-filter từ inline style */
+    -webkit-backdrop-filter: blur(10px); /* Safari support */
+    backdrop-filter: blur(10px); /* backdrop-filter từ inline style */
 
 }
 @keyframes fade-in-up {
