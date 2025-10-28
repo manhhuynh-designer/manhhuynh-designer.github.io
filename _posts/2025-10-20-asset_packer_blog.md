@@ -45,6 +45,13 @@ excerpt: >
 <!-- Vietnamese Content -->
 <div id="content-vi" class="content-lang active" markdown="1">
 
+
+  <div class="flex justify-center my-6">
+    <a href="https://manhdesigns.gumroad.com/l/assetpacker" target="_blank" rel="noopener noreferrer" class="inline-block bg-blue-600 text-white font-bold px-12 py-6 rounded-xl text-2xl hover:bg-blue-700 transition-all duration-300 hover:scale-105 shadow-lg">
+      <i class="fas fa-shopping-cart mr-3"></i> Tải miễn phí từ Gumroad
+    </a>
+  </div>
+
 ## Tổng quan
 
 **Blender Asset Packer** là add‑on giúp đóng gói toàn bộ tài nguyên (assets) bên ngoài của dự án Blender vào một thư mục độc lập, dễ dàng chia sẻ hoặc lưu trữ. Khác với tính năng **Pack Resources** có sẵn trong Blender (nhúng file vào .blend), add‑on này tạo một cấu trúc thư mục bên ngoài với đường dẫn tương đối, giúp bạn kiểm soát và quản lý assets tốt hơn.
@@ -364,6 +371,12 @@ Giấy phép thương mại cho một người dùng. Không được phép phâ
 
 <!-- English Content -->
 <div id="content-en" class="content-lang" markdown="1">
+
+  <div class="flex justify-center my-6">
+    <a href="https://manhdesigns.gumroad.com/l/assetpacker" target="_blank" rel="noopener noreferrer" class="inline-block bg-blue-600 text-white font-bold px-12 py-6 rounded-xl text-2xl hover:bg-blue-700 transition-all duration-300 hover:scale-105 shadow-lg">
+      <i class="fas fa-shopping-cart mr-3"></i> Free download from Gumroad
+    </a>
+  </div>
 
 ## Overview
 
