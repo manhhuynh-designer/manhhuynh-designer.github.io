@@ -3,624 +3,525 @@ layout: default
 title: 2024 - 2025 CGI - Fake OOH collection
 permalink: /Projects/FOOH/
 ---
+
 <style>
-        /* Đảm bảo toàn bộ trang bị ẩn cho đến khi preloader sẵn sàng */
-        body.is-loading main.main-content {
-            visibility: hidden;
-            opacity: 0;
-            pointer-events: none;
-            /* hoặc đơn giản là display: none; nếu bạn không dùng transition cho main-content */
-        }
-        body.is-loading #header,
-        body.is-loading #footer,
-        body.is-loading section:not(#preloader) { /* Ẩn tất cả section trừ preloader */
-             visibility: hidden;
-             opacity: 0;
-             pointer-events: none;
-             /* hoặc display: none; */
-        }
+	/* Desktop Fake OOH gallery */
+		.video-gallery {
+			--gallery-edge-gap: clamp(3rem, 8vw, 6.5rem);
+			position: relative;
+			margin-inline: calc(-1 * var(--gallery-edge-gap));
+			padding: 3.5rem var(--gallery-edge-gap) 3rem;
+	}
 
-        /* CSS cốt lõi cho preloader phải ở đây */
-        .preloader-wrapper {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100vh; /* Sử dụng 100vh mặc định */
-            height: var(--app-height, 100vh); /* Biến này sẽ được JS cập nhật */
-            background-color: #F6F6F6; /* Màu nền preloader */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-            transition: opacity 0.9s ease-in-out, visibility 0.9s ease-in-out;
-            opacity: 1;
-            -webkit-backdrop-filter: none;
-            backdrop-filter: none;
-            border: none;
-            /* Thêm các style để đảm bảo nó che phủ hoàn toàn */
-            margin: 0;
-            padding: 0;
+	.video-gallery-viewport {
+		position: relative;
+		overflow-x: auto;
+		-ms-overflow-style: none;
+	}
 
-        }
+	.video-gallery-viewport::-webkit-scrollbar {
+		display: none;
+	}
 
-        .preloader-hidden {
-            opacity: 0;
-            visibility: hidden;
-            pointer-events: none;
-        }
+		.video-gallery-track {
+			display: flex;
+			align-items: stretch;
+			gap: clamp(1.5rem, 4vw, 3rem);
+			padding: 1.5rem calc(var(--gallery-edge-gap) - clamp(0.5rem, 4vw, 3rem));
+			scroll-snap-type: x mandatory;
+		}
 
-        /* Các style khác của preloader (ví dụ: video container, progress text) */
-        /* Bạn có thể để lại trong preloader.css và chỉ inline những gì cần thiết để hiển thị ngay lập tức */
-        /* Tuy nhiên, để đảm bảo tuyệt đối, bạn có thể inline toàn bộ preloader.css tại đây */
-        /* Hoặc chỉ những phần quan trọng nhất để chống FOUC */
+			.video-gallery-spacer {
+				flex: 0 0 clamp(260px, 28vw, 340px);
+				scroll-snap-align: none;
+				pointer-events: none;
+				visibility: hidden;
+			}
 
-        /* Ví dụ về inline các style quan trọng khác nếu cần */
-        .preloader-video-container { /* ví dụ, để video đúng vị trí ngay lập tức */
-            position: absolute;
-            width: 66.66%;
-            height: 100%;
-            right: 0;
-            top: 0;
-            display: flex;
-            justify-content: flex-end;
-            align-items: center;
-            z-index: 999;
-        }
-        .preloader-video {
-            width: 70vh;
-            height: 70vh;
-            max-width: 60%;
-            max-height: 80%;
-            object-fit: cover;
-            margin: 0;
-            border: none;
-            box-shadow: none;
-            transition: transform 0.9s ease-in-out, opacity 0.9s ease-in-out;
-        }
-        .preloader-video img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transform: scale(1.02);
-            transition: transform 0.3s ease-in-out;
-        }
-        /* Style cho % tiến độ và Loading... */
-        .progress-indicator {
-            position: absolute;
-            left: 1vw;
-            bottom: 5vh;
-            font-size: 20vh;
-            line-height: 1;
-            font-weight: 200;
-            color: #000000;
-            text-shadow: none;
-            transition: bottom 0.3s ease-out, opacity 0.9s ease-in-out, transform 0.9s ease-in-out;
-            z-index: 10000;
-            max-width: 30vw;
-            white-space: nowrap;
-        }
-        .loading-text {
-            position: absolute;
-            left: 1vw;
-            bottom: 5vh;
-            transform: translateY(100%);
-            color: #000000;
-            font-size: 1.5em;
-            font-weight: 300;
-            letter-spacing: 0.05em;
-            z-index: 9999;
-            white-space: nowrap;
-            opacity: 1;
-            transition: opacity 0.9s ease-in-out;
-        }
-        /* Nút Contact */
-        .contact-button {
-            position: absolute;
-            right: 5vw;
-            bottom: 5vh;
-            padding: 15px 30px;
-            background-color: #2563EB;
-            color: white;
-            border: none;
-            border-radius: 9999px;
-            cursor: pointer;
-            font-weight: 700;
-            font-size: 1.1em;
-            transition: background-color 0.3s ease, transform 0.3s ease, opacity 0.9s ease-in-out;
-            z-index: 10000;
-        }
-        .contact-button:hover {
-            background-color: #1D4ED8;
-            transform: scale(1.1);
-        }
-        /* Media queries cho mobile cũng nên được inline nếu bạn muốn chúng được áp dụng ngay lập tức */
-        @media (max-width: 768px) {
-            .preloader-video-container {
-                width: 100%;
-                height: 70%;
-                top: 0;
-                left: 0;
-                right: auto;
-                justify-content: center;
-                align-items: center;
-            }
-            .preloader-video {
-                width: 240px;
-                height: 240px;
-            }
-            .progress-indicator {
-                left: 5vw;
-                bottom: 12vh;
-                font-size: 20vh;
-            }
-            .loading-text {
-                left: 5vw;
-                bottom: 8vh;
-                transform: none;
-                font-size: 1.1em;
-            }
-            .contact-button {
-                right: 5vw;
-                bottom: 8vh;
-                padding: 10px 20px;
-                font-size: 0.9em;
-            }
-        }
+	.video-card {
+		position: relative;
+		flex: 0 0 clamp(260px, 28vw, 340px);
+		scroll-snap-align: center;
+		border-radius: 1.5rem;
+		padding: clamp(1.1rem, 2.2vw, 1.6rem);
+		background: rgba(255, 255, 255, 0.65);
+		box-shadow: 0 24px 52px rgba(17, 24, 39, 0.14);
+		-webkit-backdrop-filter: blur(18px);
+		backdrop-filter: blur(18px);
+		transition: transform 0.5s ease, opacity 0.5s ease, box-shadow 0.5s ease;
+		opacity: 0.55;
+		transform: translateY(0) scale(0.94);
+	}
 
-        /* Sticky footer layout */
-        body {
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-            margin: 0;
-        }
+	body[data-theme="dark"] .video-card {
+		background: rgba(23, 27, 34, 0.72);
+		box-shadow: 0 28px 60px rgba(0, 0, 0, 0.55);
+	}
 
-        main {
-            flex: 1; /* Ensures the main content takes up available space */
-        }
+	.video-card.is-active {
+		opacity: 1;
+		transform: translateY(-8px) scale(1.02);
+		box-shadow: 0 10px 10px rgba(17, 24, 39, 0.18);
+	}
 
-        footer {
-            background-color: #f8f9fa; /* Example footer background color */
-            padding: 1rem;
-            text-align: center;
-        }
+	body[data-theme="dark"] .video-card.is-active {
+		box-shadow: 0 10px 10px rgba(0, 0, 0, 0.20);
+	}
 
-        /* ========================================= */
-        /* CUSTOM CAROUSEL CSS FOR 3 SLIDES AND BLUR */
-        /* ========================================= */
-        .custom-carousel-wrapper {
-            position: relative;
-            overflow: hidden; /* Quan trọng để ẩn các slide không hiển thị */
-            width: 100%;
-            /* min-height để đảm bảo không bị co lại khi video chưa load */
-            min-height: 500px; /* Điều chỉnh nếu cần */
-            display: flex;
-            align-items: center; /* Căn giữa các slide theo chiều dọc */
-        }
+	.video-card-badge {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.35rem;
+		font-size: 0.7rem;
+		letter-spacing: 0.22em;
+		text-transform: uppercase;
+		font-weight: 600;
+		padding: 0.25rem 0.85rem;
+		border-radius: 999px;
+		background: rgba(37, 99, 235, 0.12);
+		color: #2563eb;
+		margin-bottom: 0.9rem;
+	}
 
-        .custom-carousel-inner {
-            display: flex;
-            transition: transform 0.7s cubic-bezier(0.25,1,0.5,1); /* Easing giống portfolio.js */
-            flex-wrap: nowrap; /* Đảm bảo các video nằm trên một hàng */
-            width: calc(100% / 3 * var(--total-slides, 10)); /* 100% chia 3 để hiển thị 3 slide, nhân tổng số slide */
-            margin-left: calc((100% / 3 - 360px) / 2); /* Căn giữa slide đầu tiên nếu cần */
-            /* Để hiển thị 3 slide, mỗi slide chiếm 1/3 không gian */
-            /* translateX sẽ được tính toán để căn giữa slide active */
-        }
+	body[data-theme="dark"] .video-card-badge {
+		background: rgba(96, 165, 250, 0.14);
+		color: #93c5fd;
+	}
 
-        .custom-carousel-slide {
-            flex-shrink: 0; /* Đảm bảo slide không bị co lại */
-            width: calc(100% / 10); /* Mỗi slide chiếm 1/3 chiều rộng của wrapper */
-            /* Các style kích thước và căn giữa đã có */
-            display: flex;
-            justify-content: center;
-            flex-direction: column;
-            align-items: center;
-            padding: 1rem; /* p-4 md:p-6 */
-            transition: filter 0.3s ease; /* Chuyển đổi mượt mà cho blur */
-            /* Đặt chiều rộng cụ thể cho iframe container để kiểm soát tốt hơn */
-            position: relative; /* Dùng cho overlay/buttons nếu có */
-        }
+	.video-frame {
+		position: relative;
+		width: 100%;
+		padding-top: 177.78%;
+		border-radius: 1.1rem;
+		overflow: hidden;
+		background: #0f172a;
+	}
 
-        /* Classes cho hiệu ứng blur */
-        .custom-carousel-slide.blurred {
-            filter: blur(5px); /* Làm mờ ảnh */
-            transform: scale(0.9); /* Thu nhỏ nhẹ */
-            opacity: 0.7; /* Giảm độ trong suốt */
-        }
+	.video-frame iframe {
+		position: absolute;
+		inset: 0;
+		width: 100%;
+		height: 100%;
+		border: 0;
+		border-radius: inherit;
+	}
 
-        .custom-carousel-slide iframe {
-            transition: transform 0.3s ease; /* Thêm transition cho iframe */
-        }
+	.video-meta {
+		margin-top: 1.25rem;
+		display: flex;
+		flex-direction: column;
+		gap: 0.4rem;
+		color: #4b5563;
+	}
 
-        /* CSS cho các chấm chỉ báo */
-        .custom-carousel-pagination {
-            display: flex;
-            gap: 0.25rem; /* gap-1 */
-            width: 100%;
-            max-width: 20rem; /* max-w-xs */
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* shadow-lg */
-            justify-content: center;
-            /* Các thuộc tính position, top, left, transform, z-index đã bị xóa */
-            /* Thay vào đó, nó sẽ là một block element bình thường, có thể căn giữa bằng margin: auto; hoặc flexbox */
-            margin: 1.5rem auto; /* Khoảng cách phía trên và căn giữa */
-            background-color: rgba(0,0,0,0.5); /* Nền cho dots */
-            padding: 0.5rem;
-            border-radius: 9999px; /* rounded-full */
-        }
+	body[data-theme="dark"] .video-meta {
+		color: rgba(226, 232, 240, 0.75);
+	}
 
-        .custom-carousel-dot {
-            height: 0.25rem; /* h-1 */
-            flex: 1; /* flex-1 */
-            border-radius: 9999px; /* rounded-full */
-            transition: all 0.3s ease; /* transition-all duration-300 */
-            background-color: white; /* bg-white */
-            cursor: pointer;
-        }
+	.video-meta-client {
+		font-size: 1rem;
+		font-weight: 600;
+	}
 
-        .custom-carousel-dot.active {
-            background-color: #3B82F6; /* bg-blue-500 */
-        }
+	.video-meta-agency {
+		font-size: 0.875rem;
+		opacity: 0.8;
+	}
 
-        /* ========================================= */
-        /* NAVIGATION ARROWS */
-        /* ========================================= */
-        .carousel-arrow {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background-color: rgba(0,0,0,0.5);
-            color: white;
-            padding: 10px 15px;
-            border-radius: 50%;
-            cursor: pointer;
-            z-index: 30;
-            font-size: 1.5rem;
-            opacity: 0.7;
-            transition: opacity 0.3s ease, background-color 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
+	.video-nav-button {
+		position: absolute;
+		top: 50%;
+		transform: translateY(-50%);
+		width: 44px;
+		height: 44px;
+		border-radius: 999px;
+		border: 1px solid rgba(179, 179, 179, 0.2);
+		background: rgba(0, 0, 0, 0.3);
+		color: #1e293b;
+		display: grid;
+		place-items: center;
+		cursor: pointer;
+		transition: transform 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+		z-index: 3;
+		box-shadow: 0 12px 28px rgba(15, 23, 42, 0.35);
+	}
 
-        .carousel-arrow:hover {
-            opacity: 1;
-            background-color: rgba(0,0,0,0.8);
-        }
+	.video-nav-button svg {
+		width: 14px;
+		height: auto;
+		fill: currentColor;
+	}
 
-        .carousel-arrow.left {
-            left: 10px; /* Cách lề trái */
-        }
+	.video-nav-button svg path {
+		fill: inherit;
+	}
 
-        .carousel-arrow.right {
-            right: 10px; /* Cách lề phải */
-        }
 
-    </style>
-     
-   <main class="blog-content bg-background text-text-color font-inter" id="main-content">
-   <div class="relative">
-    <img src="/Projects/FOOH/FOOH_cover.png"
-         alt="Project Cover Image"
-         class="w-full h-auto max-h-[700px] object-cover" />
-  </div>
+	body[data-theme="dark"] .video-nav-button {
+		background: rgba(30, 41, 59, 0.86);
+		color: #f8fafc;
+		border-color: rgba(148, 163, 184, 0.5);
+		box-shadow: 0 18px 32px rgba(0, 0, 0, 0.55);
+	}
 
-  <!-- Section nội dung nổi lên ảnh -->
-  <section class="relative z-10 -mt-3 md:-mt-40 px-4 md:px-8 py-20 md:py-28 max-w-7xl mx-auto bg-card rounded-xl shadow-xl">
+	.video-nav-button:hover {
+		transform: translateY(-50%) scale(1.08);
+		color: #2563eb;
+		border-color: rgba(37, 99, 235, 0.7);
+		box-shadow: 0 16px 36px rgba(37, 99, 235, 0.4);
+	}
 
-        <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-heading mb-6 text-center">
-            2024 - 2025 CGI - Fake OOH collection
-        </h1>
-        <p class="text-lg md:text-xl text-gray-normal text-center mb-12">
-            These short videos represent my work on CGI fake OOH in 2024. It's been a fantastic and lucky year, filled with amazing opportunities to collaborate with incredible clients!
-        </p>
+	body[data-theme="dark"] .video-nav-button:hover {
+		color: #bfdbfe;
+		border-color: rgba(96, 165, 250, 0.5);
+		box-shadow: 0 20px 36px rgba(59, 130, 246, 0.35);
+	}
 
-        <div id="desktop-video-carousel-container" class="hidden md:block mb-10 relative">
-            <div class="custom-carousel-wrapper group">
-                <div id="desktop-video-carousel-inner" class="custom-carousel-inner">
-                    <div class="custom-carousel-slide">
-                        <div class="relative aspect-[9/16] w-[360px] lg:w-[400px] mx-auto mb-4">
-                            <iframe class="absolute inset-0 w-full h-full rounded-lg"
-                                    src="https://www.youtube.com/embed/N01G3_RArMU?modestbranding=1&rel=0"
-                                    title="Shorts Video - Video 0"
-                                    frameborder="0"
-                                    allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                    referrerpolicy="strict-origin-when-cross-origin"
-                                    allowfullscreen></iframe>
-                        </div>
-                        <p class="text-gray-normal text-center">Client: Colorkey Việt Nam</p>
-                    </div>
+	.video-nav-button:disabled {
+		opacity: 0.35;
+		pointer-events: none;
+		transform: translateY(-50%) scale(0.94);
+	}
 
-                    <div class="custom-carousel-slide">
-                        <div class="relative aspect-[9/16] w-[360px] lg:w-[400px] mx-auto mb-4">
-                            <iframe class="absolute inset-0 w-full h-full rounded-lg"
-                                    src="https://www.youtube.com/embed/EyXroIh3h1Y?modestbranding=1&rel=0"
-                                    title="Video 1"
-                                    frameborder="0"
-                                    allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                    referrerpolicy="strict-origin-when-cross-origin"
-                                    allowfullscreen></iframe>
-                        </div>
-                        <p class="text-gray-normal text-center">Client: Yves Rocher Việt Nam</p>
-                    </div>
+		.video-nav-button.is-left {
+			left: calc(var(--gallery-edge-gap) - clamp(1.5rem, 5vw, 3.75rem));
+		}
 
-                    <div class="custom-carousel-slide">
-                        <div class="relative aspect-[9/16] w-[360px] lg:w-[400px] mx-auto mb-4">
-                            <iframe class="absolute inset-0 w-full h-full rounded-lg"
-                                    src="https://www.youtube.com/embed/Hpayc-5xtzg?modestbranding=1&rel=0"
-                                    title="Video 2"
-                                    frameborder="0"
-                                    allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                    referrerpolicy="strict-origin-when-cross-origin"
-                                    allowfullscreen></iframe>
-                        </div>
-                        <p class="text-gray-normal text-center">Client: Aeon Việt Nam</p>
-                    </div>
+		.video-nav-button.is-right {
+			right: calc(var(--gallery-edge-gap) - clamp(1.5rem, 5vw, 3.75rem));
+		}
 
-                    <div class="custom-carousel-slide">
-                        <div class="relative aspect-[9/16] w-[360px] lg:w-[400px] mx-auto mb-4">
-                            <iframe class="absolute inset-0 w-full h-full rounded-lg"
-                                    src="https://www.youtube.com/embed/8SkYppBHVfM?modestbranding=1&rel=0"
-                                    title="Video 3"
-                                    frameborder="0"
-                                    allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                    referrerpolicy="strict-origin-when-cross-origin"
-                                    allowfullscreen></iframe>
-                        </div>
-                        <p class="text-gray-normal text-center">Client: Aeon Việt Nam</p>
-                    </div>
+	.video-indicators {
+		margin-top: 2.5rem;
+		display: flex;
+		justify-content: center;
+		gap: 0.75rem;
+	}
 
-                    <div class="custom-carousel-slide">
-                        <div class="relative aspect-[9/16] w-[360px] lg:w-[400px] mx-auto mb-4">
-                            <iframe class="absolute inset-0 w-full h-full rounded-lg"
-                                    src="https://www.youtube.com/embed/Z5p4aYoX-fQ?modestbranding=1&rel=0"
-                                    title="Video 5"
-                                    frameborder="0"
-                                    allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                    referrerpolicy="strict-origin-when-cross-origin"
-                                    allowfullscreen></iframe>
-                        </div>
-                        <p class="text-gray-normal text-center">Client: Yves Rocher Việt Nam</p>
-                    </div>
+	.video-indicators button {
+		width: 12px;
+		height: 12px;
+		border-radius: 999px;
+		border: none;
+		background: rgba(37, 99, 235, 0.22);
+		cursor: pointer;
+		transition: width 0.3s ease, background 0.3s ease, opacity 0.3s ease;
+		opacity: 0.6;
+	}
 
-                    <div class="custom-carousel-slide">
-                        <div class="relative aspect-[9/16] w-[360px] lg:w-[400px] mx-auto mb-4">
-                            <iframe class="absolute inset-0 w-full h-full rounded-lg"
-                                    src="https://www.youtube.com/embed/OayhgTXeAU4?modestbranding=1&rel=0"
-                                    title="Video 6"
-                                    frameborder="0"
-                                    allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                    referrerpolicy="strict-origin-when-cross-origin"
-                                    allowfullscreen></iframe>
-                        </div>
-                        <p class="text-gray-normal text-center">Client: Danh giá Fashion</p>
-                    </div>
+	body[data-theme="dark"] .video-indicators button {
+		background: rgba(96, 165, 250, 0.32);
+		opacity: 0.5;
+	}
 
-                    <div class="custom-carousel-slide">
-                        <div class="relative aspect-[9/16] w-[360px] lg:w-[400px] mx-auto mb-4">
-                            <iframe class="absolute inset-0 w-full h-full rounded-lg"
-                                    src="https://www.youtube.com/embed/HRujBRTRCaQ?modestbranding=1&rel=0"
-                                    title="Video 7"
-                                    frameborder="0"
-                                    allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                    referrerpolicy="strict-origin-when-cross-origin"
-                                    allowfullscreen></iframe>
-                        </div>
-                        <p class="text-gray-normal text-center">Client: Garmin Việt Nam</p>
-                    </div>
+	.video-indicators button.is-active {
+		width: 34px;
+		background: linear-gradient(90deg, #2563eb 0%, #7c3aed 100%);
+		opacity: 1;
+	}
 
-                    <div class="custom-carousel-slide">
-                        <div class="relative aspect-[9/16] w-[360px] lg:w-[400px] mx-auto mb-4">
-                            <iframe class="absolute inset-0 w-full h-full rounded-lg"
-                                    src="https://www.youtube.com/embed/EpCLgajxUCs?modestbranding=1&rel=0"
-                                    title="Video 8"
-                                    frameborder="0"
-                                    allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                    referrerpolicy="strict-origin-when-cross-origin"
-                                    allowfullscreen></iframe>
-                        </div>
-                        <p class="text-gray-normal text-center">Client: Danh giá Fashion</p>
-                    </div>
+	body[data-theme="dark"] .video-indicators button.is-active {
+		background: linear-gradient(90deg, #60a5fa 0%, #a855f7 100%);
+	}
 
-                    <div class="custom-carousel-slide">
-                        <div class="relative aspect-[9/16] w-[360px] lg:w-[400px] mx-auto mb-4">
-                            <iframe class="absolute inset-0 w-full h-full rounded-lg"
-                                    src="https://www.youtube.com/embed/w6rj6sLhtuI?modestbranding=1&rel=0"
-                                    title="Video 9"
-                                    frameborder="0"
-                                    allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                    referrerpolicy="strict-origin-when-cross-origin"
-                                    allowfullscreen></iframe>
-                        </div>
-                        <p class="text-gray-normal text-center">Client: Miss Universe Việt Nam 2024</p>
-                    </div>
+	@media (max-width: 1280px) {
+		.video-card {
+			flex-basis: clamp(240px, 32vw, 320px);
+		}
+	}
 
-                    <div class="custom-carousel-slide">
-                        <div class="relative aspect-[9/16] w-[360px] lg:w-[400px] mx-auto mb-4">
-                            <iframe class="absolute inset-0 w-full h-full rounded-lg"
-                                    src="https://www.youtube.com/embed/C3Jbgfb3PWk?modestbranding=1&rel=0"
-                                    title="Video 10"
-                                    frameborder="0"
-                                    allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                    referrerpolicy="strict-origin-when-cross-origin"
-                                    allowfullscreen></iframe>
-                        </div>
-                        <p class="text-gray-normal text-center">Client: Home Credit<br/>
-Agency: N&D communication & creative</p>
-                    </div>
+	@media (max-width: 1023px) {
+		.video-gallery {
+				margin-inline: 0;
+				padding: 2.5rem 0 2rem;
+		}
 
-                    <div class="custom-carousel-slide">
-                        <div class="relative aspect-[9/16] w-[360px] lg:w-[400px] mx-auto mb-4">
-                            <iframe class="absolute inset-0 w-full h-full rounded-lg"
-                                    src="https://www.youtube.com/embed/1EUJ62rfOZw?modestbranding=1&rel=0"
-                                    title="Video 11"
-                                    frameborder="0"
-                                    allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                    referrerpolicy="strict-origin-when-cross-origin"
-                                    allowfullscreen></iframe>
-                        </div>
-                        <p class="text-gray-normal text-center">Client: Yves Rocher Việt Nam</p>
-                    </div>
-                </div>
+		.video-card {
+			flex-basis: clamp(220px, 44vw, 280px);
+		}
 
-                <div id="carousel-arrow-left" class="carousel-arrow left">
-                    <i class="fas fa-chevron-left"></i>
-                </div>
-                <div id="carousel-arrow-right" class="carousel-arrow right">
-                    <i class="fas fa-chevron-right"></i>
-                </div>
-            </div>
-            <div id="desktop-video-pagination" class="custom-carousel-pagination"></div>
-        </div>
+		.video-nav-button {
+			display: none;
+		}
+	}
 
-        <div class="md:hidden space-y-10 mb-10">
-            <div class="p-4 md:p-6 overflow-hidden flex justify-center flex-col items-center">
-                <div class="relative aspect-[9/16] w-[240px] sm:w-[300px] mx-auto mb-4">
-                    <iframe class="absolute inset-0 w-full h-full rounded-lg"
-                            src="https://www.youtube.com/embed/N01G3_RArMU?modestbranding=1&rel=0"
-                            title="Shorts Video - Video 0"
-                            frameborder="0"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                            referrerpolicy="strict-origin-when-cross-origin"
-                            allowfullscreen></iframe>
-                </div>
-                <p class="text-gray-normal text-center">Shorts / Client: Colorkey Việt Nam</p>
-            </div>
+	@media (prefers-reduced-motion: reduce) {
+		.video-card,
+		.video-nav-button,
+		.video-indicators button {
+			transition: none;
+		}
+	}
+</style>
 
-            <div class="p-4 md:p-6 overflow-hidden flex justify-center flex-col items-center">
-                <div class="relative aspect-[9/16] w-[240px] sm:w-[300px] mx-auto mb-4">
-                    <iframe class="absolute inset-0 w-full h-full rounded-lg"
-                            src="https://www.youtube.com/embed/Hpayc-5xtzg?modestbranding=1&rel=0"
-                            title="Video 2"
-                            frameborder="0"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                            referrerpolicy="strict-origin-when-cross-origin"
-                            allowfullscreen></iframe>
-                </div>
-                <p class="text-gray-normal text-center">Client: Aeon Việt Nam</p>
-            </div>
+<section class="relative pt-24 md:pt-32 pb-16 md:pb-24">
+	<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-12">
+		<header class="text-center max-w-3xl mx-auto mb-12 md:mb-16">
+			<span class="inline-flex items-center justify-center px-4 py-1.5 rounded-full bg-blue-100 text-blue-600 text-xs font-semibold uppercase tracking-[0.35em]">Fake OOH Showcase</span>
+			<h1 class="mt-6 text-3xl md:text-5xl font-extrabold text-main tracking-tight">2024 - 2025 CGI Fake OOH collection</h1>
+			<p class="mt-4 text-base md:text-lg text-gray-normal">
+				Tổng hợp các video CGI Fake OOH thực hiện cho nhiều thương hiệu trong giai đoạn 2024 - 2025.
+				
+			</p>
+		</header>
 
-            <div class="p-4 md:p-6 overflow-hidden flex justify-center flex-col items-center">
-                <div class="relative aspect-[9/16] w-[240px] sm:w-[300px] mx-auto mb-4">
-                    <iframe class="absolute inset-0 w-full h-full rounded-lg"
-                            src="https://www.youtube.com/embed/8SkYppBHVfM?modestbranding=1&rel=0"
-                            title="Video 3"
-                            frameborder="0"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                            referrerpolicy="strict-origin-when-cross-origin"
-                            allowfullscreen></iframe>
-                </div>
-                <p class="text-gray-normal text-center">Client: Aeon Việt Nam</p>
-            </div>
+		<div class="hidden md:block">
+			<div class="video-gallery" data-carousel="fooh" data-autoplay="8000" data-loop="true">
+				<button type="button" class="video-nav-button is-left" data-carousel-prev aria-label="Xem video trước">
+					<span class="sr-only">Previous video</span>
+					<svg viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+						<path d="M10.78 2.47a.75.75 0 0 1 0 1.06L6.31 8l4.47 4.47a.75.75 0 0 1-1.06 1.06l-5-5a.75.75 0 0 1 0-1.06l5-5a.75.75 0 0 1 1.06 0Z" />
+					</svg>
+				</button>
 
-            <div class="p-4 md:p-6 overflow-hidden flex justify-center flex-col items-center">
-                <div class="relative aspect-[9/16] w-[240px] sm:w-[300px] mx-auto mb-4">
-                    <iframe class="absolute inset-0 w-full h-full rounded-lg"
-                            src="https://www.youtube.com/embed/Z5p4aYoX-fQ?modestbranding=1&rel=0"
-                            title="Video 5"
-                            frameborder="0"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                            referrerpolicy="strict-origin-when-cross-origin"
-                            allowfullscreen></iframe>
-                </div>
-                <p class="text-gray-normal text-center">Client: Yves Rocher Việt Nam</p>
-            </div>
+				<div class="video-gallery-viewport">
+					<div class="video-gallery-track">
+								<div class="video-gallery-spacer" aria-hidden="true"></div>
+						<article class="video-card is-active" aria-current="true">
+							<span class="video-card-badge">Featured</span>
+							<div class="video-frame">
+								<iframe src="https://www.youtube.com/embed/0U5iNj8NIBE?modestbranding=1&rel=0" title="COLORKEY Fake OOH" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+							</div>
+							<div class="video-meta">
+								<p class="video-meta-client">Client: COLORKEY Việt Nam</p>
+							</div>
+						</article>
 
-            <div class="p-4 md:p-6 overflow-hidden flex justify-center flex-col items-center">
-                <div class="relative aspect-[9/16] w-[240px] sm:w-[300px] mx-auto mb-4">
-                    <iframe class="absolute inset-0 w-full h-full rounded-lg"
-                            src="https://www.youtube.com/embed/OayhgTXeAU4?modestbranding=1&rel=0"
-                            title="Video 6"
-                            frameborder="0"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                            referrerpolicy="strict-origin-when-cross-origin"
-                            allowfullscreen></iframe>
-                </div>
-                <p class="text-gray-normal text-center">Client: Danh giá Fashion</p>
-            </div>
+						<article class="video-card" aria-current="false">
+							<span class="video-card-badge">New</span>
+							<div class="video-frame">
+								<iframe src="https://www.youtube.com/embed/b-3vOG0yvyQ?modestbranding=1&rel=0" title="DOJI Fake OOH 01" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+							</div>
+							<div class="video-meta">
+								<p class="video-meta-client">Client: DOJI</p>
+								<p class="video-meta-agency">Agency: Sixth Sense Media</p>
+							</div>
+						</article>
 
-            <div class="p-4 md:p-6 overflow-hidden flex justify-center flex-col items-center">
-                <div class="relative aspect-[9/16] w-[240px] sm:w-[300px] mx-auto mb-4">
-                    <iframe class="absolute inset-0 w-full h-full rounded-lg"
-                            src="https://www.youtube.com/embed/HRujBRTRCaQ?modestbranding=1&rel=0"
-                            title="Video 7"
-                            frameborder="0"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                            referrerpolicy="strict-origin-when-cross-origin"
-                            allowfullscreen></iframe>
-                </div>
-                <p class="text-gray-normal text-center">Client: Garmin Việt Nam</p>
-            </div>
+						<article class="video-card" aria-current="false">
+							<span class="video-card-badge">New</span>
+							<div class="video-frame">
+								<iframe src="https://www.youtube.com/embed/HYMnrEiJkRU?modestbranding=1&rel=0" title="DOJI Fake OOH 02" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+							</div>
+							<div class="video-meta">
+								<p class="video-meta-client">Client: DOJI</p>
+								<p class="video-meta-agency">Agency: Sixth Sense Media</p>
+							</div>
+						</article>
 
-            <div class="p-4 md:p-6 overflow-hidden flex justify-center flex-col items-center">
-                <div class="relative aspect-[9/16] w-[240px] sm:w-[300px] mx-auto mb-4">
-                    <iframe class="absolute inset-0 w-full h-full rounded-lg"
-                            src="https://www.youtube.com/embed/EpCLgajxUCs?modestbranding=1&rel=0"
-                            title="Video 8"
-                            frameborder="0"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                            referrerpolicy="strict-origin-when-cross-origin"
-                            allowfullscreen></iframe>
-                </div>
-                <p class="text-gray-normal text-center">Client: Danh giá Fashion</p>
-            </div>
+						<article class="video-card" aria-current="false">
+							<div class="video-frame">
+								<iframe src="https://www.youtube.com/embed/N01G3_RArMU?modestbranding=1&rel=0" title="Colorkey Fake OOH" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+							</div>
+							<div class="video-meta">
+								<p class="video-meta-client">Client: Colorkey Việt Nam</p>
+							</div>
+						</article>
 
-            <div class="p-4 md:p-6 overflow-hidden flex justify-center flex-col items-center">
-                <div class="relative aspect-[9/16] w-[240px] sm:w-[300px] mx-auto mb-4">
-                    <iframe class="absolute inset-0 w-full h-full rounded-lg"
-                            src="https://www.youtube.com/embed/w6rj6sLhtuI?modestbranding=1&rel=0"
-                            title="Video 9"
-                            frameborder="0"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                            referrerpolicy="strict-origin-when-cross-origin"
-                            allowfullscreen></iframe>
-                </div>
-                <p class="text-gray-normal text-center">Client: Miss Universe Việt Nam 2024</p>
-            </div>
+						<article class="video-card" aria-current="false">
+							<div class="video-frame">
+								<iframe src="https://www.youtube.com/embed/Hpayc-5xtzg?modestbranding=1&rel=0" title="AEON Fake OOH 01" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+							</div>
+							<div class="video-meta">
+								<p class="video-meta-client">Client: Aeon Việt Nam</p>
+							</div>
+						</article>
 
-            <div class="p-4 md:p-6 overflow-hidden flex justify-center flex-col items-center">
-                <div class="relative aspect-[9/16] w-[240px] sm:w-[300px] mx-auto mb-4">
-                    <iframe class="absolute inset-0 w-full h-full rounded-lg"
-                            src="https://www.youtube.com/embed/C3Jbgfb3PWk?modestbranding=1&rel=0"
-                            title="Video 10"
-                            frameborder="0"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                            referrerpolicy="strict-origin-when-cross-origin"
-                            allowfullscreen></iframe>
-                </div>
-                <p class="text-gray-normal text-center">Client: Home Credit<br/>
-Agency: N&D communication & creative</p>
-            </div>
+						<article class="video-card" aria-current="false">
+							<div class="video-frame">
+								<iframe src="https://www.youtube.com/embed/8SkYppBHVfM?modestbranding=1&rel=0" title="AEON Fake OOH 02" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+							</div>
+							<div class="video-meta">
+								<p class="video-meta-client">Client: Aeon Việt Nam</p>
+							</div>
+						</article>
 
-            <div class="p-4 md:p-6 overflow-hidden flex justify-center flex-col items-center">
-                <div class="relative aspect-[9/16] w-[240px] sm:w-[300px] mx-auto mb-4">
-                    <iframe class="absolute inset-0 w-full h-full rounded-lg"
-                            src="https://www.youtube.com/embed/1EUJ62rfOZw?modestbranding=1&rel=0"
-                            title="Video 11"
-                            frameborder="0"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                            referrerpolicy="strict-origin-when-cross-origin"
-                            allowfullscreen></iframe>
-                </div>
-                <p class="text-gray-normal text-center">Client: Yves Rocher Việt Nam</p>
-            </div>
-        </div>
-        <div class="flex justify-center">
-            
-            <a href="https://www.behance.net/gallery/217807677/2024-CGI-Fake-OOH-videos-collection" target="_blank" rel="noopener noreferrer" class="mt-8 inline-flex items-center px-6 py-3 bg-blue-600 text-white text-lg font-semibold rounded-full shadow-lg hover:bg-blue-700 transition duration-300 transform hover:scale-105">
-                <i class="fab fa-behance mr-3 text-xl"></i> Xem trên Behance
-            </a></div>
-        <div class="p-6 md:p-8 text-center mt-10 border-t border-gray-200 pt-8">
-            <p class="text-2xl md:text-3xl font-extrabold text-main mb-4">Thank for watching!</p>
-            <p class="text-lg md:text-xl text-gray-normal">
-                Contact for works:
-                <a href="mailto:contact@manhhuynh.work" class="text-blue-600 hover:underline font-semibold">contact@manhhuynh.work</a>
-            </p>
-        </div>
-    </section>
-    
-</main>
+						<article class="video-card" aria-current="false">
+							<div class="video-frame">
+								<iframe src="https://www.youtube.com/embed/Z5p4aYoX-fQ?modestbranding=1&rel=0" title="Yves Rocher Fake OOH 01" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+							</div>
+							<div class="video-meta">
+								<p class="video-meta-client">Client: Yves Rocher Việt Nam</p>
+							</div>
+						</article>
+
+						<article class="video-card" aria-current="false">
+							<div class="video-frame">
+								<iframe src="https://www.youtube.com/embed/OayhgTXeAU4?modestbranding=1&rel=0" title="Danh Giá Fake OOH 01" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+							</div>
+							<div class="video-meta">
+								<p class="video-meta-client">Client: Danh giá Fashion</p>
+							</div>
+						</article>
+
+						<article class="video-card" aria-current="false">
+							<div class="video-frame">
+								<iframe src="https://www.youtube.com/embed/HRujBRTRCaQ?modestbranding=1&rel=0" title="Garmin Fake OOH" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+							</div>
+							<div class="video-meta">
+								<p class="video-meta-client">Client: Garmin Việt Nam</p>
+							</div>
+						</article>
+
+						<article class="video-card" aria-current="false">
+							<div class="video-frame">
+								<iframe src="https://www.youtube.com/embed/EpCLgajxUCs?modestbranding=1&rel=0" title="Danh Giá Fake OOH 02" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+							</div>
+							<div class="video-meta">
+								<p class="video-meta-client">Client: Danh giá Fashion</p>
+							</div>
+						</article>
+
+						<article class="video-card" aria-current="false">
+							<div class="video-frame">
+								<iframe src="https://www.youtube.com/embed/w6rj6sLhtuI?modestbranding=1&rel=0" title="Miss Universe Việt Nam Fake OOH" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+							</div>
+							<div class="video-meta">
+								<p class="video-meta-client">Client: Miss Universe Việt Nam 2024</p>
+							</div>
+						</article>
+
+						<article class="video-card" aria-current="false">
+							<div class="video-frame">
+								<iframe src="https://www.youtube.com/embed/C3Jbgfb3PWk?modestbranding=1&rel=0" title="Home Credit Fake OOH" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+							</div>
+							<div class="video-meta">
+								<p class="video-meta-client">Client: Home Credit</p>
+								<p class="video-meta-agency">Agency: N&amp;D communication &amp; creative</p>
+							</div>
+						</article>
+
+						<article class="video-card" aria-current="false">
+							<div class="video-frame">
+								<iframe src="https://www.youtube.com/embed/1EUJ62rfOZw?modestbranding=1&rel=0" title="Yves Rocher Fake OOH 02" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+							</div>
+							<div class="video-meta">
+								<p class="video-meta-client">Client: Yves Rocher Việt Nam</p>
+							</div>
+						</article>
+									<div class="video-gallery-spacer" aria-hidden="true"></div>
+					</div>
+				</div>
+
+				<button type="button" class="video-nav-button is-right" data-carousel-next aria-label="Xem video tiếp theo">
+					<span class="sr-only">Next video</span>
+					<svg viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+						<path d="M5.22 13.53a.75.75 0 0 1 0-1.06L9.69 8 5.22 3.53a.75.75 0 0 1 1.06-1.06l5 5a.75.75 0 0 1 0 1.06l-5 5a.75.75 0 0 1-1.06 0Z" />
+					</svg>
+				</button>
+
+				<div class="video-indicators" data-carousel-indicators></div>
+			</div>
+		</div>
+
+		<div class="md:hidden space-y-10 mb-10">
+			<div class="p-4 md:p-6 overflow-hidden flex justify-center flex-col items-center">
+				<div class="relative aspect-[9/16] w-[240px] sm:w-[300px] mx-auto mb-4">
+					<iframe class="absolute inset-0 w-full h-full rounded-lg" src="https://www.youtube.com/embed/0U5iNj8NIBE?modestbranding=1&rel=0" title="Video 14" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+				</div>
+				<p class="text-gray-normal text-center">Client: COLORKEY Việt Nam</p>
+			</div>
+
+			<div class="p-4 md:p-6 overflow-hidden flex justify-center flex-col items-center">
+				<div class="relative aspect-[9/16] w-[240px] sm:w-[300px] mx-auto mb-4">
+					<iframe class="absolute inset-0 w-full h-full rounded-lg" src="https://www.youtube.com/embed/b-3vOG0yvyQ?modestbranding=1&rel=0" title="Video 12" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+				</div>
+				<p class="text-gray-normal text-center">Client: DOJI<br/>Agency: Sixth Sense Media</p>
+			</div>
+
+			<div class="p-4 md:p-6 overflow-hidden flex justify-center flex-col items-center">
+				<div class="relative aspect-[9/16] w-[240px] sm:w-[300px] mx-auto mb-4">
+					<iframe class="absolute inset-0 w-full h-full rounded-lg" src="https://www.youtube.com/embed/HYMnrEiJkRU?modestbranding=1&rel=0" title="Video 13" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+				</div>
+				<p class="text-gray-normal text-center">Client: DOJI<br/>Agency: Sixth Sense Media</p>
+			</div>
+
+			<div class="p-4 md:p-6 overflow-hidden flex justify-center flex-col items-center">
+				<div class="relative aspect-[9/16] w-[240px] sm:w-[300px] mx-auto mb-4">
+					<iframe class="absolute inset-0 w-full h-full rounded-lg" src="https://www.youtube.com/embed/N01G3_RArMU?modestbranding=1&rel=0" title="Shorts Video - Video 0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+				</div>
+				<p class="text-gray-normal text-center">Client: Colorkey Việt Nam</p>
+			</div>
+
+			<div class="p-4 md:p-6 overflow-hidden flex justify-center flex-col items-center">
+				<div class="relative aspect-[9/16] w-[240px] sm:w-[300px] mx-auto mb-4">
+					<iframe class="absolute inset-0 w-full h-full rounded-lg" src="https://www.youtube.com/embed/Hpayc-5xtzg?modestbranding=1&rel=0" title="Video 2" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+				</div>
+				<p class="text-gray-normal text-center">Client: Aeon Việt Nam</p>
+			</div>
+
+			<div class="p-4 md:p-6 overflow-hidden flex justify-center flex-col items-center">
+				<div class="relative aspect-[9/16] w-[240px] sm:w-[300px] mx-auto mb-4">
+					<iframe class="absolute inset-0 w-full h-full rounded-lg" src="https://www.youtube.com/embed/8SkYppBHVfM?modestbranding=1&rel=0" title="Video 3" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+				</div>
+				<p class="text-gray-normal text-center">Client: Aeon Việt Nam</p>
+			</div>
+
+			<div class="p-4 md:p-6 overflow-hidden flex justify-center flex-col items-center">
+				<div class="relative aspect-[9/16] w-[240px] sm:w-[300px] mx-auto mb-4">
+					<iframe class="absolute inset-0 w-full h-full rounded-lg" src="https://www.youtube.com/embed/Z5p4aYoX-fQ?modestbranding=1&rel=0" title="Video 5" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+				</div>
+				<p class="text-gray-normal text-center">Client: Yves Rocher Việt Nam</p>
+			</div>
+
+			<div class="p-4 md:p-6 overflow-hidden flex justify-center flex-col items-center">
+				<div class="relative aspect-[9/16] w-[240px] sm:w-[300px] mx-auto mb-4">
+					<iframe class="absolute inset-0 w-full h-full rounded-lg" src="https://www.youtube.com/embed/OayhgTXeAU4?modestbranding=1&rel=0" title="Video 6" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+				</div>
+				<p class="text-gray-normal text-center">Client: Danh giá Fashion</p>
+			</div>
+
+			<div class="p-4 md:p-6 overflow-hidden flex justify-center flex-col items-center">
+				<div class="relative aspect-[9/16] w-[240px] sm:w-[300px] mx-auto mb-4">
+					<iframe class="absolute inset-0 w-full h-full rounded-lg" src="https://www.youtube.com/embed/HRujBRTRCaQ?modestbranding=1&rel=0" title="Video 7" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+				</div>
+				<p class="text-gray-normal text-center">Client: Garmin Việt Nam</p>
+			</div>
+
+			<div class="p-4 md:p-6 overflow-hidden flex justify-center flex-col items-center">
+				<div class="relative aspect-[9/16] w-[240px] sm:w-[300px] mx-auto mb-4">
+					<iframe class="absolute inset-0 w-full h-full rounded-lg" src="https://www.youtube.com/embed/EpCLgajxUCs?modestbranding=1&rel=0" title="Video 8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+				</div>
+				<p class="text-gray-normal text-center">Client: Danh giá Fashion</p>
+			</div>
+
+			<div class="p-4 md:p-6 overflow-hidden flex justify-center flex-col items-center">
+				<div class="relative aspect-[9/16] w-[240px] sm:w-[300px] mx-auto mb-4">
+					<iframe class="absolute inset-0 w-full h-full rounded-lg" src="https://www.youtube.com/embed/w6rj6sLhtuI?modestbranding=1&rel=0" title="Video 9" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+				</div>
+				<p class="text-gray-normal text-center">Client: Miss Universe Việt Nam 2024</p>
+			</div>
+
+			<div class="p-4 md:p-6 overflow-hidden flex justify-center flex-col items-center">
+				<div class="relative aspect-[9/16] w-[240px] sm:w-[300px] mx-auto mb-4">
+					<iframe class="absolute inset-0 w-full h-full rounded-lg" src="https://www.youtube.com/embed/C3Jbgfb3PWk?modestbranding=1&rel=0" title="Video 10" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+				</div>
+				<p class="text-gray-normal text-center">Client: Home Credit<br/>Agency: N&amp;D communication &amp; creative</p>
+			</div>
+
+			<div class="p-4 md:p-6 overflow-hidden flex justify-center flex-col items-center">
+				<div class="relative aspect-[9/16] w-[240px] sm:w-[300px] mx-auto mb-4">
+					<iframe class="absolute inset-0 w-full h-full rounded-lg" src="https://www.youtube.com/embed/1EUJ62rfOZw?modestbranding=1&rel=0" title="Video 11" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+				</div>
+				<p class="text-gray-normal text-center">Client: Yves Rocher Việt Nam</p>
+			</div>
+		</div>
+
+		<div class="flex justify-center">
+			<a href="https://www.behance.net/gallery/217807677/2024-CGI-Fake-OOH-videos-collection" target="_blank" rel="noopener noreferrer" class="mt-8 inline-flex items-center px-6 py-3 bg-blue-600 text-white text-lg font-semibold rounded-full shadow-lg hover:bg-blue-700 transition duration-300 transform hover:scale-105">
+				<i class="fab fa-behance mr-3 text-xl"></i> Xem trên Behance
+			</a>
+		</div>
+
+		<div class="p-6 md:p-8 text-center mt-10 border-t border-gray-200 pt-8">
+			<p class="text-2xl md:text-3xl font-extrabold text-main mb-4">Thank for watching!</p>
+			<p class="text-lg md:text-xl text-gray-normal">
+				Contact for works:
+				<a href="mailto:contact@manhhuynh.work" class="text-blue-600 hover:underline font-semibold">contact@manhhuynh.work</a>
+			</p>
+		</div>
+	</div>
+</section>
 
 <script type="module" src="/assets/script/videoCarousel.js"></script>
- 
+
