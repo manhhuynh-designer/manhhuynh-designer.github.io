@@ -28,6 +28,37 @@ function hidePreloaderAndShowContent() {
         if (preloaderWrapper && preloaderWrapper.parentNode) {
             preloaderWrapper.parentNode.removeChild(preloaderWrapper);
         }
+        // Sau khi preloader bị remove mới thực hiện scroll tới hash (nếu có)
+        let hashTargetId = null;
+        if (window.location.hash && window.location.hash.length > 1) {
+            hashTargetId = window.location.hash.substring(1);
+        }
+        // Fallback từ sessionStorage nếu được set bởi mobile nav khi chuyển trang
+        if (!hashTargetId) {
+            const stored = sessionStorage.getItem('scrollTarget');
+            if (stored) {
+                hashTargetId = stored;
+                sessionStorage.removeItem('scrollTarget');
+            }
+        }
+        if (hashTargetId) {
+            let target = document.getElementById(hashTargetId);
+            // Thử thêm biến thể nếu không tìm thấy
+            if (!target) {
+                const variants = [hashTargetId.replace(/-section$/, ''), hashTargetId + '-section'];
+                for (const v of variants) {
+                    if (v !== hashTargetId) {
+                        const candidate = document.getElementById(v);
+                        if (candidate) { target = candidate; break; }
+                    }
+                }
+            }
+            if (target) {
+                requestAnimationFrame(() => {
+                    try { target.scrollIntoView({ behavior: 'smooth' }); } catch(e) {}
+                });
+            }
+        }
     }, 900);
 }
 
@@ -65,6 +96,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Gọi hàm để ẩn preloader và hiển thị nội dung chính
     hidePreloaderAndShowContent();
+
+    // Hash scroll now handled inside hidePreloaderAndShowContent after removal.
 });
 
 // Khởi tạo chiều cao ứng dụng khi tải trang và khi thay đổi kích thước cửa sổ

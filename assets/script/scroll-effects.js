@@ -4,9 +4,12 @@ export function setupSmoothScrolling() {
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
-            document.querySelector(this.getAttribute('href')).scrollIntoView({
-                behavior: 'smooth'
-            });
+            const targetSelector = this.getAttribute('href');
+            if (!targetSelector || targetSelector === '#') return;
+            const target = document.querySelector(targetSelector);
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth' });
+            }
         });
     });
 }

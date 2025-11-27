@@ -16,60 +16,56 @@
            style="transition-delay: {{ forloop.index0 | times: 100 }}ms;">
 
           <div class="relative w-full h-full overflow-hidden">
-            <img src="{{ project.thumbnail_image | relative_url }}"
-                 alt="Project Thumbnail {{ project.title_key }}"
-                 class="project-thumbnail h-full w-full object-cover aspect-video transition-opacity duration-300 ease-in-out group-hover:opacity-0">
+            {% assign has_video = false %}
+            {% assign video_poster = project.thumbnail_image | default: project.thumbnail_fallback %}
+            {% assign video_sources = nil %}
+            {% assign video_url = nil %}
 
-            <div class="carousel-content-wrapper absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out">
-              <div class="flex flex-row h-full flex-nowrap transition-transform duration-700 ease-[cubic-bezier(0.25,1,0.5,1)]">
-                {% for media in project.carousel_media %}
-                  {% assign is_video = false %}
-                  {% assign media_url = '' %}
-                  {% assign media_poster = '' %}
-
+            {% if project.thumbnail_video %}
+              {% assign has_video = true %}
+              {% assign video_url = project.thumbnail_video %}
+            {% elsif project.carousel_media %}
+              {% for media in project.carousel_media %}
+                {% if media.sources or media.url %}
+                  {% assign has_video = true %}
+                  {% if media.poster %}{% assign video_poster = media.poster %}{% endif %}
                   {% if media.sources %}
-                    {% assign is_video = true %}
-                    {% if media.poster %}{% assign media_poster = media.poster %}{% endif %}
-                  {% elsif media.url %}
-                    {% assign is_video = true %}
-                    {% assign media_url = media.url %}
-                    {% if media.poster %}{% assign media_poster = media.poster %}{% endif %}
-                  {% else %} 
-                    {% assign is_video = false %}
-                    {% assign media_url = media %}
-                  {% endif %}
-
-                  {% if is_video %}
-                    <video class="media-item h-full w-full object-cover aspect-video flex-shrink-0 basis-full"
-                           loop muted playsinline preload="none" {% if media_poster %}poster="{{ media_poster | relative_url }}"{% endif %}>
-                      {% if media.sources %}
-                        {% for source in media.sources %}
-                          <source src="{{ source.url | relative_url }}" type="{{ source.type }}">
-                        {% endfor %}
-                      {% else %}
-                        {% assign ext = media_url | split: '.' | last | downcase %}
-                        <source src="{{ media_url | relative_url }}" type="video/{{ ext }}">
-                      {% endif %}
-                      Your browser does not support the video tag.
-                    </video>
+                    {% assign video_sources = media.sources %}
                   {% else %}
-                    <img src="{{ media_url | relative_url }}"
-                         alt="Project Media {{ forloop.index }}"
-                         class="media-item h-full w-full object-cover aspect-video flex-shrink-0 basis-full">
+                    {% assign video_url = media.url %}
                   {% endif %}
-                {% endfor %}
-              </div>
+                  {% break %}
+                {% endif %}
+              {% endfor %}
+            {% endif %}
 
-              {% if project.carousel_media.size > 1 %}
-                <div class="absolute top-0 left-0 w-full z-20 flex items-center justify-center gap-2 px-4 py-1">
-                  <div class="flex gap-1 w-full max-w-xs shadow-lg">
-                    {% for _ in project.carousel_media %}
-                      <div class="progress-dot h-1 flex-1 rounded-full transition-all duration-300 bg-white shadow-md" data-media-index="{{ forloop.index0 }}"></div>
-                    {% endfor %}
-                  </div>
-                </div>
+            {% if has_video %}
+              <video class="project-thumbnail h-full w-full object-cover aspect-video"
+                     muted autoplay loop playsinline preload="metadata" {% if video_poster %}poster="{{ video_poster | relative_url }}"{% endif %}>
+                {% if video_sources %}
+                  {% for source in video_sources %}
+                    <source src="{{ source.url | relative_url }}" type="{{ source.type }}">
+                  {% endfor %}
+                {% elsif video_url %}
+                  {% assign ext = video_url | split: '.' | last | downcase %}
+                  <source src="{{ video_url | relative_url }}" type="video/{{ ext }}">
+                {% endif %}
+                Your browser does not support the video tag.
+              </video>
+            {% else %}
+              {% if project.thumbnail_fallback %}
+                <picture>
+                  <source srcset="{{ project.thumbnail_image | relative_url }}" type="image/webp">
+                  <img src="{{ project.thumbnail_fallback | relative_url }}"
+                       alt="Project Thumbnail {{ project.title_key }}"
+                       class="project-thumbnail h-full w-full object-cover aspect-video">
+                </picture>
+              {% else %}
+                <img src="{{ project.thumbnail_image | relative_url }}"
+                     alt="Project Thumbnail {{ project.title_key }}"
+                     class="project-thumbnail h-full w-full object-cover aspect-video">
               {% endif %}
-            </div>
+            {% endif %}
           </div>
 
           <div class="view-details-button absolute z-30 text-gray-800 px-4 py-2 rounded-full shadow-lg text-sm font-semibold whitespace-nowrap transition-all duration-100 ease-out opacity-0 group-hover:opacity-100 pointer-events-none w-24 h-24 flex items-center justify-center">
@@ -102,10 +98,56 @@
           </a>
 
           <div class="relative w-full h-full overflow-hidden">
-            <img src="{{ project.thumbnail_image | relative_url }}"
-                 alt="Project Thumbnail {{ project.title_key }}"
-                 class="w-full h-full object-cover aspect-video flex-shrink-0"
-            />
+            {% assign has_video = false %}
+            {% assign video_poster = project.thumbnail_image | default: project.thumbnail_fallback %}
+            {% assign video_sources = nil %}
+            {% assign video_url = nil %}
+
+            {% if project.thumbnail_video %}
+              {% assign has_video = true %}
+              {% assign video_url = project.thumbnail_video %}
+            {% elsif project.carousel_media %}
+              {% for media in project.carousel_media %}
+                {% if media.sources or media.url %}
+                  {% assign has_video = true %}
+                  {% if media.poster %}{% assign video_poster = media.poster %}{% endif %}
+                  {% if media.sources %}
+                    {% assign video_sources = media.sources %}
+                  {% else %}
+                    {% assign video_url = media.url %}
+                  {% endif %}
+                  {% break %}
+                {% endif %}
+              {% endfor %}
+            {% endif %}
+
+            {% if has_video %}
+              <video class="w-full h-full object-cover aspect-video"
+                     muted autoplay loop playsinline preload="metadata" {% if video_poster %}poster="{{ video_poster | relative_url }}"{% endif %}>
+                {% if video_sources %}
+                  {% for source in video_sources %}
+                    <source src="{{ source.url | relative_url }}" type="{{ source.type }}">
+                  {% endfor %}
+                {% elsif video_url %}
+                  {% assign ext = video_url | split: '.' | last | downcase %}
+                  <source src="{{ video_url | relative_url }}" type="video/{{ ext }}">
+                {% endif %}
+                Your browser does not support the video tag.
+              </video>
+            {% else %}
+              {% if project.thumbnail_fallback %}
+                <picture>
+                  <source srcset="{{ project.thumbnail_image | relative_url }}" type="image/webp">
+                  <img src="{{ project.thumbnail_fallback | relative_url }}"
+                       alt="Project Thumbnail {{ project.title_key }}"
+                       class="w-full h-full object-cover aspect-video flex-shrink-0" />
+                </picture>
+              {% else %}
+                <img src="{{ project.thumbnail_image | relative_url }}"
+                     alt="Project Thumbnail {{ project.title_key }}"
+                     class="w-full h-full object-cover aspect-video flex-shrink-0" />
+              {% endif %}
+            {% endif %}
           </div>
 
           <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent flex flex-col items-start justify-end p-2 sm:p-6 pb-1 sm:pb-1 text-left opacity-100 pointer-events-none">

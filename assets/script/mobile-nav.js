@@ -38,27 +38,42 @@ export function setupMobileNavigation() {
     navMenuLinks.forEach(link => {
         link.addEventListener('click', (e) => {
             const href = link.getAttribute('href');
-            // Xác định nếu là anchor trong trang hiện tại (bắt đầu bằng # hoặc /# và trang là index)
-            const isInPageAnchor = href && (href.startsWith('#') || href.startsWith('/#'));
-            // Xác định nếu là trang template (không có section target)
-            let canScroll = false;
-            let targetId = null;
-            if (isInPageAnchor) {
-                // Lấy id section, loại bỏ dấu / nếu có
-                targetId = href.replace(/^\/?/, '');
-                if (targetId && targetId.startsWith('#')) {
-                    const targetElement = document.querySelector(targetId);
-                    if (targetElement) {
-                        canScroll = true;
-                        e.preventDefault();
-                        targetElement.scrollIntoView({ behavior: 'smooth' });
-                    }
+            console.log('[Mobile Nav] Clicked link:', href, 'Current path:', location.pathname);
+            if (!href) return;
+
+            // Consider any URL containing a hash as an anchor (handles baseurl like /site/#blog)
+            const isHash = href.includes('#');
+            if (isHash) {
+                const raw = href.split('#').pop();
+                const samePage = location.pathname === '/' || /index\.html$/.test(location.pathname);
+                console.log('[Mobile Nav] Hash detected:', raw, 'Same page:', samePage);
+                
+                // Cuộn ngay trong trang hiện tại - case insensitive matching
+                const targetElement = document.getElementById(raw) || 
+                                    document.getElementById(raw.toLowerCase()) ||
+                                    document.getElementById(raw + '-section') || 
+                                    document.getElementById(raw.replace(/-section$/, ''));
+                
+                if (samePage && targetElement) {
+                    console.log('[Mobile Nav] Found target, scrolling to:', raw);
+                    e.preventDefault();
+                    targetElement.scrollIntoView({ behavior: 'smooth' });
+                } else if (!samePage) {
+                    // Chuyển trang: lưu mục tiêu để scroll sau khi trang đích load
+                    console.log('[Mobile Nav] Cross-page anchor, redirecting to homepage with hash:', raw);
+                    sessionStorage.setItem('scrollTarget', raw.toLowerCase());
+                    const base = (window.SITE_BASEURL || '').replace(/\/$/, '');
+                    const targetUrl = base + '/#' + raw.toLowerCase();
+                    e.preventDefault();
+                    window.location.href = targetUrl;
+                    return; // Exit early, don't collapse menu yet
+                } else {
+                    console.log('[Mobile Nav] Target not found:', raw);
                 }
             }
-            // Nếu không scroll được (không có section), cho phép chuyển hướng mặc định
-            if (!canScroll && mobileToggle.classList.contains('expanded')) {
-                setToggleState(false);
-            } else if (canScroll && mobileToggle.classList.contains('expanded')) {
+
+            if (mobileToggle.classList.contains('expanded')) {
+                console.log('[Mobile Nav] Collapsing menu');
                 setToggleState(false);
             }
         });

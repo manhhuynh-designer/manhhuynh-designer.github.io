@@ -51,7 +51,9 @@
 
   <!-- Scripts -->
   <script>
-    // ... Giữ nguyên script của bạn ...
+    // Expose site urls for JS (handles subpath deployments)
+    window.SITE_BASEURL = "{{ site.baseurl | default: '' }}";
+    window.SITE_URL = "{{ site.url | default: '' }}";
   </script>
   
   <script type="module" src="{{ '/assets/script/theme.js' | relative_url }}"></script>
