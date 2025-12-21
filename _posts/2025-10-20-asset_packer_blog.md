@@ -51,6 +51,11 @@ excerpt: >
       <i class="fas fa-shopping-cart mr-3"></i> Tải miễn phí từ Gumroad
     </a>
   </div>
+<div class="bg-blue-50 dark:bg-blue-900/20 border-l-4 border-blue-600 p-4 my-6">
+  <p class="m-0 text-blue-800 dark:text-blue-200">
+    🚀 <strong>Cập nhật:</strong> Đã có phiên bản <strong>v1.7</strong> tương thích hoàn toàn với <strong>Blender 5.0</strong>.
+  </p>
+</div>
 
 ## Tổng quan
 
