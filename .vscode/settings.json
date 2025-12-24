@@ -1,0 +1,6 @@
+{
+    "rubyLsp.rubyExecutablePath": "C:\\Ruby34-x64\\bin\\ruby.exe",
+    "rubyLsp.bundleGemfile": "",
+    "rubyLsp.formatter": "auto",
+    "ruby.interpreter.commandPath": "C:\\Ruby34-x64\\bin\\ruby.exe"
+}

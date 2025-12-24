@@ -5,7 +5,7 @@ export const languages = {
     'vi': {
         'hero_greeting': 'Xin chào!',
         'blog': 'Xem tất cả bài viết',
-        'title': 'Mạnh Huỳnh - Graphic Designer | 3D Artist',
+        'title': 'Mạnh Huỳnh | 3D Motion Graphic Designer',
         'nav_home': 'Trang Chủ',
         'nav_about': 'Giới Thiệu',
         'nav_portfolio': 'Dự Án',
@@ -81,7 +81,7 @@ export const languages = {
         'services_heading': 'Dịch Vụ Cung Cấp',
         'vf3_title': 'Vinfast VF3 claw machine animation',
         'vf3_desc': 'Dự án kết hợp cùng agency Chilli37 Degree làm animation cho xe Vinfast VF3.',
-   
+
         // Updated service keys
         'service_fooh_title': 'Sản xuất Video CGI FOOH',
         'service_fooh_desc': 'Sản xuất các video quảng cáo CGI ngắn (15-30 giây) cho các chiến dịch truyền thông.',
@@ -115,7 +115,7 @@ export const languages = {
         'services_short_desc': 'Dịch vụ thiết kế 2D, 3D, sản xuất video quảng cáo CGI, modeling, animation chuyên nghiệp cho thương hiệu và sản phẩm của bạn.',
         'download_cv': 'Tải CV của tôi',
         'about_experience': 'Với 2 năm kinh nghiệm chuyên sâu trong sản xuất video CGI, Fake OOH và diễn họa sản phẩm 3D, cùng với 5 năm kinh nghiệm vững chắc trong thiết kế 2D bao gồm thiết kế POSM, bao bì và key visual, tôi tự tin mang đến những giải pháp sáng tạo và hiệu quả cho các dự án của khách hàng.'
-        
+
     },
     'en': {
         'hero_greeting': 'Hi there!',
@@ -125,7 +125,7 @@ export const languages = {
         'services_cta_quote': 'Get a Quote',
         'contact_with_me': 'Connect with me:',
         'lang_toggle_target': 'VI',
-        'title': 'Manh Huynh - Graphic Designer | 3D Artist',
+        'title': 'Manh Huynh | 3D Motion Graphic Designer',
         'nav_home': 'Home',
         'nav_about': 'About',
         'nav_portfolio': 'Portfolio',
@@ -201,7 +201,7 @@ export const languages = {
         'services_heading': 'Services Offered',
         'vf3_title': 'Vinfast VF3 claw machine animation',
         'vf3_desc': 'Project collaborated with agency Chilli37 Degree for Vinfast VF3 car animation.',
-    
+
         // Updated service keys
         'service_fooh_title': 'Video CGI FOOH Production',
         'service_fooh_desc': 'Production of short CGI advertising videos (15-30 seconds) for media campaigns.',
@@ -230,7 +230,7 @@ export const languages = {
         'contact_location': 'Location: Ho Chi Minh City, Vietnam',
         'no_projects': 'No sample projects available.',
         'services_short_desc': 'Professional 2D, 3D design, CGI advertising video production, modeling, and animation services for your brand and products.',
-        
+
     }
 };
 
@@ -289,7 +289,7 @@ export const portfolioProjects = [
             'assets/images/Project/MBL_3.jpg',
         ],
         card_layout_classes: 'lg:col-span-2 lg:row-span-1',
-    },  
+    },
     {
         id: 'aeon-tet',
         title_key: 'project_aeon_tet_title',
