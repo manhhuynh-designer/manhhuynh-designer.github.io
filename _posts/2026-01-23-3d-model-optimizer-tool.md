@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Giới thiệu 3D Model Optimizer Tool - Nén và tối ưu file GLB/GLTF tự động"
+title: "3D Model Optimizer Tool - Nén và tối ưu file GLB/GLTF tự động"
 date: 2026-01-23
 author: Mạnh Huỳnh
 categories: [Share, Tool]
