@@ -13,3 +13,4 @@ group :jekyll_plugins do
   gem "jekyll-paginate" # Thêm dòng này
   gem "jekyll-archives"    # Thêm dòng này
 end
+gem "webrick", "~> 1.9"

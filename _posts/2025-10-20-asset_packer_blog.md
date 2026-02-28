@@ -20,7 +20,7 @@ excerpt: >
 </div>
 <div class="bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-4 my-4 text-sm text-gray-700 dark:text-gray-300">
 <p class="mb-1"><strong>Tên Add‑on:</strong> Blender Asset Packer</p>
-<p class="mb-1"><strong>Phiên bản:</strong> 1.5 • Blender 2.80+</p>
+<p class="mb-1"><strong>Phiên bản:</strong> 1.8 • Blender 2.80+</p>
 <p class="mb-0"><strong>Vị trí:</strong> View 3D → Sidebar (phím N) → tab "Asset Packer"</p>
 </div>
 
@@ -46,14 +46,17 @@ excerpt: >
 <div id="content-vi" class="content-lang active" markdown="1">
 
 
-  <div class="flex justify-center my-6">
-    <a href="https://manhdesigns.gumroad.com/l/assetpacker" target="_blank" rel="noopener noreferrer" class="inline-block bg-blue-600 text-white font-bold px-12 py-6 rounded-xl text-2xl hover:bg-blue-700 transition-all duration-300 hover:scale-105 shadow-lg">
+  <div class="flex flex-wrap justify-center gap-4 my-6">
+    <a href="https://manhdesigns.gumroad.com/l/assetpacker" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center bg-blue-600 text-white font-bold px-8 py-4 rounded-xl text-xl hover:bg-blue-700 transition-all duration-300 hover:scale-105 shadow-lg">
       <i class="fas fa-shopping-cart mr-3"></i> Tải miễn phí từ Gumroad
+    </a>
+    <a href="https://github.com/Manh-Huynh-PP/Blender-assets-packer/releases/tag/v1.8" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center bg-gray-800 text-white font-bold px-8 py-4 rounded-xl text-xl hover:bg-gray-900 transition-all duration-300 hover:scale-105 shadow-lg">
+      <i class="fab fa-github mr-3"></i> Tải bản v1.8 từ GitHub
     </a>
   </div>
 <div class="bg-blue-50 dark:bg-blue-900/20 border-l-4 border-blue-600 p-4 my-6">
   <p class="m-0 text-blue-800 dark:text-blue-200">
-    🚀 <strong>Cập nhật:</strong> Đã có phiên bản <strong>v1.7</strong> tương thích hoàn toàn với <strong>Blender 5.0</strong>.
+    🚀 <strong>Cập nhật:</strong> Đã có phiên bản <strong>v1.8</strong> tương thích hoàn toàn với <strong>Blender 5.0</strong>, bổ sung khả năng packed và relink simulation cache files.
   </p>
 </div>
 
@@ -359,6 +362,10 @@ Nếu gặp ca khó, vui lòng cung cấp:
 
 ## Nhật ký thay đổi (điểm nổi bật)
 
+- 1.8
+  - Bổ sung khả năng đóng gói (packed) và relink các file simulation cache.
+  - Tương thích hoàn toàn với Blender 5.0.
+
 - 1.5
   - Bổ sung hỗ trợ video mạnh mẽ (movie clips, camera backgrounds, VSE, compositor, movie trong Material)
   - Cải thiện relink với cơ chế phân giải đường dẫn cho các file trùng tên
@@ -377,11 +384,20 @@ Giấy phép thương mại cho một người dùng. Không được phép phâ
 <!-- English Content -->
 <div id="content-en" class="content-lang" markdown="1">
 
-  <div class="flex justify-center my-6">
-    <a href="https://manhdesigns.gumroad.com/l/assetpacker" target="_blank" rel="noopener noreferrer" class="inline-block bg-blue-600 text-white font-bold px-12 py-6 rounded-xl text-2xl hover:bg-blue-700 transition-all duration-300 hover:scale-105 shadow-lg">
+  <div class="flex flex-wrap justify-center gap-4 my-6">
+    <a href="https://manhdesigns.gumroad.com/l/assetpacker" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center bg-blue-600 text-white font-bold px-8 py-4 rounded-xl text-xl hover:bg-blue-700 transition-all duration-300 hover:scale-105 shadow-lg">
       <i class="fas fa-shopping-cart mr-3"></i> Free download from Gumroad
     </a>
+    <a href="https://github.com/Manh-Huynh-PP/Blender-assets-packer/releases/tag/v1.8" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center bg-gray-800 text-white font-bold px-8 py-4 rounded-xl text-xl hover:bg-gray-900 transition-all duration-300 hover:scale-105 shadow-lg">
+      <i class="fab fa-github mr-3"></i> Download v1.8 from GitHub
+    </a>
   </div>
+
+<div class="bg-blue-50 dark:bg-blue-900/20 border-l-4 border-blue-600 p-4 my-6">
+  <p class="m-0 text-blue-800 dark:text-blue-200">
+    🚀 <strong>Update:</strong> Version <strong>v1.8</strong> is now available with full compatibility for <strong>Blender 5.0</strong>, adding the ability to pack and relink simulation cache files.
+  </p>
+</div>
 
 ## Overview
 
@@ -779,6 +795,10 @@ If you encounter a difficult case, please provide:
 
 ## Changelog (Highlights)
 
+- 1.8
+  - Added ability to pack and relink simulation cache files.
+  - Full compatibility with Blender 5.0.
+
 - 1.5
   - Added robust video support (movie clips, camera backgrounds, VSE, compositor, material movies)
   - Improved relinking with path disambiguation for duplicate filenames
@@ -821,6 +841,10 @@ If you hit a tricky project edge case, include:
 ---
 
 ## Changelog (highlights)
+
+- 1.8
+  - Added ability to pack and relink simulation cache files.
+  - Full compatibility with Blender 5.0.
 
 - 1.5
   - Added robust video support (movie clips, camera backgrounds, VSE, compositor, material movies)
