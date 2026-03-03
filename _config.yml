@@ -4,9 +4,9 @@
 # This config file is meant for settings that affect your whole blog, values
 # which you are expected to set up once and rarely edit after that.
 
-title: Mạnh Huỳnh - Graphic Designer | 3D Artist
+title: Mạnh Huỳnh - 3D Motion Graphic Designer
 email: contact@manhhuynh.work
-description: "Portfolio của Mạnh Huỳnh, một Graphic Designer và 3D Artist chuyên nghiệp."
+description: "Portfolio của Mạnh Huỳnh, một 3D Motion Graphic Designer chuyên nghiệp."
 url: "https://manhhuynh-designer.github.io" # Your website URL
 baseurl: "" # Leave empty if hosted at root domain
 permalink: /blog/:title/ # Permalink structure for posts
