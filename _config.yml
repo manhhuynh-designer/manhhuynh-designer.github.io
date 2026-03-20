@@ -38,3 +38,8 @@ jekyll-archives:
     category: '/blog/categories/:name/' # URL for category page
     year: '/:year/' # URL for year page
     month: '/:year/:month/' # URL for month page
+
+# 4. Include Configuration
+# Force Jekyll to include these directories even if they only contain static files
+include:
+  - Price
