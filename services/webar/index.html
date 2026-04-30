@@ -1,0 +1,128 @@
+---
+layout: default
+title: WebAR Experience
+permalink: /services/webar/
+---
+
+<div class="pt-32 pb-16 px-6 md:px-12 max-w-7xl mx-auto">
+    <!-- Back Button -->
+    <div class="mb-12 scroll-reveal">
+        <a href="/#services" class="inline-flex items-center gap-2 text-gray-normal hover:text-accent-strong transition-all font-medium">
+            <i class="fa-solid fa-arrow-left"></i>
+            <span data-lang-key="nav_services">Dịch Vụ</span>
+        </a>
+    </div>
+
+    <!-- Hero Section -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-24">
+        <div class="scroll-reveal">
+            <h1 class="text-5xl md:text-7xl swiss-heading text-heading mb-6" data-lang-key="service_webar_title">
+                WebAR Experience
+            </h1>
+            <p class="text-xl md:text-2xl text-gray-normal leading-relaxed mb-8" data-lang-key="service_webar_desc_detail">
+                Giải pháp thực tế tăng cường trên trình duyệt Web (không cần cài đặt app), tối ưu trải nghiệm khách hàng và doanh thu.
+            </p>
+            <div class="flex flex-wrap items-center gap-4">
+                <a href="/#contact" class="px-8 py-4 bg-accent-strong text-white rounded-full font-bold uppercase tracking-widest hover:scale-105 transition-all shadow-lg shadow-accent-strong/20" data-lang-key="contact_submit_button">
+                    Liên Hệ Ngay
+                </a>
+                <a href="http://posmars.com" target="_blank" class="px-8 py-4 border-2 border-border-main text-main rounded-full font-bold uppercase tracking-widest hover:bg-accent-strong/10 transition-all">
+                    Explore POSMARS <i class="fa-solid fa-external-link ml-2"></i>
+                </a>
+            </div>
+        </div>
+        <div class="relative scroll-reveal delay-300">
+            <div class="glass-card aspect-square rounded-3xl overflow-hidden shadow-2xl bg-black/20 border border-white/10 group">
+                <img src="/assets/images/features-illustration.png" alt="WebAR Features Illustration" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+            </div>
+            <!-- Enhanced Glow Effects -->
+            <div class="absolute -top-12 -right-12 w-64 h-64 bg-orange-500/20 rounded-full blur-[100px] animate-pulse"></div>
+            <div class="absolute -bottom-12 -left-12 w-64 h-64 bg-accent-strong/10 rounded-full blur-[100px]"></div>
+        </div>
+    </div>
+
+    <!-- Rate Card Section -->
+    <div class="mb-24 scroll-reveal">
+        <div class="glass-card p-10 md:p-16 rounded-3xl relative overflow-hidden border border-white/5 bg-slate-900/40">
+            <div class="absolute top-0 right-0 p-8">
+                <i class="fa-solid fa-receipt text-8xl text-accent-strong opacity-5"></i>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+                <div class="lg:col-span-1">
+                    <h2 class="text-3xl md:text-4xl swiss-heading text-main mb-4" data-lang-key="service_webar_starting_price">
+                        Liên hệ báo giá
+                    </h2>
+                    <p class="text-accent-strong font-bold tracking-widest uppercase text-sm mb-8">Custom Quote / Enterprise</p>
+                    <div class="h-1 w-20 bg-accent-strong mb-8"></div>
+                    <p class="text-gray-medium text-sm leading-relaxed" data-lang-key="service_webar_desc_detail">
+                        Giải pháp WebAR tùy chỉnh chuyên sâu cho doanh nghiệp và thương mại điện tử.
+                    </p>
+                </div>
+                
+                <div class="lg:col-span-2 border-l border-white/10 lg:pl-12">
+                    <h3 class="text-xl font-bold text-gray-normal uppercase tracking-widest mb-8" data-lang-key="service_detail_included">
+                        Rate Card Details:
+                    </h3>
+                    
+                    <ul id="service-items-list" class="grid grid-cols-1 md:grid-cols-2 gap-y-4 gap-x-12" data-lang-items="service_webar_items">
+                        <!-- Populated by JS -->
+                    </ul>
+                    
+                    <div class="mt-12 pt-8 border-t border-white/5 flex flex-wrap gap-6">
+                        <div class="flex items-center gap-2 text-xs text-gray-medium">
+                            <i class="fa-solid fa-code text-accent-strong"></i>
+                            <span>Posmars Engine Support</span>
+                        </div>
+                        <div class="flex items-center gap-2 text-xs text-gray-medium">
+                            <i class="fa-solid fa-cube text-accent-strong"></i>
+                            <span>High-Poly 3D Models</span>
+                        </div>
+                        <div class="flex items-center gap-2 text-xs text-gray-medium">
+                            <i class="fa-solid fa-chart-line text-accent-strong"></i>
+                            <span>Conversion Focused</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    (function() {
+        // Force hide preloader
+        setTimeout(() => {
+            const preloader = document.querySelector('.preloader-wrapper');
+            if (preloader) {
+                preloader.classList.add('preloader-hidden');
+                document.body.classList.remove('is-loading');
+            }
+        }, 1500);
+
+        const list = document.getElementById('service-items-list');
+        const key = list.getAttribute('data-lang-items');
+        
+        const updateItems = () => {
+            const lang = document.documentElement.lang || 'vi';
+            const data = window.langData ? window.langData[lang] : null;
+            if (data && data[key]) {
+                list.innerHTML = data[key].split(';').map(item => `
+                    <li class="flex items-center gap-3 text-lg text-gray-normal">
+                        <i class="fa-solid fa-check text-accent-green"></i>
+                        <span>${item}</span>
+                    </li>
+                `).join('');
+            }
+        };
+
+        document.addEventListener('languageChanged', updateItems);
+        const checkInterval = setInterval(() => {
+            if (window.langData) {
+                updateItems();
+                clearInterval(checkInterval);
+            }
+        }, 100);
+        setTimeout(() => clearInterval(checkInterval), 5000);
+    })();
+</script>

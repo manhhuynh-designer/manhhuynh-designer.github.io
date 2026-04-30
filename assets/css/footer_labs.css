@@ -1,0 +1,177 @@
+/* 
+   Footer Labs - Creative Playground 
+   Optimized for Headless Physics Engine (Matter.js)
+*/
+
+:root {
+    /* Modern Aurora Palette */
+    --labs-cyan: #00E5FF;
+    --labs-pink: #FF2A85;
+    --labs-orange: #FF5A1F;
+    --labs-green: #00E676;
+    --labs-yellow: #FFC837;
+    --labs-purple: #9D4EDD;
+
+    /* Web Primary Color Integration */
+    --labs-primary: var(--color-button-primary, #3b82f6);
+
+    --color-border-main: rgba(255, 255, 255, 0.1);
+    --color-text-primary: #ffffff;
+    --color-gray-text: #9ca3af;
+}
+
+#footer-playground {
+    position: relative;
+    width: 100%;
+    height: 600px;
+    background-color: transparent;
+    overflow: hidden;
+    border-top: 1px solid var(--color-border-main);
+    padding: 0;
+    cursor: grab;
+    /* Chỉ transition background, tránh ảnh hưởng physics */
+    transition: background-color 0.3s ease; 
+}
+
+@media (max-width: 768px) {
+    #footer-playground {
+        height: 450px;
+    }
+}
+
+#footer-playground:active {
+    cursor: grabbing;
+}
+
+#footer-physics-container {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    overflow: hidden;
+    pointer-events: none; /* Tránh block tương tác mượt của Matter.js MouseConstraint */
+}
+
+/* Base style cho TẤT CẢ item vật lý */
+.physics-item {
+    position: absolute !important;
+    user-select: none !important;
+    -webkit-user-drag: none !important;
+    will-change: transform !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    z-index: 100 !important;
+    pointer-events: auto !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+/* Đưa item đang kéo lên trên cùng - Chỉ giữ lại cursor */
+.physics-item.is-dragging {
+    z-index: 1000 !important;
+    cursor: grabbing !important;
+}
+
+/* -------------------------------------------
+   Pill Shape (data-shape="capsule")
+------------------------------------------- */
+.labs-pill {
+    padding: 10px 40px;
+    border-radius: 9999px;
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: white;
+    white-space: nowrap;
+    text-transform: lowercase;
+    font-family: 'Inter', sans-serif;
+
+    /* Solid Style Only */
+    background: #27272a; /* Zinc 800 */
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    
+    scale: 1;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+.labs-pill.is-dragging {
+    border-color: var(--labs-primary) !important;
+    background: var(--labs-primary) !important;
+    opacity: 0.9;
+}
+
+/* Primary Color for Pills */
+.labs-pill { background-color: var(--labs-primary) !important; border-color: var(--labs-primary) !important; }
+.bg-cyan { background-color: var(--labs-primary) !important; border-color: var(--labs-primary) !important; }
+
+/* -------------------------------------------
+   SVG Shapes (data-shape="circle")
+------------------------------------------- */
+.labs-shape {
+    width: 288px; /* Giảm còn 80% từ 360px */
+    height: 288px;
+    scale: 1;
+    transition: scale 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.labs-shape svg {
+    width: 100%;
+    height: 100%;
+    opacity: 1;
+}
+
+.labs-shape.is-dragging {
+}
+
+/* -------------------------------------------
+   Social Icons (data-shape="circle")
+------------------------------------------- */
+.labs-social {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: #27272a;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    color: white;
+    font-size: 1.4rem;
+    text-decoration: none;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    
+    scale: 1;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.labs-social:hover, .labs-social.is-dragging {
+}
+
+/* -------------------------------------------
+   Responsive & Utilities
+------------------------------------------- */
+@media (max-width: 768px) {
+    .labs-pill {
+        padding: 8px 20px;
+        font-size: 0.9rem;
+    }
+    .labs-shape {
+        width: 100px; /* Nhỏ hơn chút cho mobile */
+        height: 100px;
+    }
+    .labs-social {
+        width: 50px;
+        height: 50px;
+        font-size: 1.2rem;
+    }
+}
+
+.footer-info {
+    position: absolute;
+    bottom: 20px;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    color: var(--color-gray-text);
+    font-size: 0.875rem;
+    pointer-events: none;
+    z-index: 5;
+}

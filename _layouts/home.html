@@ -16,14 +16,16 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
     rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
     crossorigin="anonymous" referrerpolicy="no-referrer" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/ScrollToPlugin.min.js"></script>
   <link rel="stylesheet" href="assets/css/main_theme.css">
   <link rel="stylesheet" href="assets/css/preloader.css">
+  <link rel="stylesheet" href="/assets/css/footer_labs.css">
 
 </head>
 
@@ -118,95 +120,82 @@
     {% include portfolio-section.html %}
     {% include blog-section.html %}
 
-    <section id="services" class="py-16 md:py-24 px-0 text-center">
-      <div class="w-full md:max-w-[65vw] mx-auto px-4">
-        <h2 class="text-4xl md:text-5xl font-extrabold text-heading mb-6 scroll-reveal"
-          data-lang-key="services_heading">
-          Dịch Vụ Cung Cấp
-        </h2>
-        <div class="flex flex-col md:flex-row items-center justify-center gap-2 md:gap-4 mb-6 scroll-reveal">
-
-          <a href="#contact"
-            class="text-lg md:text-xl text-gray-normal hover:text-accent-strong transition-colors duration-200 whitespace-nowrap ml-2">
-            <span data-lang-key="services_cta_quote">Nhận báo giá</span>
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-              class="inline align-middle ml-1 transition-colors duration-200" style="color:currentColor;">
-              <path d="M7 7h8.586L5.293 17.293l1.414 1.414L17 8.414V17h2V5H7v2z" fill="currentColor" />
-            </svg>
-          </a>
-        </div>
-        <div id="services-cards-container"
-          class="w-full flex flex-col lg:flex-row gap-8 transition-all duration-300 ease-in-out items-stretch h-auto lg:h-[520px] scroll-reveal">
-          <div id="service-fooh"
-            class="bg-card p-6 md:p-8 rounded-xl shadow-xl text-left relative flex-1 flex flex-col justify-between items-stretch  h-full min-h-[320px] md:min-h-[320px] lg:min-h-[575px]">
-            <div class="service-details-wrapper md:w-full flex flex-col justify-start flex-1">
-              <h3 class="text-2xl font-bold text-main mb-4" data-lang-key="service_fooh_title">Sản xuất Video CGI FOOH
-              </h3>
-              <ul class="space-y-2">
-                <li class="cursor-pointer" data-lang-key="service_fooh_desc"><strong class="text-primary">Sản xuất các
-                    video quảng cáo CGI ngắn (15-30 giây)</strong> cho các chiến dịch truyền thông.</li>
-              </ul>
-            </div>
-            <div class="project-carousel-wrapper md:w-full mt-8 md:mt-4 flex-1 flex flex-col justify-end">
-              <div
-                class="carousel-container relative w-full h-full min-h-[200px] md:min-h-[300px] flex-1 overflow-hidden flex items-center justify-center bg-secondary rounded-xl">
-                <div class="carousel-inner flex w-full h-full transition-transform duration-300 ease-in-out"></div>
-                <div class="carousel-indicators absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-2 z-10">
-                </div>
-              </div>
-            </div>
-          </div>
-          <div id="service-3d-modeling-animation"
-            class="bg-card p-6 md:p-8 rounded-xl shadow-xl text-left relative flex-1 flex flex-col justify-between items-stretch  delay-150 h-full min-h-[320px] md:min-h-[320px] lg:min-h-[575px]">
-            <div class="service-details-wrapper md:w-full flex flex-col justify-start flex-1">
-              <h3 class="text-2xl font-bold text-main mb-4">3D Modeling & Animation</h3>
-              <ul class="space-y-2">
-                <li data-lang-key="service_3d_modeling_animation_desc2"><strong class="text-primary">Render hình ảnh sản
-                    phẩm 3D</strong> chất lượng cao, chân thực.</li>
-                <li data-lang-key="service_3d_modeling_animation_desc3"><strong class="text-primary">Sản xuất video
-                    quảng cáo 3D CGI</strong> cho sản phẩm.</li>
-              </ul>
-            </div>
-            <div class="project-carousel-wrapper md:w-full mt-8 md:mt-4 flex-1 flex flex-col justify-end">
-              <div
-                class="carousel-container relative w-full h-full min-h-[200px] md:min-h-[300px] flex-1 overflow-hidden flex items-center justify-center bg-secondary rounded-xl">
-                <div class="carousel-inner flex w-full h-full transition-transform duration-300 ease-in-out"></div>
-                <div class="carousel-indicators absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-2 z-10">
-                </div>
-              </div>
-            </div>
-          </div>
-          <div id="service-2d-design"
-            class="bg-card p-6 md:p-8 rounded-xl shadow-xl text-left relative flex-1 flex flex-col justify-between items-stretch  delay-300 h-full min-h-[320px] md:min-h-[320px] lg:min-h-[575px]">
-            <div class="service-details-wrapper md:w-full flex flex-col justify-start flex-1">
-              <h3 class="text-2xl font-bold text-main mb-4" data-lang-key="service_2d_design_title">Thiết kế 2D</h3>
-              <ul class="space-y-2">
-                <li data-lang-key="service_2d_design_desc1"><strong class="text-primary">Thiết kế cho thương mại điện
-                    tử</strong> (e-commerce).</li>
-                <li data-lang-key="service_2d_design_desc2"><strong class="text-primary">Thiết kế bao bì sản
-                    phẩm.</strong></li>
-                <li data-lang-key="service_2d_design_desc3">POSM Design.</li>
-                <li data-lang-key="service_2d_design_desc4">Các dịch vụ thiết kế 2D khác theo yêu cầu.</li>
-              </ul>
-            </div>
-            <div class="project-carousel-wrapper md:w-full mt-8 md:mt-4 flex-1 flex flex-col justify-end">
-              <div
-                class="carousel-container relative w-full h-full min-h-[200px] md:min-h-[300px] flex-1 overflow-hidden flex items-center justify-center bg-secondary rounded-xl">
-                <div class="carousel-inner flex w-full h-full transition-transform duration-300 ease-in-out"></div>
-                <div class="carousel-indicators absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-2 z-10">
-                </div>
-              </div>
-            </div>
+    <section id="services" class="py-20 md:py-32 px-0 text-center relative overflow-hidden">
+      <div class="w-full md:max-w-[85vw] mx-auto px-6">
+        <div class="mb-16 text-left">
+          <h2 class="text-5xl md:text-7xl swiss-heading text-heading mb-6 scroll-reveal" data-lang-key="services_heading">
+            Dịch Vụ Cung Cấp
+          </h2>
+          <div class="flex items-center gap-4 scroll-reveal">
+            <div class="h-px w-20 bg-accent-strong"></div>
+            <a href="#contact" class="text-xl font-bold text-accent-strong hover:underline flex items-center gap-2">
+              <span data-lang-key="services_cta_quote">Nhận báo giá</span>
+              <i class="fa-solid fa-arrow-right-long"></i>
+            </a>
           </div>
         </div>
 
+        <div id="services-grid" class="grid grid-cols-1 md:grid-cols-3 gap-8 scroll-reveal">
+          <!-- Service 1: Motion 3D -->
+          <div id="service-3d-motion" class="glass-card p-10 text-left flex flex-col h-full rounded-2xl hover:-translate-y-2 transition-all duration-300">
+            <div class="mb-8">
+              <div class="w-20 h-20 rounded-full bg-blue-500/20 flex items-center justify-center mb-8 shadow-inner">
+                <i class="fa-solid fa-cube text-4xl text-blue-500 drop-shadow-md"></i>
+              </div>
+              <h3 class="text-3xl swiss-heading text-main mb-4" data-lang-key="service_3d_motion_title">Motion 3D & Render</h3>
+              <p class="text-gray-normal text-lg leading-relaxed" data-lang-key="service_3d_motion_desc">Mô hình hóa, Render sản phẩm 3D và Animation chuyên nghiệp.</p>
+            </div>
+            <div class="mt-auto pt-8">
+              <a href="/services/motion-3d" class="group/btn inline-flex items-center gap-2 text-accent-strong font-bold hover:gap-4 transition-all uppercase tracking-wider text-sm">
+                <span data-lang-key="learn_more">Tìm hiểu thêm</span>
+                <i class="fa-solid fa-arrow-right-long"></i>
+              </a>
+            </div>
+          </div>
 
-      </div>
+          <!-- Service 2: Social CGI -->
+          <div id="service-social-cgi" class="glass-card p-10 text-left flex flex-col h-full rounded-2xl hover:-translate-y-2 transition-all duration-300">
+            <div class="mb-8">
+              <div class="w-20 h-20 rounded-full bg-green-500/20 flex items-center justify-center mb-8 shadow-inner">
+                <i class="fa-solid fa-video text-4xl text-green-500 drop-shadow-md"></i>
+              </div>
+              <h3 class="text-3xl swiss-heading text-main mb-4" data-lang-key="service_social_cgi_title">Social CGI (FOOH)</h3>
+              <p class="text-gray-normal text-lg leading-relaxed" data-lang-key="service_social_cgi_desc">Sản xuất video quảng cáo CGI/FOOH bắt mắt, tối ưu cho mạng xã hội.</p>
+            </div>
+            <div class="mt-auto pt-8">
+              <a href="/services/social-cgi" class="group/btn inline-flex items-center gap-2 text-accent-strong font-bold hover:gap-4 transition-all uppercase tracking-wider text-sm">
+                <span data-lang-key="learn_more">Tìm hiểu thêm</span>
+                <i class="fa-solid fa-arrow-right-long"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- Service 3: WebAR -->
+          <div id="service-webar-posmars" class="glass-card p-10 text-left flex flex-col h-full rounded-2xl hover:-translate-y-2 transition-all duration-300 border-t-2 border-t-orange-500/30">
+            <div class="mb-8">
+              <div class="w-20 h-20 rounded-full bg-orange-500/20 flex items-center justify-center mb-8 shadow-inner">
+                <i class="fa-solid fa-vr-cardboard text-4xl text-orange-500 drop-shadow-md"></i>
+              </div>
+              <h3 class="text-3xl swiss-heading text-main mb-4" data-lang-key="service_webar_title">WebAR Experience</h3>
+              <p class="text-gray-normal text-lg leading-relaxed mb-4" data-lang-key="service_webar_desc">Thiết kế trải nghiệm thực tế tăng cường (AR) trực tiếp trên trình duyệt web.</p>
+              <a href="http://posmars.com" target="_blank" class="inline-flex items-center gap-2 text-accent-strong font-bold hover:gap-3 transition-all uppercase tracking-wider text-sm">
+                Explore POSMARS <i class="fa-solid fa-external-link text-sm"></i>
+              </a>
+            </div>
+            <div class="mt-auto pt-8">
+              <a href="/services/webar" class="group/btn inline-flex items-center gap-2 text-accent-strong font-bold hover:gap-4 transition-all">
+                <span data-lang-key="learn_more">Tìm hiểu thêm</span>
+                <i class="fa-solid fa-arrow-right-long"></i>
+              </a>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
-    <section id="work-process" class="py-16 md:py-24 px-0 text-center -y">
-      <div class="w-full md:max-w-[65vw] mx-auto px-4">
-        <h2 class="text-4xl md:text-5xl font-extrabold text-heading mb-12 -y px-6 md:px-12 scroll-reveal"
+
+    <section id="work-process" class="py-16 md:py-24 px-0 text-left">
+      <div class="w-full md:max-w-[85vw] mx-auto px-6">
+        <h2 class="text-5xl md:text-7xl swiss-heading text-heading mb-12 scroll-reveal"
           data-lang-key="work_process_heading">
           Quy Trình Làm Việc
         </h2>
@@ -215,49 +204,53 @@
           class="flex flex-col md:flex-row md:space-x-8 space-y-8 md:space-y-0 items-stretch justify-center process-steps-container">
 
           <div
-            class="bg-card flex-1 p-6 md:p-8 rounded-xl shadow-xl text-left relative process-step delay-150 transition-transform hover:-translate-y-2 hover:shadow-2xl min-h-[200px] scroll-reveal-x"
+            class="glass-card flex-1 p-8 md:p-10 rounded-xl shadow-xl text-left relative process-step transition-all hover:-translate-y-2 hover:shadow-2xl min-h-[220px] overflow-hidden group"
             role="group" aria-label="Bước 1: Tiếp nhận & Phân tích yêu cầu">
-            <div class="text-4xl text-accent-strong mb-4" data-lang-key="work_process_step1_icon">💡</div>
-            <h3 class="text-xl font-semibold text-main mb-2" data-lang-key="work_process_step1_title">
+            <span class="absolute right-2 -bottom-2 text-8xl font-black text-main opacity-5 pointer-events-none group-hover:opacity-10 group-hover:text-accent-strong transition-all">01</span>
+            <div class="text-4xl text-accent-strong mb-6 relative z-10" data-lang-key="work_process_step1_icon">💡</div>
+            <h3 class="text-2xl swiss-heading text-main mb-4 relative z-10" data-lang-key="work_process_step1_title">
               1. Tiếp nhận & Phân tích Yêu cầu
             </h3>
-            <p class="text-gray-normal text-md" data-lang-key="work_process_step1_short_desc">
+            <p class="text-gray-normal text-lg leading-relaxed relative z-10" data-lang-key="work_process_step1_short_desc">
               Lắng nghe và hiểu rõ mục tiêu dự án.
             </p>
           </div>
 
           <div
-            class="bg-card flex-1 p-6 md:p-8 rounded-xl shadow-xl text-left relative process-step delay-300 transition-transform hover:-translate-y-2 hover:shadow-2xl min-h-[200px] scroll-reveal-x"
+            class="glass-card flex-1 p-8 md:p-10 rounded-xl shadow-xl text-left relative process-step transition-all hover:-translate-y-2 hover:shadow-2xl min-h-[220px] overflow-hidden group"
             role="group" aria-label="Bước 2: Lên ý tưởng & Phát triển Concept">
-            <div class="text-4xl text-accent-strong mb-4" data-lang-key="work_process_step2_icon">✏️</div>
-            <h3 class="text-xl font-semibold text-main mb-2" data-lang-key="work_process_step2_title">
-              2. Lên ý tưởng & Phát triển Concept
+            <span class="absolute right-2 -bottom-2 text-8xl font-black text-main opacity-5 pointer-events-none group-hover:opacity-10 group-hover:text-accent-strong transition-all">02</span>
+            <div class="text-4xl text-accent-strong mb-6 relative z-10" data-lang-key="work_process_step2_icon">✏️</div>
+            <h3 class="text-2xl swiss-heading text-main mb-4 relative z-10" data-lang-key="work_process_step2_title">
+              2. Lên ý tưởng & Concept
             </h3>
-            <p class="text-gray-normal text-md" data-lang-key="work_process_step2_short_desc">
+            <p class="text-gray-normal text-lg leading-relaxed relative z-10" data-lang-key="work_process_step2_short_desc">
               Phác thảo ý tưởng và tạo moodboard.
             </p>
           </div>
 
           <div
-            class="bg-card flex-1 p-6 md:p-8 rounded-xl shadow-xl text-left relative process-step  delay-450 transition-transform hover:-translate-y-2 hover:shadow-2xl min-h-[200px] scroll-reveal-x"
+            class="glass-card flex-1 p-8 md:p-10 rounded-xl shadow-xl text-left relative process-step transition-all hover:-translate-y-2 hover:shadow-2xl min-h-[220px] overflow-hidden group"
             role="group" aria-label="Bước 3: Triển khai & Tối ưu">
-            <div class="text-4xl text-accent-strong mb-4" data-lang-key="work_process_step3_icon">⚙️</div>
-            <h3 class="text-xl font-semibold text-main mb-2" data-lang-key="work_process_step3_title">
+            <span class="absolute right-2 -bottom-2 text-8xl font-black text-main opacity-5 pointer-events-none group-hover:opacity-10 group-hover:text-accent-strong transition-all">03</span>
+            <div class="text-4xl text-accent-strong mb-6 relative z-10" data-lang-key="work_process_step3_icon">⚙️</div>
+            <h3 class="text-2xl swiss-heading text-main mb-4 relative z-10" data-lang-key="work_process_step3_title">
               3. Triển khai & Tối ưu
             </h3>
-            <p class="text-gray-normal text-md" data-lang-key="work_process_step3_short_desc">
+            <p class="text-gray-normal text-lg leading-relaxed relative z-10" data-lang-key="work_process_step3_short_desc">
               Thiết kế hoàn chỉnh, tinh chỉnh hiệu suất.
             </p>
           </div>
 
           <div
-            class="bg-card flex-1 p-6 md:p-8 rounded-xl shadow-xl text-left relative process-step  delay-600 transition-transform hover:-translate-y-2 hover:shadow-2xl min-h-[200px] scroll-reveal-x"
+            class="glass-card flex-1 p-8 md:p-10 rounded-xl shadow-xl text-left relative process-step transition-all hover:-translate-y-2 hover:shadow-2xl min-h-[220px] overflow-hidden group"
             role="group" aria-label="Bước 4: Giao nhận & Hỗ trợ">
-            <div class="text-4xl text-accent-strong mb-4" data-lang-key="work_process_step4_icon">📦</div>
-            <h3 class="text-xl font-semibold text-main mb-2" data-lang-key="work_process_step4_title">
+            <span class="absolute right-2 -bottom-2 text-8xl font-black text-main opacity-5 pointer-events-none group-hover:opacity-10 group-hover:text-accent-strong transition-all">04</span>
+            <div class="text-4xl text-accent-strong mb-6 relative z-10" data-lang-key="work_process_step4_icon">📦</div>
+            <h3 class="text-2xl swiss-heading text-main mb-4 relative z-10" data-lang-key="work_process_step4_title">
               4. Giao nhận & Hỗ trợ
             </h3>
-            <p class="text-gray-normal text-md" data-lang-key="work_process_step4_short_desc">
+            <p class="text-gray-normal text-lg leading-relaxed relative z-10" data-lang-key="work_process_step4_short_desc">
               Bàn giao sản phẩm và hỗ trợ sau dự án.
             </p>
           </div>
@@ -268,57 +261,61 @@
 
 
 
-    <section id="contact" class="py-16 md:py-24 px-6 md:px-12 text-center">
-      <div class="max-w-4xl mx-auto">
-        <h2 class="text-4xl md:text-5xl font-extrabold text-heading mb-12 scroll-reveal"
+    <section id="contact" class="py-16 md:py-24 px-0 text-left relative overflow-hidden">
+      <!-- Ambient Glow cho hiệu ứng Glass -->
+      <div class="absolute top-1/2 left-1/4 w-96 h-96 bg-accent-strong/30 rounded-full mix-blend-multiply filter blur-[100px] opacity-70 pointer-events-none"></div>
+      <div class="absolute bottom-10 right-1/4 w-96 h-96 bg-main/20 rounded-full mix-blend-multiply filter blur-[100px] opacity-70 pointer-events-none"></div>
+
+      <div class="w-full md:max-w-[85vw] mx-auto px-6 relative z-10">
+        <h2 class="text-5xl md:text-7xl swiss-heading text-heading mb-12 scroll-reveal"
           data-lang-key="contact_heading">Liên Hệ</h2>
-        <p class="text-lg text-gray-normal mb-8 delay-150 scroll-reveal" data-lang-key="contact_tagline">
+        <p class="text-xl text-gray-normal mb-12 delay-150 scroll-reveal max-w-2xl" data-lang-key="contact_tagline">
           Sẵn sàng đưa ý tưởng của bạn thành hiện thực? Hãy gửi tin nhắn cho tôi!
         </p>
 
         <form id="contact-form" action="https://formspree.io/f/mkgbganj" method="POST"
-          class="bg-card p-8 rounded-xl shadow-xl text-left space-y-6 delay-300 scroll-reveal">
-          <div>
-            <label for="name" class="block text-main text-lg font-semibold mb-2" data-lang-key="contact_name_label">Tên
-              của bạn:</label>
-            <input type="text" id="name" name="name" required
-              class="w-full p-3 rounded-lg bg-form-input text-main border border-main focus:border-primary-button focus:ring focus:ring-primary-button focus:ring-opacity-50 transition duration-200"
-              data-lang-key="contact_name_placeholder" placeholder="Tên của bạn">
+          class="glass-card p-10 md:p-16 rounded-xl shadow-xl text-left space-y-8 scroll-reveal">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="relative group">
+              <label for="name" class="block text-gray-normal text-sm font-bold uppercase tracking-widest mb-3 group-focus-within:text-accent-strong transition-colors" data-lang-key="contact_name_label">Tên của bạn</label>
+              <input type="text" id="name" name="name" required
+                class="w-full bg-transparent border-b-2 border-main/30 py-3 focus:border-accent-strong outline-none transition-all text-main text-lg"
+                data-lang-key="contact_name_placeholder" placeholder="Họ và tên">
+            </div>
+            <div class="relative group">
+              <label for="email" class="block text-gray-normal text-sm font-bold uppercase tracking-widest mb-3 group-focus-within:text-accent-strong transition-colors" data-lang-key="contact_email_label">Email của bạn</label>
+              <input type="email" id="email" name="email" required
+                class="w-full bg-transparent border-b-2 border-main/30 py-3 focus:border-accent-strong outline-none transition-all text-main text-lg"
+                data-lang-key="contact_email_placeholder" placeholder="email@example.com">
+            </div>
           </div>
-          <div>
-            <label for="email" class="block text-main text-lg font-semibold mb-2"
-              data-lang-key="contact_email_label">Email của bạn:</label>
-            <input type="email" id="email" name="email" required
-              class="w-full p-3 rounded-lg bg-form-input text-main border border-main focus:border-primary-button focus:ring focus:ring-primary-button focus:ring-opacity-50 transition duration-200"
-              data-lang-key="contact_email_placeholder" placeholder="Email của bạn">
-          </div>
-          <div>
-            <label for="subject" class="block text-main text-lg font-semibold mb-2"
-              data-lang-key="contact_subject_label">Chủ đề:</label>
+          <div class="relative group">
+            <label for="subject" class="block text-gray-normal text-sm font-bold uppercase tracking-widest mb-3 group-focus-within:text-accent-strong transition-colors" data-lang-key="contact_subject_label">Chủ đề</label>
             <input type="text" id="subject" name="subject"
-              class="w-full p-3 rounded-lg bg-form-input text-main border border-main focus:border-primary-button focus:ring focus:ring-primary-button focus:ring-opacity-50 transition duration-200"
-              data-lang-key="contact_subject_placeholder" placeholder="Chủ đề">
+              class="w-full bg-transparent border-b-2 border-main/30 py-3 focus:border-accent-strong outline-none transition-all text-main text-lg"
+              data-lang-key="contact_subject_placeholder" placeholder="Dự án của bạn là gì?">
           </div>
-          <div>
-            <label for="message" class="block text-main text-lg font-semibold mb-2"
-              data-lang-key="contact_message_label">Tin nhắn:</label>
-            <textarea id="message" name="message" rows="5" required
-              class="w-full p-3 rounded-lg bg-form-input text-main border border-main focus:border-primary-button focus:ring focus:ring-primary-button focus:ring-opacity-50 transition duration-200"
-              data-lang-key="contact_message_placeholder" placeholder="Tin nhắn"></textarea>
+          <div class="relative group">
+            <label for="message" class="block text-gray-normal text-sm font-bold uppercase tracking-widest mb-3 group-focus-within:text-accent-strong transition-colors" data-lang-key="contact_message_label">Tin nhắn</label>
+            <textarea id="message" name="message" rows="4" required
+              class="w-full bg-transparent border-b-2 border-main/30 py-3 focus:border-accent-strong outline-none transition-all text-main text-lg resize-none"
+              data-lang-key="contact_message_placeholder" placeholder="Hãy mô tả chi tiết yêu cầu của bạn..."></textarea>
           </div>
           <input type="hidden" name="_replyto" value="contact@manhhuynh.work">
-          <button type="submit"
-            class="w-full bg-primary-button hover:bg-primary-button text-white font-bold py-3 px-6 rounded-full shadow-lg transition duration-300 transform hover:scale-105"
-            data-lang-key="contact_submit_button">
-            Gửi Tin Nhắn
-          </button>
+          <div class="pt-6">
+            <button type="submit"
+              class="group relative inline-flex items-center gap-4 px-12 py-5 bg-accent-strong text-white rounded-full font-black uppercase tracking-widest overflow-hidden transition-all hover:pr-16 shadow-2xl hover:shadow-accent-strong/20">
+              <span class="relative z-10" data-lang-key="contact_submit_button">Gửi Tin Nhắn</span>
+              <i class="fa-solid fa-arrow-right absolute right-6 translate-x-4 opacity-0 group-hover:translate-x-0 group-hover:opacity-100 transition-all"></i>
+            </button>
+          </div>
           <div id="form-message" class="mt-4 text-center text-accent-green font-semibold hidden"
             data-lang-key="contact_form_success"></div>
         </form>
 
-        <div class="mt-12 delay-450 scroll-reveal">
-          <p class="text-xl font-semibold text-main mb-4" data-lang-key="contact_or_connect">Hoặc kết nối qua:</p>
-          <div class="flex flex-wrap justify-center items-center gap-x-8 gap-y-4 text-lg mb-6">
+        <div class="mt-20 delay-450 scroll-reveal">
+          <p class="text-2xl swiss-heading text-main mb-8" data-lang-key="contact_or_connect">Kết nối qua</p>
+          <div class="flex flex-wrap justify-start items-center gap-x-12 gap-y-6 text-xl mb-10">
             <a href="mailto:contact@manhhuynh.work"
               class="link-primary hover:link-primary transition duration-300 flex items-center">
               <i class="fa-solid fa-envelope mr-2"></i>
@@ -335,7 +332,7 @@
               (+84) 359312806
             </a>
           </div>
-          <div class="flex flex-wrap justify-center items-center gap-6 text-2xl">
+          <div class="flex flex-wrap justify-start items-center gap-8 text-3xl">
             <a href="https://www.tiktok.com/@manhhuynh.designer" title="TikTok" target="_blank"
               rel="noopener noreferrer" class="link-primary hover:link-primary transition duration-300">
               <i class="fab fa-tiktok"></i>
@@ -358,13 +355,17 @@
         </div>
       </div>
     </section>
+    
+    {% include footer_labs.html %}
   </main>
 
 
 
-  <script src="assets/script/services.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.19.0/matter.min.js"></script>
+  <script src="/assets/script/footer_interaction.js" defer></script>
+  <script src="/assets/script/services.js" defer></script>
   <script type="module" src="/assets/script/theme.js"></script>
-  <script type="module" src="assets/script/main.js"></script>
+  <script type="module" src="/assets/script/main.js"></script>
 
 </body>
 

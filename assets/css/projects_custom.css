@@ -1,0 +1,203 @@
+/* Minimalist Behance Timeline - Buttons on Line */
+.behance-minimal-section {
+    padding: 2rem 0 4rem 0;
+    text-align: center;
+    position: relative;
+}
+
+.behance-title {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.6rem 1.75rem;
+    background: rgba(156, 163, 175, 0.05);
+    border: 1px solid rgba(156, 163, 175, 0.1);
+    border-radius: 999px;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    
+    font-size: 0.65rem;
+    font-weight: 900;
+    letter-spacing: 0.5em;
+    text-transform: uppercase;
+    color: #64748b;
+    margin-bottom: 4rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+}
+
+body[data-theme="dark"] .behance-title {
+    background: rgba(255, 255, 255, 0.03);
+    border-color: rgba(255, 255, 255, 0.08);
+    color: #94a3b8;
+}
+
+.timeline-interactive-area {
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 50px;
+}
+
+/* Full-width Line as background of buttons */
+.timeline-bg-line {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 100vw;
+    height: 1px;
+    background: rgba(156, 163, 175, 0.15);
+    z-index: 0;
+}
+
+.behance-buttons-group {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    gap: clamp(2rem, 10vw, 6rem);
+    width: 100%;
+}
+
+.behance-minimal-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 2rem;
+    background: #2563eb; /* Blue Color */
+    color: #fff !important;
+    border: 3px solid var(--color-bg-main, #fff); /* Border to create "cut" effect on line */
+    border-radius: 999px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 10px 25px rgba(37, 99, 235, 0.2);
+}
+
+body[data-theme="dark"] .behance-minimal-btn {
+    border-color: #0f172a;
+}
+
+.behance-minimal-btn:hover {
+    transform: translateY(-5px) scale(1.05);
+    background: #1d4ed8;
+    box-shadow: 0 15px 30px rgba(37, 99, 235, 0.4);
+}
+
+@media (max-width: 640px) {
+    .timeline-bg-line {
+        display: none; /* Hide line on mobile to stack buttons cleanly */
+    }
+    .behance-buttons-group {
+        flex-direction: column;
+        align-items: center;
+        gap: 1.5rem;
+    }
+    .behance-minimal-btn {
+        width: 80%;
+        max-width: 260px;
+        justify-content: center;
+        border: none;
+    }
+}
+
+/* Project Header Glass & Swiss Style */
+.project-header-container {
+    padding: 2.5rem 2rem;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 3rem;
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    margin-bottom: 2rem;
+    transition: all 0.3s ease;
+}
+
+body[data-theme="light"] .project-header-container {
+    background: rgba(255, 255, 255, 0.6);
+    border-color: rgba(0, 0, 0, 0.05);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02);
+}
+
+.swiss-title {
+    font-weight: 950 !important;
+    letter-spacing: -0.05em !important;
+    line-height: 1.05;
+    background: linear-gradient(to bottom, #ffffff 0%, #a1a1aa 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 1.5rem;
+}
+
+body[data-theme="light"] .swiss-title {
+    background: linear-gradient(to bottom, #18181b 0%, #71717a 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.swiss-desc {
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    opacity: 0.7;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+@media (max-width: 768px) {
+    .project-header-container {
+        padding: 3rem 1.5rem;
+        border-radius: 2rem;
+        margin-bottom: 4rem;
+    }
+    .swiss-title {
+        font-size: 2.25rem !important;
+    }
+}
+
+/* Blur Blobs for Depth - HDR Style */
+.header-blob {
+    position: absolute;
+    width: clamp(250px, 50vw, 500px);
+    height: clamp(250px, 50vw, 500px);
+    border-radius: 50%;
+    filter: blur(60px);
+    z-index: -1;
+    pointer-events: none;
+    animation: blob-float 25s infinite alternate;
+    mix-blend-mode: screen; /* Key for HDR glowing effect */
+    opacity: 0.6;
+}
+
+body[data-theme="light"] .header-blob {
+    mix-blend-mode: multiply; /* Better for light backgrounds */
+    opacity: 0.15;
+    filter: blur(80px);
+}
+
+.blob-1 {
+    top: -20%;
+    right: -15%;
+    width: clamp(400px, 60vw, 700px);
+    height: clamp(400px, 60vw, 700px);
+    background: radial-gradient(circle, rgba(37, 99, 235, 0.8) 0%, rgba(37, 99, 235, 0.3) 40%, transparent 75%);
+}
+
+.blob-2 {
+    bottom: -10%;
+    left: 5%;
+    width: clamp(180px, 20vw, 300px);
+    height: clamp(180px, 20vw, 300px);
+    background: radial-gradient(circle, rgba(96, 165, 250, 0.7) 0%, rgba(96, 165, 250, 0.3) 30%, transparent 70%);
+    animation-delay: -7s;
+}
+
+@keyframes blob-float {
+    0% { transform: translate(0, 0) scale(1); }
+    33% { transform: translate(30px, -50px) scale(1.1); }
+    66% { transform: translate(-20px, 20px) scale(0.9); }
+    100% { transform: translate(0, 0) scale(1); }
+}

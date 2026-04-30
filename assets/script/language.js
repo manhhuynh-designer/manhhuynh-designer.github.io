@@ -31,7 +31,14 @@ export function updateContent(lang) {
     if (langButton) { //
         langButton.textContent = lang.toUpperCase() === 'VI' ? 'EN' : 'VI'; // Update button text
     }
-    localStorage.setItem('lang', lang); // Save preference
+    localStorage.setItem('lang', lang); 
+
+    // Expose language data and current lang for subpages
+    window.langData = languages;
+    window.currentLang = lang;
+    
+    // Dispatch event for components that need manual update
+    document.dispatchEvent(new CustomEvent('languageChanged', { detail: { lang } }));
 }
 
 export function setupLanguageToggle() {

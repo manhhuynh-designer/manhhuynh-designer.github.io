@@ -1,0 +1,193 @@
+---
+layout: default
+title: Social CGI (FOOH)
+permalink: /services/social-cgi/
+---
+
+<div class="pt-32 pb-16 px-6 md:px-12 max-w-7xl mx-auto">
+    <!-- Back Button -->
+    <div class="mb-12 scroll-reveal">
+        <a href="/#services" class="inline-flex items-center gap-2 text-gray-normal hover:text-accent-strong transition-all font-medium">
+            <i class="fa-solid fa-arrow-left"></i>
+            <span data-lang-key="nav_services">Dịch Vụ</span>
+        </a>
+    </div>
+
+    <!-- Hero Section -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-24">
+        <div class="scroll-reveal">
+            <h1 class="text-5xl md:text-7xl swiss-heading text-heading mb-6" data-lang-key="service_social_cgi_title">
+                Social CGI (FOOH)
+            </h1>
+            <p class="text-xl md:text-2xl text-gray-normal leading-relaxed mb-8" data-lang-key="service_social_cgi_desc_detail">
+                Sản xuất video quảng cáo CGI/FOOH (Fake Out of Home) độc đáo, tối ưu hóa sự lan tỏa trên các nền tảng mạng xã hội.
+            </p>
+            <div class="flex items-center gap-4">
+                <a href="/#contact" class="px-8 py-4 bg-accent-strong text-white rounded-full font-bold uppercase tracking-widest hover:scale-105 transition-all shadow-lg shadow-accent-strong/20" data-lang-key="contact_submit_button">
+                    Liên Hệ Ngay
+                </a>
+            </div>
+        </div>
+        <div class="relative scroll-reveal delay-300 pr-8 pb-8">
+            <div id="stack-container" class="stack-container">
+                {% assign cgi_projects = site.data.portfolio_projects | where: "category", "social-cgi" %}
+                {% for project in cgi_projects %}
+                    {% assign img_src = project.thumbnail_fallback | default: project.thumbnail_image %}
+                    <div class="stack-card glass-card rounded-3xl overflow-hidden shadow-2xl border border-white/10">
+                        <img src="/{{ img_src }}" alt="Portfolio item" class="w-full h-full object-cover">
+                    </div>
+                {% endfor %}
+            </div>
+            <!-- Decorative elements -->
+            <div class="absolute -top-12 -right-4 w-32 h-32 bg-green-500/20 rounded-full blur-3xl"></div>
+        </div>
+    </div>
+
+    <!-- Rate Card Section -->
+    <div class="mb-24 scroll-reveal">
+        <div class="glass-card p-10 md:p-16 rounded-3xl relative overflow-hidden border border-white/5 bg-slate-900/40">
+            <div class="absolute top-0 right-0 p-8">
+                <i class="fa-solid fa-receipt text-8xl text-accent-strong opacity-5"></i>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+                <div class="lg:col-span-1">
+                    <h2 class="text-3xl md:text-4xl swiss-heading text-main mb-4" data-lang-key="service_social_cgi_starting_price">
+                        21.500.000 VNĐ
+                    </h2>
+                    <p class="text-accent-strong font-bold tracking-widest uppercase text-sm mb-8">Base Package / Starting At</p>
+                    <div class="h-1 w-20 bg-accent-strong mb-8"></div>
+                    <p class="text-gray-medium text-sm leading-relaxed" data-lang-key="service_social_cgi_desc_detail">
+                        Video quảng cáo CGI/FOOH tối ưu cho mạng xã hội.
+                    </p>
+                </div>
+                
+                <div class="lg:col-span-2 border-l border-white/10 lg:pl-12">
+                    <h3 class="text-xl font-bold text-gray-normal uppercase tracking-widest mb-8" data-lang-key="service_detail_included">
+                        Rate Card Details:
+                    </h3>
+                    
+                    <ul id="service-items-list" class="grid grid-cols-1 md:grid-cols-2 gap-y-4 gap-x-12" data-lang-items="service_social_cgi_items">
+                        <!-- Populated by JS -->
+                    </ul>
+                    
+                    <div class="mt-12 pt-8 border-t border-white/5 flex flex-wrap gap-6">
+                        <div class="flex items-center gap-2 text-xs text-gray-medium">
+                            <i class="fa-solid fa-clock text-accent-strong"></i>
+                            <span>Timeline: 10-20 Days</span>
+                        </div>
+                        <div class="flex items-center gap-2 text-xs text-gray-medium">
+                            <i class="fa-solid fa-rotate text-accent-strong"></i>
+                            <span>Revisions: 03 Times</span>
+                        </div>
+                        <div class="flex items-center gap-2 text-xs text-gray-medium">
+                            <i class="fa-solid fa-file-video text-accent-strong"></i>
+                            <span>Format: Social Media Optimized</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Related Projects -->
+    <div class="scroll-reveal">
+        <h2 class="text-4xl swiss-heading text-main mb-12" data-lang-key="portfolio_heading">
+            Dự Án Nổi Bật
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {% for project in site.data.portfolio_projects %}
+                {% if project.category == "social-cgi" %}
+                <div class="glass-card group rounded-2xl overflow-hidden hover:-translate-y-2 transition-all duration-300 border border-white/5">
+                    <div class="aspect-video overflow-hidden">
+                        {% if project.thumbnail_fallback %}
+                            <img src="/{{ project.thumbnail_fallback }}" alt="{{ project.id }}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        {% else %}
+                            <img src="/{{ project.thumbnail_image }}" alt="{{ project.id }}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        {% endif %}
+                    </div>
+                    <div class="p-6">
+                        <h4 class="text-xl font-bold text-main mb-2" data-lang-key="{{ project.title_key }}">{{ project.id }}</h4>
+                        <a href="/{{ project.behance_link }}" class="text-accent-strong font-bold text-sm hover:underline" data-lang-key="portfolio_explore">Xem chi tiết</a>
+                    </div>
+                </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+<script>
+    (function() {
+        // Force hide preloader
+        setTimeout(() => {
+            const preloader = document.querySelector('.preloader-wrapper');
+            if (preloader) {
+                preloader.classList.add('preloader-hidden');
+                document.body.classList.remove('is-loading');
+            }
+        }, 1500);
+
+        const list = document.getElementById('service-items-list');
+        const key = list.getAttribute('data-lang-items');
+        
+        const updateItems = () => {
+            const lang = document.documentElement.lang || 'vi';
+            const data = window.langData ? window.langData[lang] : null;
+            if (data && data[key]) {
+                list.innerHTML = data[key].split(';').map(item => `
+                    <li class="flex items-center gap-3 text-lg text-gray-normal">
+                        <i class="fa-solid fa-check text-accent-green"></i>
+                        <span>${item}</span>
+                    </li>
+                `).join('');
+            }
+        };
+
+        // Stacked Cards Logic
+        const initStack = () => {
+            const cards = document.querySelectorAll('.stack-card');
+            if (cards.length === 0) return;
+            
+            let current = 0;
+
+            const updateStackClasses = () => {
+                cards.forEach((card, i) => {
+                    card.classList.remove('active', 'next', 'back', 'out', 'hidden');
+                    
+                    if (i === current) {
+                        card.classList.add('active');
+                    } else if (i === (current + 1) % cards.length) {
+                        card.classList.add('next');
+                    } else if (i === (current + 2) % cards.length) {
+                        card.classList.add('back');
+                    } else {
+                        card.classList.add('hidden');
+                    }
+                });
+            };
+
+            updateStackClasses();
+
+            setInterval(() => {
+                const prev = current;
+                cards[prev].classList.add('out');
+                
+                setTimeout(() => {
+                    current = (current + 1) % cards.length;
+                    updateStackClasses();
+                }, 300); // Đợi nửa thời gian transition để đổi class
+            }, 5000);
+        };
+        initStack();
+
+        document.addEventListener('languageChanged', updateItems);
+        const checkInterval = setInterval(() => {
+            if (window.langData) {
+                updateItems();
+                clearInterval(checkInterval);
+            }
+        }, 100);
+        setTimeout(() => clearInterval(checkInterval), 5000);
+    })();
+</script>

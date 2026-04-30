@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 2024 - 2025 CGI - Fake OOH collection
+title: CGI - Fake OOH collection
 permalink: /Projects/FOOH/
 ---
 
@@ -50,7 +50,10 @@ permalink: /Projects/FOOH/
 		backdrop-filter: blur(18px);
 		transition: transform 0.5s ease, opacity 0.5s ease, box-shadow 0.5s ease;
 		opacity: 0.55;
-		transform: translateY(0) scale(0.94);
+		transform: translateY(0) scale(0.94) translateZ(0);
+		will-change: transform, opacity;
+		backface-visibility: hidden;
+		-webkit-backface-visibility: hidden;
 	}
 
 	body[data-theme="dark"] .video-card {
@@ -60,7 +63,7 @@ permalink: /Projects/FOOH/
 
 	.video-card.is-active {
 		opacity: 1;
-		transform: translateY(-8px) scale(1.02);
+		transform: translateY(-8px) scale(1.02) translateZ(0);
 		box-shadow: 0 10px 10px rgba(17, 24, 39, 0.18);
 	}
 
@@ -192,7 +195,7 @@ permalink: /Projects/FOOH/
 	}
 
 	.video-indicators {
-		margin-top: 2.5rem;
+		margin-top: 1.5rem;
 		display: flex;
 		justify-content: center;
 		gap: 0.75rem;
@@ -216,12 +219,12 @@ permalink: /Projects/FOOH/
 
 	.video-indicators button.is-active {
 		width: 34px;
-		background: linear-gradient(90deg, #2563eb 0%, #7c3aed 100%);
+		background: linear-gradient(90deg, #2563eb 0%, #3b82f6 100%);
 		opacity: 1;
 	}
 
 	body[data-theme="dark"] .video-indicators button.is-active {
-		background: linear-gradient(90deg, #60a5fa 0%, #a855f7 100%);
+		background: linear-gradient(90deg, #60a5fa 0%, #93c5fd 100%);
 	}
 
 	@media (max-width: 1280px) {
@@ -255,17 +258,20 @@ permalink: /Projects/FOOH/
 	}
 </style>
 
-<section class="relative pt-24 md:pt-32 pb-16 md:pb-24">
+<section class="relative pt-24 md:pt-32 pb-8 md:pb-12">
 	<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-12">
-		<header class="text-center max-w-3xl mx-auto mb-12 md:mb-16">
+		<header class="project-header-container text-center max-w-4xl mx-auto scroll-reveal">
+			<div class="header-blob blob-1"></div>
+			<div class="header-blob blob-2"></div>
 			<span
-				class="inline-flex items-center justify-center px-4 py-1.5 rounded-full bg-blue-100 text-blue-600 text-xs font-semibold uppercase tracking-[0.35em]">Fake
-				OOH Showcase</span>
-			<h1 class="mt-6 text-3xl md:text-5xl font-extrabold text-main tracking-tight">2024 - 2025 CGI Fake OOH
-				collection</h1>
-			<p class="mt-4 text-base md:text-lg text-gray-normal">
-				Tổng hợp các video CGI Fake OOH thực hiện cho nhiều thương hiệu trong giai đoạn 2024 - 2025.
-
+				class="inline-flex items-center justify-center px-4 py-1.5 rounded-full bg-blue-100 text-blue-600 text-xs font-bold uppercase tracking-[0.4em] mb-8">
+				Fake OOH Showcase
+			</span>
+			<h1 class="text-4xl md:text-6xl swiss-title">
+				CGI Fake OOH<br/>collection
+			</h1>
+			<p class="mt-6 text-lg md:text-xl swiss-desc text-gray-normal">
+				Tổng hợp các video CGI Fake OOH thực hiện cho nhiều thương hiệu tại Việt Nam.
 			</p>
 		</header>
 
@@ -282,6 +288,18 @@ permalink: /Projects/FOOH/
 				<div class="video-gallery-viewport">
 					<div class="video-gallery-track">
 						<div class="video-gallery-spacer" aria-hidden="true"></div>
+						<article class="video-card" aria-current="false">
+							<span class="video-card-badge">Featured</span>
+							<div class="video-frame">
+								<iframe src="https://www.youtube.com/embed/C4AXE5Lse3M?modestbranding=1&rel=0"
+									title="Maybelline New York - Cloudtopia FOOH"
+									allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+									referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+							</div>
+							<div class="video-meta">
+								<p class="video-meta-client">Client: Maybelline New York</p>
+							</div>
+						</article>
 						<article class="video-card is-active" aria-current="true">
 							<span class="video-card-badge">Featured</span>
 							<div class="video-frame">
@@ -486,6 +504,17 @@ permalink: /Projects/FOOH/
 
 		<div class="md:hidden space-y-10 mb-10">
 			<div class="p-4 md:p-6 overflow-hidden flex justify-center flex-col items-center">
+				<span class="video-card-badge mb-4">Featured</span>
+				<div class="relative aspect-[9/16] w-[240px] sm:w-[300px] mx-auto mb-4">
+					<iframe class="absolute inset-0 w-full h-full rounded-lg"
+						src="https://www.youtube.com/embed/C4AXE5Lse3M?modestbranding=1&rel=0"
+						title="Maybelline Cloudtopia" frameborder="0"
+						allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+						referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+				</div>
+				<p class="text-gray-normal text-center">Client: Maybelline New York</p>
+			</div>
+			<div class="p-4 md:p-6 overflow-hidden flex justify-center flex-col items-center">
 				<div class="relative aspect-[9/16] w-[240px] sm:w-[300px] mx-auto mb-4">
 					<iframe class="absolute inset-0 w-full h-full rounded-lg"
 						src="https://www.youtube.com/embed/ICfo78UoR00?modestbranding=1&rel=0"
@@ -640,27 +669,33 @@ permalink: /Projects/FOOH/
 					creative</p>
 			</div>
 
-			<div class="p-4 md:p-6 overflow-hidden flex justify-center flex-col items-center">
-				<div class="relative aspect-[9/16] w-[240px] sm:w-[300px] mx-auto mb-4">
-					<iframe class="absolute inset-0 w-full h-full rounded-lg"
-						src="https://www.youtube.com/embed/1EUJ62rfOZw?modestbranding=1&rel=0" title="Video 11"
-						frameborder="0"
-						allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-						referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+		</div>
+
+<link rel="stylesheet" href="/assets/css/projects_custom.css">
+
+		<!-- Minimalist Behance Section -->
+		<div class="behance-minimal-section scroll-reveal">
+			<span class="behance-title">Xem trên Behance</span>
+			
+			<div class="timeline-interactive-area">
+				<!-- Full-width Line behind buttons -->
+				<div class="timeline-bg-line"></div>
+				
+				<div class="behance-buttons-group">
+					<a href="https://www.behance.net/gallery/217807677/2024-CGI-Fake-OOH-videos-collection" target="_blank" class="behance-minimal-btn">
+						<i class="fab fa-behance"></i>
+						<span>2024 Collection</span>
+					</a>
+
+					<a href="https://www.behance.net/gallery/246254319/2025-Social-CGI-collection" target="_blank" class="behance-minimal-btn">
+						<i class="fab fa-behance"></i>
+						<span>2025 Collection</span>
+					</a>
 				</div>
-				<p class="text-gray-normal text-center">Client: Yves Rocher Việt Nam</p>
 			</div>
 		</div>
 
-		<div class="flex justify-center">
-			<a href="https://www.behance.net/gallery/217807677/2024-CGI-Fake-OOH-videos-collection" target="_blank"
-				rel="noopener noreferrer"
-				class="mt-8 inline-flex items-center px-6 py-3 bg-blue-600 text-white text-lg font-semibold rounded-full shadow-lg hover:bg-blue-700 transition duration-300 transform hover:scale-105">
-				<i class="fab fa-behance mr-3 text-xl"></i> Xem trên Behance
-			</a>
-		</div>
-
-		<div class="p-6 md:p-8 text-center mt-10 border-t border-gray-200 pt-8">
+		<div class="p-6 md:p-8 text-center mt-10 pt-8">
 			<p class="text-2xl md:text-3xl font-extrabold text-main mb-4">Thank for watching!</p>
 			<p class="text-lg md:text-xl text-gray-normal">
 				Contact for works:

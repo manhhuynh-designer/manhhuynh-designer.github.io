@@ -1,0 +1,143 @@
+---
+layout: default
+title: Portfolio Archive | Manh Huynh
+permalink: /Projects/
+---
+
+{% assign lang = site.active_lang | default: "en" %}
+{% assign translations = site.data.languages[lang] %}
+
+<div class="pt-32 pb-20 bg-background min-h-screen">
+    <div class="max-w-[1400px] mx-auto px-6">
+        <!-- Header Section -->
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16 scroll-reveal">
+            <div>
+                <h1 class="text-5xl md:text-8xl swiss-heading text-heading mb-4">
+                    Archive
+                </h1>
+                <p class="text-gray-normal max-w-xl text-lg">
+                    A comprehensive collection of my creative journey, from commercial CGI to experimental motion studies.
+                </p>
+            </div>
+            
+            <!-- Category Filter -->
+            <div id="archive-filter" class="flex flex-wrap gap-3">
+                <button class="filter-btn active px-6 py-2 rounded-full border border-accent-strong bg-accent-strong text-white font-bold transition-all" data-filter="all">All</button>
+                <button class="filter-btn px-6 py-2 rounded-full border border-main text-gray-normal font-bold hover:border-accent-strong transition-all" data-filter="motion-3d">Motion 3D</button>
+                <button class="filter-btn px-6 py-2 rounded-full border border-main text-gray-normal font-bold hover:border-accent-strong transition-all" data-filter="social-cgi">Social CGI</button>
+            </div>
+        </div>
+
+        <!-- Projects Grid -->
+        <div id="archive-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {% for project in site.data.portfolio_projects %}
+            <div class="archive-item group relative aspect-[4/5] overflow-hidden scroll-reveal" data-category="{{ project.category }}">
+                <a href="{{ project.behance_link | relative_url }}" class="block w-full h-full">
+                    <!-- Media Logic (Image or Video) -->
+                    {% assign has_video = false %}
+                    {% assign video_poster = project.thumbnail_image %}
+                    {% assign video_url_webm = nil %}
+                    {% assign video_url_mp4 = nil %}
+
+                    {% if project.thumbnail_video %}
+                        {% assign has_video = true %}
+                        {% assign video_url_webm = project.thumbnail_video %}
+                    {% elsif project.carousel_media %}
+                        {% for media in project.carousel_media %}
+                            {% if media.sources %}
+                                {% assign has_video = true %}
+                                {% for src in media.sources %}
+                                    {% if src.type contains 'webm' %}{% assign video_url_webm = src.url %}{% endif %}
+                                    {% if src.type contains 'mp4' %}{% assign video_url_mp4 = src.url %}{% endif %}
+                                {% endfor %}
+                                {% if media.poster %}{% assign video_poster = media.poster %}{% endif %}
+                                {% break %}
+                            {% elsif media.url contains '.webm' or media.url contains '.mp4' %}
+                                {% assign has_video = true %}
+                                {% if media.url contains '.webm' %}{% assign video_url_webm = media.url %}{% endif %}
+                                {% if media.url contains '.mp4' %}{% assign video_url_mp4 = media.url %}{% endif %}
+                                {% if media.poster %}{% assign video_poster = media.poster %}{% endif %}
+                                {% break %}
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
+
+                    {% if has_video %}
+                        <video class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                               muted autoplay loop playsinline preload="metadata" 
+                               poster="{{ video_poster | relative_url }}">
+                            {% if video_url_webm %}<source src="{{ video_url_webm | relative_url }}" type="video/webm">{% endif %}
+                            {% if video_url_mp4 %}<source src="{{ video_url_mp4 | relative_url }}" type="video/mp4">{% endif %}
+                        </video>
+                    {% else %}
+                        <img src="{{ project.thumbnail_image | relative_url }}" 
+                             alt="{{ project.title_key }}" 
+                             class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                             loading="lazy">
+                    {% endif %}
+                    
+                    <!-- Overlay -->
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-500"></div>
+                    
+                    <!-- Content -->
+                    <div class="absolute bottom-0 left-0 w-full p-8 translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                        <span class="text-accent-strong text-xs font-bold uppercase tracking-widest mb-2 block">
+                            {{ project.category | replace: '-', ' ' }}
+                        </span>
+                        <h3 class="text-white text-2xl font-black mb-2" data-lang-key="{{ project.title_key }}">
+                            {{ translations[project.title_key] | default: project.title_key }}
+                        </h3>
+                        <p class="text-white/60 text-sm line-clamp-2" data-lang-key="{{ project.desc_key }}">
+                            {{ translations[project.desc_key] | default: project.desc_key }}
+                        </p>
+                    </div>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+<style>
+    .filter-btn.active {
+        background-color: var(--color-accent-strong) !important;
+        color: white !important;
+        border-color: var(--color-accent-strong) !important;
+    }
+
+    .archive-item.hidden {
+        display: none;
+    }
+
+    .swiss-heading {
+        letter-spacing: -0.04em;
+        line-height: 0.9;
+    }
+</style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const filterBtns = document.querySelectorAll('#archive-filter .filter-btn');
+        const archiveItems = document.querySelectorAll('.archive-item');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Update active state
+                filterBtns.forEach(b => b.classList.remove('active', 'bg-accent-strong', 'text-white'));
+                btn.classList.add('active', 'bg-accent-strong', 'text-white');
+
+                const filter = btn.getAttribute('data-filter');
+
+                // Filter items
+                archiveItems.forEach(item => {
+                    if (filter === 'all' || item.getAttribute('data-category') === filter) {
+                        item.classList.remove('hidden');
+                        // Optional: trigger GSAP reveal again
+                    } else {
+                        item.classList.add('hidden');
+                    }
+                });
+            });
+        });
+    });
+</script>

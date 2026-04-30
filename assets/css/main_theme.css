@@ -35,6 +35,65 @@
             --color-header-bg-light: #f8f9fe46;
             --color-header-text-light: #111;
             --color-mobile-icon-light: #111;
+            /* Glassmorphism Variables */
+            --color-glass-bg: rgba(30, 41, 59, 0.4);
+            --color-glass-border: rgba(255, 255, 255, 0.08);
+            --color-glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        /* Stacked Cards System - Fixed */
+        .stack-container {
+            position: relative !important;
+            width: 100%;
+            padding-bottom: 56.25%; /* 16:9 Ratio */
+            perspective: 1000px;
+        }
+        @media (max-width: 768px) {
+            .stack-container {
+                padding-bottom: 75%; /* 4:3 on mobile */
+            }
+        }
+        .stack-card {
+            position: absolute !important;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+            transform-origin: center bottom;
+            display: block !important; /* Ensure they are not hidden by default */
+            opacity: 0;
+            pointer-events: none;
+        }
+        /* States for stacked cards */
+        .stack-card.active {
+            z-index: 10;
+            transform: translate(0, 0) rotate(0) scale(1);
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .stack-card.next {
+            z-index: 5;
+            transform: translate(20px, 20px) rotate(3deg) scale(0.95);
+            opacity: 0.6;
+        }
+        .stack-card.back {
+            z-index: 1;
+            transform: translate(40px, 40px) rotate(6deg) scale(0.9);
+            opacity: 0.3;
+        }
+        .stack-card.out {
+            z-index: 20;
+            transform: translate(-150%, -20%) rotate(-20deg);
+            opacity: 0;
         }
 
         body[data-theme='light'] { /* Light Mode Overrides (Blue + White) */
@@ -58,6 +117,10 @@
             --color-gradient-to-1: #dbeafe; /* blue-100 */
             --color-gradient-from-2: #dbeafe; /* blue-100 */
             --color-gradient-to-2: #eff6ff; /* blue-50 */
+            /* Glassmorphism Variables */
+            --color-glass-bg: rgba(255, 255, 255, 0.3);
+            --color-glass-border: rgba(255, 255, 255, 0.6);
+            --color-glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.05);
             --color-header-gradient-from: #2563eb; /* blue-600 */
             --color-header-gradient-to: #1d4ed8; /* blue-700 */
             --color-button-border-color: #2563eb; /* blue-600 */
@@ -145,12 +208,18 @@
         }
         .bg-primary-button { /* Replaces bg-purple-600 */
             background-color: var(--color-button-primary);
+            box-shadow: 0 4px 14px 0 rgba(59, 130, 246, 0.39); /* Premium soft shadow */
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
         .bg-primary-button:hover { /* Replaces hover:bg-purple-700 */
             background-color: var(--color-button-primary-hover);
+            box-shadow: 0 6px 20px rgba(59, 130, 246, 0.23);
         }
         .border-primary-button { /* Replaces border-purple-600 */
             border-color: var(--color-button-border-color);
+            background: rgba(255, 255, 255, 0.03); /* Glass subtle bg */
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
         }
 
         /* Text color for primary buttons (always white) */
@@ -166,7 +235,7 @@
         }
         /* Specific rule for the hover effect for buttons with border-primary-button class */
         a.border-primary-button:hover {
-            color: #ffffff !important; /* Force white text on hover */
+            color: var(--color-button-primary) !important; /* Change to primary color instead of white */
         }
 
         .hover\:bg-primary-button:hover { /* Replaces hover:bg-purple-600 */
@@ -1334,3 +1403,110 @@ body[data-theme='light'] #pagination button.bg-primary-button {
 .animate-fade-in-up.delay-300 {
   animation-delay: 0.3s;
 }
+
+/* Swiss Typography System */
+.swiss-heading {
+    font-family: 'Inter', sans-serif !important;
+    font-weight: 900 !important;
+    letter-spacing: 0em !important;
+    line-height: 1.2 !important;
+    text-transform: none;
+    color: var(--color-text-main) !important;
+}
+
+/* Glassmorphism System */
+.glass-card {
+    background: var(--color-glass-bg) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+    border: 1px solid var(--color-glass-border) !important;
+    box-shadow: var(--color-glass-shadow) !important;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.glass-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Custom Tailwind-like Utility Classes missing from CDN config */
+.bg-accent-strong { background-color: var(--color-button-primary) !important; }
+.text-accent-strong { color: var(--color-text-strong-accent) !important; }
+.border-accent-strong { border-color: var(--color-button-primary) !important; }
+.shadow-accent-strong { box-shadow: 0 4px 14px 0 var(--color-button-primary) !important; }
+
+/* 3D Perspective Video */
+.perspective-video {
+    transform: perspective(1200px) rotateY(0deg) scale(1.2);
+    transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.8s ease-out;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+}
+.perspective-video:hover {
+    transform: perspective(1200px) rotateY(0deg) scale3d(1.22, 1.22, 1.22);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+}
+
+@media (min-width: 1024px) {
+    .perspective-video {
+        transform: perspective(1200px) rotateY(-20deg) scale(1.2);
+        box-shadow: -20px 20px 40px rgba(0,0,0,0.15);
+    }
+    .perspective-video:hover {
+        transform: perspective(1200px) rotateY(0deg) scale3d(1.22, 1.22, 1.22);
+        box-shadow: -10px 25px 50px rgba(0,0,0,0.2);
+    }
+}
+
+/* Infinite Client Marquee */
+@keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-100%); }
+}
+.animate-marquee {
+    display: flex;
+    flex-shrink: 0;
+    animation: marquee 30s linear infinite;
+}
+.group:hover .animate-marquee {
+    animation-play-state: paused;
+}
+
+/* Theme support for SVG Logos */
+body[data-theme='light'] .client-logos-container img {
+    opacity: 0.6;
+    filter: grayscale(100%);
+    transition: all 0.4s ease;
+}
+body[data-theme='light'] .client-logos-container img:hover {
+    opacity: 1;
+    filter: grayscale(0%);
+}
+
+body[data-theme='dark'] .client-logos-container img {
+    opacity: 0.5;
+    filter: brightness(0) invert(1); /* Turns black SVGs into white */
+    transition: all 0.4s ease;
+}
+body[data-theme='dark'] .client-logos-container img:hover {
+    opacity: 1;
+    filter: brightness(0) invert(1);
+}
+
+/* Ambient Glow Theme Support */
+.ambient-glow {
+    background-color: rgba(59, 130, 246, 0.2);
+    mix-blend-mode: screen;
+    transition: background-color 0.5s ease;
+}
+
+body[data-theme='light'] .ambient-glow {
+    background-color: rgba(59, 130, 246, 0.5); /* Stronger visibility in light mode */
+}
+
+/* --- Portfolio Stability --- */
+#portfolio {
+    min-height: 100vh;
+    position: relative;
+    overflow: hidden;
+}
+

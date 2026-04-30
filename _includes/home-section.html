@@ -1,68 +1,108 @@
-<section id="home" class="mt-24 md:mt-2 lg:min-h-screen min-h-1/2 px-4 sm:px-6 md:px-12 lg:px-24 pt-8 pb-12
-         flex flex-col lg:flex-row
-         items-center justify-center lg:justify-between gap-2 lg:gap-1 overflow-hidden">
-  <div class="w-full lg:w-2/3 order-1 lg:order-2">
-    <div class="relative w-full overflow-hidden shadow-2xl rounded-xl lg:rounded-3xl aspect-video">
-      <video id="heroVideo" autoplay muted loop playsinline class="w-full h-full object-cover scale-105">
+<section id="home" class="min-h-[80vh] lg:min-h-screen pt-32 pb-12 px-4 sm:px-6 md:px-12 lg:px-24 flex flex-col justify-center relative">
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-center w-full max-w-7xl mx-auto flex-grow mt-10">
+    <!-- Left Column (Content) -->
+    <div class="order-2 lg:order-1 lg:col-span-5 text-left z-10">
+      <p class="uppercase tracking-widest text-xs font-semibold text-gray-normal mb-4 hero-anim" data-lang-key="hero_tagline">3D MOTION GRAPHIC DESIGNER</p>
+      
+      <h1 class="text-5xl sm:text-6xl md:text-7xl lg:text-[5.5rem] font-extrabold leading-tight tracking-tight text-main mb-6 hero-anim">
+        Mạnh <br class="hidden lg:block"/> Huỳnh<span class="text-heading">.</span>
+      </h1>
+      
+      <div class="flex flex-col lg:flex-row items-start gap-4 lg:gap-8 mb-8 hero-anim">
+        <p class="text-gray-normal text-lg max-w-sm" data-lang-key="hero_desc">
+          Tôi kiến tạo những trải nghiệm 3D đầy ý nghĩa nhằm truyền cảm hứng và nâng tầm thương hiệu.
+        </p>
+      </div>
+
+      <div class="flex items-center justify-start gap-2 text-sm text-gray-medium mb-10 hero-anim" data-lang-key="hero_status">
+        <i class="fa-solid fa-globe"></i> Làm việc tại Việt Nam / Nhận dự án freelance
+      </div>
+
+      <div class="flex flex-col sm:flex-row justify-start gap-4 hero-anim">
+        <a data-lang-key="hero_cta_portfolio" href="#portfolio" class="bg-primary-button text-white font-bold py-3 px-8 rounded-full transition duration-300 transform hover:-translate-y-1 text-center flex items-center justify-center gap-2">
+          Xem Portfolio <i class="fa-solid fa-arrow-up-right"></i>
+        </a>
+        <a data-lang-key="hero_cta_contact" href="#contact" class="border-2 border-primary-button text-main font-bold py-3 px-8 rounded-full transition duration-300 transform hover:-translate-y-1 text-center flex items-center justify-center gap-2">
+          Liên Hệ <i class="fa-solid fa-arrow-up-right"></i>
+        </a>
+      </div>
+    </div>
+
+    <!-- Right Column (Video) -->
+    <div class="order-1 lg:order-2 lg:col-span-7 hero-video-anim relative w-full aspect-video rounded-2xl shadow-2xl perspective-video">
+      <!-- 3D Ambient Blur Glow -->
+      <div class="ambient-glow absolute w-1/2 h-1/2 rounded-full filter blur-[60px] pointer-events-none z-0" style="bottom: -5%; right: -5%; transform: translateZ(-50px);"></div>
+      
+      <!-- Glass Border -->
+      <div class="absolute inset-0 border border-white/20 rounded-2xl z-20 pointer-events-none"></div>
+      
+      <!-- Video Element -->
+      <video id="heroVideo" autoplay muted loop playsinline class="w-full h-full object-cover rounded-2xl relative z-10">
         <source src="{{site.baseurl}}/assets/videos/cover.webm" type="video/webm" />
         <source src="{{site.baseurl}}/assets/videos/cover.mp4" type="video/mp4" />
       </video>
 
       <button id="videoControlBtn"
-        class="absolute bottom-4 right-4 bg-gray-800 bg-opacity-60 text-white p-3 rounded-full
-               hover:bg-opacity-80 transition duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-75"
+        class="absolute bottom-4 right-4 bg-gray-800/60 backdrop-blur-md text-white p-3 rounded-full hover:bg-gray-800/80 transition duration-200 z-30"
         aria-label="Play/Pause Video">
-        <svg id="pauseIcon" class="w-5 h-5" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"
-          xmlns="http://www.w3.org/2000/svg">
+        <svg id="pauseIcon" class="w-5 h-5" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
           <rect x="6" y="5" width="4" height="14" rx="1" />
           <rect x="14" y="5" width="4" height="14" rx="1" />
         </svg>
-        <svg id="playIcon" class="w-5 h-5 hidden" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-          fill="currentColor" class="bi bi-play" viewBox="0 0 16 16">
-          <path
-            d="M10.804 8 5 4.633v6.734zm.792-.696a.802.802 0 0 1 0 1.392l-6.363 3.692C4.713 12.69 4 12.345 4 11.692V4.308c0-.653.713-.998 1.233-.696z" />
+        <svg id="playIcon" class="w-5 h-5 hidden" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16">
+          <path d="M10.804 8 5 4.633v6.734zm.792-.696a.802.802 0 0 1 0 1.392l-6.363 3.692C4.713 12.69 4 12.345 4 11.692V4.308c0-.653.713-.998 1.233-.696z" />
         </svg>
       </button>
     </div>
   </div>
 
-  <div class="w-full lg:w-1/3 order-2 lg:order-1 mt-8 lg:mt-0 group cursor-pointer">
-    <div class="max-w-xl mx-auto text-center lg:mx-0 lg:text-left">
-      <h1
-        class="lg:text-left text-4xl sm:text-5xl md:text-7xl font-extrabold leading-tight tracking-tight text-main animate-fade-in-up">
-        <span class="relative inline-block">
-          <span
-            class="inline-block transition-all duration-300 ease-out group-hover:text-accent-strong group-hover:-translate-y-1">Mạnh
-            Huỳnh</span>
-          <span class="absolute bottom-full -right-32 mb-2 bg-card
-                       w-40 h-20 flex items-center justify-center
-                       text-main text-lg font-semibold
-                       whitespace-nowrap opacity-0 group-hover:opacity-100 pointer-events-none
-                       transition-all duration-300 ease-out transform group-hover:-translate-y-1
-                       drop-shadow-lg" style="
-                  mask-image: url('{{site.baseurl}}/assets/images/bubble.svg');
-                  -webkit-mask-image: url('{{site.baseurl}}/assets/images/bubble.svg');
-                  mask-size: contain; -webkit-mask-size: contain;
-                  mask-repeat: no-repeat; -webkit-mask-repeat: no-repeat;
-                  mask-position: center; -webkit-mask-position: center;">
-            <span data-lang-key="hero_greeting">Hi there!</span>
-          </span>
-        </span><span class="text-heading">.</span>
-      </h1>
-      <p
-        class="lg:text-left lg:text-2xl text-xl text-gray-normal md:mt-6 mt-2 mb-4 md:mb-10 animate-fade-in-up delay-150">
-        3D Motion Graphic Designer
-      </p>
-
-      <div class="flex flex-col sm:flex-row justify-center lg:justify-start gap-4 animate-fade-in-up delay-300">
-        <a data-lang-key="hero_cta_portfolio" href="#portfolio"
-          class="bg-primary-button hover:bg-primary-button-hover text-white font-bold py-3 px-8 rounded-full shadow-lg transition duration-300 transform hover:scale-105 text-center">
-          Xem Portfolio
-        </a>
-        <a data-lang-key="hero_cta_contact" href="#contact"
-          class="border-2 border-primary-button text-secondary-button-color hover:bg-primary-button hover:text-white font-bold py-3 px-8 rounded-full shadow-lg transition duration-300 transform hover:scale-105 text-center">
-          Liên Hệ
-        </a>
+  <!-- Clients Strip -->
+  <div class="w-full mt-20 hero-clients-anim">
+    <div class="max-w-7xl mx-auto px-4 lg:px-0 mb-8">
+      <p class="text-sm text-gray-normal text-left uppercase tracking-wider font-semibold">Selected Clients</p>
+    </div>
+    
+    <div class="w-full overflow-hidden relative group">
+      <!-- Gradient masks for smooth fading at edges -->
+      <div class="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-body to-transparent z-10 pointer-events-none"></div>
+      <div class="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-body to-transparent z-10 pointer-events-none"></div>
+      
+      <!-- Flex container to hold the two identical tracks -->
+      <div class="flex client-logos-container">
+        <!-- Track 1 -->
+        <div class="animate-marquee flex items-center justify-around">
+          <img src="{{site.baseurl}}/assets/images/Clients/3ce.svg" alt="3CE" class="mx-8 h-12 sm:h-16 md:h-20 w-auto object-contain" />
+          <img src="{{site.baseurl}}/assets/images/Clients/Doji.svg" alt="Doji" class="mx-8 h-12 sm:h-16 md:h-20 w-auto object-contain" />
+          <img src="{{site.baseurl}}/assets/images/Clients/Garmin.svg" alt="Garmin" class="mx-8 h-12 sm:h-16 md:h-20 w-auto object-contain" />
+          <img src="{{site.baseurl}}/assets/images/Clients/Homecredit.svg" alt="Homecredit" class="mx-8 h-12 sm:h-16 md:h-20 w-auto object-contain" />
+          <img src="{{site.baseurl}}/assets/images/Clients/Loreal.svg" alt="L'Oreal" class="mx-8 h-12 sm:h-16 md:h-20 w-auto object-contain" />
+          <img src="{{site.baseurl}}/assets/images/Clients/Maybelline.svg" alt="Maybelline" class="mx-8 h-12 sm:h-16 md:h-20 w-auto object-contain" />
+          <img src="{{site.baseurl}}/assets/images/Clients/Ponds.svg" alt="Ponds" class="mx-8 h-12 sm:h-16 md:h-20 w-auto object-contain" />
+          <img src="{{site.baseurl}}/assets/images/Clients/Simple.svg" alt="Simple" class="mx-8 h-12 sm:h-16 md:h-20 w-auto object-contain" />
+          <img src="{{site.baseurl}}/assets/images/Clients/Vaseline.svg" alt="Vaseline" class="mx-8 h-12 sm:h-16 md:h-20 w-auto object-contain" />
+          <img src="{{site.baseurl}}/assets/images/Clients/Yves Rocher.svg" alt="Yves Rocher" class="mx-8 h-12 sm:h-16 md:h-20 w-auto object-contain" />
+          <img src="{{site.baseurl}}/assets/images/Clients/aeon.svg" alt="Aeon" class="mx-8 h-12 sm:h-16 md:h-20 w-auto object-contain" />
+          <img src="{{site.baseurl}}/assets/images/Clients/colorkey.svg" alt="Colorkey" class="mx-8 h-12 sm:h-16 md:h-20 w-auto object-contain" />
+          <img src="{{site.baseurl}}/assets/images/Clients/skin1004.svg" alt="Skin1004" class="mx-8 h-12 sm:h-16 md:h-20 w-auto object-contain" />
+          <img src="{{site.baseurl}}/assets/images/Clients/vinfast.svg" alt="Vinfast" class="mx-8 h-12 sm:h-16 md:h-20 w-auto object-contain" />
+        </div>
+        <!-- Track 2 (Exact Clone for Infinite Loop) -->
+        <div class="animate-marquee flex items-center justify-around" aria-hidden="true">
+          <img src="{{site.baseurl}}/assets/images/Clients/3ce.svg" alt="3CE" class="mx-8 h-12 sm:h-16 md:h-20 w-auto object-contain" />
+          <img src="{{site.baseurl}}/assets/images/Clients/Doji.svg" alt="Doji" class="mx-8 h-12 sm:h-16 md:h-20 w-auto object-contain" />
+          <img src="{{site.baseurl}}/assets/images/Clients/Garmin.svg" alt="Garmin" class="mx-8 h-12 sm:h-16 md:h-20 w-auto object-contain" />
+          <img src="{{site.baseurl}}/assets/images/Clients/Homecredit.svg" alt="Homecredit" class="mx-8 h-12 sm:h-16 md:h-20 w-auto object-contain" />
+          <img src="{{site.baseurl}}/assets/images/Clients/Loreal.svg" alt="L'Oreal" class="mx-8 h-12 sm:h-16 md:h-20 w-auto object-contain" />
+          <img src="{{site.baseurl}}/assets/images/Clients/Maybelline.svg" alt="Maybelline" class="mx-8 h-12 sm:h-16 md:h-20 w-auto object-contain" />
+          <img src="{{site.baseurl}}/assets/images/Clients/Ponds.svg" alt="Ponds" class="mx-8 h-12 sm:h-16 md:h-20 w-auto object-contain" />
+          <img src="{{site.baseurl}}/assets/images/Clients/Simple.svg" alt="Simple" class="mx-8 h-12 sm:h-16 md:h-20 w-auto object-contain" />
+          <img src="{{site.baseurl}}/assets/images/Clients/Vaseline.svg" alt="Vaseline" class="mx-8 h-12 sm:h-16 md:h-20 w-auto object-contain" />
+          <img src="{{site.baseurl}}/assets/images/Clients/Yves Rocher.svg" alt="Yves Rocher" class="mx-8 h-12 sm:h-16 md:h-20 w-auto object-contain" />
+          <img src="{{site.baseurl}}/assets/images/Clients/aeon.svg" alt="Aeon" class="mx-8 h-12 sm:h-16 md:h-20 w-auto object-contain" />
+          <img src="{{site.baseurl}}/assets/images/Clients/colorkey.svg" alt="Colorkey" class="mx-8 h-12 sm:h-16 md:h-20 w-auto object-contain" />
+          <img src="{{site.baseurl}}/assets/images/Clients/skin1004.svg" alt="Skin1004" class="mx-8 h-12 sm:h-16 md:h-20 w-auto object-contain" />
+          <img src="{{site.baseurl}}/assets/images/Clients/vinfast.svg" alt="Vinfast" class="mx-8 h-12 sm:h-16 md:h-20 w-auto object-contain" />
+        </div>
       </div>
     </div>
   </div>
@@ -75,21 +115,55 @@
     const playIcon = document.getElementById('playIcon');
     const pauseIcon = document.getElementById('pauseIcon');
 
-    if (!video || !videoControlBtn || !playIcon || !pauseIcon) {
-      console.error("One or more required elements were not found. Check IDs.");
-      return;
-    }
+    if (!video || !videoControlBtn || !playIcon || !pauseIcon) return;
+
+    // Synchronize icons based on actual video state
+    const syncIcons = () => {
+      playIcon.classList.toggle('hidden', !video.paused);
+      pauseIcon.classList.toggle('hidden', video.paused);
+    };
+
+    video.addEventListener('playing', syncIcons);
+    video.addEventListener('pause', syncIcons);
 
     videoControlBtn.addEventListener('click', function () {
       if (video.paused) {
-        video.play();
-        playIcon.classList.add('hidden'); // Ẩn icon Play
-        pauseIcon.classList.remove('hidden'); // Hiện icon Pause
+        video.play().catch(err => console.warn("Video play failed:", err));
       } else {
         video.pause();
-        playIcon.classList.remove('hidden'); // Hiện icon Play
-        pauseIcon.classList.add('hidden'); // Ẩn icon Pause
       }
     });
+
+    // Robust autoplay trigger
+    video.play().catch(() => syncIcons());
+
+    // GSAP Hero Animation
+    if (typeof gsap !== 'undefined') {
+      const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
+      
+      // 1. Text Stagger Reveal
+      tl.from(".hero-anim", {
+        y: 40,
+        opacity: 0,
+        duration: 0.8,
+        stagger: 0.15,
+        delay: 0.5 // Start after preloader roughly finishes
+      });
+      
+      // 2. Video Cinematic Entrance
+      tl.from(".hero-video-anim", {
+        scale: 0.95,
+        opacity: 0,
+        duration: 1.2,
+        clearProps: "transform" // Let CSS take over for 3D perspective and hover
+      }, "-=0.8"); // Overlap with text animation
+      
+      // 3. Clients Strip
+      tl.from(".hero-clients-anim", {
+        y: 20,
+        opacity: 0,
+        duration: 0.8,
+      }, "-=0.4");
+    }
   });
 </script>
