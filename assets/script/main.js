@@ -5,62 +5,6 @@ import { setupSmoothScrolling, setupScrollReveal, setupHeroParallax, setupSmartH
 import { initializePortfolioInteractions } from './portfolio.js'; // Đảm bảo import hàm này
 import { setupMobileNavigation } from './mobile-nav.js';
 
-// Hàm để ẩn preloader và hiển thị nội dung chính
-function hidePreloaderAndShowContent() {
-    // Đã loại bỏ điều kiện 'if (window.innerWidth < 768) return;'
-    // để preloader ẩn trên mọi thiết bị.
-    const preloaderWrapper = document.querySelector('.preloader-wrapper');
-    const body = document.body;
-
-    // Thêm lớp 'preloader-hidden' vào preloader để kích hoạt hiệu ứng ẩn dần
-    if (preloaderWrapper) {
-        preloaderWrapper.classList.add('preloader-hidden');
-    }
-
-    // Loại bỏ lớp 'is-loading' khỏi thẻ body.
-    if (body.classList.contains('is-loading')) {
-        body.classList.remove('is-loading');
-    }
-
-    // Tùy chọn: Sau khi hiệu ứng chuyển đổi của preloader hoàn tất,
-    // xóa preloader khỏi DOM để giải phóng tài nguyên.
-    setTimeout(() => {
-        if (preloaderWrapper && preloaderWrapper.parentNode) {
-            preloaderWrapper.parentNode.removeChild(preloaderWrapper);
-        }
-        // Sau khi preloader bị remove mới thực hiện scroll tới hash (nếu có)
-        let hashTargetId = null;
-        if (window.location.hash && window.location.hash.length > 1) {
-            hashTargetId = window.location.hash.substring(1);
-        }
-        // Fallback từ sessionStorage nếu được set bởi mobile nav khi chuyển trang
-        if (!hashTargetId) {
-            const stored = sessionStorage.getItem('scrollTarget');
-            if (stored) {
-                hashTargetId = stored;
-                sessionStorage.removeItem('scrollTarget');
-            }
-        }
-        if (hashTargetId) {
-            let target = document.getElementById(hashTargetId);
-            // Thử thêm biến thể nếu không tìm thấy
-            if (!target) {
-                const variants = [hashTargetId.replace(/-section$/, ''), hashTargetId + '-section'];
-                for (const v of variants) {
-                    if (v !== hashTargetId) {
-                        const candidate = document.getElementById(v);
-                        if (candidate) { target = candidate; break; }
-                    }
-                }
-            }
-            if (target) {
-                requestAnimationFrame(() => {
-                    try { target.scrollIntoView({ behavior: 'smooth' }); } catch(e) {}
-                });
-            }
-        }
-    }, 900);
-}
 
 // Hàm thiết lập chiều cao ứng dụng cho các thiết bị di động
 function setAppHeight() {
@@ -95,10 +39,39 @@ document.addEventListener('DOMContentLoaded', () => {
     setupScrollReveal();
     updateContent(currentLanguage);
 
-    // Gọi hàm để ẩn preloader và hiển thị nội dung chính
-    hidePreloaderAndShowContent();
-
-    // Hash scroll now handled inside hidePreloaderAndShowContent after removal.
+    // Scroll tới hash (nếu có)
+    setTimeout(() => {
+        let hashTargetId = null;
+        if (window.location.hash && window.location.hash.length > 1) {
+            hashTargetId = window.location.hash.substring(1);
+        }
+        // Fallback từ sessionStorage nếu được set bởi mobile nav khi chuyển trang
+        if (!hashTargetId) {
+            const stored = sessionStorage.getItem('scrollTarget');
+            if (stored) {
+                hashTargetId = stored;
+                sessionStorage.removeItem('scrollTarget');
+            }
+        }
+        if (hashTargetId) {
+            let target = document.getElementById(hashTargetId);
+            // Thử thêm biến thể nếu không tìm thấy
+            if (!target) {
+                const variants = [hashTargetId.replace(/-section$/, ''), hashTargetId + '-section'];
+                for (const v of variants) {
+                    if (v !== hashTargetId) {
+                        const candidate = document.getElementById(v);
+                        if (candidate) { target = candidate; break; }
+                    }
+                }
+            }
+            if (target) {
+                requestAnimationFrame(() => {
+                    try { target.scrollIntoView({ behavior: 'smooth' }); } catch(e) {}
+                });
+            }
+        }
+    }, 100);
 });
 
 // Khởi tạo chiều cao ứng dụng khi tải trang và khi thay đổi kích thước cửa sổ

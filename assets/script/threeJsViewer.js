@@ -197,7 +197,15 @@ export function initThreeJSViewer(containerId) {
 
             scene.add(directionalLight);
 
-            const rgbeLoader = new RGBELoader();
+            const loadingManager = new THREE.LoadingManager();
+            loadingManager.onLoad = function() {
+                console.log('All assets loaded successfully.');
+                onWindowResize();
+                window.addEventListener('resize', onWindowResize);
+                requestAnimationFrame(animate);
+            };
+
+            const rgbeLoader = new RGBELoader(loadingManager);
             rgbeLoader.load('/assets/3d/brown_photostudio_01_1k.hdr', function (texture) {
                 hdriTexture = texture;
                 hdriTexture.mapping = THREE.EquirectangularReflectionMapping;
@@ -234,7 +242,7 @@ export function initThreeJSViewer(containerId) {
             world.addBody(groundBody);
 
             // Tải mô hình GLB
-            const loader = new GLTFLoader();
+            const loader = new GLTFLoader(loadingManager);
             loader.load('/assets/3d/SOFTWARE.glb', function (gltf) {
                 const model = gltf.scene;
 
@@ -463,10 +471,6 @@ export function initThreeJSViewer(containerId) {
                 }
 
                 setupDragControls();
-
-                onWindowResize();
-                window.addEventListener('resize', onWindowResize);
-                animate();
             }, undefined, function (error) {
                 console.error('Error loading GLB:', error);
                 document.getElementById('error').innerText = 'Error: Failed to load GLB model';

@@ -119,14 +119,6 @@ permalink: /services/social-cgi/
 
 <script>
     (function() {
-        // Force hide preloader
-        setTimeout(() => {
-            const preloader = document.querySelector('.preloader-wrapper');
-            if (preloader) {
-                preloader.classList.add('preloader-hidden');
-                document.body.classList.remove('is-loading');
-            }
-        }, 1500);
 
         const list = document.getElementById('service-items-list');
         const key = list.getAttribute('data-lang-items');
