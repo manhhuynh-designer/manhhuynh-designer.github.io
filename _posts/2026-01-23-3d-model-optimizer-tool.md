@@ -74,7 +74,18 @@ Khi chạy, tool sẽ hiển thị quá trình xử lý chi tiết:
 </figure>
 
 ---
-## V. Credits & Open Source
+## V. Changelog (Cập nhật)
+
+<div class="alert alert-info my-4">
+  <strong>Phiên bản v1.2.0 (Mới nhất)</strong>
+  <ul>
+    <li>Cập nhật thuật toán <strong>Natural Sort Key</strong>: Đảm bảo thứ tự file được sắp xếp tự nhiên và chính xác tuyệt đối khi kéo thả (Drag-and-Drop) nhiều file cùng lúc.</li>
+    <li>Tối ưu hóa UI: Các file được thêm vào danh sách hiển thị mượt mà và đúng vị trí bất kể tốc độ xử lý của hệ điều hành.</li>
+  </ul>
+</div>
+
+---
+## VI. Credits & Open Source
 
 Công cụ này được xây dựng dựa trên sức mạnh của thư viện mã nguồn mở **glTF-Transform**.
 Xin gửi lời cảm ơn chân thành đến **Don McCurdy** và cộng đồng đã phát triển công cụ tuyệt vời này.
