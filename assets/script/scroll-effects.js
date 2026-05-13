@@ -62,3 +62,30 @@ export function setupHeroParallax() {
 
     window.addEventListener('scroll', handleHeroParallax);
 }
+
+export function setupSmartHeader() {
+    const header = document.getElementById('site-header');
+    if (!header) return;
+
+    let lastScrollY = window.scrollY;
+
+    window.addEventListener('scroll', () => {
+        const currentScrollY = window.scrollY;
+
+        // Bỏ qua nếu scroll quá đà ở top (bounce effect trên Mac/iOS)
+        if (currentScrollY <= 0) {
+            header.style.transform = 'translateY(0)';
+            return;
+        }
+
+        if (currentScrollY > lastScrollY && currentScrollY > 80) {
+            // Scroll xuống và cách top > 80px -> Ẩn header
+            header.style.transform = 'translateY(-100%)';
+        } else {
+            // Scroll lên -> Hiện header
+            header.style.transform = 'translateY(0)';
+        }
+
+        lastScrollY = currentScrollY;
+    }, { passive: true });
+}

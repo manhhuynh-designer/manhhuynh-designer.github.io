@@ -1,7 +1,7 @@
 // assets/script/main.js
 
 import { updateContent, setupLanguageToggle, currentLanguage } from './language.js';
-import { setupSmoothScrolling, setupScrollReveal, setupHeroParallax } from './scroll-effects.js';
+import { setupSmoothScrolling, setupScrollReveal, setupHeroParallax, setupSmartHeader } from './scroll-effects.js';
 import { initializePortfolioInteractions } from './portfolio.js'; // Đảm bảo import hàm này
 import { setupMobileNavigation } from './mobile-nav.js';
 
@@ -87,6 +87,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Các chức năng chung khác
+    setupSmartHeader();
     setupHeroParallax();
     initializePortfolioInteractions(); // Gọi hàm khởi tạo tương tác portfolio tại đây
     setupLanguageToggle();
