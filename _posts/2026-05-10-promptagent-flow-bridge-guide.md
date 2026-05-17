@@ -48,7 +48,9 @@ img {
 
 <p>Chào mừng bạn đến với hướng dẫn sử dụng <strong>PromptAgent Flow Bridge</strong> — tiện ích kết nối <strong>Google Flow</strong> và <strong>Gemini</strong>, giúp bạn tạo prompt, sinh ảnh/video, và tối ưu kết quả trong một workflow liền mạch.</p>
 
-<img src="/assets/images/flow-bridge/hero-banner.png" alt="PromptAgent Flow Bridge" style="border-radius: 8px;">
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 8px; margin-bottom: 20px;">
+  <iframe src="https://www.youtube.com/embed/ATnVKq5wJdY" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" allowfullscreen title="PromptAgent Flow Bridge" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"></iframe>
+</div>
 
 <!-- Overview Card -->
 <div class="guide-overview">
@@ -69,7 +71,7 @@ img {
   <ul>
     <li>Tài khoản Google (có quyền truy cập Gemini)</li>
     <li>Trình duyệt Chrome</li>
-    <li>Extension PromptAgent Flow Bridge đã cài từ Chrome Web Store</li>
+    <li>Tải và cài đặt Extension PromptAgent Flow Bridge (hoặc <a href="https://github.com/Manh-Huynh-PP/PromptAgent/releases/latest" target="_blank" class="text-blue-500 underline hover:text-blue-700">tải bản Release v3.5.1 tại đây</a>)</li>
   </ul>
 </div>
 
@@ -247,6 +249,7 @@ Quản lý, chỉnh sửa hoặc xóa dự án ngay trong danh sách dự án c�
 <hr class="guide-divider">
 
 <p><em>Nếu bạn có bất kỳ câu hỏi nào, đừng ngần ngại liên hệ nhé! 🙌</em></p>
+<p><small>Reference: @[conversation:"Enhancing Jekyll Link Website"]</small></p>
 
 </div>
 <!-- End Vietnamese Content -->
@@ -258,7 +261,9 @@ Quản lý, chỉnh sửa hoặc xóa dự án ngay trong danh sách dự án c�
 
 <p>Welcome to the <strong>PromptAgent Flow Bridge</strong> guide — connecting <strong>Google Flow</strong> and <strong>Gemini</strong> to create prompts, generate images/videos, and refine results in a seamless workflow.</p>
 
-<img src="/assets/images/flow-bridge/hero-banner.png" alt="PromptAgent Flow Bridge" style="border-radius: 8px;">
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 8px; margin-bottom: 20px;">
+  <iframe src="https://www.youtube.com/embed/ATnVKq5wJdY" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" allowfullscreen title="PromptAgent Flow Bridge" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"></iframe>
+</div>
 
 <div class="guide-overview">
   <h3>📋 Overview: 3 Steps to Get Started</h3>
@@ -277,7 +282,7 @@ Quản lý, chỉnh sửa hoặc xóa dự án ngay trong danh sách dự án c�
   <ul>
     <li>A Google account (with Gemini access)</li>
     <li>Chrome browser</li>
-    <li>PromptAgent Flow Bridge extension installed from Chrome Web Store</li>
+    <li>PromptAgent Flow Bridge extension installed (or <a href="https://github.com/Manh-Huynh-PP/PromptAgent/releases/latest" target="_blank" class="text-blue-500 underline hover:text-blue-700">download Release v3.5.1 here</a>)</li>
   </ul>
 </div>
 
@@ -452,6 +457,7 @@ Manage, edit, or delete projects from the extension's project list.</p>
 <hr class="guide-divider">
 
 <p><em>If you have any questions, feel free to reach out! 🙌</em></p>
+<p><small>Reference: @[conversation:"Enhancing Jekyll Link Website"]</small></p>
 
 </div>
 <!-- End English Content -->
