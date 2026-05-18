@@ -71,7 +71,7 @@ img {
   <ul>
     <li>Tài khoản Google (có quyền truy cập Gemini)</li>
     <li>Trình duyệt Chrome</li>
-    <li>Tải và cài đặt Extension PromptAgent Flow Bridge (hoặc <a href="https://github.com/Manh-Huynh-PP/PromptAgent/releases/latest" target="_blank" class="text-blue-500 underline hover:text-blue-700">tải bản Release v3.5.1 tại đây</a>)</li>
+    <li>Tải và cài đặt Extension PromptAgent Flow Bridge (<a href="https://chromewebstore.google.com/detail/bdppjcccndgkidkmfnpdkhggmeaagafg?utm_source=item-share-cb" target="_blank" class="text-blue-500 underline hover:text-blue-700">cài đặt từ Chrome Store</a> hoặc <a href="https://github.com/Manh-Huynh-PP/PromptAgent/releases/latest" target="_blank" class="text-blue-500 underline hover:text-blue-700">tải bản Release v3.5.1 tại đây</a>)</li>
   </ul>
 </div>
 
@@ -282,7 +282,7 @@ Quản lý, chỉnh sửa hoặc xóa dự án ngay trong danh sách dự án c�
   <ul>
     <li>A Google account (with Gemini access)</li>
     <li>Chrome browser</li>
-    <li>PromptAgent Flow Bridge extension installed (or <a href="https://github.com/Manh-Huynh-PP/PromptAgent/releases/latest" target="_blank" class="text-blue-500 underline hover:text-blue-700">download Release v3.5.1 here</a>)</li>
+    <li>PromptAgent Flow Bridge extension installed (<a href="https://chromewebstore.google.com/detail/bdppjcccndgkidkmfnpdkhggmeaagafg?utm_source=item-share-cb" target="_blank" class="text-blue-500 underline hover:text-blue-700">install from Chrome Store</a> or <a href="https://github.com/Manh-Huynh-PP/PromptAgent/releases/latest" target="_blank" class="text-blue-500 underline hover:text-blue-700">download Release v3.5.1 here</a>)</li>
   </ul>
 </div>
 
