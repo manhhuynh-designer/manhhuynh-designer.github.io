@@ -26,6 +26,13 @@ permalink: /Projects/3CE-COLORBAKER/
         line-height: 0;
     }
 
+    .overview-container {
+        width: 75%;
+        margin: 0 auto;
+        display: block;
+        line-height: 0;
+    }
+
     .full-width-media img {
         width: 100%;
         height: auto;
@@ -156,6 +163,11 @@ permalink: /Projects/3CE-COLORBAKER/
             max-width: 100%;
         }
         .video-grid {
+            width: calc(100% + 3rem); /* Expand to screen edges on mobile */
+            margin-left: -1.5rem;
+            margin-right: -1.5rem;
+        }
+        .overview-container {
             width: calc(100% + 3rem); /* Expand to screen edges on mobile */
             margin-left: -1.5rem;
             margin-right: -1.5rem;
@@ -293,7 +305,7 @@ permalink: /Projects/3CE-COLORBAKER/
     <div class="full-width-media gsap-reveal">
         <img src="assets/cover.png" alt="3CE COLORBAKER Cover">
     </div>
-    <div class="gsap-reveal" style="width: 75%; margin: 0 auto; display: block; line-height: 0;">
+    <div class="overview-container gsap-reveal">
         <img src="assets/overview.png" alt="3CE COLORBAKER Overview" style="width: 100%; height: auto; display: block;">
     </div>
 
