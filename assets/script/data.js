@@ -11,6 +11,7 @@ export const languages = {
         'nav_portfolio': 'Dự Án',
         'nav_services': 'Dịch Vụ',
         'nav_contact': 'Liên Hệ',
+        'nav_download': 'Tải tài nguyên',
         'nav_home_mobile': 'Trang Chủ', // Duplicated for mobile menu
         'nav_about_mobile': 'Giới Thiệu',
         'nav_portfolio_mobile': 'Dự Án',
@@ -151,6 +152,7 @@ export const languages = {
         'nav_portfolio': 'Portfolio',
         'nav_services': 'Services',
         'nav_contact': 'Contact',
+        'nav_download': 'Download',
         'nav_home_mobile': 'Home',
         'nav_about_mobile': 'About',
         'nav_portfolio_mobile': 'Portfolio',
