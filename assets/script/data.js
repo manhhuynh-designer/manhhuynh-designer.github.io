@@ -83,6 +83,9 @@ export const languages = {
         'skin1004_title': 'SKIN1004 Centella Soothing & Brightening',
         'skin1004_desc': '3D Motion CGI Commercial showcase cho dòng sản phẩm SKIN1004 Centella.',
         'skin1004_skills': '3D Animation, CGI, Product Visualization',
+        'project_3ce_title': '3CE COLORBAKER COLLECTION - Hoạt ảnh sản phẩm 3D',
+        'project_3ce_desc': 'Chiến dịch quảng cáo hoạt ảnh 3D sống động cho bộ sưu tập 3CE Colorbaker.',
+        'project_3ce_skills': '3D Animation, Product Visualization',
         'project_details_link': 'Xem chi tiết dự án &rarr;',
         'services_heading': 'Dịch Vụ Cung Cấp',
         'vf3_title': 'Vinfast VF3 claw machine animation',
@@ -220,6 +223,9 @@ export const languages = {
         'skin1004_title': 'SKIN1004 Centella Soothing & Brightening',
         'skin1004_desc': '3D Motion CGI Commercial showcase for SKIN1004 Centella product line.',
         'skin1004_skills': '3D Animation, CGI, Product Visualization',
+        'project_3ce_title': '3CE COLORBAKER COLLECTION - 3D Product Animation',
+        'project_3ce_desc': 'Vibrant 3D product animation campaign for 3CE Colorbaker Collection.',
+        'project_3ce_skills': '3D Animation, Product Visualization',
         'project_details_link': 'View project details &rarr;',
         'services_heading': 'Services Offered',
         'vf3_title': 'Vinfast VF3 claw machine animation',
@@ -270,6 +276,17 @@ export const languages = {
 
 // Centralized project data for easy updates
 export const portfolioProjects = [
+    {
+        id: '3ce-colorbaker',
+        title_key: 'project_3ce_title',
+        desc_key: 'project_3ce_desc',
+        skills_key: 'project_3ce_skills',
+        behance_link: '/Projects/3CE-COLORBAKER/',
+        images: [
+            'Projects/3CE-COLORBAKER/assets/cover.png'
+        ],
+        card_layout_classes: 'lg:col-span-2 lg:row-span-1',
+    },
     {
         id: 'skin1004-centella',
         title_key: 'skin1004_title',

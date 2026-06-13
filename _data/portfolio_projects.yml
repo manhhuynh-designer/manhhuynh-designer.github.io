@@ -1,3 +1,13 @@
+- id: "3ce-colorbaker"
+  featured: true
+  category: "motion-3d"
+  title_key: "project_3ce_title"
+  desc_key: "project_3ce_desc"
+  skills_key: "project_3ce_skills"
+  behance_link: "Projects/3CE-COLORBAKER/"
+  thumbnail_image: "Projects/3CE-COLORBAKER/assets/cover.png"
+  card_layout_classes: "lg:col-span-2 lg:row-span-1"
+
 - id: "skin1004-centella"
   featured: true
   category: "motion-3d"
