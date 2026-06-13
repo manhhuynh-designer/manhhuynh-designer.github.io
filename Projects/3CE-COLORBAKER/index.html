@@ -38,11 +38,11 @@ permalink: /Projects/3CE-COLORBAKER/
         padding: 6rem 1.5rem;
     }
 
-    /* Video Resize to 80% - Adjusted for Single Center 16:9 Video */
+    /* Video Resize to 104% (~1.3x of 80%) - Adjusted for Single Center 16:9 Video */
     .video-grid {
         display: block;
-        width: 80%; /* 80% of container */
-        margin: 0 auto 8rem auto;
+        width: 104%; /* 1.3x larger than 80% */
+        margin: 0 -2% 8rem -2%;
     }
 
     /* Styleframe Grid - 2 columns for 3CE PNGs */
@@ -140,6 +140,8 @@ permalink: /Projects/3CE-COLORBAKER/
         }
         .video-grid {
             width: 100%;
+            margin-left: 0;
+            margin-right: 0;
         }
     }
 
@@ -152,6 +154,11 @@ permalink: /Projects/3CE-COLORBAKER/
         }
         .comparison-section {
             max-width: 100%;
+        }
+        .video-grid {
+            width: calc(100% + 3rem); /* Expand to screen edges on mobile */
+            margin-left: -1.5rem;
+            margin-right: -1.5rem;
         }
     }
 
