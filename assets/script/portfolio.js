@@ -106,10 +106,14 @@ export function initializePortfolioInteractions() {
     ScrollTrigger.refresh();
   }
 
-  // Khởi tạo sau khi trang đã load
-  window.addEventListener('load', () => {
+  // Khởi tạo sau khi trang đã load (Tránh race condition trên Production)
+  if (document.readyState === 'complete') {
     initScrollLogic();
-  });
+  } else {
+    window.addEventListener('load', () => {
+      initScrollLogic();
+    });
+  }
   
   initScrollLogic();
 
@@ -248,9 +252,4 @@ export function initializePortfolioInteractions() {
   });
 }
 
-// Global initialization
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', initializePortfolioInteractions);
-} else {
-  initializePortfolioInteractions();
-}
+
