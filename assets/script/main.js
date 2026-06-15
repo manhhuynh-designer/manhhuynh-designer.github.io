@@ -13,7 +13,7 @@ function setAppHeight() {
 }
 
 // DOMContentLoaded là nơi tốt nhất để khởi tạo các chức năng yêu cầu DOM đã sẵn sàng.
-document.addEventListener('DOMContentLoaded', () => {
+const init = () => {
     // Thiết lập điều hướng di động (nếu cần)
     setupMobileNavigation();
 
@@ -37,6 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setupLanguageToggle();
     setupSmoothScrolling();
     setupScrollReveal();
+    window.setupScrollReveal = setupScrollReveal; // Expose for AJAX updates
     updateContent(currentLanguage);
 
     // Scroll tới hash (nếu có)
@@ -72,7 +73,13 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
     }, 100);
-});
+};
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+} else {
+    init();
+}
 
 // Khởi tạo chiều cao ứng dụng khi tải trang và khi thay đổi kích thước cửa sổ
 window.addEventListener('resize', setAppHeight);

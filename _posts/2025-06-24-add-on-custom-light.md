@@ -3,12 +3,18 @@ layout: post
 title: "Giới thiệu Addon Custom Light cho Blender"
 date: 2025-06-26
 author: Mạnh Huỳnh
-categories: [Share, Tutorial]
-tags: [Blender, addon, lighting]
+categories: [Share, Tutorial, Blender Addon]
+tags: [Blender, addon, lighting, Blender addon, setup lighting]
 thumbnail: /blog/assets/custom-lights-cover.png.jpg
 excerpt: >
   Addon hỗ trợ tạo và quản lý các loại đèn trong Blender...
 ---
+
+<div class="alert alert-warning my-4">
+  <i class="fa-solid fa-circle-info mr-2"></i>
+  <strong>Thông báo:</strong> Đã có phiên bản mới nhất <strong>Custom Light v2.02</strong> hỗ trợ hoàn toàn cho Blender 5.0 với nhiều tính năng nâng cấp vượt trội. 
+  <a href="{% post_url 2025-12-21-custom-light-v2-update %}" class="font-bold underline text-amber-950 hover:text-amber-800">Xem bài viết giới thiệu v2.02 và tải về tại đây</a>.
+</div>
 
 <div class="alert alert-secondary">
 <p class="mb-1"><strong>Tên Addon:</strong> Custom Light</p>
@@ -23,7 +29,7 @@ Chào mọi người! Mình muốn chia sẻ một addon nho nhỏ mà mình dù
 
 <div class="text-center my-8">
   <a href="https://manhdesigns.gumroad.com/l/customlights" target="_blank" rel="noopener noreferrer" class="bg-primary-button hover:bg-primary-button text-white hover:text-white px-8 py-4 rounded-lg inline-flex items-center text-lg font-bold shadow-lg transform hover:scale-105 transition-transform duration-300">
-    <i class="fa-solid fa-download mr-3"></i> Tải Addon tại Gumroad
+    <i class="fa-solid fa-download mr-3"></i> Tải miễn phí Addon tại Gumroad
   </a>
 </div>
 

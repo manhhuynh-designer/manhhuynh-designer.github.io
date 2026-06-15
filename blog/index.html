@@ -10,11 +10,63 @@ title: BÀI VIẾT MỚI NHẤT
 
   <p id="post-count" class="text-center text-gray-medium mb-12"></p>
 
-  <div id="category-filters" class="flex flex-wrap justify-center gap-2 mb-10"></div>
+  <div class="grid grid-cols-1 lg:grid-cols-4 gap-8 mb-16">
+    <!-- Cột phụ: Sidebar lọc (Bên trái trên Desktop, bên dưới trên Mobile) -->
+    <div class="lg:col-span-1 space-y-8 order-last lg:order-first">
+      <!-- Widget: Categories -->
+      <div class="glass-card p-6 rounded-2xl border border-white/10 shadow-lg scroll-reveal">
+        <h3 class="text-lg font-bold text-main mb-4 border-b border-white/10 pb-2 uppercase tracking-wider flex items-center gap-2">
+          <i class="fa-solid fa-folder-open text-accent-strong"></i>
+          <span>Chuyên mục</span>
+        </h3>
+        <ul class="space-y-2">
+          {% assign categories = site.categories | sort %}
+          {% for category in categories %}
+            {% assign category_name = category[0] %}
+            {% assign count = category[1] | size %}
+            <li>
+              <a href="{{ site.baseurl }}/blog/categories/{{ category_name | slugify }}/" 
+                 class="flex justify-between items-center px-3 py-2 rounded-lg transition-all hover:bg-white/5 text-gray-normal hover:text-main text-sm">
+                <span>{{ category_name }}</span>
+                <span class="text-xs bg-white/10 text-gray-medium px-2 py-0.5 rounded-full font-bold">
+                  {{ count }}
+                </span>
+              </a>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
 
-  <ul id="post-list" class="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-1 gap-8"></ul>
+      <!-- Widget: Popular Tags -->
+      <div class="glass-card p-6 rounded-2xl border border-white/10 shadow-lg scroll-reveal delay-100">
+        <h3 class="text-lg font-bold text-main mb-4 border-b border-white/10 pb-2 uppercase tracking-wider flex items-center gap-2">
+          <i class="fa-solid fa-tags text-accent-strong"></i>
+          <span>Tags Phổ Biến</span>
+        </h3>
+        <div class="flex flex-wrap gap-2">
+          {% assign tags = site.tags | sort %}
+          {% for tag in tags %}
+            {% assign tag_name = tag[0] %}
+            {% assign count = tag[1] | size %}
+            <a href="{{ site.baseurl }}/blog/tags/{{ tag_name | slugify }}/" 
+               class="text-xs px-2.5 py-1.5 rounded-lg border transition-all bg-white/5 hover:bg-accent-strong/20 border-white/10 hover:border-accent-strong/40 text-gray-normal hover:text-main flex items-center gap-1 group">
+              <span>#{{ tag_name }}</span>
+              <span class="text-[10px] bg-white/10 text-gray-medium group-hover:text-white px-1.5 py-0.5 rounded-full font-bold">
+                {{ count }}
+              </span>
+            </a>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
 
-  <div id="pagination" class="flex justify-center mt-12 space-x-2"></div>
+    <!-- Cột chính: Danh sách bài viết (Bên phải trên Desktop, bên trên trên Mobile) -->
+    <div class="lg:col-span-3">
+      <div id="category-filters" class="flex flex-wrap justify-start gap-2 mb-8 scroll-reveal"></div>
+      <ul id="post-list" class="grid grid-cols-1 md:grid-cols-2 gap-8"></ul>
+      <div id="pagination" class="flex justify-center mt-12 space-x-2"></div>
+    </div>
+  </div>
 </section>
 
 <script>
@@ -40,10 +92,8 @@ function renderCategoryFilters(posts) {
     const btn = document.createElement("button");
     btn.textContent = cat === "all" ? "Tất cả" : cat;
     btn.dataset.category = cat;
-    // CSS cơ bản được xử lý bởi .filter-btn trong main_theme.css
     btn.className = `filter-btn transition`; 
     
-    // Thêm class active nếu là "all" mặc định
     if (cat === "all") {
       btn.classList.add("bg-primary-button", "text-white");
     }
@@ -58,10 +108,8 @@ function renderCategoryFilters(posts) {
 
 function highlightActive(activeBtn) {
   document.querySelectorAll(".filter-btn").forEach(btn => {
-    // Loại bỏ các class active từ tất cả các nút
     btn.classList.remove("bg-primary-button", "text-white");
   });
-  // Thêm các class active vào nút được nhấn
   activeBtn.classList.add("bg-primary-button", "text-white");
 }
 
@@ -99,7 +147,7 @@ function renderPosts() {
 
   postsToShow.forEach(post => {
     const li = document.createElement("li");
-    li.className = "post-card bg-card p-1 rounded-xl shadow-md border border-main";
+    li.className = "post-card bg-card p-1 rounded-xl shadow-md border border-main flex flex-col justify-between h-full scroll-reveal";
 
     li.innerHTML = `
       ${post.thumbnail ? `<a href="${post.url}" class="block post-thumbnail-list overflow-hidden rounded-t-xl">
@@ -112,13 +160,20 @@ function renderPosts() {
         ${post.date} &middot; ${post.author}
       </p>
       <p class="text-gray-normal text-base mb-4 px-6">${post.excerpt}</p>
-      <div class="flex justify-between items-center px-6 pb-6">
+      <div class="flex justify-between items-center px-6 pb-6 mt-auto">
         <div class="flex flex-wrap gap-2">${post.categories.map(cat => `<span class="skill-tag">${cat}</span>`).join("")}</div>
         <a href="${post.url}" class="link-primary font-semibold ml-4 flex-shrink-0">Đọc thêm &rarr;</a>
       </div>
     `;
     container.appendChild(li);
   });
+
+  // Kích hoạt lại hiệu ứng hiển thị (scroll-reveal) cho các phần tử bài viết vừa nạp
+  if (typeof window.setupScrollReveal === 'function') {
+    setTimeout(() => {
+      window.setupScrollReveal();
+    }, 100);
+  }
 }
 
 function renderPagination() {
@@ -131,7 +186,6 @@ function renderPagination() {
   for (let i = 1; i <= totalPages; i++) {
     const btn = document.createElement("button");
     btn.textContent = i;
-    // CSS cơ bản được xử lý bởi #pagination button trong main_theme.css
     btn.className = `px-4 py-2 rounded-lg font-bold border transition`;
       
     if (i === currentPage) {

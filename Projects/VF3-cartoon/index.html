@@ -29,6 +29,12 @@
 </head>
 
 <body class="min-h-screen flex flex-col overflow-x-hidden home" data-theme="dark">
+  <script>
+    (function() {
+      var savedTheme = localStorage.getItem('theme') || 'dark';
+      document.body.setAttribute('data-theme', savedTheme);
+    })();
+  </script>
   <!-- Header/Navigation -->
   <header class="shadow-lg py-4 px-6 md:px-12 fixed w-full z-50 rounded-b-lg top-0">
     <div class="flex items-center justify-between w-full">
@@ -63,6 +69,11 @@
           <label class="switch" id="theme-toggle-label">
             <input type="checkbox" id="theme-toggle-checkbox" title="Toggle theme">
             <span class="slider round"></span>
+            <script>
+              if (localStorage.getItem('theme') === 'light') {
+                document.currentScript.parentNode.querySelector('input').checked = true;
+              }
+            </script>
           </label>
 
         </div>
@@ -326,8 +337,8 @@
   </script>
 
 
-  <script type="module" src="/assets/script/theme.js"></script>
-  <script type="module" src="/assets/script/main.js"></script>
+  <script type="module" src="/assets/script/theme.js?v=1.1"></script>
+  <script type="module" src="/assets/script/main.js?v=1.1"></script>
 
 </body>
 

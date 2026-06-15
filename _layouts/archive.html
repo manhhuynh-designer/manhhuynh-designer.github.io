@@ -3,29 +3,115 @@ layout: default
 title: Lưu trữ bài viết
 ---
 
-<section class="max-w-4xl mx-auto px-4 md:px-8 py-16 mt-20">
-  <h1 id="archive-title" class="text-4xl font-extrabold text-center mb-12 scroll-reveal uppercase">Tất cả bài viết</h1>
-  <ul id="post-list" class="rounded-xl overflow-hidden divide-y divide-main shadow-lg">
-    {% assign posts = site.posts | sort: 'date' | reverse %}
-    {% if page.tag %}
-      {% assign posts = site.tags[page.tag] | sort: 'date' | reverse %}
-    {% elsif page.category %}
-      {% assign posts = site.categories[page.category] | sort: 'date' | reverse %}
+<section class="max-w-7xl mx-auto px-4 md:px-8 py-16 mt-20">
+  <h1 class="text-4xl font-extrabold text-center mb-12 scroll-reveal uppercase">
+    {% if page.type == 'tag' %}
+      Tag: {{ page.title }}
+    {% elsif page.type == 'category' %}
+      Chuyên mục: {{ page.title }}
+    {% else %}
+      Lưu trữ: {{ page.title }}
     {% endif %}
-    {% for post in posts %}
-      <li class="p-4 md:p-6 flex items-center justify-between transition {% cycle 'bg-card', 'bg-secondary' %} scroll-reveal delay-{{ forloop.index0 | times: 100 }}">
-        <a href="{{ post.url | relative_url }}" class="text-heading text-base md:text-lg font-semibold link-primary hover:link-hover">{{ post.title | escape }}</a>
-        <span class="text-sm text-gray-medium whitespace-nowrap ml-4 js-date" data-date="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%d/%m/%Y" }}</span>
-      </li>
-    {% endfor %}
-  </ul>
-</section>
-<div class="flex justify-center">
-          <a href="{{ site.baseurl }}/blog/"
-             class="bg-primary-button hover:bg-primary-button text-white hover:text-white px-6 py-3 rounded-lg flex items-center">
-            <i class="fa-solid fa-arrow-left mr-2"></i> Quay lại Blog
-          </a>
+  </h1>
+
+  <div class="grid grid-cols-1 lg:grid-cols-4 gap-8 mb-16">
+    <!-- Cột phụ: Sidebar lọc (Bên trái trên Desktop, bên dưới trên Mobile) -->
+    <div class="lg:col-span-1 space-y-8 order-last lg:order-first">
+      <!-- Widget: Categories -->
+      <div class="glass-card p-6 rounded-2xl border border-white/10 shadow-lg scroll-reveal">
+        <h3 class="text-lg font-bold text-main mb-4 border-b border-white/10 pb-2 uppercase tracking-wider flex items-center gap-2">
+          <i class="fa-solid fa-folder-open text-accent-strong"></i>
+          <span>Chuyên mục</span>
+        </h3>
+        <ul class="space-y-2">
+          {% assign categories = site.categories | sort %}
+          {% for category in categories %}
+            {% assign category_name = category[0] %}
+            {% assign count = category[1] | size %}
+            {% assign active = false %}
+            {% if page.type == 'category' and page.title == category_name %}
+              {% assign active = true %}
+            {% endif %}
+            <li>
+              <a href="{{ site.baseurl }}/blog/categories/{{ category_name | slugify }}/" 
+                 class="flex justify-between items-center px-3 py-2 rounded-lg transition-all {% if active %}bg-accent-strong text-white font-bold{% else %}hover:bg-white/5 text-gray-normal hover:text-main{% endif %} text-sm">
+                <span>{{ category_name }}</span>
+                <span class="text-xs {% if active %}bg-white/20 text-white{% else %}bg-white/10 text-gray-medium{% endif %} px-2 py-0.5 rounded-full font-bold">
+                  {{ count }}
+                </span>
+              </a>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+
+      <!-- Widget: Popular Tags -->
+      <div class="glass-card p-6 rounded-2xl border border-white/10 shadow-lg scroll-reveal delay-100">
+        <h3 class="text-lg font-bold text-main mb-4 border-b border-white/10 pb-2 uppercase tracking-wider flex items-center gap-2">
+          <i class="fa-solid fa-tags text-accent-strong"></i>
+          <span>Tags Phổ Biến</span>
+        </h3>
+        <div class="flex flex-wrap gap-2">
+          {% assign tags = site.tags | sort %}
+          {% for tag in tags %}
+            {% assign tag_name = tag[0] %}
+            {% assign count = tag[1] | size %}
+            {% assign active = false %}
+            {% if page.type == 'tag' and page.title == tag_name %}
+              {% assign active = true %}
+            {% endif %}
+            <a href="{{ site.baseurl }}/blog/tags/{{ tag_name | slugify }}/" 
+               class="text-xs px-2.5 py-1.5 rounded-lg border transition-all {% if active %}bg-accent-strong text-white border-accent-strong font-bold{% else %}bg-white/5 hover:bg-accent-strong/20 border-white/10 hover:border-accent-strong/40 text-gray-normal hover:text-main{% endif %} flex items-center gap-1 group">
+              <span>#{{ tag_name }}</span>
+              <span class="text-[10px] {% if active %}bg-white/20 text-white{% else %}bg-white/10 text-gray-medium group-hover:text-white{% endif %} px-1.5 py-0.5 rounded-full font-bold">
+                {{ count }}
+              </span>
+            </a>
+          {% endfor %}
         </div>
+      </div>
+    </div>
+
+    <!-- Cột chính: Danh sách bài viết (Bên phải trên Desktop, bên trên trên Mobile) -->
+    <div class="lg:col-span-3">
+      <ul id="post-list" class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {% for post in page.posts %}
+          <li class="post-card bg-card p-1 rounded-xl shadow-md border border-main flex flex-col justify-between h-full scroll-reveal">
+            <div>
+              {% if post.thumbnail %}
+                <a href="{{ post.url | relative_url }}" class="block post-thumbnail-list overflow-hidden rounded-t-xl">
+                  <img src="{{ post.thumbnail | relative_url }}" alt="{{ post.title }}" class="post-thumbnail-img w-full object-cover aspect-video">
+                </a>
+              {% endif %}
+              <h2 class="text-accent-strong text-2xl font-bold mb-2 pt-6 px-6">
+                <a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>
+              </h2>
+              <p class="text-sm text-gray-medium mb-2 px-6">
+                <span class="js-date" data-date="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%d/%m/%Y" }}</span> &middot; {{ post.author | default: site.author.name }}
+              </p>
+              <p class="text-gray-normal text-base mb-4 px-6">{{ post.excerpt | strip_html | truncatewords: 25 }}</p>
+            </div>
+            <div class="flex justify-between items-center px-6 pb-6 mt-auto">
+              <div class="flex flex-wrap gap-2">
+                {% for cat in post.categories %}
+                  <span class="skill-tag">{{ cat }}</span>
+                {% endfor %}
+              </div>
+              <a href="{{ post.url | relative_url }}" class="link-primary font-semibold ml-4 flex-shrink-0">Đọc thêm &rarr;</a>
+            </div>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+
+  <div class="flex justify-center">
+    <a href="{{ site.baseurl }}/blog/"
+       class="bg-primary-button hover:bg-primary-button text-white hover:text-white px-6 py-3 rounded-lg flex items-center shadow-lg transition duration-300 transform hover:scale-105">
+      <i class="fa-solid fa-arrow-left mr-2"></i> Quay lại Blog
+    </a>
+  </div>
+</section>
 
 <script>
   // Hàm định dạng ngày tháng sang tiếng Việt
@@ -39,27 +125,109 @@ title: Lưu trữ bài viết
   }
 
   // Cập nhật định dạng ngày cho các phần tử có class 'js-date'
-  document.querySelectorAll('.js-date').forEach(span => {
-    const dateString = span.getAttribute('data-date');
-    span.textContent = formatVietnameseDate(dateString);
+  function applyDateFormatting() {
+    document.querySelectorAll('.js-date').forEach(span => {
+      const dateString = span.getAttribute('data-date');
+      span.textContent = formatVietnameseDate(dateString);
+    });
+  }
+
+  // Khởi chạy định dạng ngày lần đầu
+  applyDateFormatting();
+
+  // Hàm tải nội dung trang bằng Ajax
+  function loadPageContent(url, shouldPushState = false) {
+    const postList = document.getElementById('post-list');
+    const archiveTitle = document.querySelector('h1.scroll-reveal');
+    const sidebarContainer = document.querySelector('.lg\\:col-span-1');
+    
+    if (postList) {
+      postList.style.transition = 'opacity 0.25s ease-in-out';
+      postList.style.opacity = '0.4';
+    }
+
+    fetch(url)
+      .then(response => {
+        if (!response.ok) throw new Error('Fetch failed');
+        return response.text();
+      })
+      .then(html => {
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(html, 'text/html');
+
+        // 1. Cập nhật tiêu đề trang
+        const newTitle = doc.querySelector('h1.scroll-reveal');
+        if (archiveTitle && newTitle) {
+          archiveTitle.innerHTML = newTitle.innerHTML;
+        }
+
+        // 2. Cập nhật danh sách bài viết
+        const newPostList = doc.getElementById('post-list');
+        if (postList && newPostList) {
+          postList.innerHTML = newPostList.innerHTML;
+          postList.style.opacity = '1';
+        }
+
+        // 3. Cập nhật Sidebar để lấy trạng thái Active mới
+        const newSidebar = doc.querySelector('.lg\\:col-span-1');
+        if (sidebarContainer && newSidebar) {
+          sidebarContainer.innerHTML = newSidebar.innerHTML;
+        }
+
+        // 4. Cập nhật URL thanh địa chỉ & Title trang
+        document.title = doc.title;
+        if (shouldPushState) {
+          history.pushState({ path: url }, doc.title, url);
+        }
+
+        // 5. Gắn lại sự kiện Ajax cho Sidebar mới nạp
+        setupAjaxNavigation();
+
+        // 6. Chạy lại định dạng ngày cho bài viết mới
+        applyDateFormatting();
+
+        // 7. Kích hoạt lại hiệu ứng hiển thị (scroll-reveal) cho các phần tử mới nạp
+        if (typeof window.setupScrollReveal === 'function') {
+          setTimeout(() => {
+            window.setupScrollReveal();
+          }, 100);
+        }
+
+        // Cuộn mượt lên đầu tiêu đề
+        if (archiveTitle) {
+          archiveTitle.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      })
+      .catch(error => {
+        console.error('Ajax navigation error:', error);
+        // Fallback chuyển trang cứng nếu fetch lỗi
+        window.location.href = url;
+      });
+  }
+
+  // Thiết lập sự kiện click cho các link trong Sidebar
+  function setupAjaxNavigation() {
+    const sidebarContainer = document.querySelector('.lg\\:col-span-1');
+    if (!sidebarContainer) return;
+
+    sidebarContainer.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', function(e) {
+        const url = this.getAttribute('href');
+        
+        // Chỉ xử lý Ajax cho link nội bộ
+        if (url && (url.startsWith('/') || url.startsWith(window.location.origin))) {
+          e.preventDefault();
+          loadPageContent(url, true);
+        }
+      });
+    });
+  }
+
+  // Khởi tạo điều hướng Ajax
+  setupAjaxNavigation();
+
+  // Xử lý sự kiện nhấn nút Back/Forward của trình duyệt
+  window.addEventListener('popstate', function(event) {
+    loadPageContent(window.location.pathname, false);
   });
-
-  // Cập nhật tiêu đề trang dựa trên URL
-  const url = new URL(window.location.href);
-  const pathParts = url.pathname.split('/');
-  let filterType = null;
-  let filterValue = null;
-
-  if (pathParts[2] === 'tags' && pathParts[3]) {
-    filterType = 'tags';
-    filterValue = decodeURIComponent(pathParts[3]);
-  } else if (pathParts[2] === 'categories' && pathParts[3]) {
-    filterType = 'categories';
-    filterValue = decodeURIComponent(pathParts[3]);
-  }
-
-  const titleElement = document.getElementById('archive-title');
-  if (filterType && filterValue) {
-    titleElement.textContent = `${filterType === 'tags' ? 'Tag' : 'Category'}: ${filterValue}`;
-  }
 </script>

@@ -30,6 +30,12 @@
 </head>
 
 <body class="overflow-x-hidden home flex flex-col min-h-screen" data-theme="dark">
+  <script>
+    (function() {
+      var savedTheme = localStorage.getItem('theme') || 'dark';
+      document.body.setAttribute('data-theme', savedTheme);
+    })();
+  </script>
 
   <main class="main-content flex-grow">
     <header class="shadow-lg py-4 px-6 md:px-12 fixed w-full z-50 rounded-b-lg top-0">
@@ -63,6 +69,11 @@
             <label class="switch" id="theme-toggle-label">
               <input type="checkbox" id="theme-toggle-checkbox" title="Toggle theme">
               <span class="slider round"></span>
+              <script>
+                if (localStorage.getItem('theme') === 'light') {
+                  document.currentScript.parentNode.querySelector('input').checked = true;
+                }
+              </script>
             </label>
             <button data-lang-key="lang_toggle_target" id="lang-toggle-button"
               class="bg-primary-button hover:bg-primary-button text-white font-bold py-2 px-4 rounded-full shadow-lg transition duration-300 transform hover:scale-105 text-sm">
@@ -371,8 +382,8 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.19.0/matter.min.js"></script>
   <script src="/assets/script/footer_interaction.js" defer></script>
   <script src="/assets/script/services.js" defer></script>
-  <script type="module" src="/assets/script/theme.js"></script>
-  <script type="module" src="/assets/script/main.js"></script>
+  <script type="module" src="/assets/script/theme.js?v={{ site.time | date: '%s' }}"></script>
+  <script type="module" src="/assets/script/main.js?v={{ site.time | date: '%s' }}"></script>
 
 </body>
 

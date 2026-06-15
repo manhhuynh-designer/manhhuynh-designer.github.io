@@ -24,6 +24,11 @@
           <label class="switch" id="theme-toggle-label">
             <input type="checkbox" id="theme-toggle-checkbox" title="Toggle theme">
             <span class="slider round"></span>
+            <script>
+              if (localStorage.getItem('theme') === 'light') {
+                document.currentScript.parentNode.querySelector('input').checked = true;
+              }
+            </script>
           </label>
         </div>
       </div>

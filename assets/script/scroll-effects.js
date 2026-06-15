@@ -29,7 +29,7 @@ export function setupScrollReveal() {
         return; // Thoát khỏi hàm, không thiết lập IntersectionObserver
     }
 
-    const scrollRevealElements = document.querySelectorAll('.scroll-reveal, .scroll-reveal-x');
+    const scrollRevealElements = document.querySelectorAll('.scroll-reveal:not(.visible), .scroll-reveal-x:not(.visible)');
 
     const observerOptions = {
         root: null,

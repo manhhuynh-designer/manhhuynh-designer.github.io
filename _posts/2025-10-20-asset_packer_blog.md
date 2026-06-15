@@ -3,8 +3,8 @@ layout: post
 title: "[Addon] Blender Asset Packer"
 date: 2025-10-20
 author: Mạnh Huỳnh
-categories: [Share, Tool]
-tags: [Blender, addon, asset-packer, relink, video, sequence, HDRI]
+categories: [Share, Tool, Blender Addon]
+tags: [Blender, addon, asset-packer, relink, video, sequence, HDRI, Blender addon, pack assets, backup blender]
 thumbnail: /blog/assets/asset-packer.png
 excerpt: >
   Đóng gói toàn bộ tài nguyên (assets) bên ngoài của dự án Blender vào một thư mục gọn gàng, dễ mang đi — và tự động relink an toàn — chỉ với một cú nhấp chuột. Có thể kèm theo đóng gói các add‑on đang bật và khôi phục lại sau này bằng trình cài đặt tích hợp.

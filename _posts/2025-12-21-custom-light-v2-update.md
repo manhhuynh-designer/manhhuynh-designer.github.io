@@ -1,48 +1,51 @@
 ---
 layout: post
-title: "Custom Light v2.0 - Tính năng mới và hỗ trợ Blender 5.0"
+title: "Custom Light v2.02 - Tính năng mới và hỗ trợ Blender 5.0"
 date: 2025-12-21
 author: Mạnh Huỳnh
-categories: [Share, Update]
-tags: [Blender, addon, lighting, v2.0]
+categories: [Share, Update, Blender Addon]
+tags: [Blender, addon, lighting, Blender addon, free addon, setup lighting, blenderkit]
 thumbnail: /blog/assets/customlightv2/Cover.png
 excerpt: >
-  Sau một thời gian tinh chỉnh, mình muốn chia sẻ với mọi người bản cập nhật v2.0 của Custom Light với một vài tính năng mới và hỗ trợ hoàn toàn cho Blender 5.0.
+  Sau một thời gian tinh chỉnh, mình muốn chia sẻ với mọi người bản cập nhật v2.02 của Custom Light với một vài tính năng mới và hỗ trợ hoàn toàn cho Blender 5.0.
 ---
 
-# Custom Lights v2.0
+# Custom Lights v2.02
 
-Chào mọi người, sau một thời gian vọc vạch và tối ưu thêm, mình đã hoàn thiện bản cập nhật v2.0 cho Custom Light. Đây là một công cụ nho nhỏ mình viết ra để giúp việc setup ánh sáng trong Blender trở nên gọn lẹ và bớt thao tác thừa hơn. Hy vọng những chia sẻ này sẽ giúp ích cho quy trình làm việc của anh em 3D.
+Chào mọi người, sau một thời gian vọc vạch và tối ưu thêm, mình đã hoàn thiện bản cập nhật v2.02 cho Custom Light. Đây là một công cụ nho nhỏ mình viết ra để giúp việc setup ánh sáng trong Blender trở nên gọn lẹ và bớt thao tác thừa hơn. Hy vọng những chia sẻ này sẽ giúp ích cho quy trình làm việc của anh em 3D.
 
 <div class="alert alert-secondary">
-<p class="mb-1"><strong>Tên Addon:</strong> Custom Light v2.0</p>
+<p class="mb-1"><strong>Tên Addon:</strong> Custom Light v2.02</p>
 <p class="mb-1"><strong>Mục đích:</strong> Công cụ hỗ trợ tạo và quản lý ánh sáng tập trung.</p>
 <p class="mb-0"><strong>Vị trí:</strong> <code>View3D</code> > <code>Sidebar</code> (Phím <code>N</code>) > Tab "Custom Lights"</p>
 </div>
 
 ## File cài đặt
 
-Các bạn có thể tải bản v2.0 này về dùng thử thông qua link Gumroad hoặc xem source code trên GitHub nhé:
+Các bạn có thể tải bản v2.02 này hoàn toàn **miễn phí** qua Gumroad hoặc GitHub, hoặc chọn **mua ủng hộ tác giả trên BlenderKit** với giá 5$ nhé:
 
 <div class="flex flex-wrap gap-4 my-8 justify-center">
   <a href="https://manhdesigns.gumroad.com/l/customlights" target="_blank" rel="noopener noreferrer" class="bg-primary-button hover:bg-primary-button text-white hover:text-white px-8 py-4 rounded-lg inline-flex items-center text-lg font-bold shadow-lg transform hover:scale-105 transition-transform duration-300">
-    <i class="fa-solid fa-link mr-3"></i> Tải qua Gumroad
+    <i class="fa-solid fa-link mr-3"></i> Tải miễn phí qua Gumroad
+  </a>
+  <a href="https://www.blenderkit.com/asset-gallery-detail/8ee2c9f9-4f18-49d7-b5d0-f7b70e8c4e22/" target="_blank" rel="noopener noreferrer" class="bg-green-600 hover:bg-green-700 text-white hover:text-white px-8 py-4 rounded-lg inline-flex items-center text-lg font-bold shadow-lg transform hover:scale-105 transition-transform duration-300">
+    <i class="fa-solid fa-cube mr-3"></i> Mua qua BlenderKit ($5)
   </a>
   <a href="https://github.com/Manh-Huynh-PP/Custom-lights" target="_blank" rel="noopener noreferrer" class="bg-gray-800 hover:bg-gray-900 text-white hover:text-white px-8 py-4 rounded-lg inline-flex items-center text-lg font-bold shadow-lg transform hover:scale-105 transition-transform duration-300">
-    <i class="fa-brands fa-github mr-3"></i> Xem trên GitHub
+    <i class="fa-brands fa-github mr-3"></i> Tải miễn phí qua GitHub
   </a>
 </div>
 
 ### 🎥 Video Demo
-Dưới đây là video mình quay nhanh các thao tác mới trong bản v2.0 để mọi người dễ hình dung:
+Dưới đây là video mình quay nhanh các thao tác mới trong bản v2.02 để mọi người dễ hình dung:
 
 <div class="ratio ratio-16x9 my-4 shadow-sm rounded w-full md:w-3/4 mx-auto">
-  <iframe src="https://www.youtube.com/embed/s9AEGNVPpMQ" title="Custom Light v2.0 Demo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  <iframe src="https://www.youtube.com/embed/s9AEGNVPpMQ" title="Custom Light v2.02 Demo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
 
 ---
 
-## Những điểm mới trong bản 2.0
+## Những điểm mới trong bản 2.02
 
 ### 🚀 Tương thích Blender 5.0
 Mình đã kiểm tra kỹ trên bản Blender 5.0 mới nhất để đảm bảo mọi thứ vẫn chạy mượt mà, không gặp lỗi tương thích.
