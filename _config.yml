@@ -7,7 +7,7 @@
 title: Mạnh Huỳnh - 3D Motion Graphic Designer
 email: contact@manhhuynh.work
 description: "Portfolio của Mạnh Huỳnh, một 3D Motion Graphic Designer chuyên nghiệp."
-url: "https://manhhuynh-designer.github.io" # Your website URL
+url: "https://manhhuynh.work" # Your website URL
 baseurl: "" # Leave empty if hosted at root domain
 permalink: /blog/:title/ # Permalink structure for posts
 
