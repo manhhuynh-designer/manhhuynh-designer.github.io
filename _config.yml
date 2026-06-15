@@ -11,6 +11,19 @@ url: "https://manhhuynh-designer.github.io" # Your website URL
 baseurl: "" # Leave empty if hosted at root domain
 permalink: /blog/:title/ # Permalink structure for posts
 
+# SEO & Schema.org Structured Data Settings
+author:
+  name: Mạnh Huỳnh
+  email: contact@manhhuynh.work
+logo: /assets/images/logo.png
+social:
+  name: Mạnh Huỳnh
+  links:
+    - https://www.instagram.com/manh.des.98
+    - https://www.behance.net/manhhuynh323b3
+    - https://www.linkedin.com/in/manh-huynh-designer
+    - https://www.tiktok.com/@manhhuynh.designer
+
 # 1. Enable Plugins
 plugins:
   - jekyll-paginate # Replaced jekyll-paginate-v2 with jekyll-paginate for GitHub Pages

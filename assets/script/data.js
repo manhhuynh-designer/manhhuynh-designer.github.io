@@ -135,8 +135,11 @@ export const languages = {
         'services_cta_quote': 'Nhận báo giá',
         'services_short_desc': 'Dịch vụ thiết kế 2D, 3D, sản xuất video quảng cáo CGI, modeling, animation chuyên nghiệp cho thương hiệu và sản phẩm của bạn.',
         'download_cv': 'Tải CV của tôi',
-        'about_experience': 'Với 2 năm kinh nghiệm chuyên sâu trong sản xuất video CGI, Fake OOH và diễn họa sản phẩm 3D, cùng với 5 năm kinh nghiệm vững chắc trong thiết kế 2D bao gồm thiết kế POSM, bao bì và key visual, tôi tự tin mang đến những giải pháp sáng tạo và hiệu quả cho các dự án của khách hàng.'
-
+        'about_experience': 'Với 2 năm kinh nghiệm chuyên sâu trong sản xuất video CGI, Fake OOH và diễn họa sản phẩm 3D, cùng với 5 năm kinh nghiệm vững chắc trong thiết kế 2D bao gồm thiết kế POSM, bao bì và key visual, tôi tự tin mang đến những giải pháp sáng tạo và hiệu quả cho các dự án của khách hàng.',
+        '404_title': 'Không tìm thấy trang',
+        '404_desc': 'Đường liên kết bạn vừa truy cập không tồn tại hoặc đã được di chuyển sang địa chỉ khác.',
+        '404_back_home': 'Về Trang Chủ',
+        '404_about': 'Giới Thiệu'
     },
     'en': {
         'hero_greeting': 'Hi there!',
@@ -272,7 +275,10 @@ export const languages = {
         'contact_location': 'Location: Ho Chi Minh City, Vietnam',
         'no_projects': 'No sample projects available.',
         'services_short_desc': 'Professional 2D, 3D design, CGI advertising video production, modeling, and animation services for your brand and products.',
-
+        '404_title': 'Page Not Found',
+        '404_desc': 'The link you accessed does not exist or has been moved to another address.',
+        '404_back_home': 'Go to Home',
+        '404_about': 'About Me'
     }
 };
 

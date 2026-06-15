@@ -5,6 +5,11 @@ export let currentLanguage = localStorage.getItem('lang') || 'vi'; // Default to
 
 // Function to update content based on selected language
 export function updateContent(lang) {
+    // Update document title if 'title' key exists for the language
+    if (languages[lang] && languages[lang]['title']) {
+        document.title = languages[lang]['title'];
+    }
+
     const elements = document.querySelectorAll('[data-lang-key]'); //
     elements.forEach(el => { //
         // Add a null check for 'el' to prevent errors if an element somehow becomes null
@@ -18,6 +23,7 @@ export function updateContent(lang) {
             if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') { //
                 el.placeholder = languages[lang][key]; //
             } else if (el.tagName === 'TITLE') { //
+                // Handled above, but kept for backward compatibility if title tag still has data-lang-key
                 document.title = languages[lang][key]; //
             } else {
                 el.innerHTML = languages[lang][key]; //
