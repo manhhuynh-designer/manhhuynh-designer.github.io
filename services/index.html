@@ -1,0 +1,227 @@
+---
+layout: default
+title: Dịch Vụ Cung Cấp
+permalink: /services/
+---
+
+<style>
+    /* Custom pricing colors for contrast in both themes */
+    body[data-theme="light"] .price-3d { color: #1d4ed8 !important; } /* blue-700 */
+    body[data-theme="light"] .price-cgi { color: #15803d !important; } /* green-700 */
+    body[data-theme="light"] .price-webar { color: #c2410c !important; } /* orange-700 */
+    
+    body[data-theme="dark"] .price-3d { color: #60a5fa !important; } /* blue-400 */
+    body[data-theme="dark"] .price-cgi { color: #4ade80 !important; } /* green-400 */
+    body[data-theme="dark"] .price-webar { color: #fb923c !important; } /* orange-400 */
+
+    /* Custom badges for themes */
+    body[data-theme="light"] .badge-3d { background-color: rgba(37, 99, 235, 0.1); color: #1d4ed8; border: 1px solid rgba(37, 99, 235, 0.2); }
+    body[data-theme="light"] .badge-cgi { background-color: rgba(22, 163, 74, 0.1); color: #15803d; border: 1px solid rgba(22, 163, 74, 0.2); }
+    body[data-theme="light"] .badge-webar { background-color: rgba(234, 88, 12, 0.1); color: #c2410c; border: 1px solid rgba(234, 88, 12, 0.2); }
+
+    body[data-theme="dark"] .badge-3d { background-color: rgba(59, 130, 246, 0.1); color: #60a5fa; border: 1px solid rgba(59, 130, 246, 0.2); }
+    body[data-theme="dark"] .badge-cgi { background-color: rgba(34, 197, 94, 0.1); color: #4ade80; border: 1px solid rgba(34, 197, 94, 0.2); }
+    body[data-theme="dark"] .badge-webar { background-color: rgba(249, 115, 22, 0.1); color: #fb923c; border: 1px solid rgba(249, 115, 22, 0.2); }
+
+    /* Pricing block fallback and design */
+    .price-block {
+        background-color: rgba(100, 116, 139, 0.08); /* slate-500/8 with soft opacity */
+        border: 1px solid var(--color-border-main);
+        min-height: 120px !important; /* Force equal height for all price blocks */
+    }
+</style>
+
+<div class="pt-32 pb-16 px-6 md:px-12 max-w-7xl mx-auto">
+    <!-- Back Button -->
+    <div class="mb-12 scroll-reveal">
+        <a href="/#home" class="inline-flex items-center gap-2 text-gray-normal hover:text-accent-strong transition-all font-medium">
+            <i class="fa-solid fa-arrow-left"></i>
+            <span data-lang-key="nav_home">Trang Chủ</span>
+        </a>
+    </div>
+
+    <!-- Hero Section -->
+    <div class="mb-20 text-center scroll-reveal">
+        <h1 class="text-5xl md:text-7xl swiss-heading text-heading mb-6" data-lang-key="services_page_hero_title">
+            Dịch vụ thiết kế & hoạt ảnh 3D
+        </h1>
+        <p class="text-xl md:text-2xl text-gray-normal leading-relaxed max-w-3xl mx-auto" data-lang-key="services_page_hero_desc">
+            Chi tiết hạng mục công việc, quy trình triển khai và bảng giá tham khảo cho các dịch vụ Motion 3D, Social CGI (FOOH) và WebAR.
+        </p>
+    </div>
+
+    <!-- Services Detailed Grid -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-24">
+        <!-- Service 1: Motion 3D -->
+        <div class="glass-card p-10 text-left flex flex-col h-full rounded-2xl hover:-translate-y-2 transition-all duration-300 border border-white/5 scroll-reveal bg-slate-900/40">
+            <div class="mb-8">
+                <!-- Icon -->
+                <div class="w-20 h-20 rounded-full bg-blue-500/20 flex items-center justify-center mb-8 shadow-inner">
+                    <i class="fa-solid fa-cube text-4xl text-blue-500 drop-shadow-md"></i>
+                </div>
+                <!-- Title -->
+                <h3 class="text-3xl swiss-heading text-main mb-4" data-lang-key="service_3d_motion_title">Motion 3D & Render</h3>
+                <!-- Description -->
+                <p class="text-gray-normal text-base leading-relaxed mb-6" data-lang-key="service_3d_motion_desc_detail">
+                    Cung cấp giải pháp diễn họa sản phẩm 3D và Animation chuyên nghiệp, giúp nâng tầm hình ảnh thương hiệu.
+                </p>
+                <!-- Price tag -->
+                <div class="mb-8 p-5 rounded-2xl price-block flex items-center justify-between shadow-inner min-h-[120px]" style="min-height: 120px;">
+                    <div>
+                        <p class="text-xs text-gray-medium font-bold uppercase tracking-widest mb-1.5" data-lang-key="service_starting_at">Giá khởi điểm từ</p>
+                        <p class="text-2xl font-black price-3d" data-lang-key="price_3d_motion_value">7.000.000 VNĐ</p>
+                    </div>
+                    <div class="text-xs px-3 py-1.5 rounded-full badge-3d font-black uppercase tracking-wider">
+                        Base
+                    </div>
+                </div>
+                <!-- Included Items List -->
+                <p class="text-sm font-bold text-gray-medium uppercase tracking-widest mb-4" data-lang-key="service_detail_included">Bao gồm trong gói:</p>
+                <ul class="service-items-list space-y-3" data-lang-items="service_3d_motion_items">
+                    <!-- Populated by JS -->
+                </ul>
+            </div>
+            <!-- CTA Link -->
+            <div class="mt-auto pt-8 border-t border-white/5 flex items-center justify-between">
+                <div class="flex items-center gap-3 text-xs text-gray-medium">
+                    <i class="fa-solid fa-clock text-accent-strong"></i>
+                    <span>5-15 Days</span>
+                </div>
+                <a href="/services/motion-3d/" class="group inline-flex items-center gap-2 text-accent-strong font-bold hover:gap-3 transition-all uppercase tracking-wider text-sm">
+                    <span data-lang-key="learn_more">Tìm hiểu thêm</span>
+                    <i class="fa-solid fa-arrow-right-long"></i>
+                </a>
+            </div>
+        </div>
+
+        <!-- Service 2: Social CGI -->
+        <div class="glass-card p-10 text-left flex flex-col h-full rounded-2xl hover:-translate-y-2 transition-all duration-300 border border-white/5 scroll-reveal bg-slate-900/40">
+            <div class="mb-8">
+                <!-- Icon -->
+                <div class="w-20 h-20 rounded-full bg-green-500/20 flex items-center justify-center mb-8 shadow-inner">
+                    <i class="fa-solid fa-video text-4xl text-green-500 drop-shadow-md"></i>
+                </div>
+                <!-- Title -->
+                <h3 class="text-3xl swiss-heading text-main mb-4" data-lang-key="service_social_cgi_title">Social CGI (FOOH)</h3>
+                <!-- Description -->
+                <p class="text-gray-normal text-base leading-relaxed mb-6" data-lang-key="service_social_cgi_desc_detail">
+                    Sản xuất video quảng cáo CGI/FOOH (Fake Out of Home) độc đáo, tối ưu hóa sự lan tỏa trên các nền tảng mạng xã hội.
+                </p>
+                <!-- Price tag -->
+                <div class="mb-8 p-5 rounded-2xl price-block flex items-center justify-between shadow-inner min-h-[120px]" style="min-height: 120px;">
+                    <div>
+                        <p class="text-xs text-gray-medium font-bold uppercase tracking-widest mb-1.5" data-lang-key="service_starting_at">Giá khởi điểm từ</p>
+                        <p class="text-2xl font-black price-cgi" data-lang-key="price_social_cgi_value">21.500.000 VNĐ</p>
+                    </div>
+                    <div class="text-xs px-3 py-1.5 rounded-full badge-cgi font-black uppercase tracking-wider">
+                        Base
+                    </div>
+                </div>
+                <!-- Included Items List -->
+                <p class="text-sm font-bold text-gray-medium uppercase tracking-widest mb-4" data-lang-key="service_detail_included">Bao gồm trong gói:</p>
+                <ul class="service-items-list space-y-3" data-lang-items="service_social_cgi_items">
+                    <!-- Populated by JS -->
+                </ul>
+            </div>
+            <!-- CTA Link -->
+            <div class="mt-auto pt-8 border-t border-white/5 flex items-center justify-between">
+                <div class="flex items-center gap-3 text-xs text-gray-medium">
+                    <i class="fa-solid fa-clock text-accent-strong"></i>
+                    <span>10-20 Days</span>
+                </div>
+                <a href="/services/social-cgi/" class="group inline-flex items-center gap-2 text-accent-strong font-bold hover:gap-3 transition-all uppercase tracking-wider text-sm">
+                    <span data-lang-key="learn_more">Tìm hiểu thêm</span>
+                    <i class="fa-solid fa-arrow-right-long"></i>
+                </a>
+            </div>
+        </div>
+
+        <!-- Service 3: WebAR -->
+        <div class="glass-card p-10 text-left flex flex-col h-full rounded-2xl hover:-translate-y-2 transition-all duration-300 border border-white/5 scroll-reveal bg-slate-900/40 border-t-2 border-t-orange-500/30">
+            <div class="mb-8">
+                <!-- Icon -->
+                <div class="w-20 h-20 rounded-full bg-orange-500/20 flex items-center justify-center mb-8 shadow-inner">
+                    <i class="fa-solid fa-vr-cardboard text-4xl text-orange-500 drop-shadow-md"></i>
+                </div>
+                <!-- Title -->
+                <h3 class="text-3xl swiss-heading text-main mb-4" data-lang-key="service_webar_title">WebAR Experience</h3>
+                <!-- Description -->
+                <p class="text-gray-normal text-base leading-relaxed mb-6" data-lang-key="service_webar_desc_detail">
+                    Trải nghiệm thực tế tăng cường (AR) trực tiếp trên trình duyệt web mà không cần cài đặt ứng dụng, giúp khách hàng tương tác trực tiếp với sản phẩm.
+                </p>
+                <!-- Price tag -->
+                <div class="mb-8 p-5 rounded-2xl price-block flex items-center justify-between shadow-inner min-h-[120px]" style="min-height: 120px;">
+                    <div>
+                        <p class="text-xs text-gray-medium font-bold uppercase tracking-widest mb-1.5" data-lang-key="service_starting_at">Giá khởi điểm từ</p>
+                        <p class="text-2xl font-black price-webar" data-lang-key="price_webar_value">Liên hệ để nhận báo giá</p>
+                    </div>
+                    <div class="text-xs px-3 py-1.5 rounded-full badge-webar font-black uppercase tracking-wider">
+                        Custom
+                    </div>
+                </div>
+                <!-- Included Items List -->
+                <p class="text-sm font-bold text-gray-medium uppercase tracking-widest mb-4" data-lang-key="service_detail_included">Bao gồm trong gói:</p>
+                <ul class="service-items-list space-y-3" data-lang-items="service_webar_items">
+                    <!-- Populated by JS -->
+                </ul>
+            </div>
+            <!-- CTA Link -->
+            <div class="mt-auto pt-8 border-t border-white/5 flex items-center justify-between">
+                <div class="flex items-center gap-3 text-xs text-gray-medium">
+                    <i class="fa-solid fa-code text-accent-strong"></i>
+                    <span>Web Optimized</span>
+                </div>
+                <a href="/services/webar/" class="group inline-flex items-center gap-2 text-accent-strong font-bold hover:gap-3 transition-all uppercase tracking-wider text-sm">
+                    <span data-lang-key="learn_more">Tìm hiểu thêm</span>
+                    <i class="fa-solid fa-arrow-right-long"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- CTA Section -->
+    <div class="scroll-reveal">
+        <div class="glass-card p-10 md:p-16 rounded-3xl relative overflow-hidden border border-white/5 bg-slate-900/40 text-center">
+            <h2 class="text-3xl md:text-4xl swiss-heading text-main mb-6" data-lang-key="contact_tagline">
+                Sẵn sàng đưa ý tưởng của bạn thành hiện thực? Hãy gửi tin nhắn cho tôi!
+            </h2>
+            <div class="flex justify-center gap-4">
+                <a href="/#contact" class="px-8 py-4 bg-accent-strong text-white rounded-full font-bold uppercase tracking-widest hover:scale-105 transition-all shadow-lg shadow-accent-strong/20" data-lang-key="contact_submit_button">
+                    Gửi Tin Nhắn
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    (function() {
+        const updateAllLists = () => {
+            const lang = document.documentElement.lang || 'vi';
+            const data = window.langData ? window.langData[lang] : null;
+            if (!data) return;
+            
+            document.querySelectorAll('.service-items-list').forEach(list => {
+                const key = list.getAttribute('data-lang-items');
+                if (data[key]) {
+                    list.innerHTML = data[key].split(';').map(item => `
+                        <li class="flex items-center gap-3 text-base text-gray-normal">
+                            <i class="fa-solid fa-check text-accent-green"></i>
+                            <span>${item}</span>
+                        </li>
+                    `).join('');
+                }
+            });
+        };
+
+        document.addEventListener('languageChanged', updateAllLists);
+        // Kiểm tra định kỳ cho đến khi dữ liệu ngôn ngữ sẵn sàng
+        const checkInterval = setInterval(() => {
+            if (window.langData) {
+                updateAllLists();
+                clearInterval(checkInterval);
+            }
+        }, 100);
+        setTimeout(() => clearInterval(checkInterval), 5000);
+    })();
+</script>

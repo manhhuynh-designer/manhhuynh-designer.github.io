@@ -35,8 +35,22 @@ export function updateContent(lang) {
     document.documentElement.lang = lang; // Update HTML lang attribute
     const langButton = document.getElementById('lang-toggle-button'); //
     if (langButton) { //
-        langButton.textContent = lang.toUpperCase() === 'VI' ? 'EN' : 'VI'; // Update button text
+        langButton.textContent = lang.toUpperCase() === 'VI' ? 'English' : 'Tiếng Việt'; // Update button text
     }
+
+    // Update footer lang selector state
+    const selectVi = document.getElementById('lang-select-vi');
+    const selectEn = document.getElementById('lang-select-en');
+    if (selectVi && selectEn) {
+        if (lang === 'vi') {
+            selectVi.className = 'lang-option text-white font-bold cursor-default pointer-events-none select-none';
+            selectEn.className = 'lang-option text-white/50 hover:text-white transition-colors duration-300 cursor-pointer select-none';
+        } else {
+            selectVi.className = 'lang-option text-white/50 hover:text-white transition-colors duration-300 cursor-pointer select-none';
+            selectEn.className = 'lang-option text-white font-bold cursor-default pointer-events-none select-none';
+        }
+    }
+
     localStorage.setItem('lang', lang); 
 
     // Expose language data and current lang for subpages
@@ -53,6 +67,24 @@ export function setupLanguageToggle() {
         langToggleButton.addEventListener('click', () => { //
             currentLanguage = currentLanguage === 'vi' ? 'en' : 'vi'; //
             updateContent(currentLanguage); //
+        });
+    }
+
+    // Support footer language selector options
+    const selectVi = document.getElementById('lang-select-vi');
+    const selectEn = document.getElementById('lang-select-en');
+    if (selectVi && selectEn) {
+        selectVi.addEventListener('click', () => {
+            if (currentLanguage !== 'vi') {
+                currentLanguage = 'vi';
+                updateContent(currentLanguage);
+            }
+        });
+        selectEn.addEventListener('click', () => {
+            if (currentLanguage !== 'en') {
+                currentLanguage = 'en';
+                updateContent(currentLanguage);
+            }
         });
     }
 }

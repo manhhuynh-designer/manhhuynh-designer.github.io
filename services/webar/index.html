@@ -4,6 +4,12 @@ title: WebAR Experience
 permalink: /services/webar/
 ---
 
+<style>
+    /* Custom pricing colors for contrast in both themes */
+    body[data-theme="light"] .price-webar { color: #c2410c !important; } /* orange-700 */
+    body[data-theme="dark"] .price-webar { color: #fb923c !important; } /* orange-400 */
+</style>
+
 <div class="pt-32 pb-16 px-6 md:px-12 max-w-7xl mx-auto">
     <!-- Back Button -->
     <div class="mb-12 scroll-reveal">
@@ -49,13 +55,13 @@ permalink: /services/webar/
             </div>
             
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
-                <div class="lg:col-span-1">
-                    <h2 class="text-3xl md:text-4xl swiss-heading text-main mb-4" data-lang-key="service_webar_starting_price">
+                <div class="lg:col-span-1 p-8 rounded-2xl border border-main bg-slate-500/5 shadow-inner">
+                    <p class="font-bold tracking-widest uppercase text-xs text-gray-medium mb-2" data-lang-key="service_starting_at">Giá khởi điểm từ</p>
+                    <h2 class="text-3xl md:text-4xl font-black price-webar mb-6" data-lang-key="price_webar_value">
                         Liên hệ báo giá
                     </h2>
-                    <p class="text-accent-strong font-bold tracking-widest uppercase text-sm mb-8">Custom Quote / Enterprise</p>
-                    <div class="h-1 w-20 bg-accent-strong mb-8"></div>
-                    <p class="text-gray-medium text-sm leading-relaxed" data-lang-key="service_webar_desc_detail">
+                    <div class="h-px w-full bg-white/10 mb-6"></div>
+                    <p class="text-gray-normal text-sm leading-relaxed" data-lang-key="service_webar_desc_detail">
                         Giải pháp WebAR tùy chỉnh chuyên sâu cho doanh nghiệp và thương mại điện tử.
                     </p>
                 </div>

@@ -139,7 +139,15 @@ export const languages = {
         '404_title': 'Không tìm thấy trang',
         '404_desc': 'Đường liên kết bạn vừa truy cập không tồn tại hoặc đã được di chuyển sang địa chỉ khác.',
         '404_back_home': 'Về Trang Chủ',
-        '404_about': 'Giới Thiệu'
+        '404_about': 'Giới Thiệu',
+        'services_page_title': 'Dịch Vụ Cung Cấp | Mạnh Huỳnh',
+        'services_page_hero_title': 'Dịch vụ thiết kế & hoạt ảnh 3D',
+        'services_page_hero_desc': 'Chi tiết hạng mục công việc, quy trình triển khai và bảng giá tham khảo cho các dịch vụ Motion 3D, Social CGI (FOOH) và WebAR.',
+        'services_view_details_btn': 'Xem chi tiết & Bảng giá',
+        'service_starting_at': 'Giá khởi điểm từ',
+        'price_3d_motion_value': '7.000.000 VNĐ',
+        'price_social_cgi_value': '21.500.000 VNĐ',
+        'price_webar_value': 'Liên hệ báo giá'
     },
     'en': {
         'hero_greeting': 'Hi there!',
@@ -278,7 +286,15 @@ export const languages = {
         '404_title': 'Page Not Found',
         '404_desc': 'The link you accessed does not exist or has been moved to another address.',
         '404_back_home': 'Go to Home',
-        '404_about': 'About Me'
+        '404_about': 'About Me',
+        'services_page_title': 'Services Offered | Manh Huynh',
+        'services_page_hero_title': '3D Design & Animation Services',
+        'services_page_hero_desc': 'Detailed scope of work, development process, and starting rates for Motion 3D, Social CGI (FOOH), and WebAR services.',
+        'services_view_details_btn': 'View Details & Pricing',
+        'service_starting_at': 'Starting from',
+        'price_3d_motion_value': '7,000,000 VND',
+        'price_social_cgi_value': '21,500,000 VND',
+        'price_webar_value': 'Contact for quote'
     }
 };
 
