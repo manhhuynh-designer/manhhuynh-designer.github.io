@@ -14,20 +14,16 @@ permalink: /services/
     body[data-theme="dark"] .price-cgi { color: #4ade80 !important; } /* green-400 */
     body[data-theme="dark"] .price-webar { color: #fb923c !important; } /* orange-400 */
 
-    /* Custom badges for themes */
-    body[data-theme="light"] .badge-3d { background-color: rgba(37, 99, 235, 0.1); color: #1d4ed8; border: 1px solid rgba(37, 99, 235, 0.2); }
-    body[data-theme="light"] .badge-cgi { background-color: rgba(22, 163, 74, 0.1); color: #15803d; border: 1px solid rgba(22, 163, 74, 0.2); }
-    body[data-theme="light"] .badge-webar { background-color: rgba(234, 88, 12, 0.1); color: #c2410c; border: 1px solid rgba(234, 88, 12, 0.2); }
 
-    body[data-theme="dark"] .badge-3d { background-color: rgba(59, 130, 246, 0.1); color: #60a5fa; border: 1px solid rgba(59, 130, 246, 0.2); }
-    body[data-theme="dark"] .badge-cgi { background-color: rgba(34, 197, 94, 0.1); color: #4ade80; border: 1px solid rgba(34, 197, 94, 0.2); }
-    body[data-theme="dark"] .badge-webar { background-color: rgba(249, 115, 22, 0.1); color: #fb923c; border: 1px solid rgba(249, 115, 22, 0.2); }
 
     /* Pricing block fallback and design */
     .price-block {
         background-color: rgba(100, 116, 139, 0.08); /* slate-500/8 with soft opacity */
         border: 1px solid var(--color-border-main);
-        min-height: 120px !important; /* Force equal height for all price blocks */
+        height: 110px !important; /* Force exact equal height for all price blocks */
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: center !important;
     }
 </style>
 
@@ -53,26 +49,26 @@ permalink: /services/
     <!-- Services Detailed Grid -->
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-24">
         <!-- Service 1: Motion 3D -->
-        <div class="glass-card p-10 text-left flex flex-col h-full rounded-2xl hover:-translate-y-2 transition-all duration-300 border border-white/5 scroll-reveal bg-slate-900/40">
+        <div class="glass-card p-6 xl:p-10 text-left flex flex-col h-full rounded-2xl hover:-translate-y-2 transition-all duration-300 border border-white/5 scroll-reveal bg-slate-900/40">
             <div class="mb-8">
                 <!-- Icon -->
                 <div class="w-20 h-20 rounded-full bg-blue-500/20 flex items-center justify-center mb-8 shadow-inner">
                     <i class="fa-solid fa-cube text-4xl text-blue-500 drop-shadow-md"></i>
                 </div>
-                <!-- Title -->
-                <h3 class="text-3xl swiss-heading text-main mb-4" data-lang-key="service_3d_motion_title">Motion 3D & Render</h3>
-                <!-- Description -->
-                <p class="text-gray-normal text-base leading-relaxed mb-6" data-lang-key="service_3d_motion_desc_detail">
-                    Cung cấp giải pháp diễn họa sản phẩm 3D và Animation chuyên nghiệp, giúp nâng tầm hình ảnh thương hiệu.
-                </p>
+                <!-- Title & Description Container to align Price tags -->
+                <div class="lg:min-h-[210px] xl:min-h-[180px]">
+                    <!-- Title -->
+                    <h3 class="text-3xl swiss-heading text-main mb-4" data-lang-key="service_3d_motion_title">Motion 3D & Render</h3>
+                    <!-- Description -->
+                    <p class="text-gray-normal text-base leading-relaxed mb-6" data-lang-key="service_3d_motion_desc_detail">
+                        Cung cấp giải pháp diễn họa sản phẩm 3D và Animation chuyên nghiệp, giúp nâng tầm hình ảnh thương hiệu.
+                    </p>
+                </div>
                 <!-- Price tag -->
-                <div class="mb-8 p-5 rounded-2xl price-block flex items-center justify-between shadow-inner min-h-[120px]" style="min-height: 120px;">
+                <div class="mb-8 p-5 rounded-2xl price-block shadow-inner">
                     <div>
                         <p class="text-xs text-gray-medium font-bold uppercase tracking-widest mb-1.5" data-lang-key="service_starting_at">Giá khởi điểm từ</p>
-                        <p class="text-2xl font-black price-3d" data-lang-key="price_3d_motion_value">7.000.000 VNĐ</p>
-                    </div>
-                    <div class="text-xs px-3 py-1.5 rounded-full badge-3d font-black uppercase tracking-wider">
-                        Base
+                        <p class="text-2xl font-black price-3d whitespace-nowrap" data-lang-key="price_3d_motion_value">7.000.000 VNĐ</p>
                     </div>
                 </div>
                 <!-- Included Items List -->
@@ -95,26 +91,26 @@ permalink: /services/
         </div>
 
         <!-- Service 2: Social CGI -->
-        <div class="glass-card p-10 text-left flex flex-col h-full rounded-2xl hover:-translate-y-2 transition-all duration-300 border border-white/5 scroll-reveal bg-slate-900/40">
+        <div class="glass-card p-6 xl:p-10 text-left flex flex-col h-full rounded-2xl hover:-translate-y-2 transition-all duration-300 border border-white/5 scroll-reveal bg-slate-900/40">
             <div class="mb-8">
                 <!-- Icon -->
                 <div class="w-20 h-20 rounded-full bg-green-500/20 flex items-center justify-center mb-8 shadow-inner">
                     <i class="fa-solid fa-video text-4xl text-green-500 drop-shadow-md"></i>
                 </div>
-                <!-- Title -->
-                <h3 class="text-3xl swiss-heading text-main mb-4" data-lang-key="service_social_cgi_title">Social CGI (FOOH)</h3>
-                <!-- Description -->
-                <p class="text-gray-normal text-base leading-relaxed mb-6" data-lang-key="service_social_cgi_desc_detail">
-                    Sản xuất video quảng cáo CGI/FOOH (Fake Out of Home) độc đáo, tối ưu hóa sự lan tỏa trên các nền tảng mạng xã hội.
-                </p>
+                <!-- Title & Description Container to align Price tags -->
+                <div class="lg:min-h-[210px] xl:min-h-[180px]">
+                    <!-- Title -->
+                    <h3 class="text-3xl swiss-heading text-main mb-4" data-lang-key="service_social_cgi_title">Social CGI (FOOH)</h3>
+                    <!-- Description -->
+                    <p class="text-gray-normal text-base leading-relaxed mb-6" data-lang-key="service_social_cgi_desc_detail">
+                        Sản xuất video quảng cáo CGI/FOOH (Fake Out of Home) độc đáo, tối ưu hóa sự lan tỏa trên các nền tảng mạng xã hội.
+                    </p>
+                </div>
                 <!-- Price tag -->
-                <div class="mb-8 p-5 rounded-2xl price-block flex items-center justify-between shadow-inner min-h-[120px]" style="min-height: 120px;">
+                <div class="mb-8 p-5 rounded-2xl price-block shadow-inner">
                     <div>
                         <p class="text-xs text-gray-medium font-bold uppercase tracking-widest mb-1.5" data-lang-key="service_starting_at">Giá khởi điểm từ</p>
-                        <p class="text-2xl font-black price-cgi" data-lang-key="price_social_cgi_value">21.500.000 VNĐ</p>
-                    </div>
-                    <div class="text-xs px-3 py-1.5 rounded-full badge-cgi font-black uppercase tracking-wider">
-                        Base
+                        <p class="text-2xl font-black price-cgi whitespace-nowrap" data-lang-key="price_social_cgi_value">21.500.000 VNĐ</p>
                     </div>
                 </div>
                 <!-- Included Items List -->
@@ -137,26 +133,26 @@ permalink: /services/
         </div>
 
         <!-- Service 3: WebAR -->
-        <div class="glass-card p-10 text-left flex flex-col h-full rounded-2xl hover:-translate-y-2 transition-all duration-300 border border-white/5 scroll-reveal bg-slate-900/40 border-t-2 border-t-orange-500/30">
+        <div class="glass-card p-6 xl:p-10 text-left flex flex-col h-full rounded-2xl hover:-translate-y-2 transition-all duration-300 border border-white/5 scroll-reveal bg-slate-900/40 border-t-2 border-t-orange-500/30">
             <div class="mb-8">
                 <!-- Icon -->
                 <div class="w-20 h-20 rounded-full bg-orange-500/20 flex items-center justify-center mb-8 shadow-inner">
                     <i class="fa-solid fa-vr-cardboard text-4xl text-orange-500 drop-shadow-md"></i>
                 </div>
-                <!-- Title -->
-                <h3 class="text-3xl swiss-heading text-main mb-4" data-lang-key="service_webar_title">WebAR Experience</h3>
-                <!-- Description -->
-                <p class="text-gray-normal text-base leading-relaxed mb-6" data-lang-key="service_webar_desc_detail">
-                    Trải nghiệm thực tế tăng cường (AR) trực tiếp trên trình duyệt web mà không cần cài đặt ứng dụng, giúp khách hàng tương tác trực tiếp với sản phẩm.
-                </p>
+                <!-- Title & Description Container to align Price tags -->
+                <div class="lg:min-h-[210px] xl:min-h-[180px]">
+                    <!-- Title -->
+                    <h3 class="text-3xl swiss-heading text-main mb-4" data-lang-key="service_webar_title">WebAR Experience</h3>
+                    <!-- Description -->
+                    <p class="text-gray-normal text-base leading-relaxed mb-6" data-lang-key="service_webar_desc_detail">
+                        Trải nghiệm thực tế tăng cường (AR) trực tiếp trên trình duyệt web mà không cần cài đặt ứng dụng, giúp khách hàng tương tác trực tiếp với sản phẩm.
+                    </p>
+                </div>
                 <!-- Price tag -->
-                <div class="mb-8 p-5 rounded-2xl price-block flex items-center justify-between shadow-inner min-h-[120px]" style="min-height: 120px;">
+                <div class="mb-8 p-5 rounded-2xl price-block shadow-inner">
                     <div>
                         <p class="text-xs text-gray-medium font-bold uppercase tracking-widest mb-1.5" data-lang-key="service_starting_at">Giá khởi điểm từ</p>
-                        <p class="text-2xl font-black price-webar" data-lang-key="price_webar_value">Liên hệ để nhận báo giá</p>
-                    </div>
-                    <div class="text-xs px-3 py-1.5 rounded-full badge-webar font-black uppercase tracking-wider">
-                        Custom
+                        <p class="text-2xl font-black price-webar whitespace-nowrap" data-lang-key="price_webar_value">Từ 3.000.000 VNĐ</p>
                     </div>
                 </div>
                 <!-- Included Items List -->

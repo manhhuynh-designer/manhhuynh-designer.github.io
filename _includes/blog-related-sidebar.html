@@ -1,0 +1,76 @@
+<style>
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+</style>
+
+<div class="related-posts-sidebar">
+  <h3 class="text-xl font-bold text-heading mb-6 pb-2 border-b border-main flex items-center gap-2">
+    <i class="fa-solid fa-bookmark text-accent-green"></i>
+    <span>Bài viết liên quan</span>
+  </h3>
+
+  {% assign related_posts = "" | split: "" %}
+  {% for post in site.posts %}
+    {% unless post.url == page.url %}
+      {% assign is_related = false %}
+      {% for cat in post.categories %}
+        {% if page.categories contains cat %}
+          {% assign is_related = true %}
+          {% break %}
+        {% endif %}
+      {% endfor %}
+      {% if is_related %}
+        {% assign related_posts = related_posts | push: post %}
+      {% endif %}
+    {% endunless %}
+  {% endfor %}
+
+  {% assign related_count = related_posts | size %}
+  {% if related_count < 5 %}
+    {% for post in site.posts %}
+      {% unless post.url == page.url or related_posts contains post %}
+        {% assign related_posts = related_posts | push: post %}
+      {% endunless %}
+    {% endfor %}
+  {% endif %}
+
+  {% assign related_posts = related_posts | limit: 5 %}
+
+  <div class="flex flex-row overflow-x-auto lg:flex-col gap-4 pb-4 lg:pb-0 -mx-4 px-4 lg:mx-0 lg:px-0 snap-x snap-mandatory no-scrollbar scroll-smooth">
+    {% for post in related_posts %}
+      <a href="{{ post.url | relative_url }}" class="flex gap-4 p-3 rounded-xl hover:bg-main/5 transition-all duration-300 group border border-slate-300/20 dark:border-slate-700/40 lg:border-transparent lg:hover:border-slate-300/20 lg:dark:hover:border-slate-700/40 hover:shadow-sm bg-card lg:bg-transparent snap-align-start w-[280px] lg:w-full flex-shrink-0 lg:flex-shrink flex-grow">
+        {% if post.thumbnail %}
+          <div class="w-20 h-20 rounded-lg overflow-hidden flex-shrink-0 bg-main/5 border border-slate-300/20 dark:border-slate-700/40">
+            <img src="{{ post.thumbnail | relative_url }}" alt="{{ post.title }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+          </div>
+        {% else %}
+          <div class="w-20 h-20 rounded-lg overflow-hidden flex-shrink-0 bg-main/5 border border-slate-300/20 dark:border-slate-700/40 flex items-center justify-center text-gray-400">
+            <i class="fa-regular fa-image text-2xl"></i>
+          </div>
+        {% endif %}
+        
+        <div class="flex flex-col justify-between py-0.5 min-w-0 flex-grow">
+          <h4 class="text-sm font-bold text-main line-clamp-2 leading-snug group-hover:text-accent-green transition-colors duration-300">
+            {{ post.title | escape }}
+          </h4>
+          <div class="flex flex-wrap items-center gap-x-2 gap-y-1 text-xs text-gray-medium mt-1">
+            <time datetime="{{ post.date | date_to_xmlschema }}">
+              {{ post.date | date: "%B %d, %Y" }}
+            </time>
+            {% if post.categories.size > 0 %}
+              <span class="text-gray-medium/55">•</span>
+              <span class="px-1.5 py-0.5 rounded bg-accent-green/10 text-accent-green font-semibold text-[10px] uppercase tracking-wider">
+                {{ post.categories | first }}
+              </span>
+            {% endif %}
+          </div>
+        </div>
+      </a>
+    {% endfor %}
+  </div>
+</div>

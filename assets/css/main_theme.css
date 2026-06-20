@@ -1784,3 +1784,33 @@ body[data-theme='light'] .ambient-glow {
     transform: translateY(-2px);
 }
 
+/* FAQ Accordion Styling Overrides */
+.faq-item.glass-card {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02) !important;
+    border: 1px solid var(--color-border-main) !important;
+}
+.faq-item.glass-card:hover {
+    transform: none !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04) !important;
+}
+.faq-trigger {
+    color: var(--color-text-main) !important;
+    font-size: 1.2rem !important;
+}
+.faq-trigger:hover {
+    color: var(--color-text-strong-accent) !important;
+}
+.faq-trigger i {
+    color: var(--color-text-main) !important;
+    font-size: 1.1rem !important;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+.faq-trigger:hover i {
+    color: var(--color-text-strong-accent) !important;
+}
+.faq-content div {
+    font-size: 1.1rem !important;
+}
+
+
+
