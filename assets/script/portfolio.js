@@ -8,14 +8,16 @@ export function initializePortfolioInteractions() {
 
   // --- GSAP Auto-Scroll & Infinite Loop Logic ---
   let infiniteTween;
-  let portfolioPinTrigger; // Giữ nguyên trigger vĩnh viễn để tránh sập layout
   let isPaused = false;
   let loopDistance = 0;
+  let currentVisibleItems = [];
+  let isDown = false;
+  let startX;
+  let scrollLeftStart;
+  const progressEl = document.getElementById('portfolio-progress');
 
   function initScrollLogic() {
-    const progressEl = document.getElementById('portfolio-progress');
-
-    // 1. Dọn dẹp GSAP Tween ngang cũ (KHÔNG kill ScrollTrigger pin)
+    // 1. Dọn dẹp GSAP Tween ngang cũ
     if (infiniteTween) {
       infiniteTween.kill();
       infiniteTween = null;
@@ -29,11 +31,10 @@ export function initializePortfolioInteractions() {
 
     // 3. Kiểm tra item hiển thị
     const visibleItems = Array.from(portfolioItems).filter(item => getComputedStyle(item).display !== 'none');
+    currentVisibleItems = visibleItems;
     if (visibleItems.length === 0) {
-      if (portfolioPinTrigger) {
-        portfolioPinTrigger.kill();
-        portfolioPinTrigger = null;
-      }
+      const dotsContainer = document.getElementById('portfolio-dots');
+      if (dotsContainer) dotsContainer.innerHTML = '';
       return;
     }
 
@@ -51,7 +52,7 @@ export function initializePortfolioInteractions() {
       }
     });
 
-    // 5. Tính toán và khởi chạy đồng bộ (Không dùng setTimeout gây chớp màn hình)
+    // 5. Tính toán và khởi chạy đồng bộ
     const firstClone = horizontal.querySelector('.portfolio-clone');
     loopDistance = (firstClone && visibleItems.length > 0) 
                        ? (firstClone.offsetLeft - visibleItems[0].offsetLeft) 
@@ -71,39 +72,8 @@ export function initializePortfolioInteractions() {
         }
       );
 
-      const isDesktop = window.matchMedia("(min-width: 768px)").matches;
-      if (isDesktop) {
-        if (progressEl && progressEl.parentElement) progressEl.parentElement.style.display = 'block';
-        
-        // Tái sử dụng Pin Trigger thay vì tạo mới để duy trì pin-spacer padding
-        if (!portfolioPinTrigger) {
-          portfolioPinTrigger = ScrollTrigger.create({
-            id: "portfolio-pin",
-            trigger: "#portfolio",
-            start: () => "top " + (document.querySelector('header')?.offsetHeight || 80) + "px",
-            end: () => "+=" + (loopDistance * 1.5),
-            pin: true,
-            invalidateOnRefresh: true,
-            onUpdate: (self) => {
-              if (progressEl) gsap.set(progressEl, { width: `${self.progress * 100}%` });
-              if (infiniteTween && loopDistance > 0 && Math.abs(self.getVelocity()) > 10) {
-                wrapper.scrollLeft = (self.progress * loopDistance) % loopDistance;
-                infiniteTween.progress((wrapper.scrollLeft % loopDistance) / loopDistance);
-              }
-            }
-          });
-        }
-      } else {
-        if (progressEl && progressEl.parentElement) progressEl.parentElement.style.display = 'none';
-        if (portfolioPinTrigger) {
-          portfolioPinTrigger.kill();
-          portfolioPinTrigger = null;
-        }
-      }
+      // Slide navigation dots removed, now using Prev/Next buttons
     }
-
-    // Refresh lại ScrollTrigger để cập nhật end point một cách tự nhiên
-    ScrollTrigger.refresh();
   }
 
   // Khởi tạo sau khi trang đã load (Tránh race condition trên Production)
@@ -124,14 +94,17 @@ export function initializePortfolioInteractions() {
   });
 
   // --- Các sự kiện tương tác UX (Tạm dừng & Kéo thả) ---
+
   wrapper.addEventListener('mouseenter', () => {
     isPaused = true;
     if (infiniteTween) infiniteTween.pause();
   });
   
   wrapper.addEventListener('mouseleave', () => {
-    isPaused = false;
-    if (infiniteTween) infiniteTween.play();
+    if (!isDown) {
+      isPaused = false;
+      if (infiniteTween) infiniteTween.play();
+    }
   });
   
   wrapper.addEventListener('touchstart', () => {
@@ -141,19 +114,143 @@ export function initializePortfolioInteractions() {
   
   wrapper.addEventListener('touchend', () => {
     setTimeout(() => {
-      isPaused = false;
-      if (infiniteTween) infiniteTween.play();
+      if (!wrapper.matches(':hover') && !isDown) {
+        isPaused = false;
+        if (infiniteTween) infiniteTween.play();
+      }
     }, 1500); // Đợi 1.5s sau khi buông tay mới tiếp tục cuộn auto
   }, {passive: true});
 
-  // Đồng bộ vị trí GSAP với thao tác lướt ngang bằng trackpad của người dùng
-  wrapper.addEventListener('scroll', () => {
-    if (isPaused && infiniteTween && loopDistance > 0) {
-      if (wrapper.scrollLeft <= 0) {
-        wrapper.scrollLeft = loopDistance;
+  // Kéo thả chuột (Mouse Drag-to-Scroll) đã được gỡ bỏ theo yêu cầu
+
+  // Hàm lấy index slide hiện tại dựa vào scrollLeft
+  function getCurrentIndex() {
+    if (loopDistance <= 0 || currentVisibleItems.length === 0) return 0;
+    const currentScroll = wrapper.scrollLeft % loopDistance;
+    let activeIndex = 0;
+    let minDiff = Infinity;
+    
+    currentVisibleItems.forEach((item, index) => {
+      const itemOffset = item.offsetLeft - currentVisibleItems[0].offsetLeft;
+      const diff = Math.abs(itemOffset - currentScroll);
+      if (diff < minDiff) {
+        minDiff = diff;
+        activeIndex = index;
       }
-      let currentProgress = (wrapper.scrollLeft % loopDistance) / loopDistance;
-      infiniteTween.progress(currentProgress);
+    });
+    return activeIndex;
+  }
+
+  function resetAutoScroll() {
+    setTimeout(() => {
+      if (!wrapper.matches(':hover') && !isDown) {
+        isPaused = false;
+        if (infiniteTween) infiniteTween.play();
+      }
+    }, 2000);
+  }
+
+  // Click Next Slide
+  const nextBtn = document.getElementById('portfolio-next');
+  if (nextBtn) {
+    nextBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      if (loopDistance <= 0 || currentVisibleItems.length === 0) return;
+      
+      const currentIndex = getCurrentIndex();
+      const nextIndex = currentIndex + 1;
+      let targetScroll;
+      
+      isPaused = true;
+      if (infiniteTween) infiniteTween.pause();
+      
+      if (nextIndex >= currentVisibleItems.length) {
+        targetScroll = loopDistance;
+        gsap.to(wrapper, {
+          scrollLeft: targetScroll,
+          duration: 0.6,
+          ease: "power2.out",
+          onComplete: () => {
+            wrapper.scrollLeft = 0;
+            resetAutoScroll();
+          }
+        });
+      } else {
+        targetScroll = currentVisibleItems[nextIndex].offsetLeft - currentVisibleItems[0].offsetLeft;
+        gsap.to(wrapper, {
+          scrollLeft: targetScroll,
+          duration: 0.6,
+          ease: "power2.out",
+          onComplete: resetAutoScroll
+        });
+      }
+    });
+  }
+
+  // Click Prev Slide
+  const prevBtn = document.getElementById('portfolio-prev');
+  if (prevBtn) {
+    prevBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      if (loopDistance <= 0 || currentVisibleItems.length === 0) return;
+      
+      const currentIndex = getCurrentIndex();
+      let targetScroll;
+      
+      isPaused = true;
+      if (infiniteTween) infiniteTween.pause();
+      
+      if (currentIndex === 0) {
+        wrapper.scrollLeft = loopDistance;
+        const prevIndex = currentVisibleItems.length - 1;
+        targetScroll = currentVisibleItems[prevIndex].offsetLeft - currentVisibleItems[0].offsetLeft;
+        
+        gsap.to(wrapper, {
+          scrollLeft: targetScroll,
+          duration: 0.6,
+          ease: "power2.out",
+          onComplete: resetAutoScroll
+        });
+      } else {
+        const prevIndex = currentIndex - 1;
+        targetScroll = currentVisibleItems[prevIndex].offsetLeft - currentVisibleItems[0].offsetLeft;
+        
+        gsap.to(wrapper, {
+          scrollLeft: targetScroll,
+          duration: 0.6,
+          ease: "power2.out",
+          onComplete: resetAutoScroll
+        });
+      }
+    });
+  }
+
+  // Lắng nghe scroll để đồng bộ Progress Bar
+  wrapper.addEventListener('scroll', () => {
+    if (loopDistance <= 0) return;
+    
+    let scrollLeft = wrapper.scrollLeft;
+    
+    if (isPaused) {
+      if (scrollLeft >= loopDistance) {
+        wrapper.scrollLeft = scrollLeft - loopDistance;
+        return;
+      } else if (scrollLeft < 0) {
+        wrapper.scrollLeft = scrollLeft + loopDistance;
+        return;
+      }
+    }
+    
+    const progress = (wrapper.scrollLeft % loopDistance) / loopDistance;
+    
+    if (progressEl) {
+      gsap.set(progressEl, { width: `${progress * 100}%` });
+    }
+    
+    if (isPaused && infiniteTween) {
+      infiniteTween.progress(progress);
     }
   }, {passive: true});
 

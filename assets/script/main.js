@@ -34,6 +34,16 @@ const init = () => {
     setupSmartHeader();
     setupHeroParallax();
     initializePortfolioInteractions(); // Gọi hàm khởi tạo tương tác portfolio tại đây
+
+    // Khởi tạo trang portfolio summary nếu đang ở trang đó
+    if (window.location.pathname.includes('/portfolio/')) {
+        import('./featured.js').then(module => {
+            module.initializeFeaturedProjectsPage();
+        }).catch(err => {
+            console.error('Failed to load featured projects logic:', err);
+        });
+    }
+
     setupLanguageToggle();
     setupSmoothScrolling();
     setupScrollReveal();

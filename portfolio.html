@@ -1,0 +1,583 @@
+---
+layout: default
+title: Portfolio | Manh Huynh
+permalink: /portfolio/
+---
+
+{% assign lang = site.active_lang | default: "en" %}
+{% assign translations = site.data.languages[lang] %}
+
+<style>
+    .pf-video-container {
+        width: 100%;
+        max-height: 85vh;
+        aspect-ratio: var(--aspect);
+        margin-left: auto;
+        margin-right: auto;
+    }
+    @media (min-width: 768px) {
+        .pf-video-container {
+            max-height: 72vh;
+            width: min(100%, calc(72vh * var(--aspect)));
+        }
+    }
+    @media (min-width: 1024px) {
+        .pf-video-container {
+            max-height: 680px;
+            width: min(100%, calc(680px * var(--aspect)));
+        }
+    }
+</style>
+
+<!-- Main Wrapper -->
+<div id="portfolio-summary-page" class="bg-background text-main min-h-screen transition-colors duration-1000 ease-in-out">
+    
+    <!-- Header Section (Asymmetric Swiss Design) -->
+    <div class="pt-44 pb-20 max-w-[1300px] mx-auto px-6 pf-reveal-header">
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-8 border-b border-main/10 pb-12">
+            <div class="max-w-2xl">
+                <span class="text-accent-strong text-xs font-black uppercase tracking-[0.3em] mb-4 block">Selected Works</span>
+                <h1 class="text-5xl md:text-8xl font-black uppercase tracking-tight leading-none text-heading" data-lang-key="portfolio_page_title">
+                    {{ translations.portfolio_page_title | default: "Portfolio Showcase" }}
+                </h1>
+            </div>
+            <div class="max-w-md md:text-right flex flex-col md:items-end">
+                <p class="text-gray-normal text-base md:text-lg leading-relaxed" data-lang-key="portfolio_page_desc">
+                    {{ translations.portfolio_page_desc | default: "A curated summary of my finest 3D, Motion, and CGI projects." }}
+                </p>
+                <div class="w-12 h-0.5 bg-accent-strong mt-6 hidden md:block"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Category Section: 3D Motion Graphics -->
+    <div id="category-motion-3d" class="w-full flex flex-col">
+        <div class="max-w-[1300px] mx-auto px-6 pt-16 pb-8 border-b border-main/10 w-full pf-reveal-header">
+            <h2 class="text-3xl md:text-5xl font-black uppercase tracking-tight text-heading" data-lang-key="category_group_motion_3d">
+                {{ translations.category_group_motion_3d | default: "3D Motion Graphics" }}
+            </h2>
+        </div>
+        
+        {% assign motion_projects = site.data.portfolio_page_projects | where: "featured", true | where: "category", "motion-3d" %}
+        {% for project in motion_projects %}
+            {% assign is_even = forloop.index | modulo: 2 %}
+            {% assign aspect = project.video_aspect | default: "16/10" %}
+            
+            <section id="project-{{ project.id }}" class="portfolio-section py-16 md:py-28 flex items-center justify-center border-b border-main/10 relative transition-all duration-1000" 
+                     data-bg-color="{{ project.bg_color | default: '#020617' }}"
+                     data-project-id="{{ project.id }}">
+                <div class="flex flex-col {% if is_even == 0 %}md:flex-row-reverse{% else %}md:flex-row{% endif %} gap-12 lg:gap-20 items-center justify-between max-w-[1300px] mx-auto px-6 w-full">
+                    
+                    <!-- Info Column -->
+                    <div class="w-full md:w-[45%] flex flex-col items-start text-left pf-reveal-text">
+                        <span class="text-accent-strong text-xs font-bold uppercase tracking-widest mb-3 block">
+                            {{ project.category | replace: '-', ' ' }}
+                        </span>
+                        
+                        <h2 class="text-3xl md:text-5xl font-black mb-4 tracking-tight leading-tight text-heading" data-lang-key="{{ project.title_key }}">
+                            {{ translations[project.title_key] | default: project.title_key }}
+                        </h2>
+                        
+                        <p class="text-gray-normal text-base md:text-lg mb-6 leading-relaxed max-w-lg" data-lang-key="{{ project.desc_key }}">
+                            {{ translations[project.desc_key] | default: project.desc_key }}
+                        </p>
+
+                        <!-- My Role Section -->
+                        {% if project.role_key %}
+                        <div class="mb-6 text-sm max-w-lg border-l-2 border-accent-strong/40 pl-4 py-0.5">
+                            <strong class="text-accent-strong uppercase tracking-wider text-[11px] block mb-1" data-lang-key="my_role">{{ translations.my_role | default: "My Role" }}</strong>
+                            <p class="text-gray-normal/90 leading-relaxed italic" data-lang-key="{{ project.role_key }}">
+                                {{ translations[project.role_key] | default: project.role_key }}
+                            </p>
+                        </div>
+                        {% endif %}
+                        
+                        <!-- Skill Tags Container (JS populated for multi-language) -->
+                        <div class="flex flex-wrap gap-2 mb-8 pf-skills-container" data-skills-key="{{ project.skills_key }}"></div>
+                        
+                        <div class="flex flex-wrap gap-4 mb-8">
+                            <a href="{{ project.behance_link | relative_url }}" class="px-7 py-3 bg-accent-strong hover:bg-accent-strong/80 text-white font-bold text-xs rounded-full tracking-wider uppercase transition-all shadow-lg transform hover:-translate-y-0.5" data-lang-key="view_details">
+                                {{ translations.view_details | default: "View Case Study" }}
+                            </a>
+                            {% if project.behance_external_link %}
+                            <a href="{{ project.behance_external_link }}" target="_blank" rel="noopener noreferrer" class="px-7 py-3 border border-main text-gray-normal hover:border-accent-strong hover:text-accent-strong font-bold text-xs rounded-full tracking-wider uppercase transition-all" data-lang-key="view_behance">
+                                {{ translations.view_behance | default: "Behance" }}
+                            </a>
+                            {% endif %}
+                        </div>
+
+                        <!-- Styleframes Row (Moved inside Info Column) -->
+                        {% if project.featured_styleframes %}
+                        <div class="grid grid-cols-3 gap-3 w-full mt-4">
+                            {% for frame in project.featured_styleframes %}
+                            <div class="overflow-hidden rounded-lg border border-transparent bg-black/5 shadow-md cursor-pointer hover:border-accent-strong transition-all transform hover:scale-[1.02] gallery-item" style="--aspect: {{ aspect }}; aspect-ratio: var(--aspect);">
+                                <img src="{{ frame | relative_url }}?v={{ site.time | date: '%s' }}" class="w-full h-full object-cover" loading="lazy" alt="Styleframe">
+                            </div>
+                            {% endfor %}
+                        </div>
+                        {% endif %}
+                    </div>
+
+                    <!-- Media Column -->
+                    <div class="w-full md:w-[50%] flex flex-col gap-4 pf-reveal-media">
+                        <!-- Video or Main Image -->
+                        {% if project.youtube_iframes and project.youtube_iframes.size > 0 %}
+                            <div class="grid {% if project.youtube_iframes.size == 3 %}grid-cols-3{% else %}grid-cols-2{% endif %} gap-3 w-full mx-auto justify-center">
+                                {% for item in project.youtube_iframes %}
+                                <div class="relative overflow-hidden rounded-lg bg-black/10 border border-transparent shadow-2xl" 
+                                     style="aspect-ratio: 9/16; max-height: 680px; width: 100%;">
+                                    <iframe src="{{ item.url }}" 
+                                            frameborder="0" 
+                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                                            allowfullscreen 
+                                            class="absolute inset-0 w-full h-full bg-black"
+                                            style="border: none;"
+                                            title="{{ item.title }}">
+                                    </iframe>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            <div class="relative pf-video-container overflow-hidden rounded-xl bg-black/10 border border-transparent shadow-2xl group" style="--aspect: {{ aspect }};">
+                                {% assign video_poster = project.thumbnail_image %}
+                                
+                                {% if project.youtube_iframe %}
+                                    <iframe src="{{ project.youtube_iframe }}" 
+                                            frameborder="0" 
+                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                                            allowfullscreen 
+                                            class="absolute inset-0 w-full h-full object-cover bg-black"
+                                            style="border: none;">
+                                    </iframe>
+                                {% elsif project.vimeo_iframe %}
+                                    <iframe src="{{ project.vimeo_iframe }}" 
+                                            frameborder="0" 
+                                            allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" 
+                                            allowfullscreen 
+                                            class="absolute inset-0 w-full h-full object-cover bg-black"
+                                            style="border: none;">
+                                    </iframe>
+                                {% elsif project.thumbnail_video %}
+                                    <video class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-103"
+                                           muted autoplay loop playsinline preload="metadata" 
+                                           poster="{{ video_poster | relative_url }}">
+                                        {% if project.thumbnail_video contains '.mp4' %}
+                                            <source src="{{ project.thumbnail_video | relative_url }}" type="video/mp4">
+                                        {% else %}
+                                            <source src="{{ project.thumbnail_video | relative_url }}" type="video/webm">
+                                            <source src="{{ project.thumbnail_video | replace: '.webm', '.mp4' | relative_url }}" type="video/mp4">
+                                        {% endif %}
+                                    </video>
+                                    <div class="absolute bottom-4 right-4 bg-black/60 text-white text-[9px] uppercase font-bold tracking-widest px-2.5 py-1 rounded backdrop-blur-md opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+                                        AUTOPLAY LOOP
+                                    </div>
+                                {% else %}
+                                    <img src="{{ project.thumbnail_image | relative_url }}" 
+                                         alt="{{ project.title_key }}" 
+                                         class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-103"
+                                         loading="lazy">
+                                {% endif %}
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </section>
+        {% endfor %}
+    </div>
+
+    <!-- Category Section: Social CGI & Fake OOH -->
+    <div id="category-social-cgi" class="w-full flex flex-col">
+        <div class="max-w-[1300px] mx-auto px-6 pt-24 pb-8 border-b border-main/10 w-full pf-reveal-header">
+            <h2 class="text-3xl md:text-5xl font-black uppercase tracking-tight text-heading" data-lang-key="category_group_social_cgi">
+                {{ translations.category_group_social_cgi | default: "Social CGI & Fake OOH" }}
+            </h2>
+        </div>
+        
+        {% assign cgi_projects = site.data.portfolio_page_projects | where: "featured", true | where: "category", "social-cgi" %}
+        {% for project in cgi_projects %}
+            {% assign is_even = forloop.index | modulo: 2 %}
+            {% assign aspect = project.video_aspect | default: "16/10" %}
+            
+            <section id="project-{{ project.id }}" class="portfolio-section py-16 md:py-28 flex items-center justify-center border-b border-main/10 relative transition-all duration-1000" 
+                     data-bg-color="{{ project.bg_color | default: '#020617' }}"
+                     data-project-id="{{ project.id }}">
+                <div class="flex flex-col {% if is_even == 0 %}md:flex-row-reverse{% else %}md:flex-row{% endif %} gap-12 lg:gap-20 items-center justify-between max-w-[1300px] mx-auto px-6 w-full">
+                    
+                    <!-- Info Column -->
+                    <div class="w-full md:w-[45%] flex flex-col items-start text-left pf-reveal-text">
+                        <span class="text-accent-strong text-xs font-bold uppercase tracking-widest mb-3 block">
+                            {{ project.category | replace: '-', ' ' }}
+                        </span>
+                        
+                        <h2 class="text-3xl md:text-5xl font-black mb-4 tracking-tight leading-tight text-heading" data-lang-key="{{ project.title_key }}">
+                            {{ translations[project.title_key] | default: project.title_key }}
+                        </h2>
+                        
+                        <p class="text-gray-normal text-base md:text-lg mb-6 leading-relaxed max-w-lg" data-lang-key="{{ project.desc_key }}">
+                            {{ translations[project.desc_key] | default: project.desc_key }}
+                        </p>
+
+                        <!-- My Role Section -->
+                        {% if project.role_key %}
+                        <div class="mb-6 text-sm max-w-lg border-l-2 border-accent-strong/40 pl-4 py-0.5">
+                            <strong class="text-accent-strong uppercase tracking-wider text-[11px] block mb-1" data-lang-key="my_role">{{ translations.my_role | default: "My Role" }}</strong>
+                            <p class="text-gray-normal/90 leading-relaxed italic" data-lang-key="{{ project.role_key }}">
+                                {{ translations[project.role_key] | default: project.role_key }}
+                            </p>
+                        </div>
+                        {% endif %}
+                        
+                        <!-- Skill Tags Container (JS populated for multi-language) -->
+                        <div class="flex flex-wrap gap-2 mb-8 pf-skills-container" data-skills-key="{{ project.skills_key }}"></div>
+                        
+                        <div class="flex flex-wrap gap-4 mb-8">
+                            <a href="{{ project.behance_link | relative_url }}" class="px-7 py-3 bg-accent-strong hover:bg-accent-strong/80 text-white font-bold text-xs rounded-full tracking-wider uppercase transition-all shadow-lg transform hover:-translate-y-0.5" data-lang-key="view_details">
+                                {{ translations.view_details | default: "View Case Study" }}
+                            </a>
+                            {% if project.behance_external_link %}
+                            <a href="{{ project.behance_external_link }}" target="_blank" rel="noopener noreferrer" class="px-7 py-3 border border-main text-gray-normal hover:border-accent-strong hover:text-accent-strong font-bold text-xs rounded-full tracking-wider uppercase transition-all" data-lang-key="view_behance">
+                                {{ translations.view_behance | default: "Behance" }}
+                            </a>
+                            {% endif %}
+                        </div>
+
+                        <!-- Styleframes Row (Moved inside Info Column) -->
+                        {% if project.featured_styleframes %}
+                        <div class="grid grid-cols-3 gap-3 w-full mt-4">
+                            {% for frame in project.featured_styleframes %}
+                            <div class="overflow-hidden rounded-lg border border-transparent bg-black/5 shadow-md cursor-pointer hover:border-accent-strong transition-all transform hover:scale-[1.02] gallery-item" style="--aspect: {{ aspect }}; aspect-ratio: var(--aspect);">
+                                <img src="{{ frame | relative_url }}?v={{ site.time | date: '%s' }}" class="w-full h-full object-cover" loading="lazy" alt="Styleframe">
+                            </div>
+                            {% endfor %}
+                        </div>
+                        {% endif %}
+                    </div>
+
+                    <!-- Media Column -->
+                    <div class="w-full md:w-[50%] flex flex-col gap-4 pf-reveal-media">
+                        <!-- Video or Main Image -->
+                        {% if project.youtube_iframes and project.youtube_iframes.size > 0 %}
+                            <div class="grid {% if project.youtube_iframes.size == 3 %}grid-cols-3{% else %}grid-cols-2{% endif %} gap-3 w-full mx-auto justify-center">
+                                {% for item in project.youtube_iframes %}
+                                <div class="relative overflow-hidden rounded-lg bg-black/10 border border-transparent shadow-2xl" 
+                                     style="aspect-ratio: 9/16; max-height: 680px; width: 100%;">
+                                    <iframe src="{{ item.url }}" 
+                                            frameborder="0" 
+                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                                            allowfullscreen 
+                                            class="absolute inset-0 w-full h-full bg-black"
+                                            style="border: none;"
+                                            title="{{ item.title }}">
+                                    </iframe>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            <div class="relative pf-video-container overflow-hidden rounded-xl bg-black/10 border border-transparent shadow-2xl group" style="--aspect: {{ aspect }};">
+                                {% assign video_poster = project.thumbnail_image %}
+                                
+                                {% if project.youtube_iframe %}
+                                    <iframe src="{{ project.youtube_iframe }}" 
+                                            frameborder="0" 
+                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                                            allowfullscreen 
+                                            class="absolute inset-0 w-full h-full object-cover bg-black"
+                                            style="border: none;">
+                                    </iframe>
+                                {% elsif project.vimeo_iframe %}
+                                    <iframe src="{{ project.vimeo_iframe }}" 
+                                            frameborder="0" 
+                                            allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" 
+                                            allowfullscreen 
+                                            class="absolute inset-0 w-full h-full object-cover bg-black"
+                                            style="border: none;">
+                                    </iframe>
+                                {% elsif project.thumbnail_video %}
+                                    <video class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-103"
+                                           muted autoplay loop playsinline preload="metadata" 
+                                           poster="{{ video_poster | relative_url }}">
+                                        {% if project.thumbnail_video contains '.mp4' %}
+                                            <source src="{{ project.thumbnail_video | relative_url }}" type="video/mp4">
+                                        {% else %}
+                                            <source src="{{ project.thumbnail_video | relative_url }}" type="video/webm">
+                                            <source src="{{ project.thumbnail_video | replace: '.webm', '.mp4' | relative_url }}" type="video/mp4">
+                                        {% endif %}
+                                    </video>
+                                    <div class="absolute bottom-4 right-4 bg-black/60 text-white text-[9px] uppercase font-bold tracking-widest px-2.5 py-1 rounded backdrop-blur-md opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+                                        AUTOPLAY LOOP
+                                    </div>
+                                {% else %}
+                                    <img src="{{ project.thumbnail_image | relative_url }}" 
+                                         alt="{{ project.title_key }}" 
+                                         class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-103"
+                                         loading="lazy">
+                                {% endif %}
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </section>
+        {% endfor %}
+    </div>
+
+    <!-- Category Section: WebAR Experience -->
+    <div id="category-webar-ar" class="w-full flex flex-col">
+        <div class="max-w-[1300px] mx-auto px-6 pt-24 pb-8 border-b border-main/10 w-full pf-reveal-header">
+            <h2 class="text-3xl md:text-5xl font-black uppercase tracking-tight text-heading" data-lang-key="category_group_webar">
+                {{ translations.category_group_webar | default: "WebAR Experience & AR Filters" }}
+            </h2>
+        </div>
+        
+        {% assign ar_projects = site.data.portfolio_page_projects | where: "featured", true | where: "category", "webar-ar" %}
+        {% for project in ar_projects %}
+            {% assign is_even = forloop.index | modulo: 2 %}
+            {% assign aspect = project.video_aspect | default: "16/10" %}
+            
+            <section id="project-{{ project.id }}" class="portfolio-section py-16 md:py-28 flex items-center justify-center border-b border-main/10 relative transition-all duration-1000" 
+                     data-bg-color="{{ project.bg_color | default: '#020617' }}"
+                     data-project-id="{{ project.id }}">
+                <div class="flex flex-col {% if is_even == 0 %}md:flex-row-reverse{% else %}md:flex-row{% endif %} gap-12 lg:gap-20 items-center justify-between max-w-[1300px] mx-auto px-6 w-full">
+                    
+                    <!-- Info Column -->
+                    <div class="w-full md:w-[45%] flex flex-col items-start text-left pf-reveal-text">
+                        <span class="text-accent-strong text-xs font-bold uppercase tracking-widest mb-3 block">
+                            {{ project.category | replace: '-', ' ' }}
+                        </span>
+                        
+                        <h2 class="text-3xl md:text-5xl font-black mb-4 tracking-tight leading-tight text-heading" data-lang-key="{{ project.title_key }}">
+                            {{ translations[project.title_key] | default: project.title_key }}
+                        </h2>
+                        
+                        <p class="text-gray-normal text-base md:text-lg mb-6 leading-relaxed max-w-lg" data-lang-key="{{ project.desc_key }}">
+                            {{ translations[project.desc_key] | default: project.desc_key }}
+                        </p>
+
+                        <!-- My Role Section -->
+                        {% if project.role_key %}
+                        <div class="mb-6 text-sm max-w-lg border-l-2 border-accent-strong/40 pl-4 py-0.5">
+                            <strong class="text-accent-strong uppercase tracking-wider text-[11px] block mb-1" data-lang-key="my_role">{{ translations.my_role | default: "My Role" }}</strong>
+                            <p class="text-gray-normal/90 leading-relaxed italic" data-lang-key="{{ project.role_key }}">
+                                {{ translations[project.role_key] | default: project.role_key }}
+                            </p>
+                        </div>
+                        {% endif %}
+                        
+                        <!-- Skill Tags Container (JS populated for multi-language) -->
+                        <div class="flex flex-wrap gap-2 mb-8 pf-skills-container" data-skills-key="{{ project.skills_key }}"></div>
+                        
+                        <div class="flex flex-wrap gap-4 mb-8">
+                            <a href="{{ project.behance_link | relative_url }}" class="px-7 py-3 bg-accent-strong hover:bg-accent-strong/80 text-white font-bold text-xs rounded-full tracking-wider uppercase transition-all shadow-lg transform hover:-translate-y-0.5" data-lang-key="view_details">
+                                {{ translations.view_details | default: "View Case Study" }}
+                            </a>
+                            {% if project.behance_external_link %}
+                            <a href="{{ project.behance_external_link }}" target="_blank" rel="noopener noreferrer" class="px-7 py-3 border border-main text-gray-normal hover:border-accent-strong hover:text-accent-strong font-bold text-xs rounded-full tracking-wider uppercase transition-all" data-lang-key="view_behance">
+                                {{ translations.view_behance | default: "Behance" }}
+                            </a>
+                            {% endif %}
+                        </div>
+
+                        <!-- Styleframes Row (Moved inside Info Column) -->
+                        {% if project.featured_styleframes %}
+                        <div class="grid grid-cols-3 gap-3 w-full mt-4">
+                            {% for frame in project.featured_styleframes %}
+                            <div class="overflow-hidden rounded-lg border border-transparent bg-black/5 shadow-md cursor-pointer hover:border-accent-strong transition-all transform hover:scale-[1.02] gallery-item" style="--aspect: {{ aspect }}; aspect-ratio: var(--aspect);">
+                                <img src="{{ frame | relative_url }}?v={{ site.time | date: '%s' }}" class="w-full h-full object-cover" loading="lazy" alt="Styleframe">
+                            </div>
+                            {% endfor %}
+                        </div>
+                        {% endif %}
+                    </div>
+
+                    <!-- Media Column -->
+                    <div class="w-full md:w-[50%] flex flex-col gap-4 pf-reveal-media">
+                        <!-- Video or Main Image -->
+                        {% if project.youtube_iframes and project.youtube_iframes.size > 0 %}
+                            <div class="grid {% if project.youtube_iframes.size == 3 %}grid-cols-3{% else %}grid-cols-2{% endif %} gap-3 w-full mx-auto justify-center">
+                                {% for item in project.youtube_iframes %}
+                                <div class="relative overflow-hidden rounded-lg bg-black/10 border border-transparent shadow-2xl" 
+                                     style="aspect-ratio: 9/16; max-height: 680px; width: 100%;">
+                                    <iframe src="{{ item.url }}" 
+                                            frameborder="0" 
+                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                                            allowfullscreen 
+                                            class="absolute inset-0 w-full h-full bg-black"
+                                            style="border: none;"
+                                            title="{{ item.title }}">
+                                    </iframe>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            <div class="relative pf-video-container overflow-hidden rounded-xl bg-black/10 border border-transparent shadow-2xl group" style="--aspect: {{ aspect }};">
+                                {% assign video_poster = project.thumbnail_image %}
+                                
+                                {% if project.youtube_iframe %}
+                                    <iframe src="{{ project.youtube_iframe }}" 
+                                            frameborder="0" 
+                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                                            allowfullscreen 
+                                            class="absolute inset-0 w-full h-full object-cover bg-black"
+                                            style="border: none;">
+                                    </iframe>
+                                {% elsif project.vimeo_iframe %}
+                                    <iframe src="{{ project.vimeo_iframe }}" 
+                                            frameborder="0" 
+                                            allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" 
+                                            allowfullscreen 
+                                            class="absolute inset-0 w-full h-full object-cover bg-black"
+                                            style="border: none;">
+                                    </iframe>
+                                {% elsif project.thumbnail_video %}
+                                    <video class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-103"
+                                           muted autoplay loop playsinline preload="metadata" 
+                                           poster="{{ video_poster | relative_url }}">
+                                        {% if project.thumbnail_video contains '.mp4' %}
+                                            <source src="{{ project.thumbnail_video | relative_url }}" type="video/mp4">
+                                        {% else %}
+                                            <source src="{{ project.thumbnail_video | relative_url }}" type="video/webm">
+                                            <source src="{{ project.thumbnail_video | replace: '.webm', '.mp4' | relative_url }}" type="video/mp4">
+                                        {% endif %}
+                                    </video>
+                                    <div class="absolute bottom-4 right-4 bg-black/60 text-white text-[9px] uppercase font-bold tracking-widest px-2.5 py-1 rounded backdrop-blur-md opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+                                        AUTOPLAY LOOP
+                                    </div>
+                                {% else %}
+                                    <img src="{{ project.thumbnail_image | relative_url }}" 
+                                         alt="{{ project.title_key }}" 
+                                         class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-103"
+                                         loading="lazy">
+                                {% endif %}
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </section>
+        {% endfor %}
+    </div>
+</div>
+
+<!-- Quick Navigation Sidebar -->
+<div id="quick-nav-sidebar" class="fixed right-8 top-1/2 -translate-y-1/2 z-[100] hidden lg:flex flex-col items-end gap-6 py-6 px-4 bg-transparent transition-all duration-500">
+    <a href="#category-motion-3d" class="nav-dot-item group flex items-center gap-4 text-right cursor-pointer" data-target="category-motion-3d">
+        <span class="nav-label text-[10px] uppercase font-bold tracking-[0.2em]" data-lang-key="category_group_motion_3d">
+            {{ translations.category_group_motion_3d | default: "3D Motion Graphics" }}
+        </span>
+        <span class="dot w-1.5 h-1.5 rounded-full block"></span>
+    </a>
+    
+    <a href="#category-social-cgi" class="nav-dot-item group flex items-center gap-4 text-right cursor-pointer" data-target="category-social-cgi">
+        <span class="nav-label text-[10px] uppercase font-bold tracking-[0.2em]" data-lang-key="category_group_social_cgi">
+            {{ translations.category_group_social_cgi | default: "Social CGI" }}
+        </span>
+        <span class="dot w-1.5 h-1.5 rounded-full block"></span>
+    </a>
+    
+    <a href="#category-webar-ar" class="nav-dot-item group flex items-center gap-4 text-right cursor-pointer" data-target="category-webar-ar">
+        <span class="nav-label text-[10px] uppercase font-bold tracking-[0.2em]" data-lang-key="category_group_webar">
+            {{ translations.category_group_webar | default: "WebAR Experience" }}
+        </span>
+        <span class="dot w-1.5 h-1.5 rounded-full block"></span>
+    </a>
+</div>
+
+<!-- Lightbox Modal -->
+<div id="portfolio-lightbox" class="fixed inset-0 bg-black/95 backdrop-blur-md z-[9999] hidden flex items-center justify-center cursor-zoom-out transition-all duration-300">
+    <span class="close-btn absolute top-6 right-8 text-white text-4xl cursor-pointer hover:text-accent-strong transition-colors">&times;</span>
+    <img src="" class="max-w-[90%] max-h-[85vh] object-contain shadow-2xl border border-white/10 rounded" alt="Enlarged Visual">
+</div>
+
+<style>
+    .swiss-heading {
+        letter-spacing: -0.04em;
+        line-height: 0.95;
+    }
+    .nav-dot-item .dot {
+        background-color: var(--color-gray-text);
+        opacity: 0.4;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .nav-dot-item .nav-label {
+        color: var(--color-gray-text);
+        opacity: 0.5;
+        transition: all 0.3s ease;
+    }
+    .nav-dot-item:hover .dot {
+        background-color: var(--color-text-strong-accent);
+        opacity: 1;
+        transform: scale(1.3);
+    }
+    .nav-dot-item:hover .nav-label {
+        color: var(--color-text-strong-accent);
+        opacity: 1;
+    }
+    .nav-dot-item.is-active .dot {
+        background-color: var(--color-text-strong-accent) !important;
+        transform: scale(1.6);
+        opacity: 1;
+        box-shadow: 0 0 10px rgba(59, 130, 246, 0.4);
+    }
+    body[data-theme="light"] .nav-dot-item.is-active .dot {
+        box-shadow: 0 0 10px rgba(37, 99, 235, 0.3);
+    }
+    .nav-dot-item.is-active .nav-label {
+        color: var(--color-text-main) !important;
+        font-weight: 900;
+        opacity: 1;
+        letter-spacing: 0.25em;
+    }
+</style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const navItems = document.querySelectorAll('.nav-dot-item');
+        const portfolioSections = document.querySelectorAll('.portfolio-section');
+        
+        // Smooth scroll on click (scroll to the start of the category block)
+        navItems.forEach(item => {
+            item.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetId = item.getAttribute('data-target');
+                const targetElement = document.getElementById(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+        
+        // Intersection Observer targeting individual projects to highlight parent categories
+        const observerOptions = {
+            root: null,
+            rootMargin: '-45% 0px -45% 0px', // Focus tightly on the center zone of viewport
+            threshold: 0
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const section = entry.target;
+                    let parentCategory = null;
+                    
+                    if (section.closest('#category-motion-3d')) {
+                        parentCategory = 'category-motion-3d';
+                    } else if (section.closest('#category-social-cgi')) {
+                        parentCategory = 'category-social-cgi';
+                    } else if (section.closest('#category-webar-ar')) {
+                        parentCategory = 'category-webar-ar';
+                    }
+                    
+                    if (parentCategory) {
+                        navItems.forEach(item => {
+                            if (item.getAttribute('data-target') === parentCategory) {
+                                item.classList.add('is-active');
+                            } else {
+                                item.classList.remove('is-active');
+                            }
+                        });
+                    }
+                }
+            });
+        }, observerOptions);
+        
+        portfolioSections.forEach(section => observer.observe(section));
+    });
+</script>
