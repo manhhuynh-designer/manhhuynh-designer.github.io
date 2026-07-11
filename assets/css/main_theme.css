@@ -990,6 +990,19 @@ body[data-theme='light'] #mobile-toggle {
     padding-bottom: 1.5rem; /* pb-6 */
 }
 
+/* Styling for Markdown links in post content to make them easily distinguishable */
+.post-content a:not([class]) {
+    color: var(--color-link-primary);
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    font-weight: 600;
+    transition: color 0.2s ease, opacity 0.2s ease;
+}
+.post-content a:not([class]):hover {
+    text-decoration: underline;
+    opacity: 0.85;
+}
+
 /* --- Post content: ensure light callout boxes remain readable in dark theme --- */
 /* Some content boxes intentionally keep a light background even in dark theme (e.g., bg-blue-50).
    Force dark text inside those boxes to avoid white text on a light bg. */
