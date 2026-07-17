@@ -1,11 +1,57 @@
 ---
 layout: default
-title: Portfolio | Manh Huynh
+title: Portfolio | Manh Huynh - 3D Motion Graphic Designer
+description: "Portfolio showcase of Manh Huynh's featured 3D Motion Graphics, Social CGI (Fake OOH), and WebAR projects for brands like 3CE, SKIN1004, Colorkey, Dove, DOJI, and Aeon."
 permalink: /portfolio/
 ---
 
 {% assign lang = site.active_lang | default: "en" %}
 {% assign translations = site.data.languages[lang] %}
+{% assign all_featured = site.data.portfolio_page_projects | where: "featured", true %}
+
+<!-- JSON-LD Structured Data for AI & Search Engine Crawlers -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Portfolio | Manh Huynh - 3D Motion Graphic Designer",
+  "description": "Portfolio showcase of Manh Huynh's featured 3D Motion Graphics, Social CGI (Fake OOH), and WebAR projects for brands like 3CE, SKIN1004, Colorkey, Dove, DOJI, and Aeon.",
+  "url": "{{ site.url }}{{ site.baseurl }}/portfolio/",
+  "author": {
+    "@type": "Person",
+    "name": "Mạnh Huỳnh",
+    "alternateName": "Manh Huynh",
+    "jobTitle": "3D Motion Graphic Designer",
+    "url": "{{ site.url }}{{ site.baseurl }}/",
+    "sameAs": [{% for link in site.social.links %}"{{ link }}"{% unless forloop.last %}, {% endunless %}{% endfor %}]
+  },
+  "mainEntity": {
+    "@type": "ItemList",
+    "numberOfItems": {{ all_featured.size }},
+    "itemListElement": [
+      {% for project in all_featured %}
+      {
+        "@type": "ListItem",
+        "position": {{ forloop.index }},
+        "item": {
+          "@type": "CreativeWork",
+          "name": "{{ translations[project.title_key] | default: project.title_key | strip_html | escape }}",
+          "description": "{{ translations[project.desc_key] | default: project.desc_key | strip_html | escape }}",
+          "url": "{{ site.url }}{{ site.baseurl }}/{{ project.behance_link }}",
+          {% if project.thumbnail_image %}"image": "{% if project.thumbnail_image contains 'http' %}{{ project.thumbnail_image }}{% else %}{{ site.url }}{{ site.baseurl }}/{{ project.thumbnail_image }}{% endif %}",{% endif %}
+          "creator": {
+            "@type": "Person",
+            "name": "Mạnh Huỳnh"
+          },
+          "keywords": "{{ translations[project.skills_key] | default: project.skills_key | strip_html | escape }}",
+          "genre": "{{ project.category | replace: '-', ' ' }}"
+        }
+      }{% unless forloop.last %},{% endunless %}
+      {% endfor %}
+    ]
+  }
+}
+</script>
 
 <style>
     .pf-video-container {
@@ -63,7 +109,7 @@ permalink: /portfolio/
             {% assign is_even = forloop.index | modulo: 2 %}
             {% assign aspect = project.video_aspect | default: "16/10" %}
             
-            <section id="project-{{ project.id }}" class="portfolio-section py-16 md:py-28 flex items-center justify-center border-b border-main/10 relative transition-all duration-1000" 
+            <article id="project-{{ project.id }}" class="portfolio-section py-16 md:py-28 flex items-center justify-center border-b border-main/10 relative transition-all duration-1000" 
                      data-bg-color="{{ project.bg_color | default: '#020617' }}"
                      data-project-id="{{ project.id }}">
                 <div class="flex flex-col {% if is_even == 0 %}md:flex-row-reverse{% else %}md:flex-row{% endif %} gap-12 lg:gap-20 items-center justify-between max-w-[1300px] mx-auto px-6 w-full">
@@ -93,7 +139,13 @@ permalink: /portfolio/
                         {% endif %}
                         
                         <!-- Skill Tags Container (JS populated for multi-language) -->
-                        <div class="flex flex-wrap gap-2 mb-8 pf-skills-container" data-skills-key="{{ project.skills_key }}"></div>
+                        <div class="flex flex-wrap gap-2 mb-8 pf-skills-container" data-skills-key="{{ project.skills_key }}">
+                            {% assign skills_text = translations[project.skills_key] | default: project.skills_key %}
+                            {% assign skills_array = skills_text | split: ", " %}
+                            {% for skill in skills_array %}
+                                <span class="px-3.5 py-1 text-xs rounded-full border border-main/20 bg-main/5 text-gray-normal font-medium tracking-wide">{{ skill }}</span>
+                            {% endfor %}
+                        </div>
                         
                         <div class="flex flex-wrap gap-4 mb-8">
                             <a href="{{ project.behance_link | relative_url }}" class="px-7 py-3 bg-accent-strong hover:bg-accent-strong/80 text-white font-bold text-xs rounded-full tracking-wider uppercase transition-all shadow-lg transform hover:-translate-y-0.5" data-lang-key="view_details">
@@ -111,7 +163,7 @@ permalink: /portfolio/
                         <div class="grid grid-cols-3 gap-3 w-full mt-4">
                             {% for frame in project.featured_styleframes %}
                             <div class="overflow-hidden rounded-lg border border-transparent bg-black/5 shadow-md cursor-pointer hover:border-accent-strong transition-all transform hover:scale-[1.02] gallery-item" style="--aspect: {{ aspect }}; aspect-ratio: var(--aspect);">
-                                <img src="{{ frame | relative_url }}?v={{ site.time | date: '%s' }}" class="w-full h-full object-cover" loading="lazy" alt="Styleframe">
+                                <img src="{{ frame | relative_url }}?v={{ site.time | date: '%s' }}" class="w-full h-full object-cover" loading="lazy" alt="Styleframe for {{ translations[project.title_key] | default: project.title_key }}">
                             </div>
                             {% endfor %}
                         </div>
@@ -134,6 +186,7 @@ permalink: /portfolio/
                                             style="border: none;"
                                             title="{{ item.title }}">
                                     </iframe>
+                                    <noscript><p><a href="{{ item.url | replace: '/embed/', '/watch?v=' }}">Watch {{ item.title }} video</a></p></noscript>
                                 </div>
                                 {% endfor %}
                             </div>
@@ -147,16 +200,20 @@ permalink: /portfolio/
                                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
                                             allowfullscreen 
                                             class="absolute inset-0 w-full h-full object-cover bg-black"
-                                            style="border: none;">
+                                            style="border: none;"
+                                            title="{{ translations[project.title_key] | default: project.title_key }}">
                                     </iframe>
+                                    <noscript><p><a href="{{ project.youtube_iframe | replace: '/embed/', '/watch?v=' }}">Watch {{ translations[project.title_key] | default: project.title_key }} on YouTube</a></p></noscript>
                                 {% elsif project.vimeo_iframe %}
                                     <iframe src="{{ project.vimeo_iframe }}" 
                                             frameborder="0" 
                                             allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" 
                                             allowfullscreen 
                                             class="absolute inset-0 w-full h-full object-cover bg-black"
-                                            style="border: none;">
+                                            style="border: none;"
+                                            title="{{ translations[project.title_key] | default: project.title_key }}">
                                     </iframe>
+                                    <noscript><p><a href="{{ project.vimeo_iframe | replace: 'player.vimeo.com/video', 'vimeo.com' }}">Watch {{ translations[project.title_key] | default: project.title_key }} on Vimeo</a></p></noscript>
                                 {% elsif project.thumbnail_video %}
                                     <video class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-103"
                                            muted autoplay loop playsinline preload="metadata" 
@@ -173,7 +230,7 @@ permalink: /portfolio/
                                     </div>
                                 {% else %}
                                     <img src="{{ project.thumbnail_image | relative_url }}" 
-                                         alt="{{ project.title_key }}" 
+                                         alt="{{ translations[project.title_key] | default: project.title_key }} - {{ project.category | replace: '-', ' ' }}" 
                                          class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-103"
                                          loading="lazy">
                                 {% endif %}
@@ -181,7 +238,7 @@ permalink: /portfolio/
                         {% endif %}
                     </div>
                 </div>
-            </section>
+            </article>
         {% endfor %}
     </div>
 
@@ -198,7 +255,7 @@ permalink: /portfolio/
             {% assign is_even = forloop.index | modulo: 2 %}
             {% assign aspect = project.video_aspect | default: "16/10" %}
             
-            <section id="project-{{ project.id }}" class="portfolio-section py-16 md:py-28 flex items-center justify-center border-b border-main/10 relative transition-all duration-1000" 
+            <article id="project-{{ project.id }}" class="portfolio-section py-16 md:py-28 flex items-center justify-center border-b border-main/10 relative transition-all duration-1000" 
                      data-bg-color="{{ project.bg_color | default: '#020617' }}"
                      data-project-id="{{ project.id }}">
                 <div class="flex flex-col {% if is_even == 0 %}md:flex-row-reverse{% else %}md:flex-row{% endif %} gap-12 lg:gap-20 items-center justify-between max-w-[1300px] mx-auto px-6 w-full">
@@ -228,7 +285,13 @@ permalink: /portfolio/
                         {% endif %}
                         
                         <!-- Skill Tags Container (JS populated for multi-language) -->
-                        <div class="flex flex-wrap gap-2 mb-8 pf-skills-container" data-skills-key="{{ project.skills_key }}"></div>
+                        <div class="flex flex-wrap gap-2 mb-8 pf-skills-container" data-skills-key="{{ project.skills_key }}">
+                            {% assign skills_text = translations[project.skills_key] | default: project.skills_key %}
+                            {% assign skills_array = skills_text | split: ", " %}
+                            {% for skill in skills_array %}
+                                <span class="px-3.5 py-1 text-xs rounded-full border border-main/20 bg-main/5 text-gray-normal font-medium tracking-wide">{{ skill }}</span>
+                            {% endfor %}
+                        </div>
                         
                         <div class="flex flex-wrap gap-4 mb-8">
                             <a href="{{ project.behance_link | relative_url }}" class="px-7 py-3 bg-accent-strong hover:bg-accent-strong/80 text-white font-bold text-xs rounded-full tracking-wider uppercase transition-all shadow-lg transform hover:-translate-y-0.5" data-lang-key="view_details">
@@ -246,7 +309,7 @@ permalink: /portfolio/
                         <div class="grid grid-cols-3 gap-3 w-full mt-4">
                             {% for frame in project.featured_styleframes %}
                             <div class="overflow-hidden rounded-lg border border-transparent bg-black/5 shadow-md cursor-pointer hover:border-accent-strong transition-all transform hover:scale-[1.02] gallery-item" style="--aspect: {{ aspect }}; aspect-ratio: var(--aspect);">
-                                <img src="{{ frame | relative_url }}?v={{ site.time | date: '%s' }}" class="w-full h-full object-cover" loading="lazy" alt="Styleframe">
+                                <img src="{{ frame | relative_url }}?v={{ site.time | date: '%s' }}" class="w-full h-full object-cover" loading="lazy" alt="Styleframe for {{ translations[project.title_key] | default: project.title_key }}">
                             </div>
                             {% endfor %}
                         </div>
@@ -269,6 +332,7 @@ permalink: /portfolio/
                                             style="border: none;"
                                             title="{{ item.title }}">
                                     </iframe>
+                                    <noscript><p><a href="{{ item.url | replace: '/embed/', '/watch?v=' }}">Watch {{ item.title }} video</a></p></noscript>
                                 </div>
                                 {% endfor %}
                             </div>
@@ -282,16 +346,20 @@ permalink: /portfolio/
                                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
                                             allowfullscreen 
                                             class="absolute inset-0 w-full h-full object-cover bg-black"
-                                            style="border: none;">
+                                            style="border: none;"
+                                            title="{{ translations[project.title_key] | default: project.title_key }}">
                                     </iframe>
+                                    <noscript><p><a href="{{ project.youtube_iframe | replace: '/embed/', '/watch?v=' }}">Watch {{ translations[project.title_key] | default: project.title_key }} on YouTube</a></p></noscript>
                                 {% elsif project.vimeo_iframe %}
                                     <iframe src="{{ project.vimeo_iframe }}" 
                                             frameborder="0" 
                                             allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" 
                                             allowfullscreen 
                                             class="absolute inset-0 w-full h-full object-cover bg-black"
-                                            style="border: none;">
+                                            style="border: none;"
+                                            title="{{ translations[project.title_key] | default: project.title_key }}">
                                     </iframe>
+                                    <noscript><p><a href="{{ project.vimeo_iframe | replace: 'player.vimeo.com/video', 'vimeo.com' }}">Watch {{ translations[project.title_key] | default: project.title_key }} on Vimeo</a></p></noscript>
                                 {% elsif project.thumbnail_video %}
                                     <video class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-103"
                                            muted autoplay loop playsinline preload="metadata" 
@@ -308,7 +376,7 @@ permalink: /portfolio/
                                     </div>
                                 {% else %}
                                     <img src="{{ project.thumbnail_image | relative_url }}" 
-                                         alt="{{ project.title_key }}" 
+                                         alt="{{ translations[project.title_key] | default: project.title_key }} - {{ project.category | replace: '-', ' ' }}" 
                                          class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-103"
                                          loading="lazy">
                                 {% endif %}
@@ -316,7 +384,7 @@ permalink: /portfolio/
                         {% endif %}
                     </div>
                 </div>
-            </section>
+            </article>
         {% endfor %}
     </div>
 
@@ -333,7 +401,7 @@ permalink: /portfolio/
             {% assign is_even = forloop.index | modulo: 2 %}
             {% assign aspect = project.video_aspect | default: "16/10" %}
             
-            <section id="project-{{ project.id }}" class="portfolio-section py-16 md:py-28 flex items-center justify-center border-b border-main/10 relative transition-all duration-1000" 
+            <article id="project-{{ project.id }}" class="portfolio-section py-16 md:py-28 flex items-center justify-center border-b border-main/10 relative transition-all duration-1000" 
                      data-bg-color="{{ project.bg_color | default: '#020617' }}"
                      data-project-id="{{ project.id }}">
                 <div class="flex flex-col {% if is_even == 0 %}md:flex-row-reverse{% else %}md:flex-row{% endif %} gap-12 lg:gap-20 items-center justify-between max-w-[1300px] mx-auto px-6 w-full">
@@ -363,7 +431,13 @@ permalink: /portfolio/
                         {% endif %}
                         
                         <!-- Skill Tags Container (JS populated for multi-language) -->
-                        <div class="flex flex-wrap gap-2 mb-8 pf-skills-container" data-skills-key="{{ project.skills_key }}"></div>
+                        <div class="flex flex-wrap gap-2 mb-8 pf-skills-container" data-skills-key="{{ project.skills_key }}">
+                            {% assign skills_text = translations[project.skills_key] | default: project.skills_key %}
+                            {% assign skills_array = skills_text | split: ", " %}
+                            {% for skill in skills_array %}
+                                <span class="px-3.5 py-1 text-xs rounded-full border border-main/20 bg-main/5 text-gray-normal font-medium tracking-wide">{{ skill }}</span>
+                            {% endfor %}
+                        </div>
                         
                         <div class="flex flex-wrap gap-4 mb-8">
                             <a href="{{ project.behance_link | relative_url }}" class="px-7 py-3 bg-accent-strong hover:bg-accent-strong/80 text-white font-bold text-xs rounded-full tracking-wider uppercase transition-all shadow-lg transform hover:-translate-y-0.5" data-lang-key="view_details">
@@ -381,7 +455,7 @@ permalink: /portfolio/
                         <div class="grid grid-cols-3 gap-3 w-full mt-4">
                             {% for frame in project.featured_styleframes %}
                             <div class="overflow-hidden rounded-lg border border-transparent bg-black/5 shadow-md cursor-pointer hover:border-accent-strong transition-all transform hover:scale-[1.02] gallery-item" style="--aspect: {{ aspect }}; aspect-ratio: var(--aspect);">
-                                <img src="{{ frame | relative_url }}?v={{ site.time | date: '%s' }}" class="w-full h-full object-cover" loading="lazy" alt="Styleframe">
+                                <img src="{{ frame | relative_url }}?v={{ site.time | date: '%s' }}" class="w-full h-full object-cover" loading="lazy" alt="Styleframe for {{ translations[project.title_key] | default: project.title_key }}">
                             </div>
                             {% endfor %}
                         </div>
@@ -404,6 +478,7 @@ permalink: /portfolio/
                                             style="border: none;"
                                             title="{{ item.title }}">
                                     </iframe>
+                                    <noscript><p><a href="{{ item.url | replace: '/embed/', '/watch?v=' }}">Watch {{ item.title }} video</a></p></noscript>
                                 </div>
                                 {% endfor %}
                             </div>
@@ -417,16 +492,20 @@ permalink: /portfolio/
                                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
                                             allowfullscreen 
                                             class="absolute inset-0 w-full h-full object-cover bg-black"
-                                            style="border: none;">
+                                            style="border: none;"
+                                            title="{{ translations[project.title_key] | default: project.title_key }}">
                                     </iframe>
+                                    <noscript><p><a href="{{ project.youtube_iframe | replace: '/embed/', '/watch?v=' }}">Watch {{ translations[project.title_key] | default: project.title_key }} on YouTube</a></p></noscript>
                                 {% elsif project.vimeo_iframe %}
                                     <iframe src="{{ project.vimeo_iframe }}" 
                                             frameborder="0" 
                                             allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" 
                                             allowfullscreen 
                                             class="absolute inset-0 w-full h-full object-cover bg-black"
-                                            style="border: none;">
+                                            style="border: none;"
+                                            title="{{ translations[project.title_key] | default: project.title_key }}">
                                     </iframe>
+                                    <noscript><p><a href="{{ project.vimeo_iframe | replace: 'player.vimeo.com/video', 'vimeo.com' }}">Watch {{ translations[project.title_key] | default: project.title_key }} on Vimeo</a></p></noscript>
                                 {% elsif project.thumbnail_video %}
                                     <video class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-103"
                                            muted autoplay loop playsinline preload="metadata" 
@@ -443,7 +522,7 @@ permalink: /portfolio/
                                     </div>
                                 {% else %}
                                     <img src="{{ project.thumbnail_image | relative_url }}" 
-                                         alt="{{ project.title_key }}" 
+                                         alt="{{ translations[project.title_key] | default: project.title_key }} - {{ project.category | replace: '-', ' ' }}" 
                                          class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-103"
                                          loading="lazy">
                                 {% endif %}
@@ -451,7 +530,7 @@ permalink: /portfolio/
                         {% endif %}
                     </div>
                 </div>
-            </section>
+            </article>
         {% endfor %}
     </div>
 </div>
