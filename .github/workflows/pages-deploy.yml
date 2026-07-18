@@ -1,26 +1,23 @@
 # GitHub Actions workflow for Jekyll build & deploy
-# Replaces legacy GitHub Pages build to support non-whitelisted plugins
-# (jekyll-archives, etc.)
+# Uses custom Ruby setup instead of jekyll-build-pages to support
+# Jekyll 4.4.1 + sass-embedded (requires Ruby >= 3.2)
 #
 # REQUIRED MANUAL STEP:
 #   Go to repo Settings > Pages > Build and deployment > Source
 #   Change from "Deploy from a branch" to "GitHub Actions"
-#   Without this step, GitHub will ignore this workflow and keep using legacy build.
 
 name: Deploy Jekyll site to Pages
 
 on:
   push:
     branches: ["master"]
-  workflow_dispatch:  # Allow manual trigger from Actions tab
+  workflow_dispatch:
 
-# Sets permissions of the GITHUB_TOKEN
 permissions:
   contents: read
   pages: write
   id-token: write
 
-# Allow only one concurrent deployment
 concurrency:
   group: "pages"
   cancel-in-progress: false
@@ -32,20 +29,25 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.4'
+          bundler-cache: true  # runs 'bundle install' and caches gems
+
       - name: Setup Pages
+        id: pages
         uses: actions/configure-pages@v5
 
       - name: Build with Jekyll
-        uses: actions/jekyll-build-pages@v1
-        with:
-          source: ./
-          destination: ./_site
+        run: bundle exec jekyll build --baseurl "${{ steps.pages.outputs.base_path }}"
+        env:
+          JEKYLL_ENV: production
 
       - name: Validate translations (no raw keys in output)
         run: |
           echo "🔍 Scanning _site/ for untranslated placeholder keys..."
-          
-          # Regex patterns for raw translation keys that should never appear in final HTML
+
           PATTERNS=(
             'project_[a-z0-9_]+_(title|desc|role|skills)'
             'skin1004_(title|desc|role|skills)'
@@ -56,18 +58,16 @@ jobs:
             'faq_(motion|cgi|webar)_[aq][0-9]'
             'exp_[a-z]+_(title|date|desc[0-9])'
           )
-          
+
           FOUND=0
           for pattern in "${PATTERNS[@]}"; do
-            # Search HTML files, exclude JSON-LD blocks (which legitimately contain key references)
-            # and exclude .js/.json files
             MATCHES=$(grep -rnP "(?<!data-lang-key=\")(?<!data-skills-key=\")(?<!\"keywords\":\s\")(?<!\")${pattern}(?!\")" \
               _site/portfolio/index.html 2>/dev/null | \
               grep -v 'application/ld+json' | \
               grep -v '\.js' | \
               grep -v 'data-lang-key' | \
               grep -v 'data-skills-key' || true)
-            
+
             if [ -n "$MATCHES" ]; then
               echo "❌ Found raw key pattern: $pattern"
               echo "$MATCHES" | head -5
@@ -75,12 +75,11 @@ jobs:
               FOUND=1
             fi
           done
-          
+
           if [ "$FOUND" -eq 1 ]; then
             echo ""
             echo "🚨 FAIL: Untranslated keys found in built HTML!"
-            echo "Likely cause: _data/languages/en.yml is missing keys that are used in templates."
-            echo "Fix: Add the missing keys to _data/languages/en.yml (mirror from assets/script/data.js)"
+            echo "Fix: Add missing keys to _data/languages/en.yml (mirror from assets/script/data.js)"
             exit 1
           else
             echo "✅ All translation keys resolved — no raw placeholders found."
