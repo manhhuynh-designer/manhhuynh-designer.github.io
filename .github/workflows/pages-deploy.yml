@@ -1,0 +1,101 @@
+# GitHub Actions workflow for Jekyll build & deploy
+# Replaces legacy GitHub Pages build to support non-whitelisted plugins
+# (jekyll-archives, etc.)
+#
+# REQUIRED MANUAL STEP:
+#   Go to repo Settings > Pages > Build and deployment > Source
+#   Change from "Deploy from a branch" to "GitHub Actions"
+#   Without this step, GitHub will ignore this workflow and keep using legacy build.
+
+name: Deploy Jekyll site to Pages
+
+on:
+  push:
+    branches: ["master"]
+  workflow_dispatch:  # Allow manual trigger from Actions tab
+
+# Sets permissions of the GITHUB_TOKEN
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow only one concurrent deployment
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Build with Jekyll
+        uses: actions/jekyll-build-pages@v1
+        with:
+          source: ./
+          destination: ./_site
+
+      - name: Validate translations (no raw keys in output)
+        run: |
+          echo "🔍 Scanning _site/ for untranslated placeholder keys..."
+          
+          # Regex patterns for raw translation keys that should never appear in final HTML
+          PATTERNS=(
+            'project_[a-z0-9_]+_(title|desc|role|skills)'
+            'skin1004_(title|desc|role|skills)'
+            'vf3_(title|desc|cartoon_title|cartoon_role)'
+            'category_group_(motion_3d|social_cgi|webar)'
+            'portfolio_page_(title|desc)'
+            'service_[a-z0-9_]+_(title|desc|starting_price|desc_detail|items)'
+            'faq_(motion|cgi|webar)_[aq][0-9]'
+            'exp_[a-z]+_(title|date|desc[0-9])'
+          )
+          
+          FOUND=0
+          for pattern in "${PATTERNS[@]}"; do
+            # Search HTML files, exclude JSON-LD blocks (which legitimately contain key references)
+            # and exclude .js/.json files
+            MATCHES=$(grep -rnP "(?<!data-lang-key=\")(?<!data-skills-key=\")(?<!\"keywords\":\s\")(?<!\")${pattern}(?!\")" \
+              _site/portfolio/index.html 2>/dev/null | \
+              grep -v 'application/ld+json' | \
+              grep -v '\.js' | \
+              grep -v 'data-lang-key' | \
+              grep -v 'data-skills-key' || true)
+            
+            if [ -n "$MATCHES" ]; then
+              echo "❌ Found raw key pattern: $pattern"
+              echo "$MATCHES" | head -5
+              echo "---"
+              FOUND=1
+            fi
+          done
+          
+          if [ "$FOUND" -eq 1 ]; then
+            echo ""
+            echo "🚨 FAIL: Untranslated keys found in built HTML!"
+            echo "Likely cause: _data/languages/en.yml is missing keys that are used in templates."
+            echo "Fix: Add the missing keys to _data/languages/en.yml (mirror from assets/script/data.js)"
+            exit 1
+          else
+            echo "✅ All translation keys resolved — no raw placeholders found."
+          fi
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

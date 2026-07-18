@@ -7,5 +7,4 @@ _site/
 # Bundler
 .bundle/
 vendor/bundle/
-Gemfile.lock
 .agent
