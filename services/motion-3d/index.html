@@ -176,9 +176,9 @@ permalink: /services/motion-3d/
                 <div class="glass-card group rounded-2xl overflow-hidden hover:-translate-y-2 transition-all duration-300 border border-white/5">
                     <div class="aspect-video overflow-hidden">
                         {% if project.thumbnail_fallback %}
-                            <img src="/{{ project.thumbnail_fallback }}" alt="{{ project.id }}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                            <img src="{{ project.thumbnail_fallback | relative_url }}" alt="{{ project.id }}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
                         {% else %}
-                            <img src="/{{ project.thumbnail_image }}" alt="{{ project.id }}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                            <img src="{{ project.thumbnail_image | relative_url }}" alt="{{ project.id }}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
                         {% endif %}
                     </div>
                     <div class="p-6">
