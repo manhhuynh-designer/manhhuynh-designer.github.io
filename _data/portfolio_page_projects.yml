@@ -6,7 +6,7 @@
   role_key: "project_mbl_packshot_role"
   skills_key: "project_mbl_packshot_skills"
   behance_link: "Projects/Maybelline-Packshot/"
-  thumbnail_image: "Projects/Maybelline-Packshot/assets/cover.webp"
+  thumbnail_image: "https://img.manhhuynh.work/maybelline/assets/cover.webp"
   bg_color: "#080809"
   card_layout_classes: "lg:col-span-2 lg:row-span-1"
 
