@@ -1,3 +1,13 @@
+- id: "maybelline-packshot"
+  featured: true
+  category: "motion-3d"
+  title_key: "project_mbl_packshot_title"
+  desc_key: "project_mbl_packshot_desc"
+  skills_key: "project_mbl_packshot_skills"
+  behance_link: "Projects/Maybelline-Packshot/"
+  thumbnail_image: "Projects/Maybelline-Packshot/assets/cover.webp"
+  card_layout_classes: "lg:col-span-2 lg:row-span-1"
+
 - id: "3ce-colorbaker"
   featured: true
   category: "motion-3d"

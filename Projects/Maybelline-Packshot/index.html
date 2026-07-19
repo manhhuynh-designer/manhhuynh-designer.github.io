@@ -1,0 +1,869 @@
+---
+layout: default
+title: Maybelline New York - 3D Product Visualization
+permalink: /Projects/Maybelline-Packshot/
+project_id: maybelline-packshot
+category: product-lookdev
+---
+
+<link rel="stylesheet" href="style.css?v={{ site.time | date: '%s' }}">
+
+<div class="project-wrapper">
+    <!-- Floating Sidebar Navigator -->
+    <div class="sidebar-nav">
+        <!-- Quick Language Switcher Button -->
+        <button id="sidebar-lang-toggle" class="sidebar-lang-btn" aria-label="Toggle language">EN</button>
+        <div class="sidebar-divider"></div>
+        <a href="#overview" class="nav-dot active" data-section="overview">
+            <span class="nav-tooltip" data-lang-key="mbl_sidebar_overview">Overview</span>
+        </a>
+        <a href="#inspector" class="nav-dot" data-section="inspector">
+            <span class="nav-tooltip" data-lang-key="mbl_sidebar_inspector">3D Lookdev</span>
+        </a>
+        <a href="#challenges" class="nav-dot" data-section="challenges">
+            <span class="nav-tooltip" data-lang-key="mbl_sidebar_challenges">Challenges</span>
+        </a>
+        <a href="#library" class="nav-dot" data-section="library">
+            <span class="nav-tooltip" data-lang-key="mbl_sidebar_library">CGI Library</span>
+        </a>
+        <a href="#deployment" class="nav-dot" data-section="deployment">
+            <span class="nav-tooltip" data-lang-key="mbl_sidebar_deployment">Live Stores</span>
+        </a>
+    </div>
+
+    <!-- Cover bento grid -->
+    <div class="hero-banner gsap-reveal">
+        <img src="https://img.manhhuynh.work/maybelline/assets/cover.webp" alt="Maybelline CGI Packshots">
+    </div>
+
+    <div class="project-container">
+        <!-- Overview info -->
+        <div id="overview" class="gsap-reveal mb-16">
+            <h1 class="project-title" data-lang-key="mbl_packshot_brand">MAYBELLINE NEW YORK</h1>
+            <p class="text-gray-400 font-light leading-relaxed max-w-3xl text-sm" data-lang-key="mbl_packshot_lead">
+                Hệ thống hình ảnh 3D Packshot chính thức của Maybelline New York được phê duyệt sử dụng trên các sàn thương mại điện tử (Shopee, Lazada, TikTok Shop) khu vực Đông Nam Á. Dự án đảm bảo độ chuẩn xác về màu sắc vật lý của sản phẩm và tính đồng bộ theo brand guidelines toàn cầu.
+            </p>
+
+            <div class="info-grid">
+                <div>
+                    <div class="info-label" data-lang-key="mbl_packshot_client_label">Client</div>
+                    <div class="info-value" data-lang-key="mbl_val_client">Maybelline (SAPMENA Zone)</div>
+                </div>
+                <div>
+                    <div class="info-label" data-lang-key="mbl_packshot_deliverables_label">Deliverables</div>
+                    <div class="info-value" data-lang-key="mbl_val_deliverables">579 Renders / 47 Product Lines</div>
+                </div>
+                <div>
+                    <div class="info-label" data-lang-key="mbl_packshot_deployment_label">Deployment</div>
+                    <div class="info-value" data-lang-key="mbl_val_deployment">SAPMENA E-Commerce</div>
+                </div>
+                <div>
+                    <div class="info-label" data-lang-key="mbl_packshot_standards_label">Lookdev Standards</div>
+                    <div class="info-value" data-lang-key="mbl_val_standards">CAD-to-3D Remodeling & Color-matching</div>
+                </div>
+            </div>
+
+            <div class="tech-stack">
+                <span class="tech-badge">Blender 4.x <small>Modeling & Cycles Render</small></span>
+                <span class="tech-badge">Illustrator <small>Label Extraction</small></span>
+                <span class="tech-badge">Photoshop <small>Post-production & Color Matching</small></span>
+            </div>
+        </div>
+
+        <!-- Section 1: Lookdev Interactive Studio -->
+        <div id="inspector" class="gsap-reveal mb-16">
+            <h2 class="section-title" data-lang-key="mbl_packshot_inspector_title">3D Lookdev Inspector</h2>
+            <div class="lookdev-viewport">
+                <!-- Product Selector Tabs with sliding indicator -->
+                <div class="lookdev-tabs" id="lookdev-tabs">
+                    <button class="lookdev-tab-btn active" onclick="switchProduct('vinyl', this)">Vinyl Ink</button>
+                    <button class="lookdev-tab-btn" onclick="switchProduct('mascara', this)">Sky High Mascara</button>
+                    <button class="lookdev-tab-btn" onclick="switchProduct('foundation', this)">Fit Me Foundation</button>
+                    <button class="lookdev-tab-btn" onclick="switchProduct('brow', this)">Build-A-Brow</button>
+                    <div class="tab-indicator" id="tab-indicator"></div>
+                </div>
+
+                <!-- Display area -->
+                <div class="lookdev-display">
+                    <!-- Cinematic overlays -->
+                    <div class="viewport-grid"></div>
+                    <div class="viewport-vignette"></div>
+
+                    <!-- HUD label -->
+                    <div class="viewport-hud">
+                        <span class="hud-product-name" id="hud-product">Vinyl Ink</span>
+                        <span class="hud-mode-label" id="hud-mode">● Final Render</span>
+                    </div>
+
+                    <img id="inspector-image" data-mode="final" src="https://img.manhhuynh.work/maybelline/assets/hero/vinyl_final.webp?v=2" alt="3D Inspector Viewport">
+                </div>
+                
+                <!-- View modes: Cinematic range slider -->
+                <div class="mode-slider-container">
+                    <div class="mode-slider-track">
+                        <div class="mode-slider-labels">
+                            <span class="mode-slider-label active" data-mode="final" onclick="setModeFromLabel('final')">● Final</span>
+                            <span class="mode-slider-label" data-mode="clay" onclick="setModeFromLabel('clay')">◐ Material</span>
+                            <span class="mode-slider-label" data-mode="wireframe" onclick="setModeFromLabel('wireframe')">△ Scene</span>
+                        </div>
+                        <input type="range" class="mode-range" id="mode-range" min="0" max="2" step="1" value="0">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section: Technical Challenges -->
+        <div id="challenges" class="gsap-reveal mb-16">
+            <h2 class="section-title" data-lang-key="mbl_challenges_title">Thách thức Kỹ thuật</h2>
+            <div class="challenges-grid">
+                <a href="{% post_url 2026-07-11-custom-light-v2-1-5-update %}" class="challenge-card link-card" target="_blank" rel="noopener">
+                    <h4 class="challenge-heading" data-lang-key="mbl_ch1_title">Addon Chiếu Sáng Tùy Chỉnh</h4>
+                    <p class="challenge-desc" data-lang-key="mbl_ch1_desc">Tự phát triển addon Blender để tự động hóa thiết lập hệ thống đèn studio cho 47 dòng sản phẩm, đảm bảo chiếu sáng đồng nhất và giảm đáng kể thời gian setup.</p>
+                    <div class="challenge-link-hint" data-lang-key="mbl_ch1_link_hint">Xem chi tiết addon &rarr;</div>
+                </a>
+                <div class="challenge-card">
+                    <h4 class="challenge-heading" data-lang-key="mbl_ch2_title">Quy trình EXR & Quản lý Màu OCIO</h4>
+                    <p class="challenge-desc" data-lang-key="mbl_ch2_desc">Render ở định dạng OpenEXR 32-bit và xử lý hậu kỳ qua pipeline quản lý màu OCIO trong Photoshop, đảm bảo độ chính xác màu sắc trên các cấu hình hiển thị và yêu cầu của sàn TMĐT.</p>
+                </div>
+                <div class="challenge-card">
+                    <h4 class="challenge-heading" data-lang-key="mbl_ch3_title">Cryptomatte Color Matching</h4>
+                    <p class="challenge-desc" data-lang-key="mbl_ch3_desc">Sử dụng Cryptomatte render pass để tách riêng từng bộ phận sản phẩm (nắp, thân, nhãn) làm mask, cho phép matching màu từng phần riêng biệt với ảnh tham chiếu do thương hiệu cung cấp.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 2: Library Grid (Categorized) -->
+        <div id="library" class="gsap-reveal mb-16">
+            <h2 class="section-title" data-lang-key="mbl_packshot_library_title">Product Variation Library</h2>
+            <!-- Category: Lips -->
+            <h3 class="section-title" data-lang-key="mbl_cat_lips">Lips</h3>
+            <div class="library-grid mb-12">
+                <div class="library-item">
+                    <img src="https://img.manhhuynh.work/maybelline/assets/categories/Vinyl%20Ink_shades.gif" alt="Vinyl Ink">
+                    <span class="library-label">Vinyl Ink</span>
+                </div>
+                <div class="library-item">
+                    <img src="https://img.manhhuynh.work/maybelline/assets/categories/Vinyl%20Ink%20Sauce_shades.gif" alt="Vinyl Ink Sauce">
+                    <span class="library-label">Vinyl Ink Sauce</span>
+                </div>
+                <div class="library-item">
+                    <img src="https://img.manhhuynh.work/maybelline/assets/categories/Super%20Stay%20Matte%20Ink_shades.gif" alt="Super Stay Matte Ink">
+                    <span class="library-label">Matte Ink</span>
+                </div>
+                <div class="library-item">
+                    <img src="https://img.manhhuynh.work/maybelline/assets/categories/Teddy%20Tint_shades.gif" alt="Teddy Tint">
+                    <span class="library-label">Teddy Tint</span>
+                </div>
+                <div class="library-item">
+                    <img src="https://img.manhhuynh.work/maybelline/assets/categories/Ultimatte_shades.gif" alt="Ultimatte">
+                    <span class="library-label">Ultimatte</span>
+                </div>
+                <div class="library-item">
+                    <img src="https://img.manhhuynh.work/maybelline/assets/categories/Color%20Sensational_rep.png" alt="Color Sensational">
+                    <span class="library-label">Color Sensational</span>
+                </div>
+                <div class="library-item">
+                    <img src="https://img.manhhuynh.work/maybelline/assets/categories/Lifter%20Gloss_shades.gif" alt="Lifter Gloss">
+                    <span class="library-label">Lifter Gloss</span>
+                </div>
+                <div class="library-item">
+                    <img src="https://img.manhhuynh.work/maybelline/assets/categories/Lifter%20Glaze_shades.gif" alt="Lifter Glaze">
+                    <span class="library-label">Lifter Glaze</span>
+                </div>
+                <div class="library-item">
+                    <img src="https://img.manhhuynh.work/maybelline/assets/categories/Lifter%20Plump_shades.gif" alt="Lifter Plump">
+                    <span class="library-label">Lifter Plump</span>
+                </div>
+                <div class="library-item">
+                    <img src="https://img.manhhuynh.work/maybelline/assets/categories/Lifter%20Liner_rep.png" alt="Lifter Liner">
+                    <span class="library-label">Lifter Liner</span>
+                </div>
+                <div class="library-item">
+                    <img src="https://img.manhhuynh.work/maybelline/assets/categories/Lifter%20Gel_rep.png" alt="Lifter Gel">
+                    <span class="library-label">Lifter Gel</span>
+                </div>
+            </div>
+
+            <!-- Category: Face -->
+            <h3 class="section-title" data-lang-key="mbl_cat_face">Face</h3>
+            <div class="library-grid mb-12">
+                <div class="library-item">
+                    <img src="https://img.manhhuynh.work/maybelline/assets/categories/Fit%20Me%20Foundation_shades.gif" alt="Fit Me Foundation">
+                    <span class="library-label">Fit Me Foundation</span>
+                </div>
+                <div class="library-item">
+                    <img src="https://img.manhhuynh.work/maybelline/assets/categories/Lumi%20Matte_shades.gif" alt="Lumi Matte">
+                    <span class="library-label">Lumi-Matte</span>
+                </div>
+                <div class="library-item">
+                    <img src="https://img.manhhuynh.work/maybelline/assets/categories/Sunkisser_shades.gif" alt="Sunkisser">
+                    <span class="library-label">Sunkisser Blush</span>
+                </div>
+                <div class="library-item">
+                    <img src="https://img.manhhuynh.work/maybelline/assets/categories/Fit%20Me%20Concealer_shades.gif" alt="Fit Me Concealer">
+                    <span class="library-label">Fit Me Concealer</span>
+                </div>
+                <div class="library-item">
+                    <img src="https://img.manhhuynh.work/maybelline/assets/categories/Fit%20Me%20Blush_shades.gif" alt="Fit Me Blush">
+                    <span class="library-label">Fit Me Blush</span>
+                </div>
+                <div class="library-item">
+                    <img src="https://img.manhhuynh.work/maybelline/assets/categories/Fit%20Me%20Tint_shades.gif" alt="Fit Me Tint">
+                    <span class="library-label">Fit Me Fresh Tint</span>
+                </div>
+                <div class="library-item">
+                    <img src="https://img.manhhuynh.work/maybelline/assets/categories/Fit%20Me%20Tube_shades.gif" alt="Fit Me Tube">
+                    <span class="library-label">Fit Me Tube</span>
+                </div>
+                <div class="library-item">
+                    <img src="https://img.manhhuynh.work/maybelline/assets/categories/Instant%20Age%20Rewind_shades.gif" alt="Instant Age Rewind">
+                    <span class="library-label">Age Rewind</span>
+                </div>
+                <div class="library-item">
+                    <img src="https://img.manhhuynh.work/maybelline/assets/categories/Super%20Stay%20Flex%20Powder_shades.gif" alt="Super Stay Flex Powder">
+                    <span class="library-label">SS Flex Powder</span>
+                </div>
+                <div class="library-item">
+                    <img src="https://img.manhhuynh.work/maybelline/assets/categories/BB%20cushion_rep.png" alt="BB cushion">
+                    <span class="library-label">BB Cushion</span>
+                </div>
+                <div class="library-item">
+                    <img src="https://img.manhhuynh.work/maybelline/assets/categories/FM%20compact_rep.png" alt="FM compact">
+                    <span class="library-label">FM Compact</span>
+                </div>
+                <div class="library-item">
+                    <img src="https://img.manhhuynh.work/maybelline/assets/categories/Fm%20cushion_rep.png" alt="Fm cushion">
+                    <span class="library-label">FM Cushion</span>
+                </div>
+                <div class="library-item">
+                    <img src="https://img.manhhuynh.work/maybelline/assets/categories/Loosepowder_rep.png" alt="Loosepowder">
+                    <span class="library-label">Fit Me Loose Powder</span>
+                </div>
+                <div class="library-item">
+                    <img src="https://img.manhhuynh.work/maybelline/assets/categories/Fit%20Me%20Setting%20Spray_rep.png" alt="Fit Me Setting Spray">
+                    <span class="library-label">Fit Me Setting Spray</span>
+                </div>
+                <div class="library-item">
+                    <img src="https://img.manhhuynh.work/maybelline/assets/categories/Fit%20Me%20Primer_rep.png" alt="Fit Me Primer">
+                    <span class="library-label">Fit Me Primer</span>
+                </div>
+                <div class="library-item">
+                    <img src="https://img.manhhuynh.work/maybelline/assets/categories/Matte%20max_rep.png" alt="Matte max">
+                    <span class="library-label">Matte Max Lip</span>
+                </div>
+            </div>
+
+            <!-- Category: Eyes -->
+            <h3 class="section-title" data-lang-key="mbl_cat_eyes">Eyes</h3>
+            <div class="library-grid">
+                <div class="library-item">
+                    <img src="https://img.manhhuynh.work/maybelline/assets/categories/Build%20a%20Brow_shades.gif" alt="Build a Brow">
+                    <span class="library-label">Build-A-Brow</span>
+                </div>
+                <div class="library-item">
+                    <img src="https://img.manhhuynh.work/maybelline/assets/categories/Tattoo%20Brow%2036H_shades.gif" alt="Tattoo Brow 36H">
+                    <span class="library-label">Tattoo Brow 36H</span>
+                </div>
+                <div class="library-item">
+                    <img src="https://img.manhhuynh.work/maybelline/assets/categories/Tattoo%20Brow%2048H%20Gel_shades.gif" alt="Tattoo Brow 48H Gel">
+                    <span class="library-label">Tattoo Brow 48H</span>
+                </div>
+                <div class="library-item">
+                    <img src="https://img.manhhuynh.work/maybelline/assets/categories/Tattoo%20Liner%20Dip-in_rep.png" alt="Tattoo Liner Dip-in">
+                    <span class="library-label">Tattoo Liner Dip-in</span>
+                </div>
+                <div class="library-item">
+                    <img src="https://img.manhhuynh.work/maybelline/assets/categories/City%20Mini%20Eyeshadow_shades.gif" alt="City Mini Eyeshadow">
+                    <span class="library-label">City Mini Eyeshadow</span>
+                </div>
+                <div class="library-item">
+                    <img src="https://img.manhhuynh.work/maybelline/assets/categories/Color%20Rivals_shades.gif" alt="Color Rivals">
+                    <span class="library-label">Color Rivals Duo</span>
+                </div>
+                <div class="library-item">
+                    <img src="https://img.manhhuynh.work/maybelline/assets/categories/Makeup%20Remover_shades.gif" alt="Makeup Remover">
+                    <span class="library-label">Makeup Remover</span>
+                </div>
+                <div class="library-item">
+                    <img src="https://img.manhhuynh.work/maybelline/assets/categories/Sky%20High%20Mascara_rep.png" alt="Sky High Mascara">
+                    <span class="library-label">Sky High Mascara</span>
+                </div>
+                <div class="library-item">
+                    <img src="https://img.manhhuynh.work/maybelline/assets/categories/Colossal%20Mascara_rep.png" alt="Colossal Mascara">
+                    <span class="library-label">Colossal Mascara</span>
+                </div>
+                <div class="library-item">
+                    <img src="https://img.manhhuynh.work/maybelline/assets/categories/Falsies%20Lashlift_rep.png" alt="Falsies Lashlift">
+                    <span class="library-label">Falsies Lashlift</span>
+                </div>
+                <div class="library-item">
+                    <img src="https://img.manhhuynh.work/maybelline/assets/categories/Firework%20Mascara_rep.png" alt="Firework Mascara">
+                    <span class="library-label">Firework Mascara</span>
+                </div>
+                <div class="library-item">
+                    <img src="https://img.manhhuynh.work/maybelline/assets/categories/Tattoo%20Liner_rep.png" alt="Tattoo Liner">
+                    <span class="library-label">Tattoo Liner</span>
+                </div>
+                <div class="library-item">
+                    <img src="https://img.manhhuynh.work/maybelline/assets/categories/Tattoo%20Liner%20Play_rep.png" alt="Tattoo Liner Play">
+                    <span class="library-label">Tattoo Liner Play</span>
+                </div>
+                <div class="library-item">
+                    <img src="https://img.manhhuynh.work/maybelline/assets/categories/Fashion%20Brow_rep.png" alt="Fashion Brow">
+                    <span class="library-label">Fashion Brow</span>
+                </div>
+                <div class="library-item">
+                    <img src="https://img.manhhuynh.work/maybelline/assets/categories/Hypersharp%20Liner_rep.png" alt="Hypersharp Liner">
+                    <span class="library-label">Hypersharp Liner</span>
+                </div>
+                <div class="library-item">
+                    <img src="https://img.manhhuynh.work/maybelline/assets/categories/Line%20Tattoo_rep.png" alt="Line Tattoo">
+                    <span class="library-label">Line Tattoo</span>
+                </div>
+                <div class="library-item">
+                    <img src="https://img.manhhuynh.work/maybelline/assets/categories/Sky%20High%20Cosmic_rep.png" alt="Sky High Cosmic">
+                    <span class="library-label">Sky High Cosmic</span>
+                </div>
+                <div class="library-item">
+                    <img src="https://img.manhhuynh.work/maybelline/assets/categories/Sky%20High%20Serum_rep.png" alt="Sky High Serum">
+                    <span class="library-label">Sky High Serum</span>
+                </div>
+                <div class="library-item">
+                    <img src="https://img.manhhuynh.work/maybelline/assets/categories/The%20Blushed%20Nudes_rep.png" alt="The Blushed Nudes">
+                    <span class="library-label">The Blushed Nudes</span>
+                </div>
+                <div class="library-item">
+                    <img src="https://img.manhhuynh.work/maybelline/assets/categories/cloudtopia_rep.png" alt="cloudtopia">
+                    <span class="library-label">Cloudtopia Shadow</span>
+                </div>
+            </div>
+        </div>
+
+    </div> <!-- Close main .project-container -->
+
+    <!-- Section 3: E-Commerce Deployment (Breakout full width) -->
+    <div id="deployment" class="gsap-reveal mb-16">
+        <div class="project-container" style="padding-top: 0; padding-bottom: 0;">
+            <h2 class="section-title" style="margin-top: 0;" data-lang-key="mbl_ecom_title">E-Commerce Deployment</h2>
+        </div>
+        <div class="ecom-cinematic-showcase">
+            <div class="ecom-inner-container">
+                <div class="ecom-viewport">
+                    <div class="ecom-spotlight"></div>
+                    <div class="ecom-slides">
+                        <div class="ecom-slide active">
+                            <video src="https://img.manhhuynh.work/maybelline/shopVN_5s.mp4?v=3" muted loop playsinline preload="metadata"></video>
+                            <div class="ecom-meta">
+                                <span class="ecom-tag">SAPMENA ZONE</span>
+                                <h4 class="ecom-country">Vietnam Deployment</h4>
+                                <p class="ecom-desc">Live Shopee Storefront Packshots</p>
+                            </div>
+                        </div>
+                        <div class="ecom-slide">
+                            <video src="https://img.manhhuynh.work/maybelline/shop_thailand_5s.mp4?v=3" muted loop playsinline preload="metadata"></video>
+                            <div class="ecom-meta">
+                                <span class="ecom-tag">SAPMENA ZONE</span>
+                                <h4 class="ecom-country">Thailand Deployment</h4>
+                                <p class="ecom-desc">Live Shopee Storefront Packshots</p>
+                            </div>
+                        </div>
+                        <div class="ecom-slide">
+                            <video src="https://img.manhhuynh.work/maybelline/shop_signgapore_5s.mp4?v=3" muted loop playsinline preload="metadata"></video>
+                            <div class="ecom-meta">
+                                <span class="ecom-tag">SAPMENA ZONE</span>
+                                <h4 class="ecom-country">Singapore Deployment</h4>
+                                <p class="ecom-desc">Live Shopee Storefront Packshots</p>
+                            </div>
+                        </div>
+                        <div class="ecom-slide">
+                            <video src="https://img.manhhuynh.work/maybelline/shopmalaysia_5s.mp4?v=3" muted loop playsinline preload="metadata"></video>
+                            <div class="ecom-meta">
+                                <span class="ecom-tag">SAPMENA ZONE</span>
+                                <h4 class="ecom-country">Malaysia Deployment</h4>
+                                <p class="ecom-desc">Live Shopee Storefront Packshots</p>
+                            </div>
+                        </div>
+                        <div class="ecom-slide">
+                            <video src="https://img.manhhuynh.work/maybelline/shop_philipin_5s.mp4?v=3" muted loop playsinline preload="metadata"></video>
+                            <div class="ecom-meta">
+                                <span class="ecom-tag">SAPMENA ZONE</span>
+                                <h4 class="ecom-country">Philippines Deployment</h4>
+                                <p class="ecom-desc">Live Shopee Storefront Packshots</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cinematic Progress Navigation Grid -->
+                <div class="ecom-nav-bar">
+                    <div class="ecom-nav-item active" onclick="goToCinematicSlide(0)">
+                        <div class="ecom-nav-title">VIETNAM</div>
+                        <div class="ecom-progress-bg">
+                            <div class="ecom-progress-fill" id="fill-0"></div>
+                        </div>
+                    </div>
+                    <div class="ecom-nav-item" onclick="goToCinematicSlide(1)">
+                        <div class="ecom-nav-title">THAILAND</div>
+                        <div class="ecom-progress-bg">
+                            <div class="ecom-progress-fill" id="fill-1"></div>
+                        </div>
+                    </div>
+                    <div class="ecom-nav-item" onclick="goToCinematicSlide(2)">
+                        <div class="ecom-nav-title">SINGAPORE</div>
+                        <div class="ecom-progress-bg">
+                            <div class="ecom-progress-fill" id="fill-2"></div>
+                        </div>
+                    </div>
+                    <div class="ecom-nav-item" onclick="goToCinematicSlide(3)">
+                        <div class="ecom-nav-title">MALAYSIA</div>
+                        <div class="ecom-progress-bg">
+                            <div class="ecom-progress-fill" id="fill-3"></div>
+                        </div>
+                    </div>
+                    <div class="ecom-nav-item" onclick="goToCinematicSlide(4)">
+                        <div class="ecom-nav-title">PHILIPPINES</div>
+                        <div class="ecom-progress-bg">
+                            <div class="ecom-progress-fill" id="fill-4"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Reopen .project-container for Outro and Related Projects -->
+    <div class="project-container" style="padding-top: 0;">
+        <!-- Outro -->
+        <div class="p-6 md:p-8 text-center mt-24 pt-8 border-t border-white/5 gsap-reveal">
+            <p class="text-3xl md:text-5xl font-bold text-white mb-4 tracking-tight" data-lang-key="thanks_watching">Thanks for watching</p>
+            <div class="flex flex-col items-center gap-1">
+                <p class="text-xs font-bold uppercase tracking-widest text-white/40" data-lang-key="contact_work">Contact for work:</p>
+                <a href="mailto:contact@manhhuynh.work" class="text-lg text-[#D4AF37] font-medium hover:underline">
+                    contact@manhhuynh.work
+                </a>
+            </div>
+        </div>
+        
+        {% include related-projects.html %}
+    </div>
+</div>
+
+<!-- Scroll Hint -->
+<div id="scroll-hint">
+    <div class="scroll-mouse">
+        <div class="scroll-wheel"></div>
+    </div>
+    <span class="scroll-text" data-lang-key="scroll_explore">Scroll to explore</span>
+</div>
+
+<!-- Lightbox Modal -->
+<div id="lightbox">
+    <span class="close-btn">&times;</span>
+    <img src="" alt="Zoomed view">
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+<script>
+    let currentProduct = 'vinyl';
+    let currentMode = 'final';
+    let ecomCurrentSlide = 0;
+    let ecomProgress = 0;
+    let ecomProgressInterval = null;
+    const SLIDE_DURATION = 5000; // 5 seconds per slide
+    const UPDATE_INTERVAL = 30;  // Update every 30ms
+    const loadTimestamp = Date.now(); // Global session cache buster
+
+    // Product display names for HUD
+    const PRODUCT_NAMES = {
+        vinyl: 'Vinyl Ink',
+        mascara: 'Sky High Mascara',
+        foundation: 'Fit Me Foundation',
+        brow: 'Build-A-Brow'
+    };
+
+    const MODE_LABELS = {
+        final: '● Final Render',
+        clay: '◐ Material View',
+        wireframe: '△ Scene Setup'
+    };
+
+    function updateInspector() {
+        const img = document.getElementById('inspector-image');
+        const hudProduct = document.getElementById('hud-product');
+        const hudMode = document.getElementById('hud-mode');
+
+        // Crossfade out
+        img.classList.add('crossfade-out');
+
+        // Update HUD
+        if (hudProduct) {
+            hudProduct.style.opacity = '0';
+            setTimeout(() => {
+                hudProduct.textContent = PRODUCT_NAMES[currentProduct] || currentProduct;
+                hudProduct.style.opacity = '1';
+            }, 200);
+        }
+        if (hudMode) {
+            hudMode.style.opacity = '0';
+            setTimeout(() => {
+                hudMode.textContent = MODE_LABELS[currentMode] || currentMode;
+                hudMode.style.opacity = '1';
+            }, 200);
+        }
+
+        // Swap image and crossfade in
+        setTimeout(() => {
+            img.src = `https://img.manhhuynh.work/maybelline/assets/hero/${currentProduct}_${currentMode}.webp?v=${loadTimestamp}`;
+            img.setAttribute('data-mode', currentMode);
+            
+            // Wait for new image to load completely before fading in to prevent flashing old mode image
+            img.onload = () => {
+                img.classList.remove('crossfade-out');
+                img.onload = null; // Clean up handler
+            };
+        }, 250);
+    }
+
+    // Position the sliding tab indicator under the active tab
+    function positionTabIndicator(activeBtn) {
+        const indicator = document.getElementById('tab-indicator');
+        const tabsContainer = document.getElementById('lookdev-tabs');
+        if (!indicator || !tabsContainer || !activeBtn) return;
+
+        const containerRect = tabsContainer.getBoundingClientRect();
+        const btnRect = activeBtn.getBoundingClientRect();
+
+        indicator.style.left = (btnRect.left - containerRect.left) + 'px';
+        indicator.style.width = btnRect.width + 'px';
+    }
+
+    // Position the sliding pill behind the active mode button
+    // (No longer needed — replaced by range slider)
+
+    const MODE_KEYS = ['final', 'clay', 'wireframe'];
+
+    function updateModeSliderUI(modeIndex) {
+        // Update labels
+        document.querySelectorAll('.mode-slider-label').forEach((label, i) => {
+            label.classList.toggle('active', i === modeIndex);
+        });
+        // Update range input
+        const range = document.getElementById('mode-range');
+        if (range) range.value = modeIndex;
+
+        // Update range track gradient
+        updateRangeTrackFill(modeIndex);
+    }
+
+    function updateRangeTrackFill(val) {
+        const range = document.getElementById('mode-range');
+        if (!range) return;
+        const pct = (val / 2) * 100;
+        range.style.background = `linear-gradient(90deg, rgba(212,175,55,0.5) 0%, rgba(212,175,55,0.5) ${pct}%, rgba(255,255,255,0.08) ${pct}%, rgba(255,255,255,0.08) 100%)`;
+    }
+
+    function switchModeByIndex(index) {
+        const modeKey = MODE_KEYS[index];
+        if (!modeKey || modeKey === currentMode) return;
+        currentMode = modeKey;
+        updateModeSliderUI(index);
+        updateInspector();
+    }
+
+    function setModeFromLabel(modeKey) {
+        const idx = MODE_KEYS.indexOf(modeKey);
+        if (idx === -1) return;
+        switchModeByIndex(idx);
+    }
+
+    function switchProduct(prodKey, btnEl) {
+        currentProduct = prodKey;
+        currentMode = 'final';
+        updateModeSliderUI(0);
+        document.querySelectorAll('.lookdev-tab-btn').forEach(btn => btn.classList.remove('active'));
+        btnEl.classList.add('active');
+        positionTabIndicator(btnEl);
+        updateInspector();
+    }
+
+    // Legacy switchMode kept for compatibility but now unused from HTML
+    function switchMode(modeKey, btnEl) {
+        const idx = MODE_KEYS.indexOf(modeKey);
+        if (idx === -1) return;
+        switchModeByIndex(idx);
+    }
+
+    function _goToCinematicSlideInternal(index) {
+        ecomCurrentSlide = index;
+        ecomProgress = 0; // Reset progress
+
+        // 1. Toggle Slide classes
+        const slides = document.querySelectorAll('.ecom-slide');
+        slides.forEach((slide, idx) => {
+            const video = slide.querySelector('video');
+            if (idx === index) {
+                slide.classList.add('active');
+                if (video) {
+                    video.play().catch(err => console.log('Video auto-play failed:', err));
+                }
+            } else {
+                slide.classList.remove('active');
+                if (video) {
+                    video.pause();
+                    video.currentTime = 0; // Reset video position to start
+                }
+            }
+        });
+
+        // 2. Toggle Navigation Item classes
+        const navItems = document.querySelectorAll('.ecom-nav-item');
+        navItems.forEach((item, idx) => {
+            if (idx === index) {
+                item.classList.add('active');
+            } else {
+                item.classList.remove('active');
+            }
+        });
+
+        // 3. Clear other progress fills immediately
+        const fills = document.querySelectorAll('.ecom-progress-fill');
+        fills.forEach((fill, idx) => {
+            if (idx !== index) {
+                fill.style.width = '0%';
+            }
+        });
+    }
+
+    function startCinematicAutoplay() {
+        if (ecomProgressInterval) clearInterval(ecomProgressInterval);
+        
+        ecomProgressInterval = setInterval(() => {
+            ecomProgress += (UPDATE_INTERVAL / SLIDE_DURATION) * 100;
+            
+            // Limit to 100% (5 slides now)
+            if (ecomProgress >= 100) {
+                ecomProgress = 0;
+                let nextSlide = (ecomCurrentSlide + 1) % 5;
+                _goToCinematicSlideInternal(nextSlide);
+            } else {
+                // Update active slide progress fill width
+                const activeFill = document.getElementById(`fill-${ecomCurrentSlide}`);
+                if (activeFill) {
+                    activeFill.style.width = `${ecomProgress}%`;
+                }
+            }
+        }, UPDATE_INTERVAL);
+    }
+
+    // Global handler for HTML onclick — resets autoplay on user click
+    function goToCinematicSlide(index) {
+        _goToCinematicSlideInternal(index);
+        startCinematicAutoplay();
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        gsap.registerPlugin(ScrollTrigger);
+
+        document.querySelectorAll('.gsap-reveal').forEach((el) => {
+            gsap.to(el, {
+                scrollTrigger: {
+                    trigger: el,
+                    start: "top 90%",
+                    toggleActions: "play none none none"
+                },
+                opacity: 1,
+                y: 0,
+                duration: 1,
+                ease: "power3.out"
+            });
+        });
+
+        // Initialize tab indicator and mode slider positions
+        const firstTab = document.querySelector('.lookdev-tab-btn.active');
+        if (firstTab) positionTabIndicator(firstTab);
+
+        // Force reload all static images from R2 by appending a unique timestamp on load
+        document.querySelectorAll('img').forEach(img => {
+            if (img.src && img.src.includes('img.manhhuynh.work')) {
+                try {
+                    const url = new URL(img.src);
+                    url.searchParams.set('v', loadTimestamp);
+                    img.src = url.toString();
+                } catch(e) {}
+            }
+        });
+
+        // Initialize range slider
+        const modeRange = document.getElementById('mode-range');
+        if (modeRange) {
+            modeRange.addEventListener('input', (e) => {
+                switchModeByIndex(parseInt(e.target.value));
+            });
+            updateRangeTrackFill(0);
+        }
+
+        // Reposition tab indicator on window resize
+        window.addEventListener('resize', () => {
+            const activeTab = document.querySelector('.lookdev-tab-btn.active');
+            if (activeTab) positionTabIndicator(activeTab);
+        });
+
+        // Initialize active video for the first slide (pause state, first frame ready)
+        _goToCinematicSlideInternal(0);
+        const firstVideo = document.querySelector('.ecom-slide.active video');
+        if (firstVideo) firstVideo.pause();
+
+        // Hide scroll hint on scroll
+        const scrollHint = document.getElementById('scroll-hint');
+        const hideHint = () => {
+            if (window.scrollY > 50) {
+                gsap.to(scrollHint, {
+                    opacity: 0,
+                    duration: 0.5,
+                    onComplete: () => {
+                        if (scrollHint) scrollHint.style.display = 'none';
+                    }
+                });
+                window.removeEventListener('scroll', hideHint);
+            }
+        };
+        window.addEventListener('scroll', hideHint);
+
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = lightbox.querySelector('img');
+        const items = document.querySelectorAll('.library-item, .lookdev-display, .ecom-slide');
+
+        items.forEach(item => {
+            item.addEventListener('click', (e) => {
+                if (e.target.closest('.mode-slider-container') || e.target.classList.contains('ecom-progress-fill') || e.target.closest('.ecom-nav-bar')) {
+                    return;
+                }
+                const img = item.querySelector('img');
+                if (img && !img.src.includes('placehold.co')) {
+                    lightboxImg.src = img.src;
+                    lightbox.style.display = 'flex';
+                    document.body.style.overflow = 'hidden';
+                }
+            });
+        });
+
+        lightbox.addEventListener('click', () => {
+            lightbox.style.display = 'none';
+            document.body.style.overflow = '';
+        });
+
+        // Floating Sidebar Intersection Observer
+        const observerOptions = {
+            root: null,
+            rootMargin: '-20% 0px -40% 0px',
+            threshold: 0
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const sectionId = entry.target.id;
+                    document.querySelectorAll('.nav-dot').forEach(dot => {
+                        if (dot.getAttribute('data-section') === sectionId) {
+                            dot.classList.add('active');
+                        } else {
+                            dot.classList.remove('active');
+                        }
+                    });
+                }
+            });
+        }, observerOptions);
+
+        // Observe sections
+        ['overview', 'inspector', 'challenges', 'library', 'deployment'].forEach(id => {
+            const el = document.getElementById(id);
+            if (el) observer.observe(el);
+        });
+
+        // Add smooth scroll fallback for clicks with offset for fixed header
+        document.querySelectorAll('.nav-dot').forEach(dot => {
+            dot.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetId = dot.getAttribute('href');
+                const targetEl = document.querySelector(targetId);
+                if (targetEl) {
+                    const header = document.getElementById('site-header') || document.querySelector('header');
+                    const headerHeight = header ? header.offsetHeight : 80;
+                    const elementPosition = targetEl.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - headerHeight - 20; // 20px padding
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Play/Pause deployment slideshow and videos when scrolled into/out of view
+        const deploymentSection = document.getElementById('deployment');
+        if (deploymentSection) {
+            let isFirstReveal = true;
+            const deploymentObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        if (isFirstReveal) {
+                            _goToCinematicSlideInternal(0);
+                            isFirstReveal = false;
+                        } else {
+                            const activeSlide = document.querySelector('.ecom-slide.active');
+                            const activeVideo = activeSlide ? activeSlide.querySelector('video') : null;
+                            if (activeVideo) {
+                                activeVideo.play().catch(err => console.log('Video resume failed:', err));
+                            }
+                        }
+                        startCinematicAutoplay();
+                    } else {
+                        if (ecomProgressInterval) {
+                            clearInterval(ecomProgressInterval);
+                            ecomProgressInterval = null;
+                        }
+                        document.querySelectorAll('.ecom-slide video').forEach(video => {
+                            video.pause();
+                        });
+                    }
+                });
+            }, {
+                root: null,
+                threshold: 0.15
+            });
+            deploymentObserver.observe(deploymentSection);
+        }
+
+        // Quick Language Switcher inside Floating Sidebar
+        const sidebarLangToggle = document.getElementById('sidebar-lang-toggle');
+        if (sidebarLangToggle) {
+            const updateSidebarLangText = (lang) => {
+                sidebarLangToggle.textContent = lang === 'vi' ? 'EN' : 'VI';
+            };
+            
+            // Initial set based on global currentLang
+            updateSidebarLangText(window.currentLang || localStorage.getItem('lang') || 'vi');
+
+            sidebarLangToggle.addEventListener('click', () => {
+                const mainToggleBtn = document.getElementById('lang-toggle-button');
+                if (mainToggleBtn) {
+                    mainToggleBtn.click();
+                } else {
+                    // Fallback to footer selectors if header toggle is missing
+                    const nextLang = (window.currentLang || localStorage.getItem('lang') || 'vi') === 'vi' ? 'en' : 'vi';
+                    const selectEl = nextLang === 'vi' ? document.getElementById('lang-select-vi') : document.getElementById('lang-select-en');
+                    if (selectEl) {
+                        selectEl.click();
+                    }
+                }
+            });
+
+            document.addEventListener('languageChanged', (e) => {
+                updateSidebarLangText(e.detail.lang);
+            });
+        }
+    });
+</script>

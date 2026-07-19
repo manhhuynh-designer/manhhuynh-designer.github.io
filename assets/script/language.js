@@ -56,6 +56,7 @@ export function updateContent(lang) {
     // Expose language data and current lang for subpages
     window.langData = languages;
     window.currentLang = lang;
+    window.updateLanguage = updateContent;
     
     // Dispatch event for components that need manual update
     document.dispatchEvent(new CustomEvent('languageChanged', { detail: { lang } }));

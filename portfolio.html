@@ -96,6 +96,85 @@ permalink: /portfolio/
         </div>
     </div>
 
+    <!-- Category Section: Lookdev & Product Viz -->
+    <div id="category-product-lookdev" class="w-full flex flex-col">
+        <div class="max-w-[1300px] mx-auto px-6 pt-16 pb-8 border-b border-main/10 w-full pf-reveal-header">
+            <h2 class="text-3xl md:text-5xl font-black uppercase tracking-tight text-heading" data-lang-key="category_group_product_lookdev">
+                {{ translations.category_group_product_lookdev | default: "Lookdev & Product Viz" }}
+            </h2>
+        </div>
+        
+        {% assign lookdev_projects = site.data.portfolio_page_projects | where: "featured", true | where: "category", "product-lookdev" %}
+        {% for project in lookdev_projects %}
+            {% assign is_even = forloop.index | modulo: 2 %}
+            {% assign aspect = project.video_aspect | default: "16/10" %}
+            
+            <article id="project-{{ project.id }}" class="portfolio-section py-16 md:py-28 flex items-center justify-center border-b border-main/10 relative transition-all duration-1000" 
+                     data-bg-color="{{ project.bg_color | default: '#020617' }}"
+                     data-project-id="{{ project.id }}">
+                <div class="flex flex-col {% if is_even == 0 %}md:flex-row-reverse{% else %}md:flex-row{% endif %} gap-12 lg:gap-20 items-center justify-between max-w-[1300px] mx-auto px-6 w-full">
+                    
+                    <!-- Info Column -->
+                    <div class="w-full md:w-[45%] flex flex-col items-start text-left pf-reveal-text">
+                        <span class="text-accent-strong text-xs font-bold uppercase tracking-widest mb-3 block">
+                            {{ project.category | replace: '-', ' ' }}
+                        </span>
+                        
+                        <h2 class="text-3xl md:text-5xl font-black mb-4 tracking-tight leading-tight text-heading" data-lang-key="{{ project.title_key }}">
+                            {{ translations[project.title_key] | default: project.title_key }}
+                        </h2>
+                        
+                        <p class="text-gray-normal text-base md:text-lg mb-6 leading-relaxed max-w-lg" data-lang-key="{{ project.desc_key }}">
+                            {{ translations[project.desc_key] | default: project.desc_key }}
+                        </p>
+ 
+                        <!-- My Role Section -->
+                        {% if project.role_key %}
+                        <div class="mb-6 text-sm max-w-lg border-l-2 border-accent-strong/40 pl-4 py-0.5">
+                            <strong class="text-accent-strong uppercase tracking-wider text-[11px] block mb-1" data-lang-key="my_role">{{ translations.my_role | default: "My Role" }}</strong>
+                            <p class="text-gray-normal/90 leading-relaxed italic" data-lang-key="{{ project.role_key }}">
+                                {{ translations[project.role_key] | default: project.role_key }}
+                            </p>
+                        </div>
+                        {% endif %}
+                        
+                        <!-- Skills / Tools Tags -->
+                        {% if project.skills_key %}
+                        <div class="flex flex-wrap gap-2 mb-8">
+                            {% assign skills = translations[project.skills_key] | default: project.skills_key %}
+                            {% assign skills_list = skills | split: ", " %}
+                            {% for skill in skills_list %}
+                                <span class="text-xs px-3 py-1 bg-main/5 border border-main/10 rounded-full text-gray-normal font-medium tracking-wide">
+                                    {{ skill }}
+                                </span>
+                            {% endfor %}
+                        </div>
+                        {% endif %}
+                        
+                        <!-- CTA buttons -->
+                        <div class="flex items-center gap-6 mt-2">
+                            {% if project.behance_link %}
+                            <a href="{{ project.behance_link | relative_url }}" class="px-7 py-3 bg-accent-strong hover:bg-accent-strong/80 text-white font-bold text-xs rounded-full tracking-wider uppercase transition-all shadow-lg transform hover:-translate-y-0.5" data-lang-key="view_details">
+                                {{ translations.view_details | default: "View Case Study" }}
+                            </a>
+                            {% endif %}
+                        </div>
+                    </div>
+                    
+                    <!-- Media Column -->
+                    <div class="w-full md:w-[50%] flex justify-center items-center pf-reveal-media">
+                        <div class="w-full rounded-2xl overflow-hidden shadow-2xl border border-white/5 relative group/media aspect-[16/10] bg-main/5 flex justify-center items-center">
+                            {% if project.thumbnail_image %}
+                            <img src="/{{ project.thumbnail_image }}" alt="{{ project.id }}" class="w-full h-full object-cover transition-transform duration-700 group-hover/media:scale-105" />
+                            {% endif %}
+                        </div>
+                    </div>
+                    
+                </div>
+            </article>
+        {% endfor %}
+    </div>
+ 
     <!-- Category Section: 3D Motion Graphics -->
     <div id="category-motion-3d" class="w-full flex flex-col">
         <div class="max-w-[1300px] mx-auto px-6 pt-16 pb-8 border-b border-main/10 w-full pf-reveal-header">
@@ -536,27 +615,38 @@ permalink: /portfolio/
 </div>
 
 <!-- Quick Navigation Sidebar -->
-<div id="quick-nav-sidebar" class="fixed right-8 top-1/2 -translate-y-1/2 z-[100] hidden lg:flex flex-col items-end gap-6 py-6 px-4 bg-transparent transition-all duration-500">
-    <a href="#category-motion-3d" class="nav-dot-item group flex items-center gap-4 text-right cursor-pointer" data-target="category-motion-3d">
-        <span class="nav-label text-[10px] uppercase font-bold tracking-[0.2em]" data-lang-key="category_group_motion_3d">
-            {{ translations.category_group_motion_3d | default: "3D Motion Graphics" }}
-        </span>
-        <span class="dot w-1.5 h-1.5 rounded-full block"></span>
-    </a>
-    
-    <a href="#category-social-cgi" class="nav-dot-item group flex items-center gap-4 text-right cursor-pointer" data-target="category-social-cgi">
-        <span class="nav-label text-[10px] uppercase font-bold tracking-[0.2em]" data-lang-key="category_group_social_cgi">
-            {{ translations.category_group_social_cgi | default: "Social CGI" }}
-        </span>
-        <span class="dot w-1.5 h-1.5 rounded-full block"></span>
-    </a>
-    
-    <a href="#category-webar-ar" class="nav-dot-item group flex items-center gap-4 text-right cursor-pointer" data-target="category-webar-ar">
-        <span class="nav-label text-[10px] uppercase font-bold tracking-[0.2em]" data-lang-key="category_group_webar">
-            {{ translations.category_group_webar | default: "WebAR Experience" }}
-        </span>
-        <span class="dot w-1.5 h-1.5 rounded-full block"></span>
-    </a>
+<div id="quick-nav-sidebar" class="fixed right-8 top-1/2 -translate-y-1/2 z-[100] hidden lg:flex flex-col items-end gap-3 py-6 px-4 bg-transparent transition-all duration-500">
+    <!-- Quick Language Switcher Button -->
+    <button id="sidebar-lang-toggle" class="w-[28px] h-[28px] border border-white/15 rounded-full bg-[#080809]/80 text-white/60 hover:text-accent-strong hover:border-accent-strong text-[0.65rem] font-bold cursor-pointer pointer-events-auto flex items-center justify-center transition-all duration-300 shadow-lg -mr-[6px] hover:scale-110" aria-label="Toggle language">EN</button>
+    <div class="flex flex-col items-end gap-1 mt-4">
+        <a href="#category-product-lookdev" class="nav-dot-item group flex items-center gap-4 text-right cursor-pointer" data-target="category-product-lookdev">
+            <span class="nav-label text-[10px] uppercase font-bold tracking-[0.2em]" data-lang-key="category_group_product_lookdev">
+                {{ translations.category_group_product_lookdev | default: "Product Viz" }}
+            </span>
+            <span class="dot block"></span>
+        </a>
+        
+        <a href="#category-motion-3d" class="nav-dot-item group flex items-center gap-4 text-right cursor-pointer" data-target="category-motion-3d">
+            <span class="nav-label text-[10px] uppercase font-bold tracking-[0.2em]" data-lang-key="category_group_motion_3d">
+                {{ translations.category_group_motion_3d | default: "3D Motion Graphics" }}
+            </span>
+            <span class="dot block"></span>
+        </a>
+        
+        <a href="#category-social-cgi" class="nav-dot-item group flex items-center gap-4 text-right cursor-pointer" data-target="category-social-cgi">
+            <span class="nav-label text-[10px] uppercase font-bold tracking-[0.2em]" data-lang-key="category_group_social_cgi">
+                {{ translations.category_group_social_cgi | default: "Social CGI" }}
+            </span>
+            <span class="dot block"></span>
+        </a>
+        
+        <a href="#category-webar-ar" class="nav-dot-item group flex items-center gap-4 text-right cursor-pointer" data-target="category-webar-ar">
+            <span class="nav-label text-[10px] uppercase font-bold tracking-[0.2em]" data-lang-key="category_group_webar">
+                {{ translations.category_group_webar | default: "WebAR Experience" }}
+            </span>
+            <span class="dot block"></span>
+        </a>
+    </div>
 </div>
 
 <!-- Lightbox Modal -->
@@ -570,28 +660,45 @@ permalink: /portfolio/
         letter-spacing: -0.04em;
         line-height: 0.95;
     }
+    .nav-dot-item {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        padding: 10px 0;
+        cursor: pointer;
+    }
     .nav-dot-item .dot {
+        width: 16px;
+        height: 2px;
+        border-radius: 1px;
         background-color: var(--color-gray-text);
         opacity: 0.4;
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     }
     .nav-dot-item .nav-label {
+        position: absolute;
+        right: 2.25rem;
+        white-space: nowrap;
         color: var(--color-gray-text);
-        opacity: 0.5;
-        transition: all 0.3s ease;
+        opacity: 0;
+        transform: translateX(10px);
+        pointer-events: none;
+        transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     }
     .nav-dot-item:hover .dot {
         background-color: var(--color-text-strong-accent);
         opacity: 1;
-        transform: scale(1.3);
+        width: 24px;
     }
     .nav-dot-item:hover .nav-label {
         color: var(--color-text-strong-accent);
         opacity: 1;
+        transform: translateX(0);
     }
     .nav-dot-item.is-active .dot {
         background-color: var(--color-text-strong-accent) !important;
-        transform: scale(1.6);
+        width: 32px;
         opacity: 1;
         box-shadow: 0 0 10px rgba(59, 130, 246, 0.4);
     }
@@ -601,13 +708,31 @@ permalink: /portfolio/
     .nav-dot-item.is-active .nav-label {
         color: var(--color-text-main) !important;
         font-weight: 900;
-        opacity: 1;
+        opacity: 0;
+        transform: translateX(10px);
         letter-spacing: 0.25em;
+    }
+    .nav-dot-item.is-active:hover .nav-label {
+        opacity: 1;
+        transform: translateX(0);
     }
 </style>
 
 <script>
     document.addEventListener('DOMContentLoaded', () => {
+        // Default this page to English on initial session load
+        if (!sessionStorage.getItem('portfolio_lang_initialized')) {
+            localStorage.setItem('lang', 'en');
+            sessionStorage.setItem('portfolio_lang_initialized', 'true');
+            if (window.updateLanguage) {
+                window.updateLanguage('en');
+            } else {
+                setTimeout(() => {
+                    if (window.updateLanguage) window.updateLanguage('en');
+                }, 50);
+            }
+        }
+
         const navItems = document.querySelectorAll('.nav-dot-item');
         const portfolioSections = document.querySelectorAll('.portfolio-section');
         
@@ -636,7 +761,9 @@ permalink: /portfolio/
                     const section = entry.target;
                     let parentCategory = null;
                     
-                    if (section.closest('#category-motion-3d')) {
+                    if (section.closest('#category-product-lookdev')) {
+                        parentCategory = 'category-product-lookdev';
+                    } else if (section.closest('#category-motion-3d')) {
                         parentCategory = 'category-motion-3d';
                     } else if (section.closest('#category-social-cgi')) {
                         parentCategory = 'category-social-cgi';
@@ -658,5 +785,35 @@ permalink: /portfolio/
         }, observerOptions);
         
         portfolioSections.forEach(section => observer.observe(section));
+
+        // Quick Language Switcher inside Floating Sidebar
+        const sidebarLangToggle = document.getElementById('sidebar-lang-toggle');
+        if (sidebarLangToggle) {
+            const updateSidebarLangText = (lang) => {
+                sidebarLangToggle.textContent = lang === 'vi' ? 'EN' : 'VI';
+            };
+            
+            // Initial set based on global currentLang
+            updateSidebarLangText(window.currentLang || localStorage.getItem('lang') || 'en');
+
+            sidebarLangToggle.addEventListener('click', () => {
+                const mainToggleBtn = document.getElementById('lang-toggle-button');
+                if (mainToggleBtn) {
+                    mainToggleBtn.click();
+                } else {
+                    const nextLang = (window.currentLang || localStorage.getItem('lang') || 'en') === 'vi' ? 'en' : 'vi';
+                    const selectEl = nextLang === 'vi' ? document.getElementById('lang-select-vi') : document.getElementById('lang-select-en');
+                    if (selectEl) {
+                        selectEl.click();
+                    } else if (window.updateLanguage) {
+                        window.updateLanguage(nextLang);
+                    }
+                }
+            });
+
+            document.addEventListener('languageChanged', (e) => {
+                updateSidebarLangText(e.detail.lang);
+            });
+        }
     });
 </script>

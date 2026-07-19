@@ -7,4 +7,9 @@ _site/
 # Bundler
 .bundle/
 vendor/bundle/
-.agent
+.agents/
+.agent/
+
+# Large project assets
+Projects/Maybelline-Packshot/assets/
+
