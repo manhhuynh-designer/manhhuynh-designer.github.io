@@ -598,10 +598,10 @@ permalink: /portfolio/
             
             <!-- Action Buttons -->
             <div class="flex flex-wrap justify-center gap-4 mb-12">
-                <a href="mailto:contact@manhhuynh.work" class="px-7 py-3.5 bg-accent-strong hover:bg-blue-600 text-white font-bold text-xs rounded-full tracking-widest uppercase transition-all shadow-md hover:shadow-[0_0_20px_rgba(99,130,255,0.4)] flex items-center gap-2">
+                <button type="button" id="open-contact-modal" class="px-7 py-3.5 bg-accent-strong hover:bg-blue-600 text-white font-bold text-xs rounded-full tracking-widest uppercase transition-all shadow-md hover:shadow-[0_0_20px_rgba(99,130,255,0.4)] flex items-center gap-2 cursor-pointer">
                     <i class="fa-solid fa-envelope"></i>
                     Send Email
-                </a>
+                </button>
                 <a href="/assets/HUYNHDUMANH_designer_CV.pdf" target="_blank" download class="px-7 py-3.5 border border-white/20 hover:border-accent-strong text-white hover:text-accent-strong font-bold text-xs rounded-full tracking-widest uppercase transition-all flex items-center gap-2 backdrop-blur-md bg-white/5">
                     <i class="fa-solid fa-file-arrow-down"></i>
                     Download Resume
@@ -611,7 +611,7 @@ permalink: /portfolio/
             <!-- Social Profiles & Copyright for Portfolio -->
             <div class="flex flex-col sm:flex-row justify-between items-center gap-4 pt-6 border-t border-white/5 max-w-2xl mx-auto text-white/40 text-xs font-medium">
                 <p>&copy; 2026 Manh Huynh. All rights reserved.</p>
-                <div class="flex items-center gap-6">
+                <div class="flex items-center gap-5 sm:gap-6 flex-wrap justify-center">
                     <a href="https://www.linkedin.com/in/manh-huynh-designer" target="_blank" rel="noopener noreferrer" class="hover:text-accent-strong transition-colors flex items-center gap-1.5" title="LinkedIn">
                         <i class="fab fa-linkedin text-sm"></i> LinkedIn
                     </a>
@@ -621,11 +621,93 @@ permalink: /portfolio/
                     <a href="https://www.instagram.com/manh.des.98" target="_blank" rel="noopener noreferrer" class="hover:text-accent-strong transition-colors flex items-center gap-1.5" title="Instagram">
                         <i class="fab fa-instagram text-sm"></i> Instagram
                     </a>
+                    <a href="https://www.tiktok.com/@manhhuynh.designer" target="_blank" rel="noopener noreferrer" class="hover:text-accent-strong transition-colors flex items-center gap-1.5" title="TikTok">
+                        <i class="fab fa-tiktok text-sm"></i> TikTok
+                    </a>
                 </div>
             </div>
         </div>
     </section>
 
+</div>
+
+<!-- Formspree Contact Modal -->
+<div id="pf-contact-modal" class="fixed inset-0 z-[200] hidden flex items-center justify-center p-4 bg-black/80 backdrop-blur-md transition-opacity duration-300 opacity-0">
+    <div class="relative w-full max-w-xl bg-[#0e0f12] border border-white/10 rounded-2xl shadow-2xl p-6 sm:p-8 text-left transition-transform duration-300 scale-95" id="pf-contact-modal-card">
+        <!-- Close Button -->
+        <button type="button" id="close-contact-modal" class="absolute top-5 right-5 w-9 h-9 rounded-full bg-white/5 hover:bg-white/15 text-white/70 hover:text-white flex items-center justify-center transition-colors cursor-pointer" aria-label="Close modal">
+            <i class="fa-solid fa-xmark text-lg"></i>
+        </button>
+
+        <!-- Modal Header -->
+        <div class="mb-6 pr-8">
+            <h3 class="text-2xl sm:text-3xl font-black text-white uppercase tracking-tight mb-2">
+                <span class="lang-vi">Gửi Tin Nhắn</span>
+                <span class="lang-en hidden">Send a Message</span>
+            </h3>
+            <p class="text-slate-400 text-sm">
+                <span class="lang-vi">Sẵn sàng đưa ý tưởng của bạn thành hiện thực? Hãy gửi tin nhắn cho tôi!</span>
+                <span class="lang-en hidden">Ready to bring your ideas to life? Send me a message!</span>
+            </p>
+        </div>
+
+        <!-- Formspree Form -->
+        <form id="pf-contact-form" action="https://formspree.io/f/mkgbganj" method="POST" class="space-y-4">
+            <div>
+                <label for="pf-name" class="block text-slate-300 text-xs font-bold uppercase tracking-wider mb-1.5">
+                    <span class="lang-vi">Tên của bạn</span>
+                    <span class="lang-en hidden">Your Name</span>
+                </label>
+                <input type="text" id="pf-name" name="name" required
+                       class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white text-sm focus:border-accent-strong focus:bg-white/10 outline-none transition-all"
+                       placeholder="Họ và tên / Name" />
+            </div>
+
+            <div>
+                <label for="pf-email" class="block text-slate-300 text-xs font-bold uppercase tracking-wider mb-1.5">
+                    <span class="lang-vi">Email của bạn</span>
+                    <span class="lang-en hidden">Your Email</span>
+                </label>
+                <input type="email" id="pf-email" name="email" required
+                       class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white text-sm focus:border-accent-strong focus:bg-white/10 outline-none transition-all"
+                       placeholder="email@example.com" />
+            </div>
+
+            <div>
+                <label for="pf-subject" class="block text-slate-300 text-xs font-bold uppercase tracking-wider mb-1.5">
+                    <span class="lang-vi">Chủ đề</span>
+                    <span class="lang-en hidden">Subject</span>
+                </label>
+                <input type="text" id="pf-subject" name="subject"
+                       class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white text-sm focus:border-accent-strong focus:bg-white/10 outline-none transition-all"
+                       placeholder="Dự án của bạn là gì? / What is your project about?" />
+            </div>
+
+            <div>
+                <label for="pf-message" class="block text-slate-300 text-xs font-bold uppercase tracking-wider mb-1.5">
+                    <span class="lang-vi">Tin nhắn</span>
+                    <span class="lang-en hidden">Message</span>
+                </label>
+                <textarea id="pf-message" name="message" rows="4" required
+                          class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white text-sm focus:border-accent-strong focus:bg-white/10 outline-none transition-all resize-none"
+                          placeholder="Mô tả chi tiết yêu cầu... / Tell me about your project..."></textarea>
+            </div>
+
+            <input type="hidden" name="_replyto" value="contact@manhhuynh.work">
+
+            <div class="pt-2">
+                <button type="submit" id="pf-submit-btn"
+                        class="w-full py-3.5 px-6 bg-accent-strong hover:bg-blue-600 text-white font-bold text-xs rounded-xl uppercase tracking-widest transition-all shadow-lg hover:shadow-[0_0_20px_rgba(99,130,255,0.4)] flex items-center justify-center gap-2 cursor-pointer">
+                    <i class="fa-solid fa-paper-plane"></i>
+                    <span class="lang-vi">Gửi Tin Nhắn</span>
+                    <span class="lang-en hidden">Send Message</span>
+                </button>
+            </div>
+
+            <!-- Form Message Status -->
+            <div id="pf-form-status" class="hidden text-center text-xs font-semibold p-3 rounded-lg"></div>
+        </form>
+    </div>
 </div>
 
 <!-- Sidebar Quick Nav -->
@@ -1029,6 +1111,114 @@ document.addEventListener('DOMContentLoaded', () => {
 
         document.addEventListener('languageChanged', (e) => {
             updateSidebarLangText(e.detail.lang);
+        });
+    }
+
+    // ===== Contact Modal Logic =====
+    const contactModal = document.getElementById('pf-contact-modal');
+    const contactModalCard = document.getElementById('pf-contact-modal-card');
+    const openModalBtn = document.getElementById('open-contact-modal');
+    const closeModalBtn = document.getElementById('close-contact-modal');
+    const contactForm = document.getElementById('pf-contact-form');
+    const formStatus = document.getElementById('pf-form-status');
+    const submitBtn = document.getElementById('pf-submit-btn');
+
+    function showModal() {
+        if (!contactModal) return;
+        contactModal.classList.remove('hidden');
+        void contactModal.offsetWidth;
+        contactModal.classList.remove('opacity-0');
+        if (contactModalCard) {
+            contactModalCard.classList.remove('scale-95');
+            contactModalCard.classList.add('scale-100');
+        }
+        document.body.style.overflow = 'hidden';
+    }
+
+    function hideModal() {
+        if (!contactModal) return;
+        contactModal.classList.add('opacity-0');
+        if (contactModalCard) {
+            contactModalCard.classList.remove('scale-100');
+            contactModalCard.classList.add('scale-95');
+        }
+        setTimeout(() => {
+            contactModal.classList.add('hidden');
+            document.body.style.overflow = '';
+        }, 300);
+    }
+
+    if (openModalBtn) {
+        openModalBtn.addEventListener('click', showModal);
+    }
+
+    if (closeModalBtn) {
+        closeModalBtn.addEventListener('click', hideModal);
+    }
+
+    if (contactModal) {
+        contactModal.addEventListener('click', (e) => {
+            if (e.target === contactModal) {
+                hideModal();
+            }
+        });
+    }
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && contactModal && !contactModal.classList.contains('hidden')) {
+            hideModal();
+        }
+    });
+
+    if (contactForm) {
+        contactForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const formData = new FormData(contactForm);
+            
+            if (submitBtn) {
+                submitBtn.disabled = true;
+                submitBtn.style.opacity = '0.7';
+            }
+            if (formStatus) {
+                formStatus.classList.add('hidden');
+            }
+
+            try {
+                const response = await fetch(contactForm.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: { 'Accept': 'application/json' }
+                });
+
+                if (response.ok) {
+                    contactForm.reset();
+                    if (formStatus) {
+                        const currentLang = localStorage.getItem('lang') || 'en';
+                        formStatus.className = 'text-center text-xs font-semibold p-3 rounded-lg bg-emerald-500/20 text-emerald-300 border border-emerald-500/30';
+                        formStatus.textContent = currentLang === 'vi' 
+                            ? 'Cảm ơn bạn! Tin nhắn đã được gửi thành công.' 
+                            : 'Thank you! Your message has been sent successfully.';
+                        formStatus.classList.remove('hidden');
+                    }
+                    setTimeout(() => {
+                        hideModal();
+                        if (formStatus) formStatus.classList.add('hidden');
+                    }, 3000);
+                } else {
+                    throw new Error('Form submission failed');
+                }
+            } catch (error) {
+                if (formStatus) {
+                    formStatus.className = 'text-center text-xs font-semibold p-3 rounded-lg bg-rose-500/20 text-rose-300 border border-rose-500/30';
+                    formStatus.textContent = 'Oops! There was a problem submitting your form. Please try again.';
+                    formStatus.classList.remove('hidden');
+                }
+            } finally {
+                if (submitBtn) {
+                    submitBtn.disabled = false;
+                    submitBtn.style.opacity = '1';
+                }
+            }
         });
     }
 });

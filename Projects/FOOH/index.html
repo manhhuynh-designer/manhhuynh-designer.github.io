@@ -259,6 +259,107 @@ category: social-cgi
 			transition: none;
 		}
 	}
+
+	/* Brand Filter Container & Pills */
+	.brand-filter-container {
+		position: relative;
+		z-index: 10;
+		margin: 0 auto 2.5rem auto;
+		max-width: 1440px;
+		width: 100%;
+		padding: 0 0.5rem;
+	}
+
+	.brand-filter-wrapper {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-wrap: wrap;
+		gap: 0.35rem 0.35rem;
+		padding: 0;
+		background: transparent;
+		border: none;
+		box-shadow: none;
+	}
+
+	body[data-theme="dark"] .brand-filter-wrapper {
+		background: transparent;
+		border: none;
+		box-shadow: none;
+	}
+
+	.brand-filter-wrapper button.brand-filter-btn {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		padding: 0.3rem 0.55rem;
+		border-radius: 9999px;
+		font-size: 0.75rem;
+		font-weight: 500;
+		letter-spacing: -0.01em;
+		color: #64748b;
+		background: rgba(241, 245, 249, 0.7);
+		border: 1px solid rgba(226, 232, 240, 0.8);
+		cursor: pointer;
+		white-space: nowrap;
+		transition: all 0.25s ease;
+		user-select: none;
+		outline: none;
+	}
+
+	body[data-theme="dark"] .brand-filter-wrapper button.brand-filter-btn {
+		color: #94a3b8;
+		background: rgba(255, 255, 255, 0.05);
+		border-color: rgba(255, 255, 255, 0.08);
+	}
+
+	.brand-filter-wrapper button.brand-filter-btn:hover {
+		color: #2563eb;
+		background: rgba(219, 234, 254, 0.6);
+		border-color: rgba(147, 197, 253, 0.8);
+	}
+
+	body[data-theme="dark"] .brand-filter-wrapper button.brand-filter-btn:hover {
+		color: #60a5fa;
+		background: rgba(255, 255, 255, 0.1);
+		border-color: rgba(96, 165, 250, 0.3);
+	}
+
+	.brand-filter-wrapper button.brand-filter-btn.is-active {
+		color: #ffffff !important;
+		background: #2563eb !important;
+		border-color: #2563eb !important;
+		font-weight: 600;
+		box-shadow: 0 4px 14px rgba(37, 99, 235, 0.3);
+	}
+
+	body[data-theme="dark"] .brand-filter-wrapper button.brand-filter-btn.is-active {
+		color: #ffffff !important;
+		background: #2563eb !important;
+		border-color: #2563eb !important;
+		box-shadow: 0 4px 16px rgba(37, 99, 235, 0.4);
+	}
+
+	@media (max-width: 1024px) {
+		.brand-filter-wrapper {
+			justify-content: flex-start;
+			flex-wrap: nowrap;
+			overflow-x: auto;
+			padding: 0.25rem 0;
+			-ms-overflow-style: none;
+			scrollbar-width: none;
+		}
+		
+		.brand-filter-wrapper::-webkit-scrollbar {
+			display: none;
+		}
+
+		.brand-filter-wrapper button.brand-filter-btn {
+			padding: 0.35rem 0.75rem;
+			font-size: 0.775rem;
+			flex-shrink: 0;
+		}
+	}
 </style>
 
 <section class="relative pt-24 md:pt-32 pb-8 md:pb-12 overflow-hidden">
@@ -269,29 +370,51 @@ category: social-cgi
 			<div class="header-blob blob-1"></div>
 			<div class="header-blob blob-2"></div>
 			<span
-				class="inline-flex items-center justify-center px-4 py-1.5 rounded-full bg-blue-100 text-blue-600 text-xs font-bold uppercase tracking-[0.4em] mb-8">
+				class="inline-flex items-center justify-center px-4 py-1.5 rounded-full bg-blue-100 text-blue-600 text-xs font-bold uppercase tracking-[0.4em] mb-8" data-lang-key="fooh_badge">
 				Fake OOH Showcase
 			</span>
-			<h1 class="text-4xl md:text-6xl swiss-title mb-10 md:mb-12">
+			<h1 class="text-4xl md:text-6xl swiss-title mb-10 md:mb-12" data-lang-key="fooh_title">
 				CGI Fake OOH collection
 			</h1>
 
 		<!-- Mô tả dự án (Split Layout) -->
       <article class="max-w-5xl mx-auto mb-0 grid grid-cols-1 md:grid-cols-12 gap-8 items-start text-left px-6 scroll-reveal">
         <div class="md:col-span-7">
-          <p class="text-2xl md:text-3xl font-medium text-heading leading-tight italic md:not-italic">
-            Tổng hợp các dự án CGI Fake OOH cho nhiều thương hiệu tại Việt Nam.
+          <p class="text-2xl md:text-3xl font-medium text-heading leading-tight italic md:not-italic" data-lang-key="fooh_desc_main">
+            <span class="lang-vi">Tổng hợp các dự án CGI Fake OOH cho nhiều thương hiệu tại Việt Nam.</span>
+            <span class="lang-en hidden">A curated collection of CGI Fake OOH projects for leading brands in Vietnam.</span>
           </p>
         </div>
         <div class="md:col-span-5 pt-2">
           <div class="pl-0 md:pl-8 border-l-0 md:border-l border-blue-500/30">
-            <p class="text-base md:text-lg text-gray-normal leading-relaxed">
-              Trong các dự án này, tôi đảm nhận vai trò quản lý sản xuất toàn diện: từ việc trực tiếp làm việc với khách hàng, điều phối booking quay footage gốc, cho đến công đoạn thực hiện CGI và hoàn thiện video cuối cùng.
+            <p class="text-base md:text-lg text-gray-normal leading-relaxed" data-lang-key="fooh_desc_sub">
+              <span class="lang-vi">Trong các dự án này, tôi đảm nhận vai trò quản lý sản xuất toàn diện: từ việc trực tiếp làm việc với khách hàng, điều phối booking quay footage gốc, cho đến công đoạn thực hiện CGI và hoàn thiện video cuối cùng.</span>
+              <span class="lang-en hidden">In these projects, I managed end-to-end production: working directly with clients, coordinating raw footage shoots, performing CGI integration, and finishing final video deliverables.</span>
             </p>
           </div>
         </div>
       </article>
 	  </header>
+
+		<!-- Brand Filter Component -->
+		<div class="brand-filter-container scroll-reveal" data-brand-filter-root>
+			<div class="brand-filter-wrapper">
+				<button type="button" class="brand-filter-btn is-active" data-filter-brand="all" data-lang-key="filter_all">
+					<span class="lang-vi">Tất cả</span>
+					<span class="lang-en hidden">All</span>
+				</button>
+				<button type="button" class="brand-filter-btn" data-filter-brand="colorkey">COLORKEY</button>
+				<button type="button" class="brand-filter-btn" data-filter-brand="colorkey-luminous">COLORKEY LUMINOUS</button>
+				<button type="button" class="brand-filter-btn" data-filter-brand="maybelline">Maybelline</button>
+				<button type="button" class="brand-filter-btn" data-filter-brand="doji">DOJI</button>
+				<button type="button" class="brand-filter-btn" data-filter-brand="yves-rocher">Yves Rocher</button>
+				<button type="button" class="brand-filter-btn" data-filter-brand="aeon">AEON</button>
+				<button type="button" class="brand-filter-btn" data-filter-brand="danh-gia">Danh Giá</button>
+				<button type="button" class="brand-filter-btn" data-filter-brand="garmin">Garmin</button>
+				<button type="button" class="brand-filter-btn" data-filter-brand="miss-universe">Miss Universe</button>
+				<button type="button" class="brand-filter-btn" data-filter-brand="home-credit">Home Credit</button>
+			</div>
+		</div>
 
 		<div class="hidden md:block">
 			<div class="video-gallery" data-carousel="fooh" data-autoplay="8000" data-loop="true">
@@ -306,7 +429,7 @@ category: social-cgi
 				<div class="video-gallery-viewport">
 					<div class="video-gallery-track">
 						<div class="video-gallery-spacer" aria-hidden="true"></div>
-						<article class="video-card" aria-current="false">
+						<article class="video-card" data-brand="colorkey" aria-current="false">
 							<span class="video-card-badge">New</span>
 							<div class="video-frame">
 								<iframe src="https://www.youtube.com/embed/Kw_GIifnMCY?modestbranding=1&rel=0"
@@ -318,7 +441,7 @@ category: social-cgi
 								<p class="video-meta-client">Client: COLORKEY Việt Nam</p>
 							</div>
 						</article>
-						<article class="video-card" aria-current="false">
+						<article class="video-card" data-brand="maybelline" aria-current="false">
 							<span class="video-card-badge">Featured</span>
 							<div class="video-frame">
 								<iframe src="https://www.youtube.com/embed/C4AXE5Lse3M?modestbranding=1&rel=0"
@@ -330,7 +453,7 @@ category: social-cgi
 								<p class="video-meta-client">Client: Maybelline New York</p>
 							</div>
 						</article>
-						<article class="video-card is-active" aria-current="true">
+						<article class="video-card is-active" data-brand="colorkey-luminous" aria-current="true">
 							<span class="video-card-badge">Featured</span>
 							<div class="video-frame">
 								<iframe src="https://www.youtube.com/embed/ICfo78UoR00?modestbranding=1&rel=0"
@@ -342,7 +465,7 @@ category: social-cgi
 								<p class="video-meta-client">Client: COLORKEY LUMINOUS Việt Nam</p>
 							</div>
 						</article>
-						<article class="video-card" aria-current="false">
+						<article class="video-card" data-brand="colorkey-luminous" aria-current="false">
 							<span class="video-card-badge">New</span>
 							<div class="video-frame">
 								<iframe src="https://www.youtube.com/embed/0U5iNj8NIBE?modestbranding=1&rel=0"
@@ -351,11 +474,11 @@ category: social-cgi
 									referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 							</div>
 							<div class="video-meta">
-								<p class="video-meta-client">Client: COLORKEY Việt Nam</p>
+								<p class="video-meta-client">Client: COLORKEY LUMINOUS</p>
 							</div>
 						</article>
 
-						<article class="video-card" aria-current="false">
+						<article class="video-card" data-brand="doji" aria-current="false">
 							<span class="video-card-badge">New</span>
 							<div class="video-frame">
 								<iframe src="https://www.youtube.com/embed/b-3vOG0yvyQ?modestbranding=1&rel=0"
@@ -369,7 +492,7 @@ category: social-cgi
 							</div>
 						</article>
 
-						<article class="video-card" aria-current="false">
+						<article class="video-card" data-brand="doji" aria-current="false">
 							<span class="video-card-badge">New</span>
 							<div class="video-frame">
 								<iframe src="https://www.youtube.com/embed/HYMnrEiJkRU?modestbranding=1&rel=0"
@@ -383,7 +506,7 @@ category: social-cgi
 							</div>
 						</article>
 
-						<article class="video-card" aria-current="false">
+						<article class="video-card" data-brand="colorkey" aria-current="false">
 							<div class="video-frame">
 								<iframe src="https://www.youtube.com/embed/N01G3_RArMU?modestbranding=1&rel=0"
 									title="Colorkey Fake OOH"
@@ -395,7 +518,7 @@ category: social-cgi
 							</div>
 						</article>
 
-						<article class="video-card" aria-current="false">
+						<article class="video-card" data-brand="yves-rocher" aria-current="false">
 							<div class="video-frame">
 								<iframe src="https://www.youtube.com/embed/756K2c_ygN0?modestbranding=1&rel=0"
 									title="Yves Rocher Fake OOH 03"
@@ -407,7 +530,7 @@ category: social-cgi
 							</div>
 						</article>
 
-						<article class="video-card" aria-current="false">
+						<article class="video-card" data-brand="aeon" aria-current="false">
 							<div class="video-frame">
 								<iframe src="https://www.youtube.com/embed/Hpayc-5xtzg?modestbranding=1&rel=0"
 									title="AEON Fake OOH 01"
@@ -419,7 +542,7 @@ category: social-cgi
 							</div>
 						</article>
 
-						<article class="video-card" aria-current="false">
+						<article class="video-card" data-brand="aeon" aria-current="false">
 							<div class="video-frame">
 								<iframe src="https://www.youtube.com/embed/8SkYppBHVfM?modestbranding=1&rel=0"
 									title="AEON Fake OOH 02"
@@ -431,7 +554,7 @@ category: social-cgi
 							</div>
 						</article>
 
-						<article class="video-card" aria-current="false">
+						<article class="video-card" data-brand="yves-rocher" aria-current="false">
 							<div class="video-frame">
 								<iframe src="https://www.youtube.com/embed/Z5p4aYoX-fQ?modestbranding=1&rel=0"
 									title="Yves Rocher Fake OOH 01"
@@ -443,7 +566,7 @@ category: social-cgi
 							</div>
 						</article>
 
-						<article class="video-card" aria-current="false">
+						<article class="video-card" data-brand="danh-gia" aria-current="false">
 							<div class="video-frame">
 								<iframe src="https://www.youtube.com/embed/OayhgTXeAU4?modestbranding=1&rel=0"
 									title="Danh Giá Fake OOH 01"
@@ -455,7 +578,7 @@ category: social-cgi
 							</div>
 						</article>
 
-						<article class="video-card" aria-current="false">
+						<article class="video-card" data-brand="garmin" aria-current="false">
 							<div class="video-frame">
 								<iframe src="https://www.youtube.com/embed/HRujBRTRCaQ?modestbranding=1&rel=0"
 									title="Garmin Fake OOH"
@@ -467,7 +590,7 @@ category: social-cgi
 							</div>
 						</article>
 
-						<article class="video-card" aria-current="false">
+						<article class="video-card" data-brand="danh-gia" aria-current="false">
 							<div class="video-frame">
 								<iframe src="https://www.youtube.com/embed/EpCLgajxUCs?modestbranding=1&rel=0"
 									title="Danh Giá Fake OOH 02"
@@ -479,7 +602,7 @@ category: social-cgi
 							</div>
 						</article>
 
-						<article class="video-card" aria-current="false">
+						<article class="video-card" data-brand="miss-universe" aria-current="false">
 							<div class="video-frame">
 								<iframe src="https://www.youtube.com/embed/w6rj6sLhtuI?modestbranding=1&rel=0"
 									title="Miss Universe Việt Nam Fake OOH"
@@ -491,7 +614,7 @@ category: social-cgi
 							</div>
 						</article>
 
-						<article class="video-card" aria-current="false">
+						<article class="video-card" data-brand="home-credit" aria-current="false">
 							<div class="video-frame">
 								<iframe src="https://www.youtube.com/embed/C3Jbgfb3PWk?modestbranding=1&rel=0"
 									title="Home Credit Fake OOH"
@@ -504,7 +627,7 @@ category: social-cgi
 							</div>
 						</article>
 
-						<article class="video-card" aria-current="false">
+						<article class="video-card" data-brand="yves-rocher" aria-current="false">
 							<div class="video-frame">
 								<iframe src="https://www.youtube.com/embed/1EUJ62rfOZw?modestbranding=1&rel=0"
 									title="Yves Rocher Fake OOH 02"
@@ -533,7 +656,7 @@ category: social-cgi
 		</div>
 
 		<div class="md:hidden space-y-10 mb-10">
-			<div class="p-4 md:p-6 overflow-hidden flex justify-center flex-col items-center">
+			<div class="fooh-mobile-card p-4 md:p-6 overflow-hidden flex justify-center flex-col items-center" data-brand="colorkey">
 				<span class="video-card-badge mb-4">New</span>
 				<div class="relative aspect-[9/16] w-[240px] sm:w-[300px] mx-auto mb-4">
 					<iframe class="absolute inset-0 w-full h-full rounded-lg"
@@ -544,7 +667,7 @@ category: social-cgi
 				</div>
 				<p class="text-gray-normal text-center">Client: COLORKEY Việt Nam</p>
 			</div>
-			<div class="p-4 md:p-6 overflow-hidden flex justify-center flex-col items-center">
+			<div class="fooh-mobile-card p-4 md:p-6 overflow-hidden flex justify-center flex-col items-center" data-brand="maybelline">
 				<span class="video-card-badge mb-4">Featured</span>
 				<div class="relative aspect-[9/16] w-[240px] sm:w-[300px] mx-auto mb-4">
 					<iframe class="absolute inset-0 w-full h-full rounded-lg"
@@ -555,7 +678,7 @@ category: social-cgi
 				</div>
 				<p class="text-gray-normal text-center">Client: Maybelline New York</p>
 			</div>
-			<div class="p-4 md:p-6 overflow-hidden flex justify-center flex-col items-center">
+			<div class="fooh-mobile-card p-4 md:p-6 overflow-hidden flex justify-center flex-col items-center" data-brand="colorkey-luminous">
 				<div class="relative aspect-[9/16] w-[240px] sm:w-[300px] mx-auto mb-4">
 					<iframe class="absolute inset-0 w-full h-full rounded-lg"
 						src="https://www.youtube.com/embed/ICfo78UoR00?modestbranding=1&rel=0"
@@ -566,7 +689,7 @@ category: social-cgi
 				<p class="text-gray-normal text-center">Client: COLORKEY LUMINOUS Việt Nam</p>
 			</div>
 
-			<div class="p-4 md:p-6 overflow-hidden flex justify-center flex-col items-center">
+			<div class="fooh-mobile-card p-4 md:p-6 overflow-hidden flex justify-center flex-col items-center" data-brand="colorkey-luminous">
 				<div class="relative aspect-[9/16] w-[240px] sm:w-[300px] mx-auto mb-4">
 					<iframe class="absolute inset-0 w-full h-full rounded-lg"
 						src="https://www.youtube.com/embed/0U5iNj8NIBE?modestbranding=1&rel=0" title="COLORKEY Fake OOH"
@@ -577,7 +700,7 @@ category: social-cgi
 				<p class="text-gray-normal text-center">Client: COLORKEY Việt Nam</p>
 			</div>
 
-			<div class="p-4 md:p-6 overflow-hidden flex justify-center flex-col items-center">
+			<div class="fooh-mobile-card p-4 md:p-6 overflow-hidden flex justify-center flex-col items-center" data-brand="doji">
 				<div class="relative aspect-[9/16] w-[240px] sm:w-[300px] mx-auto mb-4">
 					<iframe class="absolute inset-0 w-full h-full rounded-lg"
 						src="https://www.youtube.com/embed/b-3vOG0yvyQ?modestbranding=1&rel=0" title="DOJI Fake OOH 01"
@@ -588,7 +711,7 @@ category: social-cgi
 				<p class="text-gray-normal text-center">Client: DOJI<br />Agency: Sixth Sense Media</p>
 			</div>
 
-			<div class="p-4 md:p-6 overflow-hidden flex justify-center flex-col items-center">
+			<div class="fooh-mobile-card p-4 md:p-6 overflow-hidden flex justify-center flex-col items-center" data-brand="doji">
 				<div class="relative aspect-[9/16] w-[240px] sm:w-[300px] mx-auto mb-4">
 					<iframe class="absolute inset-0 w-full h-full rounded-lg"
 						src="https://www.youtube.com/embed/HYMnrEiJkRU?modestbranding=1&rel=0" title="Video 13"
@@ -599,7 +722,7 @@ category: social-cgi
 				<p class="text-gray-normal text-center">Client: DOJI<br />Agency: Sixth Sense Media</p>
 			</div>
 
-			<div class="p-4 md:p-6 overflow-hidden flex justify-center flex-col items-center">
+			<div class="fooh-mobile-card p-4 md:p-6 overflow-hidden flex justify-center flex-col items-center" data-brand="colorkey">
 				<div class="relative aspect-[9/16] w-[240px] sm:w-[300px] mx-auto mb-4">
 					<iframe class="absolute inset-0 w-full h-full rounded-lg"
 						src="https://www.youtube.com/embed/N01G3_RArMU?modestbranding=1&rel=0"
@@ -610,7 +733,7 @@ category: social-cgi
 				<p class="text-gray-normal text-center">Client: Colorkey Việt Nam</p>
 			</div>
 
-			<div class="p-4 md:p-6 overflow-hidden flex justify-center flex-col items-center">
+			<div class="fooh-mobile-card p-4 md:p-6 overflow-hidden flex justify-center flex-col items-center" data-brand="yves-rocher">
 				<div class="relative aspect-[9/16] w-[240px] sm:w-[300px] mx-auto mb-4">
 					<iframe class="absolute inset-0 w-full h-full rounded-lg"
 						src="https://www.youtube.com/embed/756K2c_ygN0?modestbranding=1&rel=0"
@@ -621,7 +744,7 @@ category: social-cgi
 				<p class="text-gray-normal text-center">Client: Yves Rocher Việt Nam</p>
 			</div>
 
-			<div class="p-4 md:p-6 overflow-hidden flex justify-center flex-col items-center">
+			<div class="fooh-mobile-card p-4 md:p-6 overflow-hidden flex justify-center flex-col items-center" data-brand="aeon">
 				<div class="relative aspect-[9/16] w-[240px] sm:w-[300px] mx-auto mb-4">
 					<iframe class="absolute inset-0 w-full h-full rounded-lg"
 						src="https://www.youtube.com/embed/Hpayc-5xtzg?modestbranding=1&rel=0" title="Video 2"
@@ -632,7 +755,7 @@ category: social-cgi
 				<p class="text-gray-normal text-center">Client: Aeon Việt Nam</p>
 			</div>
 
-			<div class="p-4 md:p-6 overflow-hidden flex justify-center flex-col items-center">
+			<div class="fooh-mobile-card p-4 md:p-6 overflow-hidden flex justify-center flex-col items-center" data-brand="aeon">
 				<div class="relative aspect-[9/16] w-[240px] sm:w-[300px] mx-auto mb-4">
 					<iframe class="absolute inset-0 w-full h-full rounded-lg"
 						src="https://www.youtube.com/embed/8SkYppBHVfM?modestbranding=1&rel=0" title="Video 3"
@@ -643,7 +766,7 @@ category: social-cgi
 				<p class="text-gray-normal text-center">Client: Aeon Việt Nam</p>
 			</div>
 
-			<div class="p-4 md:p-6 overflow-hidden flex justify-center flex-col items-center">
+			<div class="fooh-mobile-card p-4 md:p-6 overflow-hidden flex justify-center flex-col items-center" data-brand="yves-rocher">
 				<div class="relative aspect-[9/16] w-[240px] sm:w-[300px] mx-auto mb-4">
 					<iframe class="absolute inset-0 w-full h-full rounded-lg"
 						src="https://www.youtube.com/embed/Z5p4aYoX-fQ?modestbranding=1&rel=0" title="Video 5"
@@ -654,7 +777,7 @@ category: social-cgi
 				<p class="text-gray-normal text-center">Client: Yves Rocher Việt Nam</p>
 			</div>
 
-			<div class="p-4 md:p-6 overflow-hidden flex justify-center flex-col items-center">
+			<div class="fooh-mobile-card p-4 md:p-6 overflow-hidden flex justify-center flex-col items-center" data-brand="danh-gia">
 				<div class="relative aspect-[9/16] w-[240px] sm:w-[300px] mx-auto mb-4">
 					<iframe class="absolute inset-0 w-full h-full rounded-lg"
 						src="https://www.youtube.com/embed/OayhgTXeAU4?modestbranding=1&rel=0" title="Video 6"
@@ -665,7 +788,7 @@ category: social-cgi
 				<p class="text-gray-normal text-center">Client: Danh giá Fashion</p>
 			</div>
 
-			<div class="p-4 md:p-6 overflow-hidden flex justify-center flex-col items-center">
+			<div class="fooh-mobile-card p-4 md:p-6 overflow-hidden flex justify-center flex-col items-center" data-brand="garmin">
 				<div class="relative aspect-[9/16] w-[240px] sm:w-[300px] mx-auto mb-4">
 					<iframe class="absolute inset-0 w-full h-full rounded-lg"
 						src="https://www.youtube.com/embed/HRujBRTRCaQ?modestbranding=1&rel=0" title="Video 7"
@@ -676,7 +799,7 @@ category: social-cgi
 				<p class="text-gray-normal text-center">Client: Garmin Việt Nam</p>
 			</div>
 
-			<div class="p-4 md:p-6 overflow-hidden flex justify-center flex-col items-center">
+			<div class="fooh-mobile-card p-4 md:p-6 overflow-hidden flex justify-center flex-col items-center" data-brand="danh-gia">
 				<div class="relative aspect-[9/16] w-[240px] sm:w-[300px] mx-auto mb-4">
 					<iframe class="absolute inset-0 w-full h-full rounded-lg"
 						src="https://www.youtube.com/embed/EpCLgajxUCs?modestbranding=1&rel=0" title="Video 8"
@@ -687,7 +810,7 @@ category: social-cgi
 				<p class="text-gray-normal text-center">Client: Danh giá Fashion</p>
 			</div>
 
-			<div class="p-4 md:p-6 overflow-hidden flex justify-center flex-col items-center">
+			<div class="fooh-mobile-card p-4 md:p-6 overflow-hidden flex justify-center flex-col items-center" data-brand="miss-universe">
 				<div class="relative aspect-[9/16] w-[240px] sm:w-[300px] mx-auto mb-4">
 					<iframe class="absolute inset-0 w-full h-full rounded-lg"
 						src="https://www.youtube.com/embed/w6rj6sLhtuI?modestbranding=1&rel=0" title="Video 9"
@@ -698,7 +821,7 @@ category: social-cgi
 				<p class="text-gray-normal text-center">Client: Miss Universe Việt Nam 2024</p>
 			</div>
 
-			<div class="p-4 md:p-6 overflow-hidden flex justify-center flex-col items-center">
+			<div class="fooh-mobile-card p-4 md:p-6 overflow-hidden flex justify-center flex-col items-center" data-brand="home-credit">
 				<div class="relative aspect-[9/16] w-[240px] sm:w-[300px] mx-auto mb-4">
 					<iframe class="absolute inset-0 w-full h-full rounded-lg"
 						src="https://www.youtube.com/embed/C3Jbgfb3PWk?modestbranding=1&rel=0" title="Video 10"
@@ -710,13 +833,27 @@ category: social-cgi
 					creative</p>
 			</div>
 
+			<div class="fooh-mobile-card p-4 md:p-6 overflow-hidden flex justify-center flex-col items-center" data-brand="yves-rocher">
+				<div class="relative aspect-[9/16] w-[240px] sm:w-[300px] mx-auto mb-4">
+					<iframe class="absolute inset-0 w-full h-full rounded-lg"
+						src="https://www.youtube.com/embed/1EUJ62rfOZw?modestbranding=1&rel=0" title="Yves Rocher Fake OOH 02"
+						frameborder="0"
+						allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+						referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+				</div>
+				<p class="text-gray-normal text-center">Client: Yves Rocher Việt Nam</p>
+			</div>
+
 		</div>
 
 <link rel="stylesheet" href="/assets/css/projects_custom.css">
 
 		<!-- Minimalist Behance Section -->
 		<div class="behance-minimal-section scroll-reveal">
-			<span class="behance-title">Xem trên Behance</span>
+			<span class="behance-title" data-lang-key="fooh_view_behance">
+				<span class="lang-vi">Xem trên Behance</span>
+				<span class="lang-en hidden">View on Behance</span>
+			</span>
 			
 			<div class="timeline-interactive-area">
 				<!-- Full-width Line behind buttons -->
@@ -737,9 +874,13 @@ category: social-cgi
 		</div>
 
 		<div class="p-6 md:p-8 text-center mt-10 pt-8">
-			<p class="text-2xl md:text-3xl font-extrabold text-main mb-4">Thank for watching!</p>
-			<p class="text-lg md:text-xl text-gray-normal">
-				Contact for works:
+			<p class="text-2xl md:text-3xl font-extrabold text-main mb-4" data-lang-key="thanks_watching">
+				<span class="lang-vi">Cảm ơn đã theo dõi!</span>
+				<span class="lang-en hidden">Thanks for watching!</span>
+			</p>
+			<p class="text-lg md:text-xl text-gray-normal" data-lang-key="contact_work">
+				<span class="lang-vi">Liên hệ công việc:</span>
+				<span class="lang-en hidden">Contact for work:</span>
 				<a href="mailto:contact@manhhuynh.work"
 					class="text-blue-600 hover:underline font-semibold">contact@manhhuynh.work</a>
 			</p>
@@ -748,5 +889,42 @@ category: social-cgi
 		{% include related-projects.html %}
 	</div>
 </section>
+
+<script>
+(function() {
+  function showLang(lang) {
+    document.querySelectorAll('.lang-vi').forEach(function(el) {
+      el.classList.toggle('hidden', lang !== 'vi');
+    });
+    document.querySelectorAll('.lang-en').forEach(function(el) {
+      el.classList.toggle('hidden', lang !== 'en');
+    });
+  }
+
+  function getInitialLanguage() {
+    var urlParams = new URLSearchParams(window.location.search);
+    var urlLang = urlParams.get('lang');
+    if (urlLang === 'en' || urlLang === 'vi') {
+      localStorage.setItem('lang', urlLang);
+      return urlLang;
+    }
+    return localStorage.getItem('lang') || 'vi';
+  }
+
+  var activeLang = getInitialLanguage();
+  showLang(activeLang);
+
+  document.addEventListener('DOMContentLoaded', function() {
+    showLang(getInitialLanguage());
+  });
+
+  document.addEventListener('languageChanged', function(e) {
+    if (e.detail && e.detail.lang) {
+      showLang(e.detail.lang);
+      localStorage.setItem('lang', e.detail.lang);
+    }
+  });
+})();
+</script>
 
 <script type="module" src="/assets/script/videoCarousel.js"></script>

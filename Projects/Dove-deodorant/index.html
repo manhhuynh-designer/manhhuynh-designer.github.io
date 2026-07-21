@@ -41,13 +41,15 @@ category: motion-3d
           <article class="max-w-5xl mx-auto mb-24 grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-16 items-start px-6">
             <div class="md:col-span-7">
               <p class="text-2xl md:text-3xl font-medium text-heading leading-tight italic md:not-italic text-center md:text-left" data-lang-key="project_description_lead">
-                Phim quảng cáo 3D tập trung làm nổi bật tính năng phục hồi da chuyên sâu vào ban đêm của dòng sản phẩm <strong>Dove Deodorant Night Serum</strong>.
+                <span class="lang-vi">Phim quảng cáo 3D tập trung làm nổi bật tính năng phục hồi da chuyên sâu vào ban đêm của dòng sản phẩm <strong>Dove Deodorant Night Serum</strong>.</span>
+                <span class="lang-en hidden">A 3D commercial highlighting the intensive overnight skin recovery features of the <strong>Dove Deodorant Night Serum</strong> product line.</span>
               </p>
             </div>
             <div class="md:col-span-5 pt-2">
               <div class="pl-0 md:pl-8 border-l-0 md:border-l border-blue-500/30">
                 <p class="text-base md:text-lg text-gray-normal leading-relaxed text-center md:text-left" data-lang-key="project_description_role">
-                  Tôi chịu trách nhiệm toàn bộ quy trình sản xuất từ dựng hình 3D (Modeling) bằng Blender cho đến khâu hậu kỳ và hiệu ứng (Compositing) bằng After Effects.
+                  <span class="lang-vi">Tôi chịu trách nhiệm toàn bộ quy trình sản xuất từ dựng hình 3D (Modeling) bằng Blender cho đến khâu hậu kỳ và hiệu ứng (Compositing) bằng After Effects.</span>
+                  <span class="lang-en hidden">I handled the full production pipeline, from 3D modeling in Blender to post-production and compositing in After Effects.</span>
                 </p>
               </div>
             </div>
@@ -123,13 +125,19 @@ category: motion-3d
         
   <div class="flex justify-center">
             <a href="https://www.behance.net/gallery/210560855/Dove-Deodorant-Night-serum-Product-TVC" target="_blank" class="mt-8 inline-flex items-center px-6 py-3 bg-blue-600 text-white text-lg font-semibold rounded-full shadow-lg hover:bg-blue-700 transition duration-300 transform hover:scale-105">
-                <i class="fab fa-behance mr-3 text-xl"></i> Xem trên Behance
+                <i class="fab fa-behance mr-3 text-xl"></i>
+                <span class="lang-vi">Xem trên Behance</span>
+                <span class="lang-en hidden">View on Behance</span>
             </a>
         </div>
         <div class="p-6 md:p-8 text-center mt-10 border-t border-gray-200 pt-8">
-            <p class="text-2xl md:text-3xl font-extrabold text-main mb-4">Thank for watching!</p>
+            <p class="text-2xl md:text-3xl font-extrabold text-main mb-4">
+                <span class="lang-vi">Cảm ơn đã theo dõi!</span>
+                <span class="lang-en hidden">Thanks for watching!</span>
+            </p>
             <p class="text-lg md:text-xl text-gray-normal">
-                Contact for works:
+                <span class="lang-vi">Liên hệ công việc:</span>
+                <span class="lang-en hidden">Contact for work:</span>
                 <a href="mailto:contact@manhhuynh.work" class="text-blue-600 hover:underline font-semibold">contact@manhhuynh.work</a>
             </p>
         </div>
@@ -137,3 +145,40 @@ category: motion-3d
         {% include related-projects.html %}
     </section>
 </main>
+
+<script>
+(function() {
+  function showLang(lang) {
+    document.querySelectorAll('.lang-vi').forEach(function(el) {
+      el.classList.toggle('hidden', lang !== 'vi');
+    });
+    document.querySelectorAll('.lang-en').forEach(function(el) {
+      el.classList.toggle('hidden', lang !== 'en');
+    });
+  }
+
+  function getInitialLanguage() {
+    var urlParams = new URLSearchParams(window.location.search);
+    var urlLang = urlParams.get('lang');
+    if (urlLang === 'en' || urlLang === 'vi') {
+      localStorage.setItem('lang', urlLang);
+      return urlLang;
+    }
+    return localStorage.getItem('lang') || 'vi';
+  }
+
+  var activeLang = getInitialLanguage();
+  showLang(activeLang);
+
+  document.addEventListener('DOMContentLoaded', function() {
+    showLang(getInitialLanguage());
+  });
+
+  document.addEventListener('languageChanged', function(e) {
+    if (e.detail && e.detail.lang) {
+      showLang(e.detail.lang);
+      localStorage.setItem('lang', e.detail.lang);
+    }
+  });
+})();
+</script>

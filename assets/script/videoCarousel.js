@@ -46,10 +46,12 @@ function initializeCarousel(root) {
 		return null;
 	}
 
-	const cards = Array.from(track.querySelectorAll('.video-card'));
-	if (cards.length === 0) {
+	const allCards = Array.from(track.querySelectorAll('.video-card'));
+	if (allCards.length === 0) {
 		return null;
 	}
+
+	let visibleCards = [...allCards];
 
 	const prevButton = root.querySelector('[data-carousel-prev]');
 	const nextButton = root.querySelector('[data-carousel-next]');
@@ -57,26 +59,34 @@ function initializeCarousel(root) {
 	const autoplayDelay = null;
 	const loop = root.dataset.loop === 'true';
 
-	const indicators = [];
-	if (indicatorsHost) {
-		indicatorsHost.innerHTML = '';
-		cards.forEach((_, idx) => {
-			const indicator = createIndicatorButton(idx);
-			indicator.addEventListener('click', () => {
-				carousel.goTo(idx, { shouldAutoplay: true });
+	let indicators = [];
+
+	function rebuildIndicators() {
+		indicators = [];
+		if (indicatorsHost) {
+			indicatorsHost.innerHTML = '';
+			visibleCards.forEach((_, idx) => {
+				const indicator = createIndicatorButton(idx);
+				indicator.addEventListener('click', () => {
+					carousel.goTo(idx, { shouldAutoplay: true });
+				});
+				indicatorsHost.appendChild(indicator);
+				indicators.push(indicator);
 			});
-			indicatorsHost.appendChild(indicator);
-			indicators.push(indicator);
-		});
+		}
 	}
 
 	const carousel = {
 		root,
 		viewport,
-		cards,
+		get cards() {
+			return visibleCards;
+		},
 		prevButton,
 		nextButton,
-		indicators,
+		get indicators() {
+			return indicators;
+		},
 		autoplayDelay,
 		loop,
 		currentIndex: 0,
@@ -90,6 +100,7 @@ function initializeCarousel(root) {
 		scrollToIndex,
 		goTo,
 		refresh,
+		filterByBrand,
 	};
 
 	function clearAutoplay() {
@@ -118,7 +129,10 @@ function initializeCarousel(root) {
 
 	function setActiveIndex(index, options = {}) {
 		const { shouldAutoplay = false } = options;
-		carousel.currentIndex = index;
+		if (carousel.cards.length === 0) {
+			return;
+		}
+		carousel.currentIndex = Math.max(0, Math.min(carousel.cards.length - 1, index));
 
 		carousel.cards.forEach((card, idx) => {
 			const isActive = idx === carousel.currentIndex;
@@ -142,11 +156,11 @@ function initializeCarousel(root) {
 		});
 
 		if (carousel.prevButton) {
-			carousel.prevButton.disabled = !carousel.loop && carousel.currentIndex === 0;
+			carousel.prevButton.disabled = (!carousel.loop && carousel.currentIndex === 0) || carousel.cards.length <= 1;
 		}
 
 		if (carousel.nextButton) {
-			carousel.nextButton.disabled = !carousel.loop && carousel.currentIndex === carousel.cards.length - 1;
+			carousel.nextButton.disabled = (!carousel.loop && carousel.currentIndex === carousel.cards.length - 1) || carousel.cards.length <= 1;
 		}
 	}
 
@@ -173,6 +187,9 @@ function initializeCarousel(root) {
 	}
 
 	function normalizeIndex(index) {
+		if (carousel.cards.length === 0) {
+			return 0;
+		}
 		if (carousel.loop) {
 			const total = carousel.cards.length;
 			return ((index % total) + total) % total;
@@ -193,6 +210,24 @@ function initializeCarousel(root) {
 		scrollToIndex(carousel.currentIndex);
 	}
 
+	function filterByBrand(brandKey) {
+		allCards.forEach(card => {
+			const cardBrand = (card.dataset.brand || '').toLowerCase();
+			if (brandKey === 'all' || cardBrand === brandKey) {
+				card.style.display = '';
+			} else {
+				card.style.display = 'none';
+				card.classList.remove('is-active');
+				const iframe = card.querySelector('iframe');
+				if (iframe) resetVideo(iframe);
+			}
+		});
+
+		visibleCards = allCards.filter(card => card.style.display !== 'none');
+		rebuildIndicators();
+		goTo(0, { shouldAutoplay: false });
+	}
+
 	if (prevButton) {
 		prevButton.addEventListener('click', () => {
 			carousel.goTo(carousel.currentIndex - 1, { shouldAutoplay: true });
@@ -206,7 +241,7 @@ function initializeCarousel(root) {
 	}
 
 	carousel.viewport.addEventListener('scroll', () => {
-		if (carousel.isProgrammaticScroll) {
+		if (carousel.isProgrammaticScroll || carousel.cards.length === 0) {
 			return;
 		}
 
@@ -244,9 +279,97 @@ function initializeCarousel(root) {
 	});
 
 	// Kick-off state
+	rebuildIndicators();
 	goTo(0, { shouldAutoplay: false });
 
 	return carousel;
+}
+
+function normalizeBrandKey(input) {
+	if (!input) return 'all';
+	const cleaned = input.toLowerCase().trim();
+	if (cleaned === 'colorkey-luminous' || cleaned.includes('luminous')) return 'colorkey-luminous';
+	if (cleaned === 'colorkey' || cleaned.includes('colorkey')) return 'colorkey';
+	if (cleaned === 'maybelline' || cleaned.includes('maybelline')) return 'maybelline';
+	if (cleaned === 'doji' || cleaned.includes('doji')) return 'doji';
+	if (cleaned === 'yves-rocher' || cleaned.includes('yves') || cleaned.includes('rocher')) return 'yves-rocher';
+	if (cleaned === 'aeon' || cleaned.includes('aeon')) return 'aeon';
+	if (cleaned === 'danh-gia' || cleaned.includes('danh gia') || cleaned.includes('danhgia')) return 'danh-gia';
+	if (cleaned === 'garmin' || cleaned.includes('garmin')) return 'garmin';
+	if (cleaned === 'miss-universe' || cleaned.includes('miss universe') || cleaned.includes('missuniverse')) return 'miss-universe';
+	if (cleaned === 'home-credit' || cleaned.includes('home credit') || cleaned.includes('homecredit')) return 'home-credit';
+	return cleaned;
+}
+
+function initializeBrandFilters() {
+	const filterRoot = document.querySelector('[data-brand-filter-root]');
+	if (!filterRoot) return;
+
+	const filterBtns = filterRoot.querySelectorAll('[data-filter-brand]');
+	const mobileCards = document.querySelectorAll('.fooh-mobile-card');
+
+	function applyBrandFilter(rawBrand, updateUrl = false) {
+		const targetBrand = normalizeBrandKey(rawBrand);
+
+		// 1. Update filter buttons UI
+		filterBtns.forEach(btn => {
+			const btnBrand = normalizeBrandKey(btn.dataset.filterBrand);
+			btn.classList.toggle('is-active', btnBrand === targetBrand);
+		});
+
+		// 2. Filter desktop carousels
+		activeCarousels.forEach(carousel => {
+			carousel.filterByBrand(targetBrand);
+		});
+
+		// 3. Filter mobile list
+		mobileCards.forEach(card => {
+			const cardBrand = normalizeBrandKey(card.dataset.brand);
+			if (targetBrand === 'all' || cardBrand === targetBrand) {
+				card.style.display = '';
+			} else {
+				card.style.display = 'none';
+			}
+		});
+
+		// 4. Update URL without page reload
+		if (updateUrl) {
+			const url = new URL(window.location.href);
+			if (targetBrand === 'all') {
+				url.searchParams.delete('brand');
+			} else {
+				url.searchParams.set('brand', targetBrand);
+			}
+			window.history.replaceState(null, '', url.toString());
+		}
+	}
+
+	filterBtns.forEach(btn => {
+		btn.addEventListener('click', () => {
+			applyBrandFilter(btn.dataset.filterBrand, true);
+		});
+	});
+
+	// Check URL query parameters or hash on initial load
+	function checkUrlBrand() {
+		const searchParams = new URLSearchParams(window.location.search);
+		let urlBrand = searchParams.get('brand');
+		if (!urlBrand && window.location.hash) {
+			const hash = window.location.hash.substring(1);
+			if (hash.startsWith('brand=')) {
+				urlBrand = hash.replace('brand=', '');
+			} else if (hash) {
+				urlBrand = hash;
+			}
+		}
+		if (urlBrand) {
+			applyBrandFilter(urlBrand, false);
+		}
+	}
+
+	checkUrlBrand();
+
+	window.addEventListener('popstate', checkUrlBrand);
 }
 
 function initializeVideoGalleries() {
@@ -257,6 +380,8 @@ function initializeVideoGalleries() {
 			activeCarousels.push(carousel);
 		}
 	});
+
+	initializeBrandFilters();
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -287,5 +412,6 @@ window.addEventListener('visibilitychange', () => {
 		activeCarousels.forEach(carousel => carousel.scheduleAutoplay());
 	}
 });
+
 
 

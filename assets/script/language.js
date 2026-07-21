@@ -1,7 +1,17 @@
 // js/language.js
 import { languages, portfolioProjects } from './data.js';
 
-export let currentLanguage = localStorage.getItem('lang') || 'vi'; // Default to Vietnamese
+function getInitialLanguage() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const urlLang = urlParams.get('lang');
+    if (urlLang === 'en' || urlLang === 'vi') {
+        localStorage.setItem('lang', urlLang);
+        return urlLang;
+    }
+    return localStorage.getItem('lang') || 'vi';
+}
+
+export let currentLanguage = getInitialLanguage(); // Default to URL lang parameter, localStorage, or Vietnamese
 
 // Function to update content based on selected language
 export function updateContent(lang) {
