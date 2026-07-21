@@ -3,7 +3,7 @@
     <nav class="flex items-center justify-between w-full md:pl-0">
       <!-- Left: Logo -->
       <div class="flex items-center">
-        <a href="/#home" class="flex items-center">
+        <a href="{% if page.url == '/portfolio/' %}#seq-scroll-wrapper{% else %}/#home{% endif %}" class="flex items-center">
           <img src="/assets/images/logo.png" alt="Mạnh Huỳnh Logo" class="h-20 md:h-10 w-auto" />
         </a>
       </div>
@@ -11,26 +11,23 @@
       <!-- Right: Navigation links + Theme toggle -->
       <div class="flex items-center ml-auto">
         <ul class="hidden md:flex space-x-8 mr-8">
-          <li><a href="/#home" class="text-main hover:text-accent-strong transition duration-300 text-lg font-medium" data-lang-key="nav_home">Trang Chủ</a></li>
-          <li><a href="/about" class="text-main hover:text-accent-strong transition duration-300 text-lg font-medium" data-lang-key="nav_about">Giới Thiệu</a></li>
-          <li><a href="/#portfolio" class="text-main hover:text-accent-strong transition duration-300 text-lg font-medium" data-lang-key="nav_portfolio">Dự Án</a></li>
-          <li><a href="/services/" class="text-main hover:text-accent-strong transition duration-300 text-lg font-medium" data-lang-key="nav_services">Dịch Vụ</a></li>
-          <li><a href="/#contact" class="text-main hover:text-accent-strong transition duration-300 text-lg font-medium" data-lang-key="nav_contact">Liên Hệ</a></li>
-          <li><a href="/blog" class="text-main hover:text-accent-strong transition duration-300 text-lg font-medium" data-lang-key="nav_blog">Blog</a></li>
-          <li><a href="https://manhdesigns.gumroad.com" target="_blank" rel="noopener noreferrer" class="text-main hover:text-accent-strong transition duration-300 text-lg font-medium" data-lang-key="nav_download">Download</a></li>
+          {% if page.url == '/portfolio/' %}
+            <li><a href="#pf-hero" class="text-main hover:text-accent-strong transition duration-300 text-lg font-medium">Home</a></li>
+            <li><a href="/about/" class="text-main hover:text-accent-strong transition duration-300 text-lg font-medium">About</a></li>
+            <li><a href="#category-product-lookdev" class="text-main hover:text-accent-strong transition duration-300 text-lg font-medium">Work</a></li>
+            <li><a href="#pf-cta" class="text-main hover:text-accent-strong transition duration-300 text-lg font-medium" onclick="const cta = document.getElementById('pf-cta'); if(cta) { cta.scrollIntoView({behavior: 'smooth'}); } return false;">Contact</a></li>
+          {% else %}
+            <li><a href="/#home" class="text-main hover:text-accent-strong transition duration-300 text-lg font-medium" data-lang-key="nav_home">Trang Chủ</a></li>
+            <li><a href="/about" class="text-main hover:text-accent-strong transition duration-300 text-lg font-medium" data-lang-key="nav_about">Giới Thiệu</a></li>
+            <li><a href="/#portfolio" class="text-main hover:text-accent-strong transition duration-300 text-lg font-medium" data-lang-key="nav_portfolio">Dự Án</a></li>
+            <li><a href="/services/" class="text-main hover:text-accent-strong transition duration-300 text-lg font-medium" data-lang-key="nav_services">Dịch Vụ</a></li>
+            <li><a href="/#contact" class="text-main hover:text-accent-strong transition duration-300 text-lg font-medium" data-lang-key="nav_contact">Liên Hệ</a></li>
+            <li><a href="/blog" class="text-main hover:text-accent-strong transition duration-300 text-lg font-medium" data-lang-key="nav_blog">Blog</a></li>
+            <li><a href="https://manhdesigns.gumroad.com" target="_blank" rel="noopener noreferrer" class="text-main hover:text-accent-strong transition duration-300 text-lg font-medium" data-lang-key="nav_download">Download</a></li>
+          {% endif %}
         </ul>
         
-        <div class="flex flex-col sm:flex-row items-center space-y-2 sm:space-y-0">
-          <label class="switch" id="theme-toggle-label">
-            <input type="checkbox" id="theme-toggle-checkbox" title="Toggle theme">
-            <span class="slider round"></span>
-            <script>
-              if (localStorage.getItem('theme') === 'light') {
-                document.currentScript.parentNode.querySelector('input').checked = true;
-              }
-            </script>
-          </label>
-        </div>
+
       </div>
     </nav>
   </div>

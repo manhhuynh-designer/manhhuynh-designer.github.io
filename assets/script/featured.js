@@ -174,9 +174,9 @@ function initLightbox() {
  * Hiệu ứng trượt và hiển thị (Reveal) các phần tử khi cuộn vào khung nhìn
  */
 function initRevealAnimations() {
-    // Reveal tiêu đề và mô tả trang ở đầu
-    const header = document.querySelector('#portfolio-summary-page .pf-reveal-header');
-    if (header) {
+    // Reveal all .pf-reveal-header elements (hero, tools, category headings, stats, CTA)
+    const headers = document.querySelectorAll('#portfolio-summary-page .pf-reveal-header');
+    headers.forEach((header) => {
         gsap.set(header, { y: 40, opacity: 0 });
         gsap.to(header, {
             y: 0,
@@ -184,12 +184,12 @@ function initRevealAnimations() {
             duration: 1,
             ease: "power3.out",
             scrollTrigger: {
-                trigger: '#portfolio-summary-page',
-                start: "top 80%",
+                trigger: header,
+                start: "top 85%",
                 once: true
             }
         });
-    }
+    });
 
     // Reveal từng section dự án
     const sections = document.querySelectorAll('.portfolio-section');

@@ -19,13 +19,23 @@
   skills_key: "project_3ce_skills"
   behance_link: "Projects/3CE-COLORBAKER/"
   thumbnail_image: "Projects/3CE-COLORBAKER/assets/cover.png"
-  vimeo_iframe: "https://player.vimeo.com/video/1191827021?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"
+  r2_video: "https://img.manhhuynh.work/portfolio-web/projects/3ce_colorbaker.mp4"
   video_aspect: "16/9"
   bg_color: "#FFECD6"
-  featured_styleframes:
-    - "Projects/3CE-COLORBAKER/assets/S1.png"
-    - "Projects/3CE-COLORBAKER/assets/s2.png"
-    - "Projects/3CE-COLORBAKER/assets/s3.png"
+  card_layout_classes: "lg:col-span-2 lg:row-span-1"
+
+- id: "vf3-cartoon"
+  featured: true
+  category: "motion-3d"
+  title_key: "vf3_cartoon_title"
+  desc_key: "vf3_desc"
+  role_key: "vf3_cartoon_role"
+  behance_link: "Projects/VF3-cartoon/"
+  thumbnail_image: "Projects/VF3-cartoon/assets/vf3_frame_13.png"
+  thumbnail_fallback: "Projects/VF3-cartoon/assets/vf3_frame_13.png"
+  r2_video: "https://img.manhhuynh.work/portfolio-web/projects/vf3_cartoon.mp4"
+  video_aspect: "16/9"
+  bg_color: "#0E121A"
   card_layout_classes: "lg:col-span-2 lg:row-span-1"
 
 - id: "skin1004-centella"
@@ -37,13 +47,11 @@
   skills_key: "skin1004_skills"
   behance_link: "Projects/Skin1004-Centella/"
   thumbnail_image: "Projects/Skin1004-Centella/Thumbnail_cover.webp"
-  vimeo_iframe: "https://player.vimeo.com/video/1186658346?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"
+  r2_videos:
+    - url: "https://img.manhhuynh.work/portfolio-web/skin1004-centella/skin1004_1.mp4"
+    - url: "https://img.manhhuynh.work/portfolio-web/skin1004-centella/skin1004_2.mp4"
   video_aspect: "9/16"
   bg_color: "#F2E3D5"
-  featured_styleframes:
-    - "Projects/Skin1004-Centella/Styleframe/1-1.webp"
-    - "Projects/Skin1004-Centella/Styleframe/1-2.webp"
-    - "Projects/Skin1004-Centella/Styleframe/1-5.webp"
   card_layout_classes: "lg:col-span-2 lg:row-span-1"
 
 - id: "cgi-fooh-colorkey-luminous"
@@ -57,10 +65,10 @@
   thumbnail_image: "assets/images/Project/FOOH_1.gif"
   video_aspect: "9/16"
   bg_color: "#1A0F14"
-  youtube_iframes:
-    - url: "https://www.youtube.com/embed/ICfo78UoR00"
+  r2_videos:
+    - url: "https://img.manhhuynh.work/portfolio-web/projects/colorkey_luminous_1.mp4"
       title: "Luminous Lipgloss"
-    - url: "https://www.youtube.com/embed/0U5iNj8NIBE"
+    - url: "https://img.manhhuynh.work/portfolio-web/projects/colorkey_luminous_2.mp4"
       title: "Pink Lip Mud"
   card_layout_classes: "lg:col-span-1 lg:row-span-2"
 
@@ -75,10 +83,10 @@
   thumbnail_image: "assets/images/Project/FOOH_3.gif"
   video_aspect: "9/16"
   bg_color: "#12090F"
-  youtube_iframes:
-    - url: "https://www.youtube.com/embed/Kw_GIifnMCY"
+  r2_videos:
+    - url: "https://img.manhhuynh.work/portfolio-web/projects/colorkey_1.mp4"
       title: "New Commercial"
-    - url: "https://www.youtube.com/embed/N01G3_RArMU"
+    - url: "https://img.manhhuynh.work/portfolio-web/projects/colorkey_2.mp4"
       title: "Glossy Lip Lacquer"
   card_layout_classes: "lg:col-span-1 lg:row-span-2"
 
@@ -93,10 +101,10 @@
   thumbnail_image: "assets/images/Project/FOOH_2.gif"
   video_aspect: "9/16"
   bg_color: "#16120D"
-  youtube_iframes:
-    - url: "https://www.youtube.com/embed/b-3vOG0yvyQ"
+  r2_videos:
+    - url: "https://img.manhhuynh.work/portfolio-web/projects/doji_1.mp4"
       title: "DOJI Tower Diamond (Version A)"
-    - url: "https://www.youtube.com/embed/HYMnrEiJkRU"
+    - url: "https://img.manhhuynh.work/portfolio-web/projects/doji_2.mp4"
       title: "DOJI Tower Diamond (Version B)"
   card_layout_classes: "lg:col-span-1 lg:row-span-2"
 
@@ -126,42 +134,13 @@
   skills_key: "project_dove_tvc_skills"
   behance_link: "Projects/Dove-deodorant"
   thumbnail_image: "assets/images/Project/dove_poster.webp"
-  vimeo_iframe: "https://player.vimeo.com/video/1207115132?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"
+  r2_videos:
+    - url: "https://img.manhhuynh.work/portfolio-web/dove-deodorant/Dove_5.webm"
+    - url: "https://img.manhhuynh.work/portfolio-web/dove-deodorant/Dove_8.webm"
   video_aspect: "9/16"
   bg_color: "#050B14"
-  featured_styleframes:
-    - "Projects/Dove-deodorant/Dove_2_frame.png"
-    - "Projects/Dove-deodorant/Dove_3_frame.png"
-    - "Projects/Dove-deodorant/Dove_4_frame.png"
   card_layout_classes: "lg:col-span-2 lg:row-span-1"
 
-- id: "vf3-cartoon"
-  featured: true
-  category: "motion-3d"
-  title_key: "vf3_cartoon_title"
-  desc_key: "vf3_desc"
-  role_key: "vf3_cartoon_role"
-  behance_link: "Projects/VF3-cartoon/"
-  thumbnail_image: "Projects/VF3-cartoon/assets/vf3_frame_13.png"
-  thumbnail_fallback: "Projects/VF3-cartoon/assets/vf3_frame_13.png"
-  vimeo_iframe: "https://player.vimeo.com/video/1207115648?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"
-  video_aspect: "16/9"
-  bg_color: "#0E121A"
-  featured_styleframes:
-    - "Projects/VF3-cartoon/assets/vf3_frame_2.png"
-    - "Projects/VF3-cartoon/assets/vf3_frame_8.png"
-    - "Projects/VF3-cartoon/assets/vf3_frame_13.png"
-    - "Projects/VF3-cartoon/assets/vf3_frame_20.png"
-    - "Projects/VF3-cartoon/assets/vf3_frame_29.png"
-    - "Projects/VF3-cartoon/assets/vf3_frame_34.png"
-    - "Projects/VF3-cartoon/assets/vf3_frame_41.png"
-    - "Projects/VF3-cartoon/assets/vf3_frame_48.png"
-  carousel_media:
-    - poster: "Projects/VF3-cartoon/assets/Thumbnail.jpg"
-      sources:
-        - url: "Projects/VF3-cartoon/assets/thumbnail.webm"
-          type: "video/webm"
-  card_layout_classes: "lg:col-span-2 lg:row-span-1"
 
 - id: "aeon-tet"
   featured: true
@@ -172,7 +151,7 @@
   skills_key: "project_aeon_tet_skills"
   behance_link: "Projects/Aeon-Tet-2025"
   thumbnail_image: "assets/images/Project/aeon_poster.webp"
-  vimeo_iframe: "https://player.vimeo.com/video/1188392668?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"
+  r2_video: "https://img.manhhuynh.work/portfolio-web/projects/aeon_tet.mp4"
   video_aspect: "16/9"
   bg_color: "#1A0A0A"
   card_layout_classes: "lg:col-span-1 lg:row-span-2"
@@ -213,7 +192,7 @@
   desc_key: "project_webar_colorkey_desc"
   role_key: "project_webar_colorkey_role"
   skills_key: "project_webar_colorkey_skills"
-  behance_link: "https://posmars.com/casestudies/colorkey-lumirot"
+  behance_link: "https://www.posmars.com/casestudies/colorkey-lumirot"
   thumbnail_image: "https://data.posmars.com/assets/casestudies/colorkey-lumirot/KV_Tarot.webp"
   thumbnail_video: "https://data.posmars.com/assets/casestudies/colorkey-lumirot/KOC.mp4"
   video_aspect: "16/9"

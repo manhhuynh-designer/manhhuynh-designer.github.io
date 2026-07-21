@@ -174,6 +174,12 @@ category_group_social_cgi: "Social CGI"
 my_role: "My Role"
 view_details: "View Case Study"
 view_behance: "Behance"
+pf_hero_bio: "I craft cinematic 3D experiences that move people and elevate brands. Specializing in product CGI, social FOOH, and interactive WebAR."
+pf_about_brief: "Ex-L'Oréal Senior E-Designer with 5+ years in design. Specialized in product CGI, social FOOH (Fake OOH), and WebAR interactive experiences for global brands."
+pf_cta_title: "Ready to bring your project to life?"
+pf_cta_desc: "I'm always open to discussing new projects, creative ideas, or partnership opportunities."
+hero_status: "Available for Remote Work"
+category_group_webar: "WebAR Experience"
 
 # Role translations
 project_3ce_role: "3D product visualization, creating motion animations (3D Motion Graphics), and fluid simulations."
