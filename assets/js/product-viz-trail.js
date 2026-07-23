@@ -79,10 +79,11 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     // ─── Configuration ────────────────────────────────────
-    const CARD_WIDTH = 120;   // px (scaled up card width)
-    const CARD_HEIGHT = 155;  // px (scaled up card height)
-    const SPACING_X = 195;    // Expanded horizontal spacing along arc
-    const ROW_SPACING_Y = 220;// px vertical spacing between rows (matched to 780px container)
+    const isMobile = window.innerWidth < 768;
+    const CARD_WIDTH = isMobile ? 90 : 120;     // px card width
+    const CARD_HEIGHT = isMobile ? 115 : 155;   // px card height
+    const SPACING_X = isMobile ? 135 : 195;      // Horizontal spacing along arc
+    const ROW_SPACING_Y = isMobile ? 130 : 220;  // Vertical spacing between rows
     const SPEED_DRAG = 0.0035;
     const SPEED_WHEEL = 0.0018;
     const LERP_FACTOR = 0.08;
@@ -265,7 +266,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Expanded Sweeping Arc Path:
             const posX = offset * SPACING_X;
-            const posY = rowConfig.yOffset + offset * 26 + Math.pow(offset, 2) * 3;
+            const posY = rowConfig.yOffset + (isMobile ? offset * 16 + Math.pow(offset, 2) * 1.5 : offset * 26 + Math.pow(offset, 2) * 3);
 
             // Tangent Arc Rotation: rotateZ strictly aligns with the slope of the sweeping arc
             const rotateZ = Math.max(-36, Math.min(36, offset * 10.5));

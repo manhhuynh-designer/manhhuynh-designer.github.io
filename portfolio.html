@@ -78,6 +78,14 @@ permalink: /portfolio/
 <link rel="canonical" href="https://portfolio.manhhuynh.work/" />
 
 <style>
+    /* Hide site header and mobile menu on mobile for portfolio page */
+    @media (max-width: 767px) {
+        #site-header,
+        #mobile-toggle {
+            display: none !important;
+        }
+    }
+
     /* ====== Layout & Background ====== */
     #portfolio-summary-page {
         position: relative;
@@ -288,6 +296,19 @@ permalink: /portfolio/
         opacity: 0;
         transform: translateX(10px);
     }
+
+    /* Mobile Floating Dock items active styling */
+    #mobile-floating-nav {
+        background: rgba(3, 3, 7, 0.40) !important;
+        backdrop-filter: blur(24px) saturate(180%) !important;
+        -webkit-backdrop-filter: blur(24px) saturate(180%) !important;
+        border: 1px solid rgba(255, 255, 255, 0.18) !important;
+    }
+    .mobile-nav-item.is-active {
+        color: #60a5fa !important;
+        background-color: rgba(96, 165, 250, 0.22) !important;
+        box-shadow: 0 0 12px rgba(59, 130, 246, 0.4);
+    }
     @keyframes scroll-mouse {
         0% { transform: translateY(0); opacity: 0; }
         30% { opacity: 1; }
@@ -328,8 +349,8 @@ permalink: /portfolio/
                     </svg>
                 </button>
                 
-                <!-- Scroll Down Indicator -->
-                <div id="pf-scroll-indicator" class="absolute bottom-12 left-1/2 -translate-x-1/2 z-30 flex flex-col items-center gap-2 pointer-events-none transition-opacity duration-500">
+                <!-- Scroll Down Indicator (Hidden on mobile) -->
+                <div id="pf-scroll-indicator" class="absolute bottom-12 left-1/2 -translate-x-1/2 z-30 hidden md:flex flex-col items-center gap-2 pointer-events-none transition-opacity duration-500">
                     <span class="text-[9px] uppercase font-bold tracking-[0.25em] text-white/50">Scroll</span>
                     <div class="w-[20px] h-[32px] border border-white/30 rounded-full flex justify-center p-1.5">
                         <div class="w-1 h-1.5 bg-accent-strong rounded-full scroll-wheel"></div>
@@ -389,7 +410,7 @@ permalink: /portfolio/
                 <section id="category-product-lookdev" class="py-16 md:py-24 border-b border-white/5">
                     
                     <!-- Category Header -->
-                    <div class="max-w-[1500px] mx-auto px-6 md:px-12 mb-10 text-left">
+                    <div class="category-header max-w-[1500px] mx-auto px-6 md:px-12 mb-10 text-left">
                         <span class="text-accent-strong text-[10px] font-black uppercase tracking-[0.25em] mb-2 block">Category</span>
                         <h2 class="text-3xl md:text-5xl font-black uppercase tracking-tight text-white leading-none" data-lang-key="{{ cat_title_key }}">
                             {{ translations[cat_title_key] | default: cat_default_title }}
@@ -402,15 +423,15 @@ permalink: /portfolio/
                         <div class="absolute w-[500px] h-[500px] -left-24 -bottom-24 bg-gradient-to-tr from-blue-600/35 via-sky-500/20 to-transparent blur-[120px] rounded-full pointer-events-none -z-10 sphere-glow"></div>
                         
                         <div id="packshot-spawn-zone" 
-                             class="relative w-full rounded-xl overflow-hidden border border-white/5"
-                             style="height: 780px; background-color: rgba(8, 8, 9, 0.9);">
+                             class="relative w-full rounded-xl overflow-hidden border border-white/5 h-[540px] sm:h-[640px] md:h-[780px]"
+                             style="background-color: rgba(8, 8, 9, 0.9);">
                             
                             <!-- Project Text Overlay inside bottom container (No Category Badge, Button aligned to bottom of entire text block) -->
                             {% assign pv_project = cat_projects | first %}
-                            <div class="absolute bottom-6 left-6 right-6 md:bottom-8 md:left-8 md:right-8 z-10 pointer-events-none text-left flex flex-col md:flex-row md:items-end justify-between gap-6">
+                            <div class="absolute inset-x-0 bottom-0 z-10 p-5 sm:p-6 md:p-8 text-left flex flex-row items-end justify-between gap-3 md:gap-6 pointer-events-none">
                                 <div class="max-w-2xl">
                                     {% if pv_project.behance_link %}
-                                    <h3 class="text-xl md:text-3xl font-bold text-white tracking-tight leading-tight mb-2 pointer-events-auto">
+                                    <h3 class="text-lg sm:text-xl md:text-3xl font-bold text-white tracking-tight leading-tight mb-0 md:mb-2 drop-shadow-[0_2px_8px_rgba(0,0,0,0.1)] pointer-events-auto">
                                         <a href="{% if pv_project.behance_link contains 'http' %}{{ pv_project.behance_link }}{% else %}{{ pv_project.behance_link | relative_url }}{% endif %}"
                                            {% if pv_project.behance_link contains 'http' %}target="_blank" rel="noopener noreferrer"{% endif %}
                                            class="hover:text-accent-strong transition-colors"
@@ -419,11 +440,11 @@ permalink: /portfolio/
                                         </a>
                                     </h3>
                                     {% else %}
-                                    <h3 class="text-xl md:text-3xl font-bold text-white tracking-tight leading-tight mb-2" data-lang-key="{{ pv_project.title_key }}">
+                                    <h3 class="text-lg sm:text-xl md:text-3xl font-bold text-white tracking-tight leading-tight mb-0 md:mb-2 drop-shadow-[0_2px_8px_rgba(0,0,0,0.1)]" data-lang-key="{{ pv_project.title_key }}">
                                         {{ translations[pv_project.title_key] | default: pv_project.title_key }}
                                     </h3>
                                     {% endif %}
-                                    <p class="text-white/95 text-xs md:text-sm font-medium leading-relaxed" data-lang-key="{{ pv_project.desc_key }}">
+                                    <p class="hidden md:block text-white/95 text-xs md:text-sm font-medium leading-relaxed" data-lang-key="{{ pv_project.desc_key }}">
                                         {{ translations[pv_project.desc_key] | default: pv_project.desc_key }}
                                     </p>
                                 </div>
@@ -432,8 +453,11 @@ permalink: /portfolio/
                                 <div class="shrink-0">
                                     <a href="{% if pv_project.behance_link contains 'http' %}{{ pv_project.behance_link }}{% else %}{{ pv_project.behance_link | relative_url }}{% endif %}" 
                                        {% if pv_project.behance_link contains 'http' %}target="_blank" rel="noopener noreferrer"{% endif %}
-                                       class="group pointer-events-auto relative inline-flex items-center gap-2.5 px-6 py-3 bg-accent-strong hover:bg-blue-600 text-white opacity-80 hover:opacity-100 font-bold text-[11px] rounded-full tracking-widest uppercase transition-all duration-300 transform hover:-translate-y-0.5 hover:scale-[1.03] active:scale-[0.98] shadow-lg hover:shadow-[0_0_25px_rgba(99,130,255,0.45)] border border-white/10 hover:border-white/30 overflow-hidden">
-                                        <span class="relative z-10" data-lang-key="view_details">{{ translations.view_details | default: "View Case Study" }}</span>
+                                       class="group pointer-events-auto relative inline-flex items-center gap-2 px-4 py-2.5 md:px-6 md:py-3 bg-accent-strong hover:bg-blue-600 text-white opacity-90 hover:opacity-100 font-bold text-[11px] rounded-full tracking-widest uppercase transition-all duration-300 transform hover:-translate-y-0.5 hover:scale-[1.03] active:scale-[0.98] shadow-lg hover:shadow-[0_0_25px_rgba(99,130,255,0.45)] border border-white/10 hover:border-white/30 overflow-hidden">
+                                        <span class="relative z-10 flex items-center gap-1">
+                                            <span class="md:hidden">View</span>
+                                            <span class="hidden md:inline" data-lang-key="view_details">{{ translations.view_details | default: "View Case Study" }}</span>
+                                        </span>
                                         <svg class="relative z-10 w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
                                         </svg>
@@ -453,7 +477,7 @@ permalink: /portfolio/
                 <section id="category-{{ cat }}" class="py-16 md:py-24 border-b border-white/5">
                     
                     <!-- Category Header -->
-                    <div class="max-w-[1500px] mx-auto px-6 md:px-12 mb-10 text-left">
+                    <div class="category-header max-w-[1500px] mx-auto px-6 md:px-12 mb-10 text-left">
                         <span class="text-accent-strong text-[10px] font-black uppercase tracking-[0.25em] mb-2 block">Category</span>
                         <h2 class="text-3xl md:text-5xl font-black uppercase tracking-tight text-white leading-none" data-lang-key="{{ cat_title_key }}">
                             {{ translations[cat_title_key] | default: cat_default_title }}
@@ -470,17 +494,16 @@ permalink: /portfolio/
                                   '<div class="absolute w-[500px] h-[500px] -left-24 -bottom-24 bg-gradient-to-tr from-blue-600/35 via-sky-500/20 to-transparent blur-[120px] rounded-full pointer-events-none -z-10 sphere-glow"></div>' 
                                 %}
 
-                                <article class="relative w-full rounded-xl overflow-hidden border border-white/5 bg-[#080809] shadow-2xl group" 
-                                         style="height: 780px;" 
+                                <article class="relative w-full rounded-xl overflow-hidden border border-white/5 bg-[#080809] shadow-2xl group h-[540px] sm:h-[640px] md:h-[780px]" 
                                          id="project-{{ project.id }}">
                                     
                                     <!-- Background Media Container (100% Width & Height, No Dark Gradient Overlay) -->
                                     <div class="absolute inset-0 w-full h-full overflow-hidden z-0">
                                         {% if project.r2_videos and project.r2_videos.size > 0 %}
-                                            <!-- Vertical Video Wall for Social CGI -->
-                                            <div class="w-full h-full grid {% if project.r2_videos.size == 3 %}grid-cols-3{% else %}grid-cols-2{% endif %} gap-0">
+                                            <!-- Vertical Video Wall for Social CGI (Mobile: 1 video, Desktop: 2/3 videos) -->
+                                            <div class="w-full h-full grid grid-cols-1 {% if project.r2_videos.size == 3 %}md:grid-cols-3{% else %}md:grid-cols-2{% endif %} gap-0">
                                                 {% for item in project.r2_videos %}
-                                                <div class="relative w-full h-full border-r border-white/5 overflow-hidden">
+                                                <div class="relative w-full h-full border-r border-white/5 overflow-hidden {% if forloop.index > 1 %}hidden md:block{% endif %}">
                                                     <video class="absolute inset-0 w-full h-full object-cover scroll-autoplay"
                                                            muted loop playsinline preload="metadata">
                                                         <source src="{{ item.url }}" {% if item.url contains '.webm' %}type="video/webm"{% else %}type="video/mp4"{% endif %}>
@@ -511,10 +534,10 @@ permalink: /portfolio/
                                     </div>
 
                                     <!-- Project Text Overlay inside bottom container (No Category Badge, Button aligned to bottom of entire text block) -->
-                                    <div class="absolute bottom-6 left-6 right-6 md:bottom-8 md:left-8 md:right-8 z-10 pointer-events-none text-left flex flex-col md:flex-row md:items-end justify-between gap-6">
+                                    <div class="absolute inset-x-0 bottom-0 z-10 p-5 sm:p-6 md:p-8 text-left flex flex-row items-end justify-between gap-3 md:gap-6 pointer-events-none">
                                         <div class="max-w-2xl">
                                             {% if project.behance_link %}
-                                            <h3 class="text-xl md:text-3xl font-bold text-white tracking-tight leading-tight mb-2 pointer-events-auto">
+                                            <h3 class="text-lg sm:text-xl md:text-3xl font-bold text-white tracking-tight leading-tight mb-0 md:mb-2 drop-shadow-[0_2px_8px_rgba(0,0,0,0.1)] pointer-events-auto">
                                                 <a href="{% if project.behance_link contains 'http' %}{{ project.behance_link }}{% else %}{{ project.behance_link | relative_url }}{% endif %}"
                                                    {% if project.behance_link contains 'http' %}target="_blank" rel="noopener noreferrer"{% endif %}
                                                    class="hover:text-accent-strong transition-colors"
@@ -523,11 +546,11 @@ permalink: /portfolio/
                                                 </a>
                                             </h3>
                                             {% else %}
-                                            <h3 class="text-xl md:text-3xl font-bold text-white tracking-tight leading-tight mb-2" data-lang-key="{{ project.title_key }}">
+                                            <h3 class="text-lg sm:text-xl md:text-3xl font-bold text-white tracking-tight leading-tight mb-0 md:mb-2 drop-shadow-[0_2px_8px_rgba(0,0,0,0.1)]" data-lang-key="{{ project.title_key }}">
                                                 {{ translations[project.title_key] | default: project.title_key }}
                                             </h3>
                                             {% endif %}
-                                            <p class="text-white/95 text-xs md:text-sm font-medium leading-relaxed" data-lang-key="{{ project.desc_key }}">
+                                            <p class="hidden md:block text-white/95 text-xs md:text-sm font-medium leading-relaxed" data-lang-key="{{ project.desc_key }}">
                                                 {{ translations[project.desc_key] | default: project.desc_key }}
                                             </p>
                                         </div>
@@ -537,8 +560,11 @@ permalink: /portfolio/
                                             {% if project.behance_link %}
                                             <a href="{% if project.behance_link contains 'http' %}{{ project.behance_link }}{% else %}{{ project.behance_link | relative_url }}{% endif %}" 
                                                {% if project.behance_link contains 'http' %}target="_blank" rel="noopener noreferrer"{% endif %}
-                                               class="group/btn pointer-events-auto relative inline-flex items-center gap-2.5 px-6 py-3 bg-accent-strong hover:bg-blue-600 text-white opacity-80 hover:opacity-100 font-bold text-[11px] rounded-full tracking-widest uppercase transition-all duration-300 transform hover:-translate-y-0.5 hover:scale-[1.03] active:scale-[0.98] shadow-lg hover:shadow-[0_0_25px_rgba(99,130,255,0.45)] border border-white/10 hover:border-white/30 overflow-hidden">
-                                                <span class="relative z-10" data-lang-key="view_details">{{ translations.view_details | default: "View Case Study" }}</span>
+                                               class="group/btn pointer-events-auto relative inline-flex items-center gap-2 px-4 py-2.5 md:px-6 md:py-3 bg-accent-strong hover:bg-blue-600 text-white opacity-90 hover:opacity-100 font-bold text-[11px] rounded-full tracking-widest uppercase transition-all duration-300 transform hover:-translate-y-0.5 hover:scale-[1.03] active:scale-[0.98] shadow-lg hover:shadow-[0_0_25px_rgba(99,130,255,0.45)] border border-white/10 hover:border-white/30 overflow-hidden">
+                                                <span class="relative z-10 flex items-center gap-1">
+                                                    <span class="md:hidden">View</span>
+                                                    <span class="hidden md:inline" data-lang-key="view_details">{{ translations.view_details | default: "View Case Study" }}</span>
+                                                </span>
                                                 <svg class="relative z-10 w-3.5 h-3.5 transition-transform duration-300 group-hover/btn:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
                                                 </svg>
@@ -548,7 +574,7 @@ permalink: /portfolio/
                                             
                                             {% if project.behance_external_link %}
                                             <a href="{{ project.behance_external_link }}" target="_blank" rel="noopener noreferrer" 
-                                               class="pointer-events-auto px-5 py-3 border border-white/15 text-white/90 hover:text-accent-strong opacity-80 hover:opacity-100 hover:border-accent-strong font-bold text-[10px] rounded-full tracking-wider uppercase transition-all flex items-center gap-1.5 backdrop-blur-md bg-black/40 shadow-md"
+                                               class="hidden md:flex pointer-events-auto px-5 py-3 border border-white/15 text-white/90 hover:text-accent-strong opacity-80 hover:opacity-100 hover:border-accent-strong font-bold text-[10px] rounded-full tracking-wider uppercase transition-all items-center gap-1.5 backdrop-blur-md bg-black/40 shadow-md"
                                                data-lang-key="view_behance">
                                                 <i class="fab fa-behance text-xs"></i>
                                                 Behance
@@ -738,6 +764,34 @@ permalink: /portfolio/
     </div>
 </div>
 
+<!-- Mobile Floating Navigation Dock -->
+<div id="mobile-floating-nav" class="fixed bottom-5 left-1/2 -translate-x-1/2 z-[150] flex lg:hidden items-center gap-1.5 px-3.5 py-2 rounded-full shadow-[0_10px_40px_rgba(0,0,0,0.6),0_0_20px_rgba(255,255,255,0.05)] transition-all duration-300">
+    <a href="#pf-hero" class="mobile-nav-item is-active group relative p-2 rounded-full text-white/60 hover:text-accent-strong transition-all cursor-pointer" data-target="pf-hero" aria-label="Intro">
+        <i class="fa-solid fa-house text-xs"></i>
+        <span class="absolute -top-8 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity bg-black/90 text-white text-[9px] font-bold px-2 py-0.5 rounded whitespace-nowrap pointer-events-none border border-white/10">Intro</span>
+    </a>
+    <a href="#category-product-lookdev" class="mobile-nav-item group relative p-2 rounded-full text-white/60 hover:text-accent-strong transition-all cursor-pointer" data-target="category-product-lookdev" aria-label="Product Viz">
+        <i class="fa-solid fa-cube text-xs"></i>
+        <span class="absolute -top-8 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity bg-black/90 text-white text-[9px] font-bold px-2 py-0.5 rounded whitespace-nowrap pointer-events-none border border-white/10">Product Viz</span>
+    </a>
+    <a href="#category-motion-3d" class="mobile-nav-item group relative p-2 rounded-full text-white/60 hover:text-accent-strong transition-all cursor-pointer" data-target="category-motion-3d" aria-label="3D Motion">
+        <i class="fa-solid fa-film text-xs"></i>
+        <span class="absolute -top-8 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity bg-black/90 text-white text-[9px] font-bold px-2 py-0.5 rounded whitespace-nowrap pointer-events-none border border-white/10">3D Motion</span>
+    </a>
+    <a href="#category-social-cgi" class="mobile-nav-item group relative p-2 rounded-full text-white/60 hover:text-accent-strong transition-all cursor-pointer" data-target="category-social-cgi" aria-label="Social CGI">
+        <i class="fa-solid fa-vr-cardboard text-xs"></i>
+        <span class="absolute -top-8 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity bg-black/90 text-white text-[9px] font-bold px-2 py-0.5 rounded whitespace-nowrap pointer-events-none border border-white/10">Social CGI</span>
+    </a>
+    <a href="#pf-cta" class="mobile-nav-item group relative p-2 rounded-full text-white/60 hover:text-accent-strong transition-all cursor-pointer" data-target="pf-cta" aria-label="Contact">
+        <i class="fa-solid fa-envelope text-xs"></i>
+        <span class="absolute -top-8 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity bg-black/90 text-white text-[9px] font-bold px-2 py-0.5 rounded whitespace-nowrap pointer-events-none border border-white/10">Contact</span>
+    </a>
+
+    <span class="w-[1px] h-3.5 bg-white/20 mx-1"></span>
+
+    <button id="mobile-dock-lang-toggle" class="px-2.5 py-1 text-[10px] font-black uppercase text-accent-strong bg-accent-strong/15 hover:bg-accent-strong hover:text-white border border-accent-strong/30 rounded-full transition-all cursor-pointer" aria-label="Toggle language">EN</button>
+</div>
+
 <script src="/assets/js/product-viz-trail.js" defer></script>
 
 <!-- ========================================== -->
@@ -851,6 +905,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // ===== GSAP 3D Cinematic Perspective Intro & Outro Focus Animations =====
     const cardWrappers = document.querySelectorAll('.project-card-wrapper');
+    const isMobileDevice = window.innerWidth < 768;
+
     cardWrappers.forEach(wrapper => {
         const card = wrapper.querySelector('article, #packshot-spawn-zone') || wrapper;
         const glow = wrapper.querySelector('.sphere-glow');
@@ -859,49 +915,139 @@ document.addEventListener('DOMContentLoaded', () => {
         const desc = card.querySelector('p');
         const ctaGroup = card.querySelector('.shrink-0');
 
-        // Set 3D perspective container properties
-        gsap.set(wrapper, { perspective: 1200, transformStyle: "preserve-3d" });
+        if (isMobileDevice) {
+            // Simplified 2D fade & slide on mobile screens to prevent GPU jank and 3D transform glitches
+            gsap.set(card, { opacity: 0, y: 45 });
+            if (glow) gsap.set(glow, { opacity: 0 });
+            if (media) gsap.set(media, { opacity: 0 });
 
-        // Set initial 3D Outro state (tilted back, depth z: -180, scale: 0.91, opacity: 0)
-        gsap.set(card, { 
-            opacity: 0, 
-            y: 75, 
-            z: -180, 
-            rotationX: 12, 
-            scale: 0.91, 
-            transformOrigin: "50% 0%",
-            transformStyle: "preserve-3d" 
-        });
-        if (glow) gsap.set(glow, { opacity: 0, scale: 0.6, z: -100 });
-        if (media) gsap.set(media, { scale: 1.12, opacity: 0, filter: "brightness(0)" });
-        if (title) gsap.set(title, { opacity: 0, y: 35, z: 40 });
-        if (desc) gsap.set(desc, { opacity: 0, y: 25, z: 30 });
-        if (ctaGroup) gsap.set(ctaGroup, { opacity: 0, x: 35, z: 50 });
+            const tl = gsap.timeline({
+                scrollTrigger: {
+                    trigger: wrapper,
+                    start: "top 80%",
+                    end: "bottom 20%",
+                    toggleActions: "play reverse play reverse"
+                }
+            });
 
-        const tl = gsap.timeline({
+            tl.to(card, { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" })
+              .to(glow, { opacity: 0.8, duration: 0.6, ease: "power2.out" }, "-=0.5")
+              .to(media, { opacity: 1, duration: 0.6, ease: "power2.out" }, "-=0.5");
+        } else {
+            // Full 3D Cinematic Perspective for Desktop
+            gsap.set(wrapper, { perspective: 1200, transformStyle: "preserve-3d" });
+
+            // Set initial 3D Outro state (tilted back, depth z: -180, scale: 0.91, opacity: 0)
+            gsap.set(card, { 
+                opacity: 0, 
+                y: 75, 
+                z: -180, 
+                rotationX: 12, 
+                scale: 0.91, 
+                transformOrigin: "50% 0%",
+                transformStyle: "preserve-3d" 
+            });
+            if (glow) gsap.set(glow, { opacity: 0, scale: 0.6, z: -100 });
+            if (media) gsap.set(media, { scale: 1.12, opacity: 0, filter: "brightness(0)" });
+            if (title) gsap.set(title, { opacity: 0, y: 35, z: 40 });
+            if (desc) gsap.set(desc, { opacity: 0, y: 25, z: 30 });
+            if (ctaGroup) gsap.set(ctaGroup, { opacity: 0, x: 35, z: 50 });
+
+            const tl = gsap.timeline({
+                scrollTrigger: {
+                    trigger: wrapper,
+                    start: "top 68%",
+                    end: "bottom 32%",
+                    toggleActions: "play reverse play reverse"
+                }
+            });
+
+            tl.to(card, { 
+                opacity: 1, 
+                y: 0, 
+                z: 0, 
+                rotationX: 0, 
+                scale: 1, 
+                duration: 0.85, 
+                ease: "power3.out" 
+              })
+              .to(glow, { opacity: 0.8, scale: 1, z: 0, duration: 0.9, ease: "power2.out" }, "-=0.75")
+              .to(media, { opacity: 1, scale: 1, filter: "brightness(1)", duration: 0.95, ease: "power2.out" }, "-=0.8")
+              .to(title, { opacity: 1, y: 0, z: 0, duration: 0.5, ease: "power2.out" }, "-=0.55")
+              .to(desc, { opacity: 1, y: 0, z: 0, duration: 0.5, ease: "power2.out" }, "-=0.35")
+              .to(ctaGroup, { opacity: 1, x: 0, z: 0, duration: 0.5, ease: "back.out(1.5)" }, "-=0.35");
+        }
+    });
+
+    // ===== GSAP Intro Section Reveal Animation =====
+    const introSection = document.getElementById('pf-intro');
+    if (introSection) {
+        const introTitle = introSection.querySelector('h1');
+        const introDesc = introSection.querySelector('p');
+        const introCanvasWrapper = introSection.querySelector('canvas')?.parentElement;
+
+        if (introTitle) gsap.set(introTitle, { opacity: 0, y: 35 });
+        if (introDesc) gsap.set(introDesc, { opacity: 0, y: 25 });
+        if (introCanvasWrapper) gsap.set(introCanvasWrapper, { opacity: 0, scale: 0.85 });
+
+        const introTl = gsap.timeline({
             scrollTrigger: {
-                trigger: wrapper,
-                start: "top 68%",
-                end: "bottom 32%",
+                trigger: introSection,
+                start: "top 80%",
                 toggleActions: "play reverse play reverse"
             }
         });
 
-        tl.to(card, { 
-            opacity: 1, 
-            y: 0, 
-            z: 0, 
-            rotationX: 0, 
-            scale: 1, 
-            duration: 0.85, 
-            ease: "power3.out" 
-          })
-          .to(glow, { opacity: 0.8, scale: 1, z: 0, duration: 0.9, ease: "power2.out" }, "-=0.75")
-          .to(media, { opacity: 1, scale: 1, filter: "brightness(1)", duration: 0.95, ease: "power2.out" }, "-=0.8")
-          .to(title, { opacity: 1, y: 0, z: 0, duration: 0.5, ease: "power2.out" }, "-=0.55")
-          .to(desc, { opacity: 1, y: 0, z: 0, duration: 0.5, ease: "power2.out" }, "-=0.35")
-          .to(ctaGroup, { opacity: 1, x: 0, z: 0, duration: 0.5, ease: "back.out(1.5)" }, "-=0.35");
+        if (introTitle) introTl.to(introTitle, { opacity: 1, y: 0, duration: 0.8, ease: "power3.out" });
+        if (introDesc) introTl.to(introDesc, { opacity: 1, y: 0, duration: 0.7, ease: "power3.out" }, "-=0.5");
+        if (introCanvasWrapper) introTl.to(introCanvasWrapper, { opacity: 1, scale: 1, duration: 0.85, ease: "back.out(1.4)" }, "-=0.6");
+    }
+
+    // ===== GSAP Category Headers Reveal Animation =====
+    const categoryHeaders = document.querySelectorAll('.category-header');
+    categoryHeaders.forEach(header => {
+        const badge = header.querySelector('span');
+        const title = header.querySelector('h2');
+
+        if (badge) gsap.set(badge, { opacity: 0, x: -20 });
+        if (title) gsap.set(title, { opacity: 0, y: 30 });
+
+        const headerTl = gsap.timeline({
+            scrollTrigger: {
+                trigger: header,
+                start: "top 85%",
+                toggleActions: "play reverse play reverse"
+            }
+        });
+
+        if (badge) headerTl.to(badge, { opacity: 1, x: 0, duration: 0.5, ease: "power2.out" });
+        if (title) headerTl.to(title, { opacity: 1, y: 0, duration: 0.7, ease: "power3.out" }, "-=0.35");
     });
+
+    // ===== GSAP CTA Section Reveal Animation =====
+    const ctaSection = document.getElementById('pf-cta');
+    if (ctaSection) {
+        const ctaChildren = Array.from(ctaSection.querySelectorAll('.max-w-3xl > *'));
+        if (ctaChildren.length > 0) {
+            gsap.set(ctaChildren, { opacity: 0, y: 30 });
+
+            const ctaTl = gsap.timeline({
+                scrollTrigger: {
+                    trigger: ctaSection,
+                    start: "top 80%",
+                    toggleActions: "play reverse play reverse"
+                }
+            });
+
+            ctaTl.to(ctaChildren, {
+                opacity: 1,
+                y: 0,
+                duration: 0.75,
+                stagger: 0.12,
+                ease: "power3.out"
+            });
+        }
+    }
 
     // ===== Smart Header Transparent Setup =====
     const siteHeader = document.getElementById('site-header');
@@ -966,6 +1112,7 @@ document.addEventListener('DOMContentLoaded', () => {
         ctx = canvas.getContext('2d');
         resizeCanvas();
         window.addEventListener('resize', resizeCanvas);
+        initCanvasScrollTrigger();
         preloadSequence();
     }
 
@@ -973,18 +1120,16 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!canvas) return;
         const rect = canvas.getBoundingClientRect();
         const dpr = Math.min(window.devicePixelRatio || 1, 2);
-        canvas.width = Math.round(rect.width * dpr);
-        canvas.height = Math.round(rect.height * dpr);
-        if (images.length > 0 && images[currentFrameIndex]) {
-            drawFrame(images[currentFrameIndex]);
-        }
+        canvas.width = Math.round((rect.width || 280) * dpr);
+        canvas.height = Math.round((rect.height || 280) * dpr);
+        const bestImg = getBestFrame(currentFrameIndex);
+        if (bestImg) drawFrame(bestImg);
     }
 
     function drawFrame(img) {
         if (!img || !img.complete || img.naturalWidth === 0 || !ctx || !canvas) return;
         const cw = canvas.width, ch = canvas.height;
         ctx.clearRect(0, 0, cw, ch);
-        // Draw square frame centered, fitting fully within canvas (contain mode)
         const scale = Math.min(cw / img.naturalWidth, ch / img.naturalHeight);
         const sw = img.naturalWidth * scale;
         const sh = img.naturalHeight * scale;
@@ -1000,6 +1145,19 @@ document.addEventListener('DOMContentLoaded', () => {
         return SEQ_CONFIG.baseUrl + SEQ_CONFIG.filePattern + num + SEQ_CONFIG.fileExt;
     }
 
+    function getBestFrame(targetIndex) {
+        if (images[targetIndex] && images[targetIndex].complete && images[targetIndex].naturalWidth > 0) {
+            return images[targetIndex];
+        }
+        for (let offset = 1; offset < SEQ_CONFIG.frameCount; offset++) {
+            const prev = targetIndex - offset;
+            if (prev >= 0 && images[prev] && images[prev].complete && images[prev].naturalWidth > 0) return images[prev];
+            const next = targetIndex + offset;
+            if (next < SEQ_CONFIG.frameCount && images[next] && images[next].complete && images[next].naturalWidth > 0) return images[next];
+        }
+        return null;
+    }
+
     function preloadSequence() {
         for (let i = 0; i < SEQ_CONFIG.frameCount; i++) {
             const img = new Image();
@@ -1010,15 +1168,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     firstFrameDrawn = true;
                     drawFrame(img);
                 }
-                if (loadedCount >= SEQ_CONFIG.frameCount) {
-                    initCanvasScrollTrigger();
-                }
             };
             img.onerror = () => {
                 loadedCount++;
-                if (loadedCount >= SEQ_CONFIG.frameCount) {
-                    initCanvasScrollTrigger();
-                }
             };
             images.push(img);
         }
@@ -1028,17 +1180,19 @@ document.addEventListener('DOMContentLoaded', () => {
         const totalDuration = SEQ_CONFIG.frameCount - 1;
         ScrollTrigger.create({
             trigger: "#pf-intro",
-            start: "top bottom",     // Bắt đầu chạy khi section vừa xuất hiện ở mép dưới màn hình
-            end: "center center",    // Kết thúc hoàn toàn khi section đến giữa màn hình
-            scrub: 0.5,
+            start: "top 85%",
+            end: "bottom 30%",
+            scrub: true,
             onUpdate: (self) => {
                 const frameIndex = Math.min(totalDuration, Math.max(0, Math.round(self.progress * totalDuration)));
-                if (images[frameIndex]) {
-                    currentFrameIndex = frameIndex;
-                    requestAnimationFrame(() => drawFrame(images[frameIndex]));
+                currentFrameIndex = frameIndex;
+                const bestImg = getBestFrame(frameIndex);
+                if (bestImg) {
+                    requestAnimationFrame(() => drawFrame(bestImg));
                 }
             }
         });
+        ScrollTrigger.refresh();
     }
 
     // ===== Sidebar Active Dot Tracker =====
@@ -1065,7 +1219,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     function updateActiveDot(targetId) {
-        const dotItems = document.querySelectorAll('.nav-dot-item');
+        const dotItems = document.querySelectorAll('.nav-dot-item, .mobile-nav-item');
         dotItems.forEach(item => {
             if (item.getAttribute('data-target') === targetId) {
                 item.classList.add('is-active');
@@ -1075,8 +1229,8 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Smooth scroll navigation dots
-    const navItems = document.querySelectorAll('.nav-dot-item');
+    // Smooth scroll navigation dots & mobile dock items
+    const navItems = document.querySelectorAll('.nav-dot-item, .mobile-nav-item');
     navItems.forEach(item => {
         item.addEventListener('click', (e) => {
             e.preventDefault();
@@ -1111,6 +1265,32 @@ document.addEventListener('DOMContentLoaded', () => {
 
         document.addEventListener('languageChanged', (e) => {
             updateSidebarLangText(e.detail.lang);
+        });
+    }
+
+    // ===== Mobile Dock Language Toggle =====
+    const mobileDockLangToggle = document.getElementById('mobile-dock-lang-toggle');
+    if (mobileDockLangToggle) {
+        const updateMobileLangText = (lang) => {
+            mobileDockLangToggle.textContent = lang === 'vi' ? 'EN' : 'VI';
+        };
+        
+        updateMobileLangText(window.currentLang || localStorage.getItem('lang') || 'en');
+
+        mobileDockLangToggle.addEventListener('click', () => {
+            const mainToggleBtn = document.getElementById('lang-toggle-button');
+            if (mainToggleBtn) {
+                mainToggleBtn.click();
+            } else {
+                const nextLang = (window.currentLang || localStorage.getItem('lang') || 'en') === 'vi' ? 'en' : 'vi';
+                if (window.updateLanguage) {
+                    window.updateLanguage(nextLang);
+                }
+            }
+        });
+
+        document.addEventListener('languageChanged', (e) => {
+            updateMobileLangText(e.detail.lang);
         });
     }
 
