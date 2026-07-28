@@ -1,6 +1,6 @@
 <footer class="mt-auto py-8 px-6 md:px-12 rounded-t-lg">
  
-    <!-- Dòng 1: Mạng xã hội bên trái, Chuyển ngôn ngữ phẳng bên phải -->
+    <!-- Dòng 1: Mạng xã hội bên trái, Chuyển ngôn ngữ & Đổi Theme bên phải -->
     <div class="flex flex-col md:flex-row justify-between items-center mb-6 gap-4">
       <div class="flex justify-center md:justify-start space-x-4">
         <a href="https://www.tiktok.com/@manhhuynh.designer" title="TikTok" target="_blank" rel="noopener noreferrer" class="text-white hover:text-gray-300 transition duration-300 hover:scale-120">
@@ -20,11 +20,21 @@
         </a>
       </div>
       
-      <!-- Chuyển ngôn ngữ căn phải, phẳng, có highlight -->
-      <div class="flex items-center space-x-2 text-sm font-semibold select-none md:justify-end w-full md:w-auto justify-center">
-        <a href="javascript:void(0)" id="lang-select-vi" class="lang-option transition-colors duration-300 hover:text-white text-white">Tiếng Việt</a>
-        <span class="text-white/30">|</span>
-        <a href="javascript:void(0)" id="lang-select-en" class="lang-option transition-colors duration-300 hover:text-white text-white/50">English</a>
+      <!-- Chuyển ngôn ngữ + Đổi Theme phẳng căn phải -->
+      <div class="flex flex-col items-center md:items-end space-y-1.5 select-none md:justify-end w-full md:w-auto justify-center">
+        <!-- Chuyển ngôn ngữ phẳng -->
+        <div class="flex items-center space-x-2 text-sm font-semibold">
+          <a href="javascript:void(0)" id="lang-select-vi" class="lang-option transition-colors duration-300 hover:text-white text-white">Tiếng Việt</a>
+          <span class="text-white/30">|</span>
+          <a href="javascript:void(0)" id="lang-select-en" class="lang-option transition-colors duration-300 hover:text-white text-white/50">English</a>
+        </div>
+
+        <!-- Chuyển Theme phẳng giống chọn ngôn ngữ -->
+        <div class="flex items-center space-x-2 text-xs font-semibold">
+          <a href="javascript:void(0)" id="theme-select-dark" class="theme-option transition-colors duration-300 hover:text-white text-white">Tối</a>
+          <span class="text-white/30">|</span>
+          <a href="javascript:void(0)" id="theme-select-light" class="theme-option transition-colors duration-300 hover:text-white text-white/50">Sáng</a>
+        </div>
       </div>
     </div>
     

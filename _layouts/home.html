@@ -32,8 +32,8 @@
 <body class="overflow-x-hidden home flex flex-col min-h-screen" data-theme="dark">
   <script>
     (function() {
-      document.body.setAttribute('data-theme', 'dark');
-      localStorage.setItem('theme', 'dark');
+      var savedTheme = localStorage.getItem('theme') || 'dark';
+      document.body.setAttribute('data-theme', savedTheme);
     })();
   </script>
 
