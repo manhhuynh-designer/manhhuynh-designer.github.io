@@ -1,0 +1,561 @@
+---
+layout: default
+title: Decathlon 50 Years - CGI FOOH & VFX Campaign
+permalink: /Projects/Decathlon-50Y/
+project_id: decathlon-50y
+category: social-cgi
+---
+
+<style>
+  .lang-btn {
+    border: 1px solid #2563eb;
+    background: #fff;
+    color: #64748b !important;
+    font-weight: 600;
+    transition: background 0.15s, color 0.15s;
+  }
+  .lang-btn.active {
+    background: #2563eb;
+    color: #fff !important;
+    z-index: 1;
+  }
+  .lang-btn:not(.active) {
+    background: #fff;
+    color: #64748b !important;
+  }
+  .lang-btn:focus {
+    outline: 2px solid #2563eb;
+    outline-offset: 1px;
+  }
+  .lang-btn:first-child {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+  .lang-btn:last-child {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+
+  .pass-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 0.5rem;
+    background: #0b0f19;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+  .pass-badge {
+    position: absolute;
+    top: 0.65rem;
+    left: 0.65rem;
+    padding: 0.25rem 0.65rem;
+    background: rgba(15, 23, 42, 0.82);
+    backdrop-filter: blur(6px);
+    color: #f8fafc;
+    font-size: 0.65rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    border-radius: 0.25rem;
+    border: 1px solid rgba(59, 130, 246, 0.45);
+    z-index: 10;
+    pointer-events: none;
+  }
+  .zoomable-item {
+    cursor: zoom-in;
+    transition: transform 0.25s ease;
+  }
+  .zoomable-item:hover {
+    transform: translateY(-2px);
+  }
+
+  /* Lightbox Modal */
+  #lightbox {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.92);
+    backdrop-filter: blur(10px);
+    z-index: 9999;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    cursor: zoom-out;
+  }
+  #lightbox img {
+    max-width: 92%;
+    max-height: 90vh;
+    object-fit: contain;
+    border-radius: 0.5rem;
+  }
+  #lightbox .close-btn {
+    position: absolute;
+    top: 1.5rem;
+    right: 2rem;
+    color: white;
+    font-size: 2.25rem;
+    cursor: pointer;
+    line-height: 1;
+  }
+</style>
+
+<main class="blog-content bg-background text-text-color font-inter" id="main-content">
+  <!-- Cover Image -->
+  <div class="relative">
+    <img src="/Projects/Decathlon-50Y/assets/cover.webp" alt="Decathlon 50 Years CGI Campaign Cover" class="w-full h-auto max-h-[700px] object-cover" />
+  </div>
+
+  <!-- Main Content Section -->
+  <section class="relative z-10 -mt-3 md:-mt-40 px-4 md:px-8 py-16 md:py-24 max-w-7xl mx-auto bg-card rounded-xl shadow-xl">
+    <!-- Project Title -->
+    <h1 class="text-3xl md:text-5xl lg:text-6xl font-extrabold text-heading mb-6 text-center">
+      Decathlon 50 Years — CGI FOOH &amp; VFX Campaign
+    </h1>
+
+    <!-- Language Switcher -->
+    <div class="flex justify-end mb-6 max-w-5xl mx-auto px-6">
+      <button id="section-lang-vi" class="lang-btn px-3 py-1 rounded-l border border-blue-500">VI</button>
+      <button id="section-lang-en" class="lang-btn px-3 py-1 rounded-r border border-blue-500">EN</button>
+    </div>
+
+    <!-- VIETNAMESE CONTENT -->
+    <div class="lang-content lang-vi" lang="vi">
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-8 py-8 border-y border-gray-100/10 mb-10">
+        <div class="text-center px-4 border-r-0 sm:border-r border-gray-100/10">
+          <h3 class="text-[0.65rem] uppercase tracking-[0.3em] font-black text-blue-500 mb-2">Khách hàng</h3>
+          <p class="text-lg font-bold text-heading">Decathlon Vietnam</p>
+        </div>
+        <div class="text-center px-4 border-r-0 sm:border-r border-gray-100/10">
+          <h3 class="text-[0.65rem] uppercase tracking-[0.3em] font-black text-blue-500 mb-2">Agency</h3>
+          <p class="text-lg font-bold text-heading">1990 Agency</p>
+        </div>
+        <div class="text-center px-4">
+          <h3 class="text-[0.65rem] uppercase tracking-[0.3em] font-black text-blue-500 mb-2">Hạng mục</h3>
+          <p class="text-lg font-bold text-heading">CGI FOOH, Gen AI &amp; VFX</p>
+        </div>
+      </div>
+
+      <article class="max-w-4xl mx-auto mb-16 text-center px-6">
+        <p class="text-xl md:text-2xl font-medium text-heading leading-snug mb-3">
+          Chiến dịch quảng cáo CGI FOOH &amp; VFX kỷ niệm 50 năm <strong>Decathlon Vietnam</strong>.
+        </p>
+        <p class="text-base md:text-lg text-gray-normal leading-relaxed max-w-2xl mx-auto">
+          Tôi phụ trách dựng hình &amp; diễn hoạt 3D bằng Blender, tích hợp Gen AI, 3D Camera Tracking và Compositing hậu kỳ bằng After Effects.
+        </p>
+      </article>
+    </div>
+
+    <!-- ENGLISH CONTENT -->
+    <div class="lang-content lang-en hidden" lang="en">
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-8 py-8 border-y border-gray-100/10 mb-10">
+        <div class="text-center px-4 border-r-0 sm:border-r border-gray-100/10">
+          <h3 class="text-[0.65rem] uppercase tracking-[0.3em] font-black text-blue-500 mb-2">Client</h3>
+          <p class="text-lg font-bold text-heading">Decathlon Vietnam</p>
+        </div>
+        <div class="text-center px-4 border-r-0 sm:border-r border-gray-100/10">
+          <h3 class="text-[0.65rem] uppercase tracking-[0.3em] font-black text-blue-500 mb-2">Agency</h3>
+          <p class="text-lg font-bold text-heading">1990 Agency</p>
+        </div>
+        <div class="text-center px-4">
+          <h3 class="text-[0.65rem] uppercase tracking-[0.3em] font-black text-blue-500 mb-2">Scope</h3>
+          <p class="text-lg font-bold text-heading">CGI FOOH, Gen AI &amp; VFX</p>
+        </div>
+      </div>
+
+      <article class="max-w-4xl mx-auto mb-16 text-center px-6">
+        <p class="text-xl md:text-2xl font-medium text-heading leading-snug mb-3">
+          CGI FOOH &amp; VFX campaign celebrating <strong>Decathlon Vietnam's 50th Anniversary</strong>.
+        </p>
+        <p class="text-base md:text-lg text-gray-normal leading-relaxed max-w-2xl mx-auto">
+          I handled 3D modeling &amp; animation in Blender, Gen AI integration, 3D camera tracking, and VFX compositing in After Effects.
+        </p>
+      </article>
+    </div>
+
+    <!-- 1. OFFICIAL COMMERCIAL & 9:16 BREAKDOWN REEL -->
+    <div class="mb-20 max-w-6xl mx-auto">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        <!-- 16:9 Final TVC -->
+        <div class="lg:col-span-8">
+          <h2 class="text-lg md:text-xl font-bold text-heading mb-3">
+            <span class="lang-content lang-vi" lang="vi">Final TVC (16:9)</span>
+            <span class="lang-content lang-en hidden" lang="en">Final TVC (16:9)</span>
+          </h2>
+          <div class="relative rounded-xl overflow-hidden shadow-2xl bg-black aspect-video border border-white/10">
+            <video controls playsinline preload="metadata" poster="/Projects/Decathlon-50Y/assets/cover.webp" class="w-full h-full object-contain">
+              <source src="/Projects/Decathlon-50Y/assets/Decathlon_Final.mp4" type="video/mp4" />
+            </video>
+          </div>
+        </div>
+        <!-- 9:16 Layer Breakdown Reel -->
+        <div class="lg:col-span-4 flex flex-col items-center">
+          <h2 class="text-lg md:text-xl font-bold text-heading mb-3 text-center">
+            <span class="lang-content lang-vi" lang="vi">VFX Breakdown (9:16)</span>
+            <span class="lang-content lang-en hidden" lang="en">VFX Breakdown (9:16)</span>
+          </h2>
+          <div class="relative rounded-xl overflow-hidden shadow-2xl bg-black w-full max-w-[300px] aspect-[9/16] border border-blue-500/30">
+            <video controls playsinline preload="metadata" poster="/Projects/Decathlon-50Y/assets/kv_vertical.webp" class="w-full h-full object-cover">
+              <source src="/Projects/Decathlon-50Y/assets/Decathlon_Breakdown_9x16.mp4" type="video/mp4" />
+            </video>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. KEY STYLEFRAMES (6 SCENES) -->
+    <div class="mb-20">
+      <h2 class="text-2xl md:text-3xl font-bold text-heading mb-6 text-center">Styleframes</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 gallery">
+        <div class="pass-card zoomable-item aspect-video">
+          <span class="pass-badge">Scene 01 • Gen AI + 3D CGI</span>
+          <img src="/Projects/Decathlon-50Y/assets/styleframe_S1.webp" alt="Scene 1 Giant 50Y Rooftop Cake" class="w-full h-full object-cover" loading="lazy" />
+        </div>
+        <div class="pass-card zoomable-item aspect-video">
+          <span class="pass-badge">Scene 02 • Gen AI + 3D CGI</span>
+          <img src="/Projects/Decathlon-50Y/assets/styleframe_S2.webp" alt="Scene 2 HCMC Blue Bus FOOH" class="w-full h-full object-cover" loading="lazy" />
+        </div>
+        <div class="pass-card zoomable-item aspect-video">
+          <span class="pass-badge">Scene 03 • Gen AI + 3D CGI</span>
+          <img src="/Projects/Decathlon-50Y/assets/styleframe_S3.webp" alt="Scene 3 Hanoi Hoan Kiem Lake FOOH" class="w-full h-full object-cover" loading="lazy" />
+        </div>
+        <div class="pass-card zoomable-item aspect-video">
+          <span class="pass-badge">Scene 04 • Live + Gen AI + 3D</span>
+          <img src="/Projects/Decathlon-50Y/assets/styleframe_S4.webp" alt="Scene 4 Mega Store Entrance" class="w-full h-full object-cover" loading="lazy" />
+        </div>
+        <div class="pass-card zoomable-item aspect-video">
+          <span class="pass-badge">Scene 05 • Live + Gen AI + 3D</span>
+          <img src="/Projects/Decathlon-50Y/assets/styleframe_S5.webp" alt="Scene 5 Curved Storefront Window" class="w-full h-full object-cover" loading="lazy" />
+        </div>
+        <div class="pass-card zoomable-item aspect-video">
+          <span class="pass-badge">Scene 06 • Key Visual</span>
+          <img src="/Projects/Decathlon-50Y/assets/styleframe_S6.webp" alt="Scene 6 Decathlon 50Y Finale" class="w-full h-full object-cover" loading="lazy" />
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. SCENE-BY-SCENE CGI & VFX BREAKDOWN -->
+    <div class="mb-20">
+      <h2 class="text-2xl md:text-3xl font-bold text-heading mb-8 text-center">
+        <span class="lang-content lang-vi" lang="vi">Layer Breakdown</span>
+        <span class="lang-content lang-en hidden" lang="en">Layer Breakdown</span>
+      </h2>
+
+      <div class="space-y-10">
+        <!-- SCENE 01 BREAKDOWN -->
+        <div class="p-4 md:p-6 rounded-xl bg-white/5 border border-gray-100/10">
+          <div class="flex flex-wrap items-center justify-between mb-4 gap-2">
+            <h3 class="text-lg md:text-xl font-bold text-heading">
+              <span class="text-blue-500 mr-2">01.</span>
+              <span class="lang-content lang-vi" lang="vi">Tòa Nhà Decathlon TP.HCM</span>
+              <span class="lang-content lang-en hidden" lang="en">Decathlon Rooftop Cake (HCMC)</span>
+            </h3>
+            <span class="px-2.5 py-1 rounded text-xs font-bold uppercase tracking-wider bg-blue-500/15 text-blue-400 border border-blue-500/30">
+              Gen AI + 3D CGI
+            </span>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+            <div class="pass-card aspect-video">
+              <span class="pass-badge">1. Gen AI Plate</span>
+              <video src="/Projects/Decathlon-50Y/assets/S1_raw.webm" autoplay loop muted playsinline preload="metadata" class="w-full h-full object-cover"></video>
+            </div>
+            <div class="pass-card aspect-video">
+              <span class="pass-badge">2. 3D Clay</span>
+              <video src="/Projects/Decathlon-50Y/assets/S1_clay.webm" autoplay loop muted playsinline preload="metadata" class="w-full h-full object-cover"></video>
+            </div>
+            <div class="pass-card aspect-video">
+              <span class="pass-badge">3. 3D Pass</span>
+              <video src="/Projects/Decathlon-50Y/assets/S1_3d.webm" autoplay loop muted playsinline preload="metadata" class="w-full h-full object-cover"></video>
+            </div>
+            <div class="pass-card aspect-video">
+              <span class="pass-badge">4. Final</span>
+              <video src="/Projects/Decathlon-50Y/assets/S1_final.webm" autoplay loop muted playsinline preload="metadata" class="w-full h-full object-cover"></video>
+            </div>
+          </div>
+        </div>
+
+        <!-- SCENE 02 BREAKDOWN -->
+        <div class="p-4 md:p-6 rounded-xl bg-white/5 border border-gray-100/10">
+          <div class="flex flex-wrap items-center justify-between mb-4 gap-2">
+            <h3 class="text-lg md:text-xl font-bold text-heading">
+              <span class="text-blue-500 mr-2">02.</span>
+              <span class="lang-content lang-vi" lang="vi">Xe Buýt &amp; Billboard TP.HCM</span>
+              <span class="lang-content lang-en hidden" lang="en">HCMC Bus &amp; Billboard FOOH</span>
+            </h3>
+            <span class="px-2.5 py-1 rounded text-xs font-bold uppercase tracking-wider bg-blue-500/15 text-blue-400 border border-blue-500/30">
+              Gen AI + 3D CGI
+            </span>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+            <div class="pass-card aspect-video">
+              <span class="pass-badge">1. Green Screen Track</span>
+              <video src="/Projects/Decathlon-50Y/assets/S2_raw.webm" autoplay loop muted playsinline preload="metadata" class="w-full h-full object-cover"></video>
+            </div>
+            <div class="pass-card aspect-video">
+              <span class="pass-badge">2. Gen AI Clean Plate</span>
+              <video src="/Projects/Decathlon-50Y/assets/S2_track.webm" autoplay loop muted playsinline preload="metadata" class="w-full h-full object-cover"></video>
+            </div>
+            <div class="pass-card aspect-video">
+              <span class="pass-badge">3. 3D Pass</span>
+              <video src="/Projects/Decathlon-50Y/assets/S2_3d.webm" autoplay loop muted playsinline preload="metadata" class="w-full h-full object-cover"></video>
+            </div>
+            <div class="pass-card aspect-video">
+              <span class="pass-badge">4. Final</span>
+              <video src="/Projects/Decathlon-50Y/assets/S2_final.webm" autoplay loop muted playsinline preload="metadata" class="w-full h-full object-cover"></video>
+            </div>
+          </div>
+        </div>
+
+        <!-- SCENE 03 BREAKDOWN -->
+        <div class="p-4 md:p-6 rounded-xl bg-white/5 border border-gray-100/10">
+          <div class="flex flex-wrap items-center justify-between mb-4 gap-2">
+            <h3 class="text-lg md:text-xl font-bold text-heading">
+              <span class="text-blue-500 mr-2">03.</span>
+              <span class="lang-content lang-vi" lang="vi">Xe Buýt Hồ Gươm Hà Nội</span>
+              <span class="lang-content lang-en hidden" lang="en">Hoan Kiem Lake Bus FOOH</span>
+            </h3>
+            <span class="px-2.5 py-1 rounded text-xs font-bold uppercase tracking-wider bg-blue-500/15 text-blue-400 border border-blue-500/30">
+              Gen AI + 3D CGI
+            </span>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+            <div class="pass-card aspect-video">
+              <span class="pass-badge">1. Gen AI Plate</span>
+              <video src="/Projects/Decathlon-50Y/assets/S3_raw.webm" autoplay loop muted playsinline preload="metadata" class="w-full h-full object-cover"></video>
+            </div>
+            <div class="pass-card aspect-video">
+              <span class="pass-badge">2. 3D Track</span>
+              <video src="/Projects/Decathlon-50Y/assets/S3_track.webm" autoplay loop muted playsinline preload="metadata" class="w-full h-full object-cover"></video>
+            </div>
+            <div class="pass-card aspect-video">
+              <span class="pass-badge">3. 3D Pass</span>
+              <video src="/Projects/Decathlon-50Y/assets/S3_3d.webm" autoplay loop muted playsinline preload="metadata" class="w-full h-full object-cover"></video>
+            </div>
+            <div class="pass-card aspect-video">
+              <span class="pass-badge">4. Final</span>
+              <video src="/Projects/Decathlon-50Y/assets/S3_final.webm" autoplay loop muted playsinline preload="metadata" class="w-full h-full object-cover"></video>
+            </div>
+          </div>
+        </div>
+
+        <!-- SCENE 04 BREAKDOWN -->
+        <div class="p-4 md:p-6 rounded-xl bg-white/5 border border-gray-100/10">
+          <div class="flex flex-wrap items-center justify-between mb-4 gap-2">
+            <h3 class="text-lg md:text-xl font-bold text-heading">
+              <span class="text-blue-500 mr-2">04.</span>
+              <span class="lang-content lang-vi" lang="vi">Cổng Siêu Thị Decathlon</span>
+              <span class="lang-content lang-en hidden" lang="en">Decathlon Store Entrance</span>
+            </h3>
+            <span class="px-2.5 py-1 rounded text-xs font-bold uppercase tracking-wider bg-emerald-500/15 text-emerald-400 border border-emerald-500/30">
+              <span class="lang-content lang-vi" lang="vi">Quay Thực Tế + Gen AI + 3D CGI</span>
+              <span class="lang-content lang-en hidden" lang="en">Live-Action + Gen AI + 3D CGI</span>
+            </span>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 mb-3">
+            <div class="pass-card aspect-video">
+              <span class="pass-badge">1. Live Plate</span>
+              <video src="/Projects/Decathlon-50Y/assets/S4_raw.webm" autoplay loop muted playsinline preload="metadata" class="w-full h-full object-cover"></video>
+            </div>
+            <div class="pass-card aspect-video">
+              <span class="pass-badge">2. Gen AI Crowd</span>
+              <video src="/Projects/Decathlon-50Y/assets/S4_greenscreen.webm" autoplay loop muted playsinline preload="metadata" class="w-full h-full object-cover"></video>
+            </div>
+            <div class="pass-card aspect-video">
+              <span class="pass-badge">3. 3D Pass</span>
+              <video src="/Projects/Decathlon-50Y/assets/S4_3d.webm" autoplay loop muted playsinline preload="metadata" class="w-full h-full object-cover"></video>
+            </div>
+            <div class="pass-card aspect-video">
+              <span class="pass-badge">4. Final</span>
+              <video src="/Projects/Decathlon-50Y/assets/S4_final.webm" autoplay loop muted playsinline preload="metadata" class="w-full h-full object-cover"></video>
+            </div>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3 gallery">
+            <div class="pass-card zoomable-item aspect-video">
+              <span class="pass-badge">fSpy Calibration</span>
+              <img src="/Projects/Decathlon-50Y/assets/S4_fspy_ref.webp" alt="Scene 4 fSpy Storefront Reference" class="w-full h-full object-cover" loading="lazy" />
+            </div>
+            <div class="pass-card zoomable-item aspect-video">
+              <span class="pass-badge">Clean Plate</span>
+              <img src="/Projects/Decathlon-50Y/assets/S4_cleanplate.webp" alt="Scene 4 Storefront Clean Plate" class="w-full h-full object-cover" loading="lazy" />
+            </div>
+          </div>
+        </div>
+
+        <!-- SCENE 05 BREAKDOWN -->
+        <div class="p-4 md:p-6 rounded-xl bg-white/5 border border-gray-100/10">
+          <div class="flex flex-wrap items-center justify-between mb-4 gap-2">
+            <h3 class="text-lg md:text-xl font-bold text-heading">
+              <span class="text-blue-500 mr-2">05.</span>
+              <span class="lang-content lang-vi" lang="vi">Mặt Tiền Kính Cong Decathlon</span>
+              <span class="lang-content lang-en hidden" lang="en">Curved Storefront Window</span>
+            </h3>
+            <span class="px-2.5 py-1 rounded text-xs font-bold uppercase tracking-wider bg-emerald-500/15 text-emerald-400 border border-emerald-500/30">
+              <span class="lang-content lang-vi" lang="vi">Quay Thực Tế + Gen AI + 3D CGI</span>
+              <span class="lang-content lang-en hidden" lang="en">Live-Action + Gen AI + 3D CGI</span>
+            </span>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 mb-3">
+            <div class="pass-card aspect-video">
+              <span class="pass-badge">1. Live Plate</span>
+              <video src="/Projects/Decathlon-50Y/assets/S5_raw.webm" autoplay loop muted playsinline preload="metadata" class="w-full h-full object-cover"></video>
+            </div>
+            <div class="pass-card aspect-video">
+              <span class="pass-badge">2. 3D Pass</span>
+              <video src="/Projects/Decathlon-50Y/assets/S5_portal.webm" autoplay loop muted playsinline preload="metadata" class="w-full h-full object-cover"></video>
+            </div>
+            <div class="pass-card aspect-video">
+              <span class="pass-badge">3. Gen AI Talent</span>
+              <video src="/Projects/Decathlon-50Y/assets/S5_greenscreen.webm" autoplay loop muted playsinline preload="metadata" class="w-full h-full object-cover"></video>
+            </div>
+            <div class="pass-card aspect-video">
+              <span class="pass-badge">4. Final</span>
+              <video src="/Projects/Decathlon-50Y/assets/S5_final.webm" autoplay loop muted playsinline preload="metadata" class="w-full h-full object-cover"></video>
+            </div>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3 gallery">
+            <div class="pass-card zoomable-item aspect-video">
+              <span class="pass-badge">fSpy Calibration</span>
+              <img src="/Projects/Decathlon-50Y/assets/S5_fspy_ref.webp" alt="Scene 5 fSpy Reference" class="w-full h-full object-cover" loading="lazy" />
+            </div>
+            <div class="pass-card zoomable-item aspect-video">
+              <span class="pass-badge">Clean Plate</span>
+              <img src="/Projects/Decathlon-50Y/assets/S5_cleanplate.webp" alt="Scene 5 Clean Plate" class="w-full h-full object-cover" loading="lazy" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. 3D CGI SPORTS EQUIPMENT MODELS -->
+    <div class="mb-16">
+      <h2 class="text-2xl md:text-3xl font-bold text-heading mb-6 text-center">3D Assets</h2>
+
+      <!-- 9 Isolated Product Renders -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 gallery">
+        <div class="pass-card zoomable-item aspect-video">
+          <span class="pass-badge">Kalenji Running Shoes</span>
+          <img src="/Projects/Decathlon-50Y/assets/prod_shoes.webp" alt="Kalenji Running Shoes 3D Model" class="w-full h-full object-cover" loading="lazy" />
+        </div>
+        <div class="pass-card zoomable-item aspect-video">
+          <span class="pass-badge">Nabaiji Swimming Goggles</span>
+          <img src="/Projects/Decathlon-50Y/assets/prod_goggles.webp" alt="Nabaiji Swimming Goggles 3D Model" class="w-full h-full object-cover" loading="lazy" />
+        </div>
+        <div class="pass-card zoomable-item aspect-video">
+          <span class="pass-badge">Kiprun Running Cap</span>
+          <img src="/Projects/Decathlon-50Y/assets/prod_cap.webp" alt="Kiprun Sports Cap 3D Model" class="w-full h-full object-cover" loading="lazy" />
+        </div>
+        <div class="pass-card zoomable-item aspect-video">
+          <span class="pass-badge">Quechua Backpack — Navy</span>
+          <img src="/Projects/Decathlon-50Y/assets/prod_backpack_dark.webp" alt="Quechua Backpack Dark 3D Model" class="w-full h-full object-cover" loading="lazy" />
+        </div>
+        <div class="pass-card zoomable-item aspect-video">
+          <span class="pass-badge">Quechua NH Escape — Sand</span>
+          <img src="/Projects/Decathlon-50Y/assets/prod_backpack_yellow.webp" alt="Quechua Backpack Sand 3D Model" class="w-full h-full object-cover" loading="lazy" />
+        </div>
+        <div class="pass-card zoomable-item aspect-video">
+          <span class="pass-badge">Quechua Daypack — Ochre</span>
+          <img src="/Projects/Decathlon-50Y/assets/prod_backpack_beige.webp" alt="Quechua Backpack Ochre 3D Model" class="w-full h-full object-cover" loading="lazy" />
+        </div>
+        <div class="pass-card zoomable-item aspect-video">
+          <span class="pass-badge">Forclaz Travel Belt Bag</span>
+          <img src="/Projects/Decathlon-50Y/assets/prod_waistbag.webp" alt="Forclaz Waist Bag 3D Model" class="w-full h-full object-cover" loading="lazy" />
+        </div>
+        <div class="pass-card zoomable-item aspect-video">
+          <span class="pass-badge">Decathlon Iconic Blue Tote</span>
+          <img src="/Projects/Decathlon-50Y/assets/prod_shoppingbag.webp" alt="Decathlon Shopping Bag 3D Model" class="w-full h-full object-cover" loading="lazy" />
+        </div>
+        <div class="pass-card zoomable-item aspect-video">
+          <span class="pass-badge">Newfeel Drawstring Bag</span>
+          <img src="/Projects/Decathlon-50Y/assets/prod_shoesbag.webp" alt="Newfeel Shoes Bag 3D Model" class="w-full h-full object-cover" loading="lazy" />
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer CTA -->
+    <div class="p-6 md:p-8 text-center mt-12 border-t border-gray-100/10 pt-8">
+      <p class="text-2xl md:text-3xl font-extrabold text-heading mb-4">Thanks for watching!</p>
+      <p class="text-lg md:text-xl text-gray-normal">
+        Contact for work:
+        <a href="mailto:contact@manhhuynh.work" class="text-blue-500 hover:underline font-semibold">contact@manhhuynh.work</a>
+      </p>
+    </div>
+
+    {% include related-projects.html %}
+  </section>
+</main>
+
+<!-- Lightbox Modal -->
+<div id="lightbox">
+  <span class="close-btn">&times;</span>
+  <img src="" alt="Zoomed view" />
+</div>
+
+<script>
+(function() {
+  function setActiveBtn(lang) {
+    var viBtn = document.getElementById('section-lang-vi');
+    var enBtn = document.getElementById('section-lang-en');
+    if (!viBtn || !enBtn) return;
+    if (lang === 'vi') {
+      viBtn.classList.add('active');
+      enBtn.classList.remove('active');
+    } else {
+      enBtn.classList.add('active');
+      viBtn.classList.remove('active');
+    }
+  }
+  function showLang(lang) {
+    document.querySelectorAll('.lang-vi').forEach(function(el) {
+      el.classList.toggle('hidden', lang !== 'vi');
+    });
+    document.querySelectorAll('.lang-en').forEach(function(el) {
+      el.classList.toggle('hidden', lang !== 'en');
+    });
+    setActiveBtn(lang);
+  }
+  function getCurrentLang() {
+    var params = new URLSearchParams(window.location.search);
+    if (params.get('lang') === 'en' || params.get('lang') === 'vi') {
+      return params.get('lang');
+    }
+    return localStorage.getItem('lang') || 'vi';
+  }
+  var viBtn = document.getElementById('section-lang-vi');
+  var enBtn = document.getElementById('section-lang-en');
+  if (viBtn) {
+    viBtn.onclick = function() {
+      localStorage.setItem('lang', 'vi');
+      showLang('vi');
+      window.dispatchEvent(new CustomEvent('lang-changed', { detail: { lang: 'vi' } }));
+    };
+  }
+  if (enBtn) {
+    enBtn.onclick = function() {
+      localStorage.setItem('lang', 'en');
+      showLang('en');
+      window.dispatchEvent(new CustomEvent('lang-changed', { detail: { lang: 'en' } }));
+    };
+  }
+  window.addEventListener('lang-changed', function(e) {
+    if (e.detail && e.detail.lang) {
+      showLang(e.detail.lang);
+      localStorage.setItem('lang', e.detail.lang);
+    }
+  });
+  showLang(getCurrentLang());
+
+  // Lightbox
+  var lightbox = document.getElementById('lightbox');
+  if (lightbox) {
+    var lightboxImg = lightbox.querySelector('img');
+    document.querySelectorAll('.gallery img').forEach(function(img) {
+      img.parentElement.addEventListener('click', function() {
+        lightboxImg.src = img.src;
+        lightbox.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+      });
+    });
+    lightbox.addEventListener('click', function() {
+      lightbox.style.display = 'none';
+      document.body.style.overflow = '';
+    });
+  }
+})();
+</script>

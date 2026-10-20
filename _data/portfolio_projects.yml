@@ -1,3 +1,13 @@
+- id: "decathlon-50y"
+  featured: true
+  category: "social-cgi"
+  title_key: "project_decathlon_50y_title"
+  desc_key: "project_decathlon_50y_desc"
+  skills_key: "project_decathlon_50y_skills"
+  behance_link: "Projects/Decathlon-50Y/"
+  thumbnail_image: "Projects/Decathlon-50Y/assets/cover.webp"
+  card_layout_classes: "lg:col-span-2 lg:row-span-1"
+
 - id: "maybelline-packshot"
   featured: true
   category: "motion-3d"

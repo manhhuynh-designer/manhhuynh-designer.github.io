@@ -113,6 +113,10 @@ export const languages = {
         'project_3ce_title': '3CE COLORBAKER COLLECTION - Hoạt ảnh sản phẩm 3D',
         'project_3ce_desc': 'Chiến dịch quảng cáo hoạt ảnh 3D sống động cho bộ sưu tập 3CE Colorbaker.',
         'project_3ce_skills': '3D Animation, Product Visualization',
+        'project_decathlon_50y_title': 'Decathlon 50 Năm — Chiến Dịch CGI FOOH & VFX',
+        'project_decathlon_50y_desc': 'Chiến dịch quảng cáo CGI FOOH & VFX kỷ niệm 50 năm Decathlon: kết hợp Gen AI & 3D CGI (Cảnh 1–3) cùng Quay thực tế, Gen AI & 3D CGI (Cảnh 4–5).',
+        'project_decathlon_50y_role': 'Sản xuất 3D CGI, tích hợp Gen AI, 3D Camera Tracking và ghép cảnh VFX.',
+        'project_decathlon_50y_skills': 'CGI FOOH, Gen AI, 3D Tracking, VFX Compositing',
         'project_mbl_packshot_title': 'Maybelline New York — Diễn họa sản phẩm 3D',
         'project_mbl_packshot_desc': 'Bộ ảnh render CGI sản phẩm chính thức được phê duyệt sử dụng trên các kênh thương mại điện tử cấp khu vực của Maybelline New York.',
         'project_mbl_packshot_role': 'Diễn họa sản phẩm 3D (3D Lookdev), thiết lập hệ thống ánh sáng studio chuẩn hóa.',
@@ -378,6 +382,10 @@ export const languages = {
         'project_3ce_title': '3CE COLORBAKER COLLECTION - 3D Product Animation',
         'project_3ce_desc': 'Vibrant 3D product animation campaign for 3CE Colorbaker Collection.',
         'project_3ce_skills': '3D Animation, Product Visualization',
+        'project_decathlon_50y_title': 'Decathlon 50 Years — CGI FOOH & VFX Campaign',
+        'project_decathlon_50y_desc': 'CGI FOOH & VFX commercial celebrating Decathlon\'s 50th Anniversary, combining Gen AI & 3D CGI (Scenes 1–3) with Live-Action, Gen AI & 3D CGI (Scenes 4–5).',
+        'project_decathlon_50y_role': '3D CGI, Gen AI integration, 3D camera tracking & VFX compositing.',
+        'project_decathlon_50y_skills': 'CGI FOOH, Gen AI, 3D Tracking, VFX Compositing',
         'project_mbl_packshot_title': 'Maybelline New York — 3D Product Visualization',
         'project_mbl_packshot_desc': 'Official CGI packshot assets approved and deployed across regional E-commerce platforms for Maybelline New York.',
         'project_mbl_packshot_role': '3D Product Visualization, Lookdev, Studio Lighting Setup',
@@ -526,6 +534,17 @@ export const languages = {
 
 // Centralized project data for easy updates
 export const portfolioProjects = [
+    {
+        id: 'decathlon-50y',
+        title_key: 'project_decathlon_50y_title',
+        desc_key: 'project_decathlon_50y_desc',
+        skills_key: 'project_decathlon_50y_skills',
+        behance_link: '/Projects/Decathlon-50Y/',
+        images: [
+            'Projects/Decathlon-50Y/assets/cover.webp'
+        ],
+        card_layout_classes: 'lg:col-span-2 lg:row-span-1',
+    },
     {
         id: '3ce-colorbaker',
         title_key: 'project_3ce_title',
