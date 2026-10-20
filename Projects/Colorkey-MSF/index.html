@@ -1,0 +1,505 @@
+---
+layout: default
+title: Colorkey Makeup Setting Fixer - 3D CGI Motion
+permalink: /Projects/Colorkey-MSF/
+project_id: colorkey-msf
+category: 3d-product
+---
+
+<style>
+  .lang-btn {
+    border: 1px solid #2563eb;
+    background: #fff;
+    color: #64748b !important;
+    font-weight: 600;
+    transition: background 0.15s, color 0.15s;
+  }
+  .lang-btn.active {
+    background: #2563eb;
+    color: #fff !important;
+    z-index: 1;
+  }
+  .lang-btn:not(.active) {
+    background: #fff;
+    color: #64748b !important;
+  }
+  .lang-btn:focus {
+    outline: 2px solid #2563eb;
+    outline-offset: 1px;
+  }
+  .lang-btn:first-child {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+  .lang-btn:last-child {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+
+  .pass-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 0.5rem;
+    background: #0b0f19;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+  .pass-badge {
+    position: absolute;
+    top: 0.65rem;
+    left: 0.65rem;
+    padding: 0.25rem 0.65rem;
+    background: rgba(15, 23, 42, 0.82);
+    backdrop-filter: blur(6px);
+    color: #f8fafc;
+    font-size: 0.65rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    border-radius: 0.25rem;
+    border: 1px solid rgba(236, 72, 153, 0.45);
+    z-index: 10;
+    pointer-events: none;
+  }
+  .zoomable-item {
+    cursor: zoom-in;
+    transition: transform 0.25s ease;
+  }
+  .zoomable-item:hover {
+    transform: translateY(-2px);
+  }
+
+  /* Lightbox Modal */
+  #lightbox {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.92);
+    backdrop-filter: blur(10px);
+    z-index: 9999;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    cursor: zoom-out;
+  }
+  #lightbox img {
+    max-width: 92%;
+    max-height: 90vh;
+    object-fit: contain;
+    border-radius: 0.5rem;
+  }
+  #lightbox .close-btn {
+    position: absolute;
+    top: 1.5rem;
+    right: 2rem;
+    color: white;
+    font-size: 2.25rem;
+    cursor: pointer;
+    line-height: 1;
+  }
+</style>
+
+<main class="blog-content bg-background text-text-color font-inter" id="main-content">
+  <!-- Cover Image (Extracted from Scene 1 Master Render) -->
+  <div class="relative">
+    <img src="https://img.manhhuynh.work/projects/colorkey-msf/images/cover.webp?v=2" alt="Colorkey Makeup Setting Fixer 3D CGI Cover" class="w-full h-auto max-h-[700px] object-cover" />
+  </div>
+
+  <!-- Main Content Section -->
+  <section class="relative z-10 -mt-3 md:-mt-40 px-4 md:px-8 py-16 md:py-24 max-w-7xl mx-auto bg-card rounded-xl shadow-xl">
+    <!-- Project Title -->
+    <h1 class="text-3xl md:text-5xl lg:text-6xl font-extrabold text-heading mb-6 text-center">
+      Colorkey Makeup Setting Fixer — 3D CGI Motion
+    </h1>
+
+    <!-- Language Switcher -->
+    <div class="flex justify-end mb-6 max-w-5xl mx-auto px-6">
+      <button id="section-lang-vi" class="lang-btn px-3 py-1 rounded-l border border-blue-500">VI</button>
+      <button id="section-lang-en" class="lang-btn px-3 py-1 rounded-r border border-blue-500">EN</button>
+    </div>
+
+    <!-- VIETNAMESE CONTENT -->
+    <div class="lang-content lang-vi" lang="vi">
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-8 py-8 border-y border-gray-100/10 mb-10">
+        <div class="text-center px-4 border-r-0 sm:border-r border-gray-100/10">
+          <h3 class="text-[0.65rem] uppercase tracking-[0.3em] font-black text-pink-500 mb-2">Thương hiệu</h3>
+          <p class="text-lg font-bold text-heading">COLORKEY</p>
+        </div>
+        <div class="text-center px-4 border-r-0 sm:border-r border-gray-100/10">
+          <h3 class="text-[0.65rem] uppercase tracking-[0.3em] font-black text-pink-500 mb-2">Vai trò</h3>
+          <p class="text-lg font-bold text-heading">3D Generalist &amp; Motion Designer</p>
+        </div>
+        <div class="text-center px-4">
+          <h3 class="text-[0.65rem] uppercase tracking-[0.3em] font-black text-pink-500 mb-2">Hạng mục</h3>
+          <p class="text-lg font-bold text-heading">3D CGI Animation</p>
+        </div>
+      </div>
+
+      <article class="max-w-4xl mx-auto mb-16 text-center px-6">
+        <p class="text-xl md:text-2xl font-medium text-heading leading-snug mb-3">
+          TVC 3D CGI ra mắt dòng <strong>Xịt Khoá Nền Hiệu Ứng Phấn Lỏng Colorkey Makeup Setting Fixer</strong>.
+        </p>
+        <p class="text-base md:text-lg text-gray-normal leading-relaxed max-w-2xl mx-auto">
+          Tôi phụ trách toàn bộ quy trình 3D từ dựng hình sản phẩm, mô phỏng hạt sương mịn 0.25mm, lõi phấn lỏng siêu vi 5.2μm, bề mặt vi cấu trúc da 3D bằng Blender Cycles (Multilayer OpenEXR) đến Compositing hậu kỳ bằng After Effects.
+        </p>
+      </article>
+    </div>
+
+    <!-- ENGLISH CONTENT -->
+    <div class="lang-content lang-en hidden" lang="en">
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-8 py-8 border-y border-gray-100/10 mb-10">
+        <div class="text-center px-4 border-r-0 sm:border-r border-gray-100/10">
+          <h3 class="text-[0.65rem] uppercase tracking-[0.3em] font-black text-pink-500 mb-2">Brand</h3>
+          <p class="text-lg font-bold text-heading">COLORKEY</p>
+        </div>
+        <div class="text-center px-4 border-r-0 sm:border-r border-gray-100/10">
+          <h3 class="text-[0.65rem] uppercase tracking-[0.3em] font-black text-pink-500 mb-2">Role</h3>
+          <p class="text-lg font-bold text-heading">3D Generalist &amp; Motion Designer</p>
+        </div>
+        <div class="text-center px-4">
+          <h3 class="text-[0.65rem] uppercase tracking-[0.3em] font-black text-pink-500 mb-2">Scope</h3>
+          <p class="text-lg font-bold text-heading">3D CGI Animation</p>
+        </div>
+      </div>
+
+      <article class="max-w-4xl mx-auto mb-16 text-center px-6">
+        <p class="text-xl md:text-2xl font-medium text-heading leading-snug mb-3">
+          Full 3D CGI commercial for <strong>Colorkey Powder Mist Makeup Setting Fixer</strong>.
+        </p>
+        <p class="text-base md:text-lg text-gray-normal leading-relaxed max-w-2xl mx-auto">
+          I handled the end-to-end 3D pipeline in Blender Cycles—product modeling, 0.25mm micro-mist particle simulation, 5.2μm mesoporous silica core lookdev, procedural micro-skin shield, and Multilayer OpenEXR compositing in After Effects.
+        </p>
+      </article>
+    </div>
+
+    <!-- 1. OFFICIAL 9:16 COMMERCIAL & 9:16 BREAKDOWN REEL -->
+    <div class="mb-20 max-w-4xl mx-auto">
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-8 items-start justify-items-center">
+        <!-- 9:16 Final Commercial -->
+        <div class="w-full max-w-[360px] flex flex-col items-center">
+          <h2 class="text-lg md:text-xl font-bold text-heading mb-3 text-center">
+            <span class="lang-content lang-vi" lang="vi">Final TVC (9:16)</span>
+            <span class="lang-content lang-en hidden" lang="en">Final Commercial (9:16)</span>
+          </h2>
+          <div class="relative rounded-xl overflow-hidden shadow-2xl bg-black w-full aspect-[9/16] border border-white/10">
+            <video controls playsinline preload="metadata" poster="https://img.manhhuynh.work/projects/colorkey-msf/images/poster_master.webp" class="w-full h-full object-cover">
+              <source src="https://img.manhhuynh.work/projects/colorkey-msf/video/Colorkey_MSF_Master_9x16.mp4" type="video/mp4" />
+              <source src="https://img.manhhuynh.work/projects/colorkey-msf/video/Colorkey_MSF_Master_9x16.webm" type="video/webm" />
+            </video>
+          </div>
+        </div>
+
+        <!-- 9:16 Layer Breakdown Reel -->
+        <div class="w-full max-w-[360px] flex flex-col items-center">
+          <h2 class="text-lg md:text-xl font-bold text-heading mb-3 text-center">
+            <span class="lang-content lang-vi" lang="vi">3D CGI Breakdown (9:16)</span>
+            <span class="lang-content lang-en hidden" lang="en">3D CGI Breakdown (9:16)</span>
+          </h2>
+          <div class="relative rounded-xl overflow-hidden shadow-2xl bg-black w-full aspect-[9/16] border border-pink-500/30">
+            <video controls playsinline preload="metadata" poster="https://img.manhhuynh.work/projects/colorkey-msf/images/poster_breakdown.webp?v=2" class="w-full h-full object-cover">
+              <source src="https://img.manhhuynh.work/projects/colorkey-msf/video/Colorkey_MSF_Breakdown_9x16.mp4?v=2" type="video/mp4" />
+              <source src="https://img.manhhuynh.work/projects/colorkey-msf/video/Colorkey_MSF_Breakdown_9x16.webm?v=2" type="video/webm" />
+            </video>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. KEY STYLEFRAMES (6 VERTICAL 9:16 SCENES FROM FINAL VIDEO) -->
+    <div class="mb-20">
+      <h2 class="text-2xl md:text-3xl font-bold text-heading mb-6 text-center">Styleframes</h2>
+      <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 gallery">
+        <div class="pass-card zoomable-item aspect-[9/16]">
+          <span class="pass-badge">Scene 01 • 3D CGI</span>
+          <img src="https://img.manhhuynh.work/projects/colorkey-msf/images/styleframe_s01.webp?v=2" alt="Scene 1 Hero Bottle Reveal" class="w-full h-full object-cover" loading="lazy" />
+        </div>
+        <div class="pass-card zoomable-item aspect-[9/16]">
+          <span class="pass-badge">Scene 02 • 3D CGI</span>
+          <img src="https://img.manhhuynh.work/projects/colorkey-msf/images/styleframe_s02.webp?v=2" alt="Scene 2 0.25mm Micro-Mist Burst" class="w-full h-full object-cover" loading="lazy" />
+        </div>
+        <div class="pass-card zoomable-item aspect-[9/16]">
+          <span class="pass-badge">Scene 03 • 3D CGI</span>
+          <img src="https://img.manhhuynh.work/projects/colorkey-msf/images/styleframe_s03.webp?v=2" alt="Scene 3 5.2um Silica Core Inside Droplet" class="w-full h-full object-cover" loading="lazy" />
+        </div>
+        <div class="pass-card zoomable-item aspect-[9/16]">
+          <span class="pass-badge">Scene 04 • 3D CGI</span>
+          <img src="https://img.manhhuynh.work/projects/colorkey-msf/images/styleframe_s04.webp?v=2" alt="Scene 4 Botanical Skincare Nutrient Bubbles" class="w-full h-full object-cover" loading="lazy" />
+        </div>
+        <div class="pass-card zoomable-item aspect-[9/16]">
+          <span class="pass-badge">Scene 05 • 3D CGI</span>
+          <img src="https://img.manhhuynh.work/projects/colorkey-msf/images/styleframe_s05.webp?v=2" alt="Scene 5 Procedural Micro-Skin & 24H Shield" class="w-full h-full object-cover" loading="lazy" />
+        </div>
+        <div class="pass-card zoomable-item aspect-[9/16]">
+          <span class="pass-badge">Scene 06 • 3D CGI</span>
+          <img src="https://img.manhhuynh.work/projects/colorkey-msf/images/styleframe_s06.webp?v=2" alt="Scene 6 End-Frame Packshot Trio" class="w-full h-full object-cover" loading="lazy" />
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. SCENE-BY-SCENE 3D CGI LAYER BREAKDOWN -->
+    <div class="mb-20">
+      <h2 class="text-2xl md:text-3xl font-bold text-heading mb-8 text-center">
+        <span class="lang-content lang-vi" lang="vi">Layer Breakdown</span>
+        <span class="lang-content lang-en hidden" lang="en">Layer Breakdown</span>
+      </h2>
+
+      <div class="space-y-10">
+        <!-- SCENE 01 -->
+        <div class="p-4 md:p-6 rounded-xl bg-white/5 border border-gray-100/10">
+          <div class="flex flex-wrap items-center justify-between mb-4 gap-2">
+            <h3 class="text-lg md:text-xl font-bold text-heading">
+              <span class="text-pink-500 mr-2">01.</span>
+              <span class="lang-content lang-vi" lang="vi">Hero Bottle Reveal &amp; Crane Track</span>
+              <span class="lang-content lang-en hidden" lang="en">Hero Bottle Reveal &amp; Crane Track</span>
+            </h3>
+            <span class="px-2.5 py-1 rounded text-xs font-bold uppercase tracking-wider bg-pink-500/15 text-pink-400 border border-pink-500/30">
+              3D CGI
+            </span>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <div class="pass-card aspect-[9/16]">
+              <span class="pass-badge">1. 3D Clay</span>
+              <video src="https://img.manhhuynh.work/projects/colorkey-msf/video/s01_clay.webm?v=2" autoplay loop muted playsinline preload="metadata" class="w-full h-full object-cover"></video>
+            </div>
+            <div class="pass-card aspect-[9/16]">
+              <span class="pass-badge">2. 3D Raw</span>
+              <video src="https://img.manhhuynh.work/projects/colorkey-msf/video/s01_3d.webm?v=2" autoplay loop muted playsinline preload="metadata" class="w-full h-full object-cover"></video>
+            </div>
+            <div class="pass-card aspect-[9/16]">
+              <span class="pass-badge">3. Final</span>
+              <video src="https://img.manhhuynh.work/projects/colorkey-msf/video/s01_final.webm?v=2" autoplay loop muted playsinline preload="metadata" class="w-full h-full object-cover"></video>
+            </div>
+          </div>
+        </div>
+
+        <!-- SCENE 02 -->
+        <div class="p-4 md:p-6 rounded-xl bg-white/5 border border-gray-100/10">
+          <div class="flex flex-wrap items-center justify-between mb-4 gap-2">
+            <h3 class="text-lg md:text-xl font-bold text-heading">
+              <span class="text-pink-500 mr-2">02.</span>
+              <span class="lang-content lang-vi" lang="vi">Tia Sương Mịn 0.25mm &amp; Giọt Nước Macro</span>
+              <span class="lang-content lang-en hidden" lang="en">0.25mm Micro-Mist Burst &amp; Macro Droplet</span>
+            </h3>
+            <span class="px-2.5 py-1 rounded text-xs font-bold uppercase tracking-wider bg-pink-500/15 text-pink-400 border border-pink-500/30">
+              3D CGI
+            </span>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <div class="pass-card aspect-[9/16]">
+              <span class="pass-badge">1. 3D Clay</span>
+              <video src="https://img.manhhuynh.work/projects/colorkey-msf/video/s02_clay.webm?v=2" autoplay loop muted playsinline preload="metadata" class="w-full h-full object-cover"></video>
+            </div>
+            <div class="pass-card aspect-[9/16]">
+              <span class="pass-badge">2. 3D Raw</span>
+              <video src="https://img.manhhuynh.work/projects/colorkey-msf/video/s02_3d.webm?v=2" autoplay loop muted playsinline preload="metadata" class="w-full h-full object-cover"></video>
+            </div>
+            <div class="pass-card aspect-[9/16]">
+              <span class="pass-badge">3. Final</span>
+              <video src="https://img.manhhuynh.work/projects/colorkey-msf/video/s02_final.webm?v=2" autoplay loop muted playsinline preload="metadata" class="w-full h-full object-cover"></video>
+            </div>
+          </div>
+        </div>
+
+        <!-- SCENE 03 -->
+        <div class="p-4 md:p-6 rounded-xl bg-white/5 border border-gray-100/10">
+          <div class="flex flex-wrap items-center justify-between mb-4 gap-2">
+            <h3 class="text-lg md:text-xl font-bold text-heading">
+              <span class="text-pink-500 mr-2">03.</span>
+              <span class="lang-content lang-vi" lang="vi">Lõi Phấn Lỏng Siêu Vi 5.2μm</span>
+              <span class="lang-content lang-en hidden" lang="en">5.2μm Mesoporous Silica Microsphere Core</span>
+            </h3>
+            <span class="px-2.5 py-1 rounded text-xs font-bold uppercase tracking-wider bg-pink-500/15 text-pink-400 border border-pink-500/30">
+              3D CGI
+            </span>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <div class="pass-card aspect-[9/16]">
+              <span class="pass-badge">1. 3D Clay</span>
+              <video src="https://img.manhhuynh.work/projects/colorkey-msf/video/s03_clay.webm?v=2" autoplay loop muted playsinline preload="metadata" class="w-full h-full object-cover"></video>
+            </div>
+            <div class="pass-card aspect-[9/16]">
+              <span class="pass-badge">2. 3D Raw</span>
+              <video src="https://img.manhhuynh.work/projects/colorkey-msf/video/s03_3d.webm?v=2" autoplay loop muted playsinline preload="metadata" class="w-full h-full object-cover"></video>
+            </div>
+            <div class="pass-card aspect-[9/16]">
+              <span class="pass-badge">3. Final</span>
+              <video src="https://img.manhhuynh.work/projects/colorkey-msf/video/s03_final.webm?v=2" autoplay loop muted playsinline preload="metadata" class="w-full h-full object-cover"></video>
+            </div>
+          </div>
+        </div>
+
+        <!-- SCENE 04 -->
+        <div class="p-4 md:p-6 rounded-xl bg-white/5 border border-gray-100/10">
+          <div class="flex flex-wrap items-center justify-between mb-4 gap-2">
+            <h3 class="text-lg md:text-xl font-bold text-heading">
+              <span class="text-pink-500 mr-2">04.</span>
+              <span class="lang-content lang-vi" lang="vi">Tinh Chất Dưỡng Da Thực Vật 3D</span>
+              <span class="lang-content lang-en hidden" lang="en">Botanical Skincare Nutrient Bubbles</span>
+            </h3>
+            <span class="px-2.5 py-1 rounded text-xs font-bold uppercase tracking-wider bg-pink-500/15 text-pink-400 border border-pink-500/30">
+              3D CGI
+            </span>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <div class="pass-card aspect-[9/16]">
+              <span class="pass-badge">1. 3D Clay</span>
+              <video src="https://img.manhhuynh.work/projects/colorkey-msf/video/s04_clay.webm?v=2" autoplay loop muted playsinline preload="metadata" class="w-full h-full object-cover"></video>
+            </div>
+            <div class="pass-card aspect-[9/16]">
+              <span class="pass-badge">2. 3D Raw</span>
+              <video src="https://img.manhhuynh.work/projects/colorkey-msf/video/s04_3d.webm?v=2" autoplay loop muted playsinline preload="metadata" class="w-full h-full object-cover"></video>
+            </div>
+            <div class="pass-card aspect-[9/16]">
+              <span class="pass-badge">3. Final</span>
+              <video src="https://img.manhhuynh.work/projects/colorkey-msf/video/s04_final.webm?v=2" autoplay loop muted playsinline preload="metadata" class="w-full h-full object-cover"></video>
+            </div>
+          </div>
+        </div>
+
+        <!-- SCENE 05 -->
+        <div class="p-4 md:p-6 rounded-xl bg-white/5 border border-gray-100/10">
+          <div class="flex flex-wrap items-center justify-between mb-4 gap-2">
+            <h3 class="text-lg md:text-xl font-bold text-heading">
+              <span class="text-pink-500 mr-2">05.</span>
+              <span class="lang-content lang-vi" lang="vi">Màng Khoá Nền &amp; Khiên Kiềm Dầu 24H</span>
+              <span class="lang-content lang-en hidden" lang="en">Procedural Micro-Skin &amp; 24H Oil-Control Shield</span>
+            </h3>
+            <span class="px-2.5 py-1 rounded text-xs font-bold uppercase tracking-wider bg-pink-500/15 text-pink-400 border border-pink-500/30">
+              3D CGI
+            </span>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <div class="pass-card aspect-[9/16]">
+              <span class="pass-badge">1. 3D Clay</span>
+              <video src="https://img.manhhuynh.work/projects/colorkey-msf/video/s05_clay.webm?v=2" autoplay loop muted playsinline preload="metadata" class="w-full h-full object-cover"></video>
+            </div>
+            <div class="pass-card aspect-[9/16]">
+              <span class="pass-badge">2. 3D Raw</span>
+              <video src="https://img.manhhuynh.work/projects/colorkey-msf/video/s05_3d.webm?v=2" autoplay loop muted playsinline preload="metadata" class="w-full h-full object-cover"></video>
+            </div>
+            <div class="pass-card aspect-[9/16]">
+              <span class="pass-badge">3. Final</span>
+              <video src="https://img.manhhuynh.work/projects/colorkey-msf/video/s05_final.webm?v=2" autoplay loop muted playsinline preload="metadata" class="w-full h-full object-cover"></video>
+            </div>
+          </div>
+        </div>
+
+        <!-- SCENE 06 -->
+        <div class="p-4 md:p-6 rounded-xl bg-white/5 border border-gray-100/10">
+          <div class="flex flex-wrap items-center justify-between mb-4 gap-2">
+            <h3 class="text-lg md:text-xl font-bold text-heading">
+              <span class="text-pink-500 mr-2">06.</span>
+              <span class="lang-content lang-vi" lang="vi">Light Sweep &amp; Bộ 3 Packshot Kết Cảnh</span>
+              <span class="lang-content lang-en hidden" lang="en">Light Sweep &amp; End-Frame Packshot Reveal</span>
+            </h3>
+            <span class="px-2.5 py-1 rounded text-xs font-bold uppercase tracking-wider bg-pink-500/15 text-pink-400 border border-pink-500/30">
+              3D CGI
+            </span>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <div class="pass-card aspect-[9/16]">
+              <span class="pass-badge">1. 3D Clay</span>
+              <video src="https://img.manhhuynh.work/projects/colorkey-msf/video/s06_clay.webm?v=2" autoplay loop muted playsinline preload="metadata" class="w-full h-full object-cover"></video>
+            </div>
+            <div class="pass-card aspect-[9/16]">
+              <span class="pass-badge">2. 3D Raw</span>
+              <video src="https://img.manhhuynh.work/projects/colorkey-msf/video/s06_3d.webm?v=2" autoplay loop muted playsinline preload="metadata" class="w-full h-full object-cover"></video>
+            </div>
+            <div class="pass-card aspect-[9/16]">
+              <span class="pass-badge">3. Final</span>
+              <video src="https://img.manhhuynh.work/projects/colorkey-msf/video/s06_final.webm?v=2" autoplay loop muted playsinline preload="metadata" class="w-full h-full object-cover"></video>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer CTA -->
+    <div class="p-6 md:p-8 text-center mt-12 border-t border-gray-100/10 pt-8">
+      <p class="text-2xl md:text-3xl font-extrabold text-heading mb-4">Thanks for watching!</p>
+      <p class="text-lg md:text-xl text-gray-normal">
+        Contact for work:
+        <a href="mailto:contact@manhhuynh.work" class="text-blue-500 hover:underline font-semibold">contact@manhhuynh.work</a>
+      </p>
+    </div>
+
+    {% include related-projects.html %}
+  </section>
+</main>
+
+<!-- Lightbox Modal -->
+<div id="lightbox">
+  <span class="close-btn">&times;</span>
+  <img src="" alt="Zoomed view" />
+</div>
+
+<script>
+(function() {
+  function setActiveBtn(lang) {
+    var viBtn = document.getElementById('section-lang-vi');
+    var enBtn = document.getElementById('section-lang-en');
+    if (!viBtn || !enBtn) return;
+    if (lang === 'vi') {
+      viBtn.classList.add('active');
+      enBtn.classList.remove('active');
+    } else {
+      enBtn.classList.add('active');
+      viBtn.classList.remove('active');
+    }
+  }
+  function showLang(lang) {
+    document.querySelectorAll('.lang-vi').forEach(function(el) {
+      el.classList.toggle('hidden', lang !== 'vi');
+    });
+    document.querySelectorAll('.lang-en').forEach(function(el) {
+      el.classList.toggle('hidden', lang !== 'en');
+    });
+    setActiveBtn(lang);
+  }
+  function getCurrentLang() {
+    var params = new URLSearchParams(window.location.search);
+    if (params.get('lang') === 'en' || params.get('lang') === 'vi') {
+      return params.get('lang');
+    }
+    return localStorage.getItem('lang') || 'vi';
+  }
+  var viBtn = document.getElementById('section-lang-vi');
+  var enBtn = document.getElementById('section-lang-en');
+  if (viBtn) {
+    viBtn.onclick = function() {
+      localStorage.setItem('lang', 'vi');
+      showLang('vi');
+      window.dispatchEvent(new CustomEvent('lang-changed', { detail: { lang: 'vi' } }));
+    };
+  }
+  if (enBtn) {
+    enBtn.onclick = function() {
+      localStorage.setItem('lang', 'en');
+      showLang('en');
+      window.dispatchEvent(new CustomEvent('lang-changed', { detail: { lang: 'en' } }));
+    };
+  }
+  window.addEventListener('lang-changed', function(e) {
+    if (e.detail && e.detail.lang) {
+      showLang(e.detail.lang);
+      localStorage.setItem('lang', e.detail.lang);
+    }
+  });
+  showLang(getCurrentLang());
+
+  // Lightbox
+  var lightbox = document.getElementById('lightbox');
+  if (lightbox) {
+    var lightboxImg = lightbox.querySelector('img');
+    document.querySelectorAll('.gallery img').forEach(function(img) {
+      img.parentElement.addEventListener('click', function() {
+        lightboxImg.src = img.src;
+        lightbox.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+      });
+    });
+    lightbox.addEventListener('click', function() {
+      lightbox.style.display = 'none';
+      document.body.style.overflow = '';
+    });
+  }
+})();
+</script>
