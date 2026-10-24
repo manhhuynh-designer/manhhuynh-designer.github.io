@@ -39,6 +39,33 @@ img {
   margin-right: auto;
   border-radius: 8px;
 }
+.copy-skill-inline-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 10px;
+  margin: 0 4px;
+  font-size: 12.5px;
+  font-weight: 600;
+  font-family: inherit;
+  color: #3b82f6;
+  background: rgba(59, 130, 246, 0.12);
+  border: 1px solid rgba(59, 130, 246, 0.38);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.18s ease;
+  vertical-align: middle;
+}
+.copy-skill-inline-btn:hover {
+  background: #3b82f6;
+  border-color: #3b82f6;
+  color: #ffffff;
+}
+.copy-skill-inline-btn.copied {
+  color: #10b981;
+  background: rgba(16, 185, 129, 0.15);
+  border-color: #10b981;
+}
 </style>
 
 <!-- ======================================================================= -->
@@ -87,14 +114,15 @@ Trong các phiên bản trước, việc phải tạo Project rồi tạo Scene 
 - **Viền modal siêu trong suốt**: Toàn bộ thanh công cụ nổi và hộp thoại được tinh chỉnh viền mờ tinh tế, không gây vướng mắt trên giao diện sáng tạo.
 
 ### ⚡ Kết nối Native Chrome "Ask Gemini" & Bộ 5 Slash Skills
-Không cần chia đôi 2 cửa sổ hay tạo Gem thủ công như trước. Bạn chỉ cần mở thanh bên **Ask Gemini** tích hợp sẵn ở góc trên bên phải trình duyệt Chrome (tự động đọc được hình ảnh/video trên tab Google Flow hiện tại) và cài bộ **Slash Skills** tại `chrome://skills/yourSkills`:
-- `/still` — Tạo **Ảnh tĩnh Photoreal**, **Packshot sản phẩm** theo vật liệu và **Character Sheet**.
-- `/shot` — Tạo **Video T2V**, **I2V Motion-Only** (20–35 từ, chỉ tả chuyển động) & **Storyboard TVC nhiều cảnh**.
-- `/edit` — **Chỉnh sửa ảnh** (`Change / Preserve / Integration`), **Ghép nhiều ảnh** & **V2V Product Relight**.
-- `/think` — **Tư duy Sáng tạo 6-in-1** (Viral Hook 3s đầu, SCAMPER, Six Thinking Hats, Reverse Brainstorming, Tree of Thoughts & First Principles).
-- `/flow` — Bản **All-in-One Flow Director** tự động phân luồng cả 4 chế độ.
+Không cần chia đôi 2 cửa sổ hay tạo Gem thủ công như trước. Bạn chỉ cần mở thanh bên **Ask Gemini** tích hợp sẵn ở góc trên bên phải trình duyệt Chrome (tự động đọc được hình ảnh/video trên tab Google Flow hiện tại) và cài bộ **Slash Skills** tại `chrome://skills/yourSkills` <button type="button" class="copy-skill-inline-btn" onclick="copyTextInline(this, 'chrome://skills/yourSkills')">📋 Copy Link</button> (dán lên thanh địa chỉ Chrome để mở). Nhấn **📋 Copy Skill** bên dưới để sao chép thẳng nội dung prompt vào Clipboard:
 
-Bạn có thể sao chép nhanh nội dung từng Skill chỉ với 1 cú click tại [Trang chủ PromptAgent Portal](https://prompt.manhhuynh.work) hoặc [Trang Hướng dẫn](https://prompt.manhhuynh.work/guide).
+- `/still` — <button type="button" class="copy-skill-inline-btn" onclick="copySkillMd(this, '01_still_image_craft.md')">📋 Copy Skill</button> <a href="/assets/skills/01_still_image_craft.md" download="01_still_image_craft.md"><code>⬇ .md</code></a> : Tạo **Ảnh tĩnh Photoreal**, **Packshot sản phẩm** theo vật liệu và **Character Sheet**.
+- `/shot` — <button type="button" class="copy-skill-inline-btn" onclick="copySkillMd(this, '02_video_shot_craft.md')">📋 Copy Skill</button> <a href="/assets/skills/02_video_shot_craft.md" download="02_video_shot_craft.md"><code>⬇ .md</code></a> : Tạo **Video T2V**, **I2V Motion-Only** (20–35 từ, chỉ tả chuyển động) & **Storyboard TVC nhiều cảnh**.
+- `/edit` — <button type="button" class="copy-skill-inline-btn" onclick="copySkillMd(this, '03_edit_composite_relight.md')">📋 Copy Skill</button> <a href="/assets/skills/03_edit_composite_relight.md" download="03_edit_composite_relight.md"><code>⬇ .md</code></a> : **Chỉnh sửa ảnh** (`Change / Preserve / Integration`), **Ghép nhiều ảnh** & **V2V Product Relight**.
+- `/think` — <button type="button" class="copy-skill-inline-btn" onclick="copySkillMd(this, '04_creative_thinking.md')">📋 Copy Skill</button> <a href="/assets/skills/04_creative_thinking.md" download="04_creative_thinking.md"><code>⬇ .md</code></a> : **Tư duy Sáng tạo 6-in-1** (Viral Hook 3s đầu, SCAMPER, Six Thinking Hats, Reverse Brainstorming, Tree of Thoughts & First Principles).
+- `/flow` — <button type="button" class="copy-skill-inline-btn" onclick="copySkillMd(this, '00_all_in_one_flow_director.md')">📋 Copy Skill</button> <a href="/assets/skills/00_all_in_one_flow_director.md" download="00_all_in_one_flow_director.md"><code>⬇ .md</code></a> : Bản **All-in-One Flow Director** tự động phân luồng cả 4 chế độ.
+
+Bạn cũng có thể xem đầy đủ tài liệu tại [Trang chủ PromptAgent Portal](https://prompt.manhhuynh.work) hoặc [Trang Hướng dẫn](https://prompt.manhhuynh.work/guide).
 
 ### 🛡️ Mặc định chỉ hiển thị trên Google Flow — Không làm phiền khi lướt web
 Để tránh việc thanh công cụ nổi xuất hiện ngoài ý muốn trên các trang web thông thường:
@@ -165,14 +193,15 @@ We removed the multi-level Project/Scene folder hierarchy and legacy web credit 
 - **High-Transparency Borders**: Subtle, ultra-transparent borders keep the floating dock and modals unobtrusive over your canvas.
 
 ### ⚡ Native Chrome "Ask Gemini" & 5 Modular Slash Skills
-Work in a single browser window alongside Chrome's built-in **Ask Gemini** side panel and set up 1-click **Slash Skills** at `chrome://skills/yourSkills`:
-- `/still` — Photoreal Still Images, material-driven Packshots, and Character Sheets.
-- `/shot` — Video T2V, concise I2V Motion-Only prompts (20–35 words), and multi-shot TVC storyboards.
-- `/edit` — Surgical Image Edits (`Change / Preserve / Integration`), multi-image compositing, and V2V Product Relight.
-- `/think` — 6-in-1 Creative Thinking orchestrator (Lateral Thinking, SCAMPER, Six Thinking Hats, Reverse Brainstorming, Tree of Thoughts, First Principles).
-- `/flow` — All-in-One Flow Director routing across all modes.
+Work in a single browser window alongside Chrome's built-in **Ask Gemini** side panel and set up 1-click **Slash Skills** at `chrome://skills/yourSkills` <button type="button" class="copy-skill-inline-btn" onclick="copyTextInline(this, 'chrome://skills/yourSkills')">📋 Copy Link</button> (paste into Chrome's address bar). Click **📋 Copy Skill** below to copy each skill prompt directly to your clipboard:
 
-Copy any skill in one click from the [PromptAgent Portal](https://prompt.manhhuynh.work) or the [User Guide](https://prompt.manhhuynh.work/guide).
+- `/still` — <button type="button" class="copy-skill-inline-btn" onclick="copySkillMd(this, '01_still_image_craft.md')">📋 Copy Skill</button> <a href="/assets/skills/01_still_image_craft.md" download="01_still_image_craft.md"><code>⬇ .md</code></a> : Photoreal Still Images, material-driven Packshots, and Character Sheets.
+- `/shot` — <button type="button" class="copy-skill-inline-btn" onclick="copySkillMd(this, '02_video_shot_craft.md')">📋 Copy Skill</button> <a href="/assets/skills/02_video_shot_craft.md" download="02_video_shot_craft.md"><code>⬇ .md</code></a> : Video T2V, concise I2V Motion-Only prompts (20–35 words), and multi-shot TVC storyboards.
+- `/edit` — <button type="button" class="copy-skill-inline-btn" onclick="copySkillMd(this, '03_edit_composite_relight.md')">📋 Copy Skill</button> <a href="/assets/skills/03_edit_composite_relight.md" download="03_edit_composite_relight.md"><code>⬇ .md</code></a> : Surgical Image Edits (`Change / Preserve / Integration`), multi-image compositing, and V2V Product Relight.
+- `/think` — <button type="button" class="copy-skill-inline-btn" onclick="copySkillMd(this, '04_creative_thinking.md')">📋 Copy Skill</button> <a href="/assets/skills/04_creative_thinking.md" download="04_creative_thinking.md"><code>⬇ .md</code></a> : 6-in-1 Creative Thinking orchestrator (Lateral Thinking, SCAMPER, Six Thinking Hats, Reverse Brainstorming, Tree of Thoughts, First Principles).
+- `/flow` — <button type="button" class="copy-skill-inline-btn" onclick="copySkillMd(this, '00_all_in_one_flow_director.md')">📋 Copy Skill</button> <a href="/assets/skills/00_all_in_one_flow_director.md" download="00_all_in_one_flow_director.md"><code>⬇ .md</code></a> : All-in-One Flow Director routing across all modes.
+
+You can also explore the full documentation on the [PromptAgent Portal](https://prompt.manhhuynh.work) or the [User Guide](https://prompt.manhhuynh.work/guide).
 
 ### 🛡️ Non-Intrusive Default: Google Flow Only by Default
 To prevent the floating dock from appearing unexpectedly while browsing other websites:
@@ -213,4 +242,44 @@ document.addEventListener('DOMContentLoaded', function() {
   const savedLang = localStorage.getItem('preferredLanguage') || 'vi';
   switchLanguage(savedLang);
 });
+
+async function copyTextInline(btn, text) {
+  const origText = btn.textContent;
+  try {
+    await navigator.clipboard.writeText(text);
+    const lang = localStorage.getItem('preferredLanguage') || 'vi';
+    btn.textContent = lang === 'vi' ? '✓ Đã copy Link!' : '✓ Copied Link!';
+    btn.classList.add('copied');
+    setTimeout(() => {
+      btn.textContent = origText;
+      btn.classList.remove('copied');
+    }, 1800);
+  } catch (err) {
+    console.error(err);
+  }
+}
+
+async function copySkillMd(btn, fileName) {
+  const origText = btn.textContent;
+  try {
+    let res = await fetch('/assets/skills/' + fileName);
+    if (!res.ok) {
+      res = await fetch('https://prompt.manhhuynh.work/skills/' + fileName);
+    }
+    if (!res.ok) throw new Error('Failed to fetch skill');
+    const text = await res.text();
+    await navigator.clipboard.writeText(text);
+    const lang = localStorage.getItem('preferredLanguage') || 'vi';
+    btn.textContent = lang === 'vi' ? '✓ Đã copy Skill!' : '✓ Copied Skill!';
+    btn.classList.add('copied');
+    setTimeout(() => {
+      btn.textContent = origText;
+      btn.classList.remove('copied');
+    }, 1800);
+  } catch (err) {
+    console.error(err);
+    btn.textContent = '⚠ Error';
+    setTimeout(() => { btn.textContent = origText; }, 1500);
+  }
+}
 </script>
