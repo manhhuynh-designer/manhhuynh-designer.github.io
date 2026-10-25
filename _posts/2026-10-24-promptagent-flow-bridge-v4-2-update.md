@@ -152,7 +152,7 @@ img {
 
 ### Pose Studio 3D trong trang và tự động chèn thông số góc máy
 Thay vì mô tả góc máy và tư thế nhân vật bằng chữ, thanh công cụ nổi nay có thêm nút **Pose Studio 3D**:
-- **Chuột trái**: Mở cửa sổ **Pose Studio 3D** ngay trên giao diện trang đang làm việc (đồng bộ bảng màu tối `#121212` / `#1A1A1A` / `#10b981` với tiện ích).
+- **Chuột trái**: Mở cửa sổ **Pose Studio 3D** ngay trên giao diện trang đang làm việc.
 - **Chuột phải**: Mở Pose Studio 3D ở tab riêng (`https://prompt.manhhuynh.work/pose/`).
 - **Nút `Insert Pose`**: Tự động đính kèm ảnh PNG dáng nhân vật 3D vào ô tham chiếu, đồng thời điền thông số góc máy (**Camera & Shooting Angle DNA**) gồm tiêu cự ống kính (`mm`), cỡ cảnh, góc cao/thấp (`°` elevation), góc xoay ngang so với hướng mặt nhân vật và độ nghiêng máy (Dutch tilt) vào ô nhập prompt.
 
@@ -168,7 +168,6 @@ Thay vì mô tả góc máy và tư thế nhân vật bằng chữ, thanh công 
 - **Gộp thao tác vào một nút Book trên thanh công cụ nổi**:
   - **Chuột trái vào icon Book**: Lưu ngay câu prompt đang gõ trên trang vào PromptBook, tự đặt tiêu đề theo nội dung.
   - **Chuột phải vào icon Book**: Mở danh sách **PromptBook** nổi để tìm và dán prompt đã lưu.
-- **Viền hộp thoại mờ (`rgba(255,255,255,0.05)`)**: Giảm độ tương phản viền của thanh công cụ nổi và các cửa sổ popup để không che tầm nhìn trên khung vẽ.
 
 ![Thanh công cụ nổi 3 nút và cửa sổ PromptBook phẳng trên Google Flow](/assets/images/flow-bridge/flow-promptbook-v42.png)
 <p class="img-caption">Chuột phải vào nút Book trên thanh công cụ nổi để mở nhanh PromptBook phẳng ngay trên Google Flow.</p>
@@ -380,7 +379,7 @@ Nếu bạn có góp ý hoặc cần bổ sung tính năng cho workflow làm phi
 
 ### In-Page Pose Studio 3D and Camera DNA Injection
 Instead of describing camera angles and character posture by hand, the floating dock now includes a **Pose Studio 3D** button:
-- **Left-click**: Opens the **Pose Studio 3D** modal directly over your workspace, matching the extension's dark palette (`#121212` / `#1A1A1A` / `#10b981`).
+- **Left-click**: Opens the **Pose Studio 3D** modal directly over your workspace.
 - **Right-click**: Opens Pose Studio 3D in a separate tab (`https://prompt.manhhuynh.work/pose/`).
 - **`Insert Pose`**: Attaches the rendered 3D pose reference PNG to the upload slot and inserts **Camera & Shooting Angle DNA** (focal length in `mm`, shot framing, vertical elevation in degrees, horizontal azimuth relative to character orientation, and Dutch tilt) into the prompt box.
 
@@ -391,12 +390,11 @@ Instead of describing camera angles and character posture by hand, the floating 
 <p class="img-caption">Clicking Insert Pose attaches the PNG reference and fills the Camera DNA block into Google Flow's prompt input.</p>
 
 ### Flat PromptBook and 2-in-1 Book Button
-Version **v4.2.0** removes the Project/Scene folder hierarchy and the web credit counter:
+Version **v4.2.0** removes the Project/Scene folder hierarchy:
 - **Flat PromptBook List**: Opening the extension popup or floating menu goes straight to a flat, searchable list of prompts with 1-click **Paste** buttons. All previously saved local and Firestore prompts are preserved and merged automatically.
 - **Single Book Button on the Floating Dock**:
   - **Left-click on the Book icon**: Saves the active prompt from the page editor into PromptBook with an auto-generated title.
   - **Right-click on the Book icon**: Opens the floating **PromptBook** menu to search and paste saved prompts.
-- **Low-Contrast Modal Borders (`rgba(255,255,255,0.05)`)**: Keeps the floating dock and popovers unobtrusive over your canvas.
 
 ![3-button floating dock and flat PromptBook popover on Google Flow](/assets/images/flow-bridge/flow-promptbook-v42.png)
 <p class="img-caption">Right-clicking the Book button on the floating dock opens the flat PromptBook popover directly over Google Flow.</p>
