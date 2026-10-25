@@ -66,6 +66,59 @@ img {
   background: rgba(16, 185, 129, 0.15);
   border-color: #10b981;
 }
+.img-caption {
+  text-align: center;
+  font-size: 0.875rem;
+  color: #9ca3af;
+  margin-top: -8px;
+  margin-bottom: 20px;
+  font-style: italic;
+}
+.notion-callout {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 14px 18px;
+  margin: 18px 0;
+  border-radius: 10px;
+  background: rgba(59, 130, 246, 0.08);
+  border: 1px solid rgba(59, 130, 246, 0.28);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+.skill-toggle {
+  margin: 10px 0;
+  border: 1px solid rgba(156, 163, 175, 0.25);
+  border-radius: 10px;
+  background: rgba(17, 24, 39, 0.35);
+  overflow: hidden;
+}
+.skill-toggle summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  cursor: pointer;
+  font-weight: 600;
+  user-select: none;
+  list-style: none;
+}
+.skill-toggle summary::-webkit-details-marker {
+  display: none;
+}
+.skill-toggle pre {
+  margin: 0;
+  padding: 14px;
+  max-height: 360px;
+  overflow: auto;
+  font-size: 12.5px;
+  line-height: 1.5;
+  background: #0f172a;
+  color: #e2e8f0;
+  border-top: 1px solid rgba(156, 163, 175, 0.2);
+  white-space: pre-wrap;
+  word-break: break-word;
+}
 </style>
 
 <!-- ======================================================================= -->
@@ -113,16 +166,8 @@ Trong các phiên bản trước, việc phải tạo Project rồi tạo Scene 
   - **Click chuột phải vào icon Quyển sách (Book)**: Mở ngay menu **PromptBook** nổi để tìm kiếm và **Paste** prompt đã lưu vào khung nhập.
 - **Viền modal siêu trong suốt**: Toàn bộ thanh công cụ nổi và hộp thoại được tinh chỉnh viền mờ tinh tế, không gây vướng mắt trên giao diện sáng tạo.
 
-### ⚡ Kết nối Native Chrome "Ask Gemini" & Bộ 5 Slash Skills
-Không cần chia đôi 2 cửa sổ hay tạo Gem thủ công như trước. Bạn chỉ cần mở thanh bên **Ask Gemini** tích hợp sẵn ở góc trên bên phải trình duyệt Chrome (tự động đọc được hình ảnh/video trên tab Google Flow hiện tại) và cài bộ **Slash Skills** tại `chrome://skills/yourSkills` <button type="button" class="copy-skill-inline-btn" onclick="copyTextInline(this, 'chrome://skills/yourSkills')">📋 Copy Link</button> (dán lên thanh địa chỉ Chrome để mở). Nhấn **📋 Copy Skill** bên dưới để sao chép thẳng nội dung prompt vào Clipboard:
-
-- `/still` — <button type="button" class="copy-skill-inline-btn" onclick="copySkillMd(this, '01_still_image_craft.md')">📋 Copy Skill</button> <a href="/assets/skills/01_still_image_craft.md" download="01_still_image_craft.md"><code>⬇ .md</code></a> : Tạo **Ảnh tĩnh Photoreal**, **Packshot sản phẩm** theo vật liệu và **Character Sheet**.
-- `/shot` — <button type="button" class="copy-skill-inline-btn" onclick="copySkillMd(this, '02_video_shot_craft.md')">📋 Copy Skill</button> <a href="/assets/skills/02_video_shot_craft.md" download="02_video_shot_craft.md"><code>⬇ .md</code></a> : Tạo **Video T2V**, **I2V Motion-Only** (20–35 từ, chỉ tả chuyển động) & **Storyboard TVC nhiều cảnh**.
-- `/edit` — <button type="button" class="copy-skill-inline-btn" onclick="copySkillMd(this, '03_edit_composite_relight.md')">📋 Copy Skill</button> <a href="/assets/skills/03_edit_composite_relight.md" download="03_edit_composite_relight.md"><code>⬇ .md</code></a> : **Chỉnh sửa ảnh** (`Change / Preserve / Integration`), **Ghép nhiều ảnh** & **V2V Product Relight**.
-- `/think` — <button type="button" class="copy-skill-inline-btn" onclick="copySkillMd(this, '04_creative_thinking.md')">📋 Copy Skill</button> <a href="/assets/skills/04_creative_thinking.md" download="04_creative_thinking.md"><code>⬇ .md</code></a> : **Tư duy Sáng tạo 6-in-1** (Viral Hook 3s đầu, SCAMPER, Six Thinking Hats, Reverse Brainstorming, Tree of Thoughts & First Principles).
-- `/flow` — <button type="button" class="copy-skill-inline-btn" onclick="copySkillMd(this, '00_all_in_one_flow_director.md')">📋 Copy Skill</button> <a href="/assets/skills/00_all_in_one_flow_director.md" download="00_all_in_one_flow_director.md"><code>⬇ .md</code></a> : Bản **All-in-One Flow Director** tự động phân luồng cả 4 chế độ.
-
-Bạn cũng có thể xem đầy đủ tài liệu tại [Trang chủ PromptAgent Portal](https://prompt.manhhuynh.work) hoặc [Trang Hướng dẫn](https://prompt.manhhuynh.work/guide).
+### ⚡ Kết nối Native Chrome "Ask Gemini" & Bộ 6 AI Slash Skills
+Không cần chia đôi 2 cửa sổ hay tạo Gem thủ công như trước. Bạn chỉ cần mở thanh bên **Ask Gemini** tích hợp sẵn ở góc trên bên phải trình duyệt Chrome (tự động đọc được hình ảnh/video trên tab hiện tại) và sử dụng bộ **6 Slash Skills** chuyên biệt (bao gồm cả skill mới **`/feedback` — Lọc feedback khách hàng thành checklist chỉnh sửa**).
 
 ### 🛡️ Mặc định chỉ hiển thị trên Google Flow — Không làm phiền khi lướt web
 Để tránh việc thanh công cụ nổi xuất hiện ngoài ý muốn trên các trang web thông thường:
@@ -131,7 +176,154 @@ Bạn cũng có thể xem đầy đủ tài liệu tại [Trang chủ PromptAgen
 
 ---
 
-## 2. Tóm tắt thao tác sử dụng trên thanh công cụ nổi (3 nút)
+## 2. Hướng dẫn sử dụng AI Skill Book với Gemini trong Chrome
+
+### 2.1. Thêm skill vào Chrome
+
+1. Mở trình duyệt **Google Chrome**.
+2. Nhập `chrome://skills/yourSkills` <button type="button" class="copy-skill-inline-btn" onclick="copyTextInline(this, 'chrome://skills/yourSkills')">📋 Copy Link</button> vào thanh địa chỉ rồi nhấn **Enter**.
+3. Trong **Your skills**, bấm **+ Add** để thêm skill.
+4. Quay về mục **Copy nhanh** bên dưới, mở skill cần dùng và bấm **📋 Copy Skill** để sao chép toàn bộ nội dung.
+5. Dán nội dung vào phần hướng dẫn của skill trong Chrome, đặt tên dễ nhớ rồi lưu. Lặp lại cho các skill còn lại.
+
+![Màn hình Your skills và nút + Add trong Chrome](/assets/images/flow-bridge/chrome-your-skills-add.png)
+<p class="img-caption">Màn hình Your skills và nút + Add trong Chrome.</p>
+
+**Gợi ý tên ngắn để gọi nhanh** — đặt tên này khi thêm skill vào Chrome:
+
+| Skill trong thư viện | Tên gợi ý | Lệnh gọi | Copy nhanh |
+| :--- | :--- | :--- | :--- |
+| **00 All-in-One Flow Director** | `flow` | `/flow` | <button type="button" class="copy-skill-inline-btn" onclick="copySkillMd(this, '00_all_in_one_flow_director.md')">📋 Copy Skill</button> <a href="/assets/skills/00_all_in_one_flow_director.md" download="00_all_in_one_flow_director.md"><code>⬇ .md</code></a> |
+| **01 Still Image Craft** | `still` | `/still` | <button type="button" class="copy-skill-inline-btn" onclick="copySkillMd(this, '01_still_image_craft.md')">📋 Copy Skill</button> <a href="/assets/skills/01_still_image_craft.md" download="01_still_image_craft.md"><code>⬇ .md</code></a> |
+| **02 Video Shot Craft** | `shot` | `/shot` | <button type="button" class="copy-skill-inline-btn" onclick="copySkillMd(this, '02_video_shot_craft.md')">📋 Copy Skill</button> <a href="/assets/skills/02_video_shot_craft.md" download="02_video_shot_craft.md"><code>⬇ .md</code></a> |
+| **03 Edit Composite Relight** | `edit` | `/edit` | <button type="button" class="copy-skill-inline-btn" onclick="copySkillMd(this, '03_edit_composite_relight.md')">📋 Copy Skill</button> <a href="/assets/skills/03_edit_composite_relight.md" download="03_edit_composite_relight.md"><code>⬇ .md</code></a> |
+| **04 Creative Thinking** | `Thinking` | `/Thinking` | <button type="button" class="copy-skill-inline-btn" onclick="copySkillMd(this, '04_creative_thinking.md')">📋 Copy Skill</button> <a href="/assets/skills/04_creative_thinking.md" download="04_creative_thinking.md"><code>⬇ .md</code></a> |
+| **05 Client Feedback Filter** | `feedback` | `/feedback` | <button type="button" class="copy-skill-inline-btn" onclick="copySkillMd(this, '05_client_feedback_filter.md')">📋 Copy Skill</button> <a href="/assets/skills/05_client_feedback_filter.md" download="05_client_feedback_filter.md"><code>⬇ .md</code></a> |
+
+---
+
+### 2.2. Mở Ask Gemini và gọi skill
+
+1. Mở trang web bạn muốn làm việc (ví dụ: `flow.google.com`).
+2. Bấm **Ask Gemini** trên thanh cửa sổ Chrome để mở hộp thoại Gemini.
+
+<img src="/assets/images/flow-bridge/chrome-ask-gemini-button.png" alt="Nút Ask Gemini trên thanh cửa sổ" style="max-width: 240px;" />
+<p class="img-caption">Nút Ask Gemini trên thanh cửa sổ.</p>
+
+3. Trong ô chat, gõ `/` rồi chọn skill, hoặc nhập `/tên skill` theo tên bạn đã lưu. Không cần gõ dấu ngoặc kép.
+4. Nhập yêu cầu cụ thể rồi gửi. Ví dụ: chọn `/still`, sau đó nhập *“Viết prompt ảnh sản phẩm dựa trên hình đang mở, giữ nguyên bao bì và nhãn.”*
+5. Khi Gemini được cấp quyền truy cập ngữ cảnh trang đang mở, Gemini có thể dùng nội dung đó làm tham chiếu và trả về prompt theo hướng dẫn của skill. Với các skill viết prompt ảnh/video trong bộ này, đầu ra là văn bản prompt tiếng Anh để sao chép, không phải ảnh/video được tạo trực tiếp.
+
+<img src="/assets/images/flow-bridge/ask-gemini-slash-menu.png" alt="Gõ / trong hộp thoại Gemini để mở danh sách skill" style="max-width: 240px;" />
+<p class="img-caption">Gõ / trong hộp thoại Gemini để mở danh sách skill.</p>
+
+<div class="notion-callout">
+  <span>💡</span>
+  <div>Bạn có thể gọi skill khi đang ở trang web cần làm việc, không cần quay lại Skill Book. Khả năng đọc nội dung trang phụ thuộc vào quyền truy cập và tính năng Gemini trong Chrome đang được bật trên tài khoản. Chỉ chia sẻ nội dung bạn được phép cung cấp cho Gemini.</div>
+</div>
+
+---
+
+### 2.3. Lọc feedback khách hàng bằng skill Feedback (`/feedback`)
+
+1. Thêm skill **05 Client Feedback Filter** theo hướng dẫn trên; đặt tên gợi ý **feedback** để gọi bằng `/feedback`.
+2. Mở **Ask Gemini**, chọn skill rồi dán nguyên văn feedback khách hàng. Nếu phản hồi nói về một vị trí cụ thể, gửi kèm ảnh/video hoặc timestamp để có đủ ngữ cảnh.
+3. Nhận checklist dưới **150 từ**, gồm mức độ chỉnh sửa (`MINOR / MAJOR / CONFLICT`), việc cần làm, điểm mâu thuẫn/thiếu tư liệu và tối đa **3 câu hỏi A/B hoặc có/không**. Kết quả dùng cùng ngôn ngữ với feedback.
+4. Kiểm tra các diễn giải có dấu **(?)** trước khi giao chỉnh sửa; đây là cách cụ thể hóa góp ý mơ hồ, chưa phải yêu cầu đã được khách hàng xác nhận.
+
+**Ví dụ yêu cầu sau khi chọn `/feedback`:** *“Lọc feedback sau thành checklist chỉnh sửa; giữ timestamp nếu có: [dán feedback khách hàng]”.*
+
+---
+
+## 3. Chức năng và cách dùng chi tiết các skill
+
+| Skill | Chức năng được thiết kế | Khi nào dùng / cách dùng |
+| :--- | :--- | :--- |
+| **00 All-in-One Flow Director** · `/flow` | Bộ điều phối tổng hợp: tự chọn cách viết prompt ảnh tĩnh, video, storyboard hoặc chỉnh sửa theo yêu cầu. Kiểm soát ánh sáng, chuyển động và tính nhất quán giữa các cảnh. | Dùng khi chưa biết chọn skill nào hoặc brief gồm nhiều loại đầu ra. Nêu mục tiêu, đầu ra cần có và cung cấp ảnh/video tham chiếu nếu có. |
+| **01 Still Image Craft** · `/still` | Viết prompt ảnh tĩnh cho người/bối cảnh, packshot sản phẩm và bộ thiết kế nhân vật nhất quán. Chọn ống kính, chất liệu, ánh sáng và chi tiết bề mặt để giảm cảm giác ảnh AI. | Dùng cho ảnh quảng cáo, chân dung, ảnh sản phẩm hoặc character sheet. Nêu chủ thể, bối cảnh, tỉ lệ ảnh và vùng chừa chữ; gửi ảnh tham chiếu để giữ đúng sản phẩm. |
+| **02 Video Shot Craft** · `/shot` | Viết prompt từng cảnh video từ mô tả (T2V), từ ảnh có sẵn (I2V), nối dài clip hoặc storyboard nhiều cảnh. Ưu tiên một hành động liên tục, một chuyển động máy có mục đích và tính nhất quán giữa các shot. | Nêu rõ chế độ và hành động muốn thấy. Với I2V, cung cấp ảnh rồi mô tả chuyển động; với storyboard, nêu thời lượng và thông điệp chính. |
+| **03 Edit Composite Relight** · `/edit` | Viết prompt chỉnh sửa có giới hạn: sửa một ảnh, ghép nhiều ảnh hoặc đổi ánh sáng video sản phẩm. Tách rõ phần cần đổi và phần phải giữ, bảo toàn nhận diện, bao bì, chữ và chuyển động gốc. | Gửi tư liệu, chỉ rõ “đổi gì / giữ gì”. Nếu ghép nhiều ảnh, gán vai trò từng ảnh; nếu relight video, cung cấp video gốc và ảnh sản phẩm tham chiếu. |
+| **04 Creative Thinking** · `/Thinking` | Phát triển hook, biến tấu asset, đánh giá concept, tìm rủi ro, so sánh phương án và tháo gỡ bài toán từ gốc. Tự chọn hoặc kết hợp các phương pháp tư duy theo yêu cầu. | Nêu bài toán, mục tiêu, đối tượng, tư liệu hiện có và giới hạn sản xuất. Yêu cầu đầu ra cụ thể như 3 hook, review kịch bản, bảng so sánh hoặc kế hoạch thử nghiệm. |
+| **05 Client Feedback Filter** · `/feedback` | Lọc feedback ảnh/video dài thành checklist chỉnh sửa dưới 150 từ; gắn từng việc với timestamp hoặc vùng ảnh, đánh dấu diễn giải chưa chắc bằng `(?)`, nêu mâu thuẫn và tối đa 3 câu hỏi ngắn. | Dán nguyên văn feedback, kèm ảnh/video hoặc timestamp nếu có. Nhận `TL;DR` (`MINOR / MAJOR / CONFLICT`), `Do`, `Flags` khi có và `Ask client`; trả lời cùng ngôn ngữ với feedback. |
+
+- **Nguyên tắc đầu ra:** Các skill `00`–`03` được thiết kế để **viết prompt bằng văn bản, không trực tiếp tạo hoặc chỉnh sửa ảnh/video**. Phần giải thích ngắn bằng tiếng Việt; prompt tiếng Anh nằm trong khối mã riêng để dễ sao chép. Skill `04` chủ yếu trả lời bằng tiếng Việt; khi có prompt ảnh/video dùng ngay, prompt đó được đặt bằng tiếng Anh trong khối mã. Các lệnh `/...` ở trên dùng theo tên gợi ý nếu bạn đã đặt đúng tên đó trong Chrome.
+- **Skill 05:** Lọc feedback thành checklist chỉnh sửa, không viết prompt tạo ảnh/video; đầu ra cùng ngôn ngữ với feedback và dưới 150 từ.
+
+---
+
+## 4. Copy nhanh nội dung các Skill
+
+Bấm nút **📋 Copy Skill** để sao chép ngay hoặc bấm vào từng dòng để xem toàn bộ nội dung Markdown nguyên văn của skill:
+
+<details class="skill-toggle" ontoggle="loadSkillPreview(this, '00_all_in_one_flow_director.md')">
+  <summary>
+    <span>▸ 00 All-in-One Flow Director (<code>/flow</code>)</span>
+    <span>
+      <button type="button" class="copy-skill-inline-btn" onclick="event.stopPropagation(); copySkillMd(this, '00_all_in_one_flow_director.md')">📋 Copy Skill</button>
+      <a href="/assets/skills/00_all_in_one_flow_director.md" download="00_all_in_one_flow_director.md" onclick="event.stopPropagation()"><code>⬇ .md</code></a>
+    </span>
+  </summary>
+  <pre>Đang tải nội dung skill...</pre>
+</details>
+
+<details class="skill-toggle" ontoggle="loadSkillPreview(this, '01_still_image_craft.md')">
+  <summary>
+    <span>▸ 01 Still Image Craft (<code>/still</code>)</span>
+    <span>
+      <button type="button" class="copy-skill-inline-btn" onclick="event.stopPropagation(); copySkillMd(this, '01_still_image_craft.md')">📋 Copy Skill</button>
+      <a href="/assets/skills/01_still_image_craft.md" download="01_still_image_craft.md" onclick="event.stopPropagation()"><code>⬇ .md</code></a>
+    </span>
+  </summary>
+  <pre>Đang tải nội dung skill...</pre>
+</details>
+
+<details class="skill-toggle" ontoggle="loadSkillPreview(this, '02_video_shot_craft.md')">
+  <summary>
+    <span>▸ 02 Video Shot Craft (<code>/shot</code>)</span>
+    <span>
+      <button type="button" class="copy-skill-inline-btn" onclick="event.stopPropagation(); copySkillMd(this, '02_video_shot_craft.md')">📋 Copy Skill</button>
+      <a href="/assets/skills/02_video_shot_craft.md" download="02_video_shot_craft.md" onclick="event.stopPropagation()"><code>⬇ .md</code></a>
+    </span>
+  </summary>
+  <pre>Đang tải nội dung skill...</pre>
+</details>
+
+<details class="skill-toggle" ontoggle="loadSkillPreview(this, '03_edit_composite_relight.md')">
+  <summary>
+    <span>▸ 03 Edit Composite Relight (<code>/edit</code>)</span>
+    <span>
+      <button type="button" class="copy-skill-inline-btn" onclick="event.stopPropagation(); copySkillMd(this, '03_edit_composite_relight.md')">📋 Copy Skill</button>
+      <a href="/assets/skills/03_edit_composite_relight.md" download="03_edit_composite_relight.md" onclick="event.stopPropagation()"><code>⬇ .md</code></a>
+    </span>
+  </summary>
+  <pre>Đang tải nội dung skill...</pre>
+</details>
+
+<details class="skill-toggle" ontoggle="loadSkillPreview(this, '04_creative_thinking.md')">
+  <summary>
+    <span>▸ 04 Creative Thinking (<code>/Thinking</code>)</span>
+    <span>
+      <button type="button" class="copy-skill-inline-btn" onclick="event.stopPropagation(); copySkillMd(this, '04_creative_thinking.md')">📋 Copy Skill</button>
+      <a href="/assets/skills/04_creative_thinking.md" download="04_creative_thinking.md" onclick="event.stopPropagation()"><code>⬇ .md</code></a>
+    </span>
+  </summary>
+  <pre>Đang tải nội dung skill...</pre>
+</details>
+
+<details class="skill-toggle" ontoggle="loadSkillPreview(this, '05_client_feedback_filter.md')">
+  <summary>
+    <span>▸ 05 Client Feedback Filter (<code>/feedback</code>)</span>
+    <span>
+      <button type="button" class="copy-skill-inline-btn" onclick="event.stopPropagation(); copySkillMd(this, '05_client_feedback_filter.md')">📋 Copy Skill</button>
+      <a href="/assets/skills/05_client_feedback_filter.md" download="05_client_feedback_filter.md" onclick="event.stopPropagation()"><code>⬇ .md</code></a>
+    </span>
+  </summary>
+  <pre>Đang tải nội dung skill...</pre>
+</details>
+
+---
+
+## 5. Tóm tắt thao tác sử dụng trên thanh công cụ nổi (3 nút)
 
 1. **Nút Paste (Trên cùng / Bên trái)**:
    - **Chuột trái**: Đọc prompt từ Clipboard (tự động nhận diện khối ` ```text ` từ Ask Gemini hoặc tách nhiều cảnh Storyboard) và điền thẳng vào ô nhập.
@@ -192,21 +384,155 @@ We removed the multi-level Project/Scene folder hierarchy and legacy web credit 
   - **Right-click on the Book icon**: Opens the floating **PromptBook** menu to browse and paste saved prompts.
 - **High-Transparency Borders**: Subtle, ultra-transparent borders keep the floating dock and modals unobtrusive over your canvas.
 
-### ⚡ Native Chrome "Ask Gemini" & 5 Modular Slash Skills
-Work in a single browser window alongside Chrome's built-in **Ask Gemini** side panel and set up 1-click **Slash Skills** at `chrome://skills/yourSkills` <button type="button" class="copy-skill-inline-btn" onclick="copyTextInline(this, 'chrome://skills/yourSkills')">📋 Copy Link</button> (paste into Chrome's address bar). Click **📋 Copy Skill** below to copy each skill prompt directly to your clipboard:
-
-- `/still` — <button type="button" class="copy-skill-inline-btn" onclick="copySkillMd(this, '01_still_image_craft.md')">📋 Copy Skill</button> <a href="/assets/skills/01_still_image_craft.md" download="01_still_image_craft.md"><code>⬇ .md</code></a> : Photoreal Still Images, material-driven Packshots, and Character Sheets.
-- `/shot` — <button type="button" class="copy-skill-inline-btn" onclick="copySkillMd(this, '02_video_shot_craft.md')">📋 Copy Skill</button> <a href="/assets/skills/02_video_shot_craft.md" download="02_video_shot_craft.md"><code>⬇ .md</code></a> : Video T2V, concise I2V Motion-Only prompts (20–35 words), and multi-shot TVC storyboards.
-- `/edit` — <button type="button" class="copy-skill-inline-btn" onclick="copySkillMd(this, '03_edit_composite_relight.md')">📋 Copy Skill</button> <a href="/assets/skills/03_edit_composite_relight.md" download="03_edit_composite_relight.md"><code>⬇ .md</code></a> : Surgical Image Edits (`Change / Preserve / Integration`), multi-image compositing, and V2V Product Relight.
-- `/think` — <button type="button" class="copy-skill-inline-btn" onclick="copySkillMd(this, '04_creative_thinking.md')">📋 Copy Skill</button> <a href="/assets/skills/04_creative_thinking.md" download="04_creative_thinking.md"><code>⬇ .md</code></a> : 6-in-1 Creative Thinking orchestrator (Lateral Thinking, SCAMPER, Six Thinking Hats, Reverse Brainstorming, Tree of Thoughts, First Principles).
-- `/flow` — <button type="button" class="copy-skill-inline-btn" onclick="copySkillMd(this, '00_all_in_one_flow_director.md')">📋 Copy Skill</button> <a href="/assets/skills/00_all_in_one_flow_director.md" download="00_all_in_one_flow_director.md"><code>⬇ .md</code></a> : All-in-One Flow Director routing across all modes.
-
-You can also explore the full documentation on the [PromptAgent Portal](https://prompt.manhhuynh.work) or the [User Guide](https://prompt.manhhuynh.work/guide).
+### ⚡ Native Chrome "Ask Gemini" & 6 Modular AI Slash Skills
+Work in a single browser window alongside Chrome's built-in **Ask Gemini** side panel and use our **6 specialized Slash Skills** (including the new **`/feedback` — Client Feedback Filter** skill).
 
 ### 🛡️ Non-Intrusive Default: Google Flow Only by Default
 To prevent the floating dock from appearing unexpectedly while browsing other websites:
 - **Default**: The floating dock appears automatically **only on Google Flow (`flow.google.com`)**.
 - **Manual Per-Site Toggle**: To enable the dock on Adobe Firefly, Magnific / Freepik Spaces, Higgsfield AI, Midjourney, or any other AI tool, simply open the extension popup and click **`Paste: OFF` → `Paste: ON`** (or enable *Auto-detect AI sites* in Settings).
+
+---
+
+## 2. How to Use the AI Skill Book with Gemini in Chrome
+
+### 2.1. Add Skills to Chrome
+
+1. Open **Google Chrome**.
+2. Enter `chrome://skills/yourSkills` <button type="button" class="copy-skill-inline-btn" onclick="copyTextInline(this, 'chrome://skills/yourSkills')">📋 Copy Link</button> into the address bar and press **Enter**.
+3. Under **Your skills**, click **+ Add** to create a new skill.
+4. Go to the **Quick Copy** section below, pick a skill, and click **📋 Copy Skill** to copy its full instructions.
+5. Paste the instructions into Chrome's skill editor, give it a short memorable name, and save. Repeat for the remaining skills.
+
+![Your skills screen and + Add button in Chrome](/assets/images/flow-bridge/chrome-your-skills-add.png)
+<p class="img-caption">The Your skills screen and + Add button in Chrome.</p>
+
+**Recommended Short Names for Quick Invocation** — use these names when adding skills to Chrome:
+
+| Skill in Library | Suggested Name | Slash Command | Quick Copy |
+| :--- | :--- | :--- | :--- |
+| **00 All-in-One Flow Director** | `flow` | `/flow` | <button type="button" class="copy-skill-inline-btn" onclick="copySkillMd(this, '00_all_in_one_flow_director.md')">📋 Copy Skill</button> <a href="/assets/skills/00_all_in_one_flow_director.md" download="00_all_in_one_flow_director.md"><code>⬇ .md</code></a> |
+| **01 Still Image Craft** | `still` | `/still` | <button type="button" class="copy-skill-inline-btn" onclick="copySkillMd(this, '01_still_image_craft.md')">📋 Copy Skill</button> <a href="/assets/skills/01_still_image_craft.md" download="01_still_image_craft.md"><code>⬇ .md</code></a> |
+| **02 Video Shot Craft** | `shot` | `/shot` | <button type="button" class="copy-skill-inline-btn" onclick="copySkillMd(this, '02_video_shot_craft.md')">📋 Copy Skill</button> <a href="/assets/skills/02_video_shot_craft.md" download="02_video_shot_craft.md"><code>⬇ .md</code></a> |
+| **03 Edit Composite Relight** | `edit` | `/edit` | <button type="button" class="copy-skill-inline-btn" onclick="copySkillMd(this, '03_edit_composite_relight.md')">📋 Copy Skill</button> <a href="/assets/skills/03_edit_composite_relight.md" download="03_edit_composite_relight.md"><code>⬇ .md</code></a> |
+| **04 Creative Thinking** | `Thinking` | `/Thinking` | <button type="button" class="copy-skill-inline-btn" onclick="copySkillMd(this, '04_creative_thinking.md')">📋 Copy Skill</button> <a href="/assets/skills/04_creative_thinking.md" download="04_creative_thinking.md"><code>⬇ .md</code></a> |
+| **05 Client Feedback Filter** | `feedback` | `/feedback` | <button type="button" class="copy-skill-inline-btn" onclick="copySkillMd(this, '05_client_feedback_filter.md')">📋 Copy Skill</button> <a href="/assets/skills/05_client_feedback_filter.md" download="05_client_feedback_filter.md"><code>⬇ .md</code></a> |
+
+---
+
+### 2.2. Open Ask Gemini & Invoke a Skill
+
+1. Open the webpage you want to work on (e.g., `flow.google.com`).
+2. Click **Ask Gemini** on Chrome's window bar to open the Gemini panel.
+
+<img src="/assets/images/flow-bridge/chrome-ask-gemini-button.png" alt="Ask Gemini button on the Chrome window bar" style="max-width: 240px;" />
+<p class="img-caption">The Ask Gemini button on the Chrome window bar.</p>
+
+3. In the chat box, type `/` and select a skill, or type `/skill-name` matching the name you saved.
+4. Enter your specific request and send. For example: select `/still`, then type *“Write a product photo prompt based on the open image, preserving packaging and label details.”*
+5. When Gemini has permission to read your active tab context, it uses the page content as reference and returns a clean English prompt inside a code block ready to copy and paste.
+
+<img src="/assets/images/flow-bridge/ask-gemini-slash-menu.png" alt="Type / in the Gemini dialog to open the skill list" style="max-width: 240px;" />
+<p class="img-caption">Type / in the Gemini dialog to open the skill list.</p>
+
+<div class="notion-callout">
+  <span>💡</span>
+  <div>You can invoke skills directly on the webpage you are working on without returning to the Skill Book. Page context reading depends on your Chrome Gemini permissions and account settings. Only share content you are authorized to provide to Gemini.</div>
+</div>
+
+---
+
+### 2.3. Filter Client Feedback with `/feedback`
+
+1. Add **05 Client Feedback Filter** using the steps above and name it **feedback** to invoke via `/feedback`.
+2. Open **Ask Gemini**, select `/feedback`, and paste raw client feedback. Attach reference images/videos or timestamps if the feedback refers to specific moments.
+3. Receive an actionable checklist under **150 words**, including revision severity (`MINOR / MAJOR / CONFLICT`), anchored tasks, conflicts/missing assets, and up to **3 short A/B or Yes/No questions** in the same language as the feedback.
+4. Review items marked with **(?)** before handing off edits—these turn vague subjective notes into concrete suggestions awaiting client confirmation.
+
+---
+
+## 3. Skill Functions & Usage Guide
+
+| Skill | Designed Function | When & How to Use |
+| :--- | :--- | :--- |
+| **00 All-in-One Flow Director** · `/flow` | Master orchestrator: automatically routes between still image prompts, video shots, storyboards, or surgical edits while maintaining lighting and visual continuity. | Use when unsure which skill to pick or when a brief spans multiple deliverables. State your goal, desired outputs, and provide references. |
+| **01 Still Image Craft** · `/still` | Writes photorealistic still prompts for people/environments, material-driven product packshots, and consistent Character Sheets with lens, lighting, and surface micro-imperfections. | Use for ad key visuals, portraits, product shots, or character sheets. Specify subject, setting, aspect ratio, and copy safe zones. |
+| **02 Video Shot Craft** · `/shot` | Writes single-shot T2V prompts, concise I2V motion-only prompts, clip extensions, or multi-shot storyboards focusing on one continuous action and purposeful camera move. | Specify mode and desired motion. For I2V, provide the still image and describe motion; for storyboards, state duration and core message. |
+| **03 Edit Composite Relight** · `/edit` | Writes constrained edit prompts: single-image edits, multi-image composites, or V2V product relighting (`Change / Preserve / Integration`). | Provide source assets and clearly state what to change vs. preserve. Assign image roles (`Image 1`, `Image 2`) for composites. |
+| **04 Creative Thinking** · `/Thinking` | Develops viral hooks, SCAMPER variations, Six Thinking Hats reviews, pre-mortem risk checks, Tree of Thoughts comparisons, and First Principles deconstructions. | State the problem, goal, target audience, existing assets, and production constraints. Ask for specific outputs (e.g., 3 hooks, script review). |
+| **05 Client Feedback Filter** · `/feedback` | Condenses long image/video feedback into an actionable checklist under 150 words, anchored to timestamps or image regions, flagging `(?)` interpretations and conflicts. | Paste raw client feedback with optional timestamps or media. Outputs `TL;DR` (`MINOR / MAJOR / CONFLICT`), `Do`, `Flags`, and `Ask client`. |
+
+---
+
+## 4. Quick Copy Skills
+
+Click **📋 Copy Skill** to copy immediately, or click any row to expand and inspect the full Markdown source:
+
+<details class="skill-toggle" ontoggle="loadSkillPreview(this, '00_all_in_one_flow_director.md')">
+  <summary>
+    <span>▸ 00 All-in-One Flow Director (<code>/flow</code>)</span>
+    <span>
+      <button type="button" class="copy-skill-inline-btn" onclick="event.stopPropagation(); copySkillMd(this, '00_all_in_one_flow_director.md')">📋 Copy Skill</button>
+      <a href="/assets/skills/00_all_in_one_flow_director.md" download="00_all_in_one_flow_director.md" onclick="event.stopPropagation()"><code>⬇ .md</code></a>
+    </span>
+  </summary>
+  <pre>Loading skill content...</pre>
+</details>
+
+<details class="skill-toggle" ontoggle="loadSkillPreview(this, '01_still_image_craft.md')">
+  <summary>
+    <span>▸ 01 Still Image Craft (<code>/still</code>)</span>
+    <span>
+      <button type="button" class="copy-skill-inline-btn" onclick="event.stopPropagation(); copySkillMd(this, '01_still_image_craft.md')">📋 Copy Skill</button>
+      <a href="/assets/skills/01_still_image_craft.md" download="01_still_image_craft.md" onclick="event.stopPropagation()"><code>⬇ .md</code></a>
+    </span>
+  </summary>
+  <pre>Loading skill content...</pre>
+</details>
+
+<details class="skill-toggle" ontoggle="loadSkillPreview(this, '02_video_shot_craft.md')">
+  <summary>
+    <span>▸ 02 Video Shot Craft (<code>/shot</code>)</span>
+    <span>
+      <button type="button" class="copy-skill-inline-btn" onclick="event.stopPropagation(); copySkillMd(this, '02_video_shot_craft.md')">📋 Copy Skill</button>
+      <a href="/assets/skills/02_video_shot_craft.md" download="02_video_shot_craft.md" onclick="event.stopPropagation()"><code>⬇ .md</code></a>
+    </span>
+  </summary>
+  <pre>Loading skill content...</pre>
+</details>
+
+<details class="skill-toggle" ontoggle="loadSkillPreview(this, '03_edit_composite_relight.md')">
+  <summary>
+    <span>▸ 03 Edit Composite Relight (<code>/edit</code>)</span>
+    <span>
+      <button type="button" class="copy-skill-inline-btn" onclick="event.stopPropagation(); copySkillMd(this, '03_edit_composite_relight.md')">📋 Copy Skill</button>
+      <a href="/assets/skills/03_edit_composite_relight.md" download="03_edit_composite_relight.md" onclick="event.stopPropagation()"><code>⬇ .md</code></a>
+    </span>
+  </summary>
+  <pre>Loading skill content...</pre>
+</details>
+
+<details class="skill-toggle" ontoggle="loadSkillPreview(this, '04_creative_thinking.md')">
+  <summary>
+    <span>▸ 04 Creative Thinking (<code>/Thinking</code>)</span>
+    <span>
+      <button type="button" class="copy-skill-inline-btn" onclick="event.stopPropagation(); copySkillMd(this, '04_creative_thinking.md')">📋 Copy Skill</button>
+      <a href="/assets/skills/04_creative_thinking.md" download="04_creative_thinking.md" onclick="event.stopPropagation()"><code>⬇ .md</code></a>
+    </span>
+  </summary>
+  <pre>Loading skill content...</pre>
+</details>
+
+<details class="skill-toggle" ontoggle="loadSkillPreview(this, '05_client_feedback_filter.md')">
+  <summary>
+    <span>▸ 05 Client Feedback Filter (<code>/feedback</code>)</span>
+    <span>
+      <button type="button" class="copy-skill-inline-btn" onclick="event.stopPropagation(); copySkillMd(this, '05_client_feedback_filter.md')">📋 Copy Skill</button>
+      <a href="/assets/skills/05_client_feedback_filter.md" download="05_client_feedback_filter.md" onclick="event.stopPropagation()"><code>⬇ .md</code></a>
+    </span>
+  </summary>
+  <pre>Loading skill content...</pre>
+</details>
 
 </div>
 
@@ -280,6 +606,24 @@ async function copySkillMd(btn, fileName) {
     console.error(err);
     btn.textContent = '⚠ Error';
     setTimeout(() => { btn.textContent = origText; }, 1500);
+  }
+}
+
+async function loadSkillPreview(detailsEl, fileName) {
+  if (!detailsEl.open || detailsEl.dataset.loaded === '1') return;
+  const pre = detailsEl.querySelector('pre');
+  if (!pre) return;
+  try {
+    let res = await fetch('/assets/skills/' + fileName);
+    if (!res.ok) {
+      res = await fetch('https://prompt.manhhuynh.work/skills/' + fileName);
+    }
+    if (!res.ok) throw new Error('Failed to load skill');
+    const text = await res.text();
+    pre.textContent = text;
+    detailsEl.dataset.loaded = '1';
+  } catch (err) {
+    pre.textContent = 'Không thể tải nội dung skill / Could not load skill content.';
   }
 }
 </script>
