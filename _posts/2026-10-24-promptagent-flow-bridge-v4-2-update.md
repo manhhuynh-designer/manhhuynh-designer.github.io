@@ -1,13 +1,13 @@
 ---
 layout: post
-title: "Cập nhật PromptAgent Flow Bridge v4.2.0: Pose Studio 3D, PromptBook tinh gọn & Ask Gemini Slash Skills"
+title: "PromptAgent Flow Bridge v4.2.0: Pose Studio 3D, PromptBook phẳng & Ask Gemini Slash Skills"
 date: 2026-10-24
 author: Mạnh Huỳnh
 categories: [Share, Guide, Extension]
 tags: [PromptAgent, Google Flow, Gemini, Pose Studio 3D, Extension, Chrome, AI Workflow]
 thumbnail: /assets/images/flow-bridge/hero-banner.png
 excerpt: >
-  Bản cập nhật lớn PromptAgent Flow Bridge v4.2.0 tích hợp Pose Studio 3D trực tiếp trong trang kèm thông số góc máy Camera DNA, tinh gọn hoàn toàn PromptBook phẳng với nút Book 2-trong-1 và kết nối Native Chrome Ask Gemini Slash Skills.
+  PromptAgent Flow Bridge v4.2.0 tích hợp Pose Studio 3D ngay trong trang kèm thông số Camera DNA, rút gọn PromptBook thành danh sách phẳng với nút Book 2-trong-1 và bổ sung bộ 6 Slash Skills cho Ask Gemini trên Chrome.
 ---
 
 <!-- Language Toggle -->
@@ -126,11 +126,9 @@ img {
 <!-- ======================================================================= -->
 <div id="content-vi" class="content-lang active" markdown="1">
 
-# Cập nhật PromptAgent Flow Bridge v4.2.0: Pose Studio 3D, PromptBook tinh gọn & Ask Gemini Slash Skills
+# PromptAgent Flow Bridge v4.2.0: Pose Studio 3D, PromptBook phẳng & Ask Gemini Slash Skills
 
-Sau một thời gian sử dụng thực tế trong các dự án sản xuất hình ảnh & video AI thương mại trên **Google Flow (`flow.google.com`)**, mình vừa phát hành bản cập nhật lớn **PromptAgent Flow Bridge v4.2.0**.
-
-Phiên bản này tập trung vào 3 mục tiêu cốt lõi: **tối giản hoá thao tác** (loại bỏ các bước phân cấp rườm rà), **kiểm soát góc máy & dáng nhân vật bằng 3D trực quan** ngay trong trang làm việc, và **hoạt động gọn nhẹ trên một cửa sổ duy nhất** cùng thanh bên **Ask Gemini** tích hợp sẵn của trình duyệt Chrome.
+**PromptAgent Flow Bridge v4.2.0** tập trung giải quyết 3 việc khi làm hình ảnh và video trên **Google Flow (`flow.google.com`)**: dựng dáng nhân vật và góc máy bằng mô hình 3D ngay trong trang, lưu/dán prompt trên một danh sách phẳng không chia thư mục, và gọi trực tiếp 6 Slash Skills trong khung **Ask Gemini** của Chrome.
 
 <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 12px; margin: 32px 0; box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);">
   <iframe src="https://www.youtube.com/embed/nzP6c8ExFck" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" allowfullscreen title="PromptAgent Flow Bridge v4.2.0 Demo" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"></iframe>
@@ -150,29 +148,41 @@ Phiên bản này tập trung vào 3 mục tiêu cốt lõi: **tối giản hoá
 
 ---
 
-## 1. Những điểm mới nổi bật trong phiên bản v4.2.0
+## 1. Các thay đổi trong bản v4.2.0
 
-### 🧍 Pose Studio 3D tích hợp trực tiếp trong trang & Camera DNA
-Thay vì phải mô tả góc máy và tư thế nhân vật bằng chữ một cách cảm tính, giờ đây trên thanh công cụ nổi của tiện ích có sẵn nút **Pose Studio 3D**:
-- **Click chuột trái**: Mở ngay cửa sổ dựng hình **Pose Studio 3D** đè lên trang AI đang làm việc (đồng bộ hoàn toàn tông màu tối trung tính `#121212` / `#1A1A1A` / `#10b981` với tiện ích).
-- **Click chuột phải**: Mở Pose Studio 3D ở một tab trình duyệt độc lập (`https://prompt.manhhuynh.work/pose/`).
-- **Chèn tự động 2-trong-1 (`Insert Pose`)**: Khi bấm nút **Insert Pose**, tiện ích tự động đính kèm **ảnh PNG dáng nhân vật 3D** vào ô upload tham chiếu, đồng thời điền **thông số góc máy chuẩn điện ảnh (Camera & Shooting Angle DNA)** gồm tiêu cự ống kính (`mm`), cỡ cảnh, góc máy cao/thấp (`°` elevation), góc xoay ngang so với hướng mặt nhân vật và độ nghiêng máy (Dutch tilt) thẳng vào khung prompt.
+### Pose Studio 3D trong trang và tự động chèn thông số góc máy
+Thay vì mô tả góc máy và tư thế nhân vật bằng chữ, thanh công cụ nổi nay có thêm nút **Pose Studio 3D**:
+- **Chuột trái**: Mở cửa sổ **Pose Studio 3D** ngay trên giao diện trang đang làm việc (đồng bộ bảng màu tối `#121212` / `#1A1A1A` / `#10b981` với tiện ích).
+- **Chuột phải**: Mở Pose Studio 3D ở tab riêng (`https://prompt.manhhuynh.work/pose/`).
+- **Nút `Insert Pose`**: Tự động đính kèm ảnh PNG dáng nhân vật 3D vào ô tham chiếu, đồng thời điền thông số góc máy (**Camera & Shooting Angle DNA**) gồm tiêu cự ống kính (`mm`), cỡ cảnh, góc cao/thấp (`°` elevation), góc xoay ngang so với hướng mặt nhân vật và độ nghiêng máy (Dutch tilt) vào ô nhập prompt.
 
-### 📖 Tối giản hoá hoàn toàn PromptBook & Nút Book 2-trong-1
-Trong các phiên bản trước, việc phải tạo Project rồi tạo Scene trước khi lưu một câu prompt gây mất thời gian khi đang làm việc nhanh. Ở bản **v4.2.0**:
-- **Loại bỏ hoàn toàn tab Projects & bộ đếm Credit thừa**: Mở popup tiện ích hoặc menu nổi trên web là vào thẳng **danh sách phẳng PromptBook** (2 dòng gọn gàng cho mỗi thẻ prompt, có nút **Paste** trực tiếp). Toàn bộ dữ liệu prompt đã lưu trước đây trên máy hoặc trên Cloud Firestore vẫn được giữ nguyên và gộp tự động.
-- **Nút Book hợp nhất trên thanh công cụ nổi**:
-  - **Click chuột trái vào icon Quyển sách (Book)**: Lưu nhanh (1-click) câu prompt đang gõ trên trang vào thẳng PromptBook mà không cần nhập tiêu đề hay chọn thư mục.
-  - **Click chuột phải vào icon Quyển sách (Book)**: Mở ngay menu **PromptBook** nổi để tìm kiếm và **Paste** prompt đã lưu vào khung nhập.
-- **Viền modal siêu trong suốt**: Toàn bộ thanh công cụ nổi và hộp thoại được tinh chỉnh viền mờ tinh tế, không gây vướng mắt trên giao diện sáng tạo.
+![Mở Pose Studio 3D trực tiếp trên giao diện Google Flow](/assets/images/flow-bridge/flow-pose-studio-inpage.png)
+<p class="img-caption">Mở Pose Studio 3D ngay trên giao diện Google Flow để xoay dáng nhân vật và chọn tiêu cự ống kính.</p>
 
-### ⚡ Kết nối Native Chrome "Ask Gemini" & Bộ 6 AI Slash Skills
-Không cần chia đôi 2 cửa sổ hay tạo Gem thủ công như trước. Bạn chỉ cần mở thanh bên **Ask Gemini** tích hợp sẵn ở góc trên bên phải trình duyệt Chrome (tự động đọc được hình ảnh/video trên tab hiện tại) và sử dụng bộ **6 Slash Skills** chuyên biệt (bao gồm cả skill mới **`/feedback` — Lọc feedback khách hàng thành checklist chỉnh sửa**).
+![Ảnh tham chiếu 3D và thông số Camera DNA được chèn tự động vào Google Flow](/assets/images/flow-bridge/flow-camera-dna-injected.png)
+<p class="img-caption">Khi bấm Insert Pose, ảnh tham chiếu PNG và khối thông số Camera DNA được điền thẳng vào ô prompt của Google Flow.</p>
 
-### 🛡️ Mặc định chỉ hiển thị trên Google Flow — Không làm phiền khi lướt web
-Để tránh việc thanh công cụ nổi xuất hiện ngoài ý muốn trên các trang web thông thường:
-- **Mặc định**: Thanh công cụ nổi chỉ tự động hiển thị khi bạn truy cập **Google Flow (`flow.google.com`)**.
-- **Bật thủ công cho các trang AI khác**: Khi làm việc trên Adobe Firefly, Magnific / Freepik Spaces, Higgsfield AI, Midjourney hay bất kỳ công cụ AI nào khác, bạn chỉ cần mở popup tiện ích và bấm nút **`Paste: OFF` → `Paste: ON`** trên thanh trạng thái (hoặc bật *Auto-detect AI sites* trong phần cài đặt).
+### PromptBook phẳng và nút Book 2-trong-1
+Ở các bản trước, người dùng phải tạo Project rồi tạo Scene trước khi lưu một câu prompt. Bản **v4.2.0** bỏ toàn bộ cấp thư mục này:
+- **Danh sách phẳng PromptBook**: Mở popup tiện ích hoặc menu nổi là vào thẳng danh sách prompt (mỗi thẻ hiển thị 2 dòng kèm nút **Paste**). Các prompt đã lưu trước đây trên máy hoặc trên Cloud Firestore vẫn được giữ nguyên và gộp tự động.
+- **Gộp thao tác vào một nút Book trên thanh công cụ nổi**:
+  - **Chuột trái vào icon Book**: Lưu ngay câu prompt đang gõ trên trang vào PromptBook, tự đặt tiêu đề theo nội dung.
+  - **Chuột phải vào icon Book**: Mở danh sách **PromptBook** nổi để tìm và dán prompt đã lưu.
+- **Viền hộp thoại mờ (`rgba(255,255,255,0.05)`)**: Giảm độ tương phản viền của thanh công cụ nổi và các cửa sổ popup để không che tầm nhìn trên khung vẽ.
+
+![Thanh công cụ nổi 3 nút và cửa sổ PromptBook phẳng trên Google Flow](/assets/images/flow-bridge/flow-promptbook-v42.png)
+<p class="img-caption">Chuột phải vào nút Book trên thanh công cụ nổi để mở nhanh PromptBook phẳng ngay trên Google Flow.</p>
+
+### Dùng chung với Ask Gemini trên Chrome và 6 Slash Skills
+Bạn không cần chia đôi 2 cửa sổ trình duyệt hay tạo Gem riêng. Chỉ cần mở thanh bên **Ask Gemini** ở góc trên bên phải Chrome (có khả năng đọc hình ảnh/video trên tab đang mở) và gọi 6 Slash Skills, trong đó có skill mới **`/feedback`** để lọc phản hồi của khách hàng thành checklist chỉnh sửa.
+
+![Kết quả hình ảnh tạo trên Google Flow giữ đúng dáng và góc máy từ Pose Studio 3D](/assets/images/flow-bridge/flow-generated-result.png)
+<p class="img-caption">Kết quả tạo ảnh trên Google Flow sau khi kết hợp Pose Studio 3D và prompt từ Ask Gemini.</p>
+
+### Mặc định chỉ hiển thị trên Google Flow
+Để thanh công cụ nổi không tự xuất hiện trên các trang web thông thường:
+- **Mặc định**: Thanh công cụ nổi chỉ tự bật khi bạn vào **Google Flow (`flow.google.com`)**.
+- **Bật thủ công trên trang AI khác**: Khi dùng Adobe Firefly, Magnific / Freepik Spaces, Higgsfield AI hoặc Midjourney, mở popup tiện ích và bấm **`Paste: OFF` → `Paste: ON`** (hoặc bật *Auto-detect AI sites* trong phần cài đặt).
 
 ---
 
@@ -344,11 +354,9 @@ Nếu bạn có góp ý hoặc cần bổ sung tính năng cho workflow làm phi
 <!-- ======================================================================= -->
 <div id="content-en" class="content-lang" markdown="1">
 
-# PromptAgent Flow Bridge v4.2.0 Update: In-Page Pose Studio 3D, Flat PromptBook & Ask Gemini Slash Skills
+# PromptAgent Flow Bridge v4.2.0: In-Page Pose Studio 3D, Flat PromptBook & Ask Gemini Slash Skills
 
-Following extensive real-world production use on **Google Flow (`flow.google.com`)**, **PromptAgent Flow Bridge v4.2.0** is now live.
-
-This release focuses on three pillars: **zero-friction prompt management**, **interactive 3D character & camera angle control directly inside your AI workspace**, and **single-window synergy** with Chrome's built-in **Ask Gemini** side panel.
+**PromptAgent Flow Bridge v4.2.0** focuses on three changes for image and video production on **Google Flow (`flow.google.com`)**: staging 3D character poses and camera angles directly inside the page, saving and pasting prompts from a flat list without folder hierarchies, and running 6 Slash Skills inside Chrome's built-in **Ask Gemini** side panel.
 
 <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 12px; margin: 32px 0; box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);">
   <iframe src="https://www.youtube.com/embed/nzP6c8ExFck" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" allowfullscreen title="PromptAgent Flow Bridge v4.2.0 Demo" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"></iframe>
@@ -368,29 +376,41 @@ This release focuses on three pillars: **zero-friction prompt management**, **in
 
 ---
 
-## 1. What's New in v4.2.0
+## 1. Changes in v4.2.0
 
-### 🧍 In-Page Pose Studio 3D & Camera DNA Injection
-Instead of guessing camera angles and body posture descriptions in text, the floating dock now includes a dedicated **Pose Studio 3D** button:
-- **Left-click**: Opens the **Pose Studio 3D** modal directly over your active workspace, styled in a unified neutral dark palette (`#121212` / `#1A1A1A` / `#10b981`).
-- **Right-click**: Opens Pose Studio 3D in a standalone browser tab (`https://prompt.manhhuynh.work/pose/`).
-- **1-Click `Insert Pose` (Image + Camera DNA)**: Automatically attaches the rendered 3D pose reference PNG and injects structured **Camera & Shooting Angle DNA** (focal length in `mm`, shot framing, vertical elevation in degrees, horizontal azimuth relative to character orientation, and Dutch tilt) into your prompt input.
+### In-Page Pose Studio 3D and Camera DNA Injection
+Instead of describing camera angles and character posture by hand, the floating dock now includes a **Pose Studio 3D** button:
+- **Left-click**: Opens the **Pose Studio 3D** modal directly over your workspace, matching the extension's dark palette (`#121212` / `#1A1A1A` / `#10b981`).
+- **Right-click**: Opens Pose Studio 3D in a separate tab (`https://prompt.manhhuynh.work/pose/`).
+- **`Insert Pose`**: Attaches the rendered 3D pose reference PNG to the upload slot and inserts **Camera & Shooting Angle DNA** (focal length in `mm`, shot framing, vertical elevation in degrees, horizontal azimuth relative to character orientation, and Dutch tilt) into the prompt box.
 
-### 📖 Flat PromptBook & Unified 2-in-1 Book Button
-We removed the multi-level Project/Scene folder hierarchy and legacy web credit counter so you can save and reuse prompts with zero friction:
-- **Flat PromptBook List**: Opening the extension popup or floating menu goes straight into a clean, searchable list of saved prompts with 1-click **Paste** buttons (all previously saved local and Firestore prompts are automatically preserved and merged).
-- **Unified Book Button on the Floating Dock**:
-  - **Left-click on the Book icon**: Instantly saves the current prompt from the page editor into PromptBook with an auto-generated title.
-  - **Right-click on the Book icon**: Opens the floating **PromptBook** menu to browse and paste saved prompts.
-- **High-Transparency Borders**: Subtle, ultra-transparent borders keep the floating dock and modals unobtrusive over your canvas.
+![Opening Pose Studio 3D directly over Google Flow](/assets/images/flow-bridge/flow-pose-studio-inpage.png)
+<p class="img-caption">Opening Pose Studio 3D directly over Google Flow to set character posture and lens focal length.</p>
 
-### ⚡ Native Chrome "Ask Gemini" & 6 Modular AI Slash Skills
-Work in a single browser window alongside Chrome's built-in **Ask Gemini** side panel and use our **6 specialized Slash Skills** (including the new **`/feedback` — Client Feedback Filter** skill).
+![3D pose PNG and Camera DNA injected into Google Flow](/assets/images/flow-bridge/flow-camera-dna-injected.png)
+<p class="img-caption">Clicking Insert Pose attaches the PNG reference and fills the Camera DNA block into Google Flow's prompt input.</p>
 
-### 🛡️ Non-Intrusive Default: Google Flow Only by Default
-To prevent the floating dock from appearing unexpectedly while browsing other websites:
+### Flat PromptBook and 2-in-1 Book Button
+Version **v4.2.0** removes the Project/Scene folder hierarchy and the web credit counter:
+- **Flat PromptBook List**: Opening the extension popup or floating menu goes straight to a flat, searchable list of prompts with 1-click **Paste** buttons. All previously saved local and Firestore prompts are preserved and merged automatically.
+- **Single Book Button on the Floating Dock**:
+  - **Left-click on the Book icon**: Saves the active prompt from the page editor into PromptBook with an auto-generated title.
+  - **Right-click on the Book icon**: Opens the floating **PromptBook** menu to search and paste saved prompts.
+- **Low-Contrast Modal Borders (`rgba(255,255,255,0.05)`)**: Keeps the floating dock and popovers unobtrusive over your canvas.
+
+![3-button floating dock and flat PromptBook popover on Google Flow](/assets/images/flow-bridge/flow-promptbook-v42.png)
+<p class="img-caption">Right-clicking the Book button on the floating dock opens the flat PromptBook popover directly over Google Flow.</p>
+
+### Chrome "Ask Gemini" Side Panel and 6 Slash Skills
+Open Chrome's built-in **Ask Gemini** side panel on the same window (which reads images and videos on your active tab) and invoke the 6 Slash Skills, including the new **`/feedback`** skill for converting raw client notes into a short revision checklist.
+
+![Generated result on Google Flow matching the 3D pose and camera angle](/assets/images/flow-bridge/flow-generated-result.png)
+<p class="img-caption">Result generated on Google Flow combining Pose Studio 3D and an Ask Gemini prompt.</p>
+
+### Shown on Google Flow Only by Default
+To keep the floating dock from appearing on regular websites:
 - **Default**: The floating dock appears automatically **only on Google Flow (`flow.google.com`)**.
-- **Manual Per-Site Toggle**: To enable the dock on Adobe Firefly, Magnific / Freepik Spaces, Higgsfield AI, Midjourney, or any other AI tool, simply open the extension popup and click **`Paste: OFF` → `Paste: ON`** (or enable *Auto-detect AI sites* in Settings).
+- **Manual Toggle on Other AI Sites**: On Adobe Firefly, Magnific / Freepik Spaces, Higgsfield AI, or Midjourney, open the extension popup and switch **`Paste: OFF` → `Paste: ON`** (or enable *Auto-detect AI sites* in Settings).
 
 ---
 
