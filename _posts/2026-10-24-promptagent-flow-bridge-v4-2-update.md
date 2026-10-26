@@ -7,7 +7,7 @@ categories: [Share, Guide, Extension]
 tags: [PromptAgent, Google Flow, Gemini, Pose Studio 3D, Extension, Chrome, AI Workflow]
 thumbnail: /assets/images/flow-bridge/hero-banner.png
 excerpt: >
-  PromptAgent Flow Bridge v4.2.0 tích hợp Pose Studio 3D ngay trong trang kèm thông số Camera DNA, rút gọn PromptBook thành danh sách phẳng với nút Book 2-trong-1 và bổ sung bộ 5 Slash Skills cho Ask Gemini trên Chrome.
+  PromptAgent Flow Bridge v4.2.0 tích hợp Pose Studio 3D ngay trong trang kèm thông số Camera DNA, rút gọn PromptBook thành danh sách phẳng với nút Book 2-trong-1 và bổ sung bộ 6 Slash Skills cho Ask Gemini trên Chrome.
 ---
 
 <!-- Language Toggle -->
@@ -128,7 +128,7 @@ img {
 
 # PromptAgent Flow Bridge v4.2.0: Pose Studio 3D, PromptBook phẳng & Ask Gemini Slash Skills
 
-**PromptAgent Flow Bridge v4.2.0** tập trung giải quyết 3 việc khi làm hình ảnh và video trên **Google Flow (`flow.google.com`)**: dựng dáng nhân vật và góc máy bằng mô hình 3D ngay trong trang, lưu/dán prompt trên một danh sách phẳng không chia thư mục, và gọi trực tiếp 5 Slash Skills trong khung **Ask Gemini** của Chrome.
+**PromptAgent Flow Bridge v4.2.0** tập trung giải quyết 3 việc khi làm hình ảnh và video trên **Google Flow (`flow.google.com`)**: dựng dáng nhân vật và góc máy bằng mô hình 3D ngay trong trang, lưu/dán prompt trên một danh sách phẳng không chia thư mục, và gọi trực tiếp 6 Slash Skills trong khung **Ask Gemini** của Chrome.
 
 <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 12px; margin: 32px 0; box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);">
   <iframe src="https://www.youtube.com/embed/nzP6c8ExFck" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" allowfullscreen title="PromptAgent Flow Bridge v4.2.0 Demo" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"></iframe>
@@ -172,8 +172,8 @@ Thay vì mô tả góc máy và tư thế nhân vật bằng chữ, thanh công 
 ![Thanh công cụ nổi 3 nút và cửa sổ PromptBook phẳng trên Google Flow](/assets/images/flow-bridge/flow-promptbook-v42.png)
 <p class="img-caption">Chuột phải vào nút Book trên thanh công cụ nổi để mở nhanh PromptBook phẳng ngay trên Google Flow.</p>
 
-### Dùng chung với Ask Gemini trên Chrome và 5 Slash Skills
-Bạn không cần chia đôi 2 cửa sổ trình duyệt hay tạo Gem riêng. Chỉ cần mở thanh bên **Ask Gemini** ở góc trên bên phải Chrome (có khả năng đọc hình ảnh/video trên tab đang mở) và gọi 5 Slash Skills.
+### Dùng chung với Ask Gemini trên Chrome và 6 Slash Skills
+Bạn không cần chia đôi 2 cửa sổ trình duyệt hay tạo Gem riêng. Chỉ cần mở thanh bên **Ask Gemini** ở góc trên bên phải Chrome (có khả năng đọc hình ảnh/video trên tab đang mở) và gọi 6 Slash Skills, trong đó có skill mới **`/feedback`** để lọc phản hồi của khách hàng thành checklist chỉnh sửa.
 
 ![Kết quả hình ảnh tạo trên Google Flow giữ đúng dáng và góc máy từ Pose Studio 3D](/assets/images/flow-bridge/flow-generated-result.png)
 <p class="img-caption">Kết quả tạo ảnh trên Google Flow sau khi kết hợp Pose Studio 3D và prompt từ Ask Gemini.</p>
@@ -207,6 +207,7 @@ Bạn không cần chia đôi 2 cửa sổ trình duyệt hay tạo Gem riêng. 
 | **02 Video Shot Craft** | `shot` | `/shot` | <button type="button" class="copy-skill-inline-btn" onclick="copySkillMd(this, '02_video_shot_craft.md')">📋 Copy Skill</button> <a href="/assets/skills/02_video_shot_craft.md" download="02_video_shot_craft.md"><code>⬇ .md</code></a> |
 | **03 Edit Composite Relight** | `edit` | `/edit` | <button type="button" class="copy-skill-inline-btn" onclick="copySkillMd(this, '03_edit_composite_relight.md')">📋 Copy Skill</button> <a href="/assets/skills/03_edit_composite_relight.md" download="03_edit_composite_relight.md"><code>⬇ .md</code></a> |
 | **04 Creative Thinking** | `Thinking` | `/Thinking` | <button type="button" class="copy-skill-inline-btn" onclick="copySkillMd(this, '04_creative_thinking.md')">📋 Copy Skill</button> <a href="/assets/skills/04_creative_thinking.md" download="04_creative_thinking.md"><code>⬇ .md</code></a> |
+| **05 Client Feedback Filter** | `feedback` | `/feedback` | <button type="button" class="copy-skill-inline-btn" onclick="copySkillMd(this, '05_client_feedback_filter.md')">📋 Copy Skill</button> <a href="/assets/skills/05_client_feedback_filter.md" download="05_client_feedback_filter.md"><code>⬇ .md</code></a> |
 
 ---
 
@@ -232,6 +233,17 @@ Bạn không cần chia đôi 2 cửa sổ trình duyệt hay tạo Gem riêng. 
 
 ---
 
+### 2.3. Lọc feedback khách hàng bằng skill Feedback (`/feedback`)
+
+1. Thêm skill **05 Client Feedback Filter** theo hướng dẫn trên; đặt tên gợi ý **feedback** để gọi bằng `/feedback`.
+2. Mở **Ask Gemini**, chọn skill rồi dán nguyên văn feedback khách hàng. Nếu phản hồi nói về một vị trí cụ thể, gửi kèm ảnh/video hoặc timestamp để có đủ ngữ cảnh.
+3. Nhận checklist dưới **150 từ**, gồm mức độ chỉnh sửa (`MINOR / MAJOR / CONFLICT`), việc cần làm, điểm mâu thuẫn/thiếu tư liệu và tối đa **3 câu hỏi A/B hoặc có/không**. Kết quả dùng cùng ngôn ngữ với feedback.
+4. Kiểm tra các diễn giải có dấu **(?)** trước khi giao chỉnh sửa; đây là cách cụ thể hóa góp ý mơ hồ, chưa phải yêu cầu đã được khách hàng xác nhận.
+
+**Ví dụ yêu cầu sau khi chọn `/feedback`:** *“Lọc feedback sau thành checklist chỉnh sửa; giữ timestamp nếu có: [dán feedback khách hàng]”.*
+
+---
+
 ## 3. Chức năng và cách dùng chi tiết các skill
 
 | Skill | Chức năng được thiết kế | Khi nào dùng / cách dùng |
@@ -241,8 +253,10 @@ Bạn không cần chia đôi 2 cửa sổ trình duyệt hay tạo Gem riêng. 
 | **02 Video Shot Craft** · `/shot` | Viết prompt từng cảnh video từ mô tả (T2V), từ ảnh có sẵn (I2V), nối dài clip hoặc storyboard nhiều cảnh. Ưu tiên một hành động liên tục, một chuyển động máy có mục đích và tính nhất quán giữa các shot. | Nêu rõ chế độ và hành động muốn thấy. Với I2V, cung cấp ảnh rồi mô tả chuyển động; với storyboard, nêu thời lượng và thông điệp chính. |
 | **03 Edit Composite Relight** · `/edit` | Viết prompt chỉnh sửa có giới hạn: sửa một ảnh, ghép nhiều ảnh hoặc đổi ánh sáng video sản phẩm. Tách rõ phần cần đổi và phần phải giữ, bảo toàn nhận diện, bao bì, chữ và chuyển động gốc. | Gửi tư liệu, chỉ rõ “đổi gì / giữ gì”. Nếu ghép nhiều ảnh, gán vai trò từng ảnh; nếu relight video, cung cấp video gốc và ảnh sản phẩm tham chiếu. |
 | **04 Creative Thinking** · `/Thinking` | Phát triển hook, biến tấu asset, đánh giá concept, tìm rủi ro, so sánh phương án và tháo gỡ bài toán từ gốc. Tự chọn hoặc kết hợp các phương pháp tư duy theo yêu cầu. | Nêu bài toán, mục tiêu, đối tượng, tư liệu hiện có và giới hạn sản xuất. Yêu cầu đầu ra cụ thể như 3 hook, review kịch bản, bảng so sánh hoặc kế hoạch thử nghiệm. |
+| **05 Client Feedback Filter** · `/feedback` | Lọc feedback ảnh/video dài thành checklist chỉnh sửa dưới 150 từ; gắn từng việc với timestamp hoặc vùng ảnh, đánh dấu diễn giải chưa chắc bằng `(?)`, nêu mâu thuẫn và tối đa 3 câu hỏi ngắn. | Dán nguyên văn feedback, kèm ảnh/video hoặc timestamp nếu có. Nhận `TL;DR` (`MINOR / MAJOR / CONFLICT`), `Do`, `Flags` khi có và `Ask client`; trả lời cùng ngôn ngữ với feedback. |
 
 - **Nguyên tắc đầu ra:** Các skill `00`–`03` được thiết kế để **viết prompt bằng văn bản, không trực tiếp tạo hoặc chỉnh sửa ảnh/video**. Phần giải thích ngắn bằng tiếng Việt; prompt tiếng Anh nằm trong khối mã riêng để dễ sao chép. Skill `04` chủ yếu trả lời bằng tiếng Việt; khi có prompt ảnh/video dùng ngay, prompt đó được đặt bằng tiếng Anh trong khối mã. Các lệnh `/...` ở trên dùng theo tên gợi ý nếu bạn đã đặt đúng tên đó trong Chrome.
+- **Skill 05:** Lọc feedback thành checklist chỉnh sửa, không viết prompt tạo ảnh/video; đầu ra cùng ngôn ngữ với feedback và dưới 150 từ.
 
 ---
 
@@ -305,6 +319,17 @@ Bấm nút **📋 Copy Skill** để sao chép ngay hoặc bấm vào từng dò
   <pre>Đang tải nội dung skill...</pre>
 </details>
 
+<details class="skill-toggle" ontoggle="loadSkillPreview(this, '05_client_feedback_filter.md')">
+  <summary>
+    <span>▸ 05 Client Feedback Filter (<code>/feedback</code>)</span>
+    <span>
+      <button type="button" class="copy-skill-inline-btn" onclick="event.stopPropagation(); copySkillMd(this, '05_client_feedback_filter.md')">📋 Copy Skill</button>
+      <a href="/assets/skills/05_client_feedback_filter.md" download="05_client_feedback_filter.md" onclick="event.stopPropagation()"><code>⬇ .md</code></a>
+    </span>
+  </summary>
+  <pre>Đang tải nội dung skill...</pre>
+</details>
+
 ---
 
 ## 5. Tóm tắt thao tác sử dụng trên thanh công cụ nổi (3 nút)
@@ -330,7 +355,7 @@ Nếu bạn có góp ý hoặc cần bổ sung tính năng cho workflow làm phi
 
 # PromptAgent Flow Bridge v4.2.0: In-Page Pose Studio 3D, Flat PromptBook & Ask Gemini Slash Skills
 
-**PromptAgent Flow Bridge v4.2.0** focuses on three changes for image and video production on **Google Flow (`flow.google.com`)**: staging 3D character poses and camera angles directly inside the page, saving and pasting prompts from a flat list without folder hierarchies, and running 5 Slash Skills inside Chrome's built-in **Ask Gemini** side panel.
+**PromptAgent Flow Bridge v4.2.0** focuses on three changes for image and video production on **Google Flow (`flow.google.com`)**: staging 3D character poses and camera angles directly inside the page, saving and pasting prompts from a flat list without folder hierarchies, and running 6 Slash Skills inside Chrome's built-in **Ask Gemini** side panel.
 
 <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 12px; margin: 32px 0; box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);">
   <iframe src="https://www.youtube.com/embed/nzP6c8ExFck" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" allowfullscreen title="PromptAgent Flow Bridge v4.2.0 Demo" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"></iframe>
@@ -374,8 +399,8 @@ Version **v4.2.0** removes the Project/Scene folder hierarchy:
 ![3-button floating dock and flat PromptBook popover on Google Flow](/assets/images/flow-bridge/flow-promptbook-v42.png)
 <p class="img-caption">Right-clicking the Book button on the floating dock opens the flat PromptBook popover directly over Google Flow.</p>
 
-### Chrome "Ask Gemini" Side Panel and 5 Slash Skills
-Open Chrome's built-in **Ask Gemini** side panel on the same window (which reads images and videos on your active tab) and invoke the 5 Slash Skills.
+### Chrome "Ask Gemini" Side Panel and 6 Slash Skills
+Open Chrome's built-in **Ask Gemini** side panel on the same window (which reads images and videos on your active tab) and invoke the 6 Slash Skills — including **`05_client_feedback_filter.md` (`/feedback`)**, which condenses long, subjective client feedback on images or videos into a technical checklist under 150 words anchored to timestamps (`[mm:ss]`) or frame areas (`Subject/Background/Text/Logo/Overall`), plus up to 3 closed A/B or Yes/No questions.
 
 ![Generated result on Google Flow matching the 3D pose and camera angle](/assets/images/flow-bridge/flow-generated-result.png)
 <p class="img-caption">Result generated on Google Flow combining Pose Studio 3D and an Ask Gemini prompt.</p>
@@ -409,6 +434,7 @@ To keep the floating dock from appearing on regular websites:
 | **02 Video Shot Craft** | `shot` | `/shot` | <button type="button" class="copy-skill-inline-btn" onclick="copySkillMd(this, '02_video_shot_craft.md')">📋 Copy Skill</button> <a href="/assets/skills/02_video_shot_craft.md" download="02_video_shot_craft.md"><code>⬇ .md</code></a> |
 | **03 Edit Composite Relight** | `edit` | `/edit` | <button type="button" class="copy-skill-inline-btn" onclick="copySkillMd(this, '03_edit_composite_relight.md')">📋 Copy Skill</button> <a href="/assets/skills/03_edit_composite_relight.md" download="03_edit_composite_relight.md"><code>⬇ .md</code></a> |
 | **04 Creative Thinking** | `Thinking` | `/Thinking` | <button type="button" class="copy-skill-inline-btn" onclick="copySkillMd(this, '04_creative_thinking.md')">📋 Copy Skill</button> <a href="/assets/skills/04_creative_thinking.md" download="04_creative_thinking.md"><code>⬇ .md</code></a> |
+| **05 Client Feedback Filter** | `feedback` | `/feedback` | <button type="button" class="copy-skill-inline-btn" onclick="copySkillMd(this, '05_client_feedback_filter.md')">📋 Copy Skill</button> <a href="/assets/skills/05_client_feedback_filter.md" download="05_client_feedback_filter.md"><code>⬇ .md</code></a> |
 
 ---
 
@@ -434,6 +460,16 @@ To keep the floating dock from appearing on regular websites:
 
 ---
 
+### 2.3. Filter Client Feedback with `/feedback`
+
+When a client sends long, unstructured revision notes across chat or email, type `/feedback` in **Ask Gemini** and paste the raw feedback:
+- **Under 150 words**: Strips greetings, venting, and repetition — keeping only concrete revision intent.
+- **Anchored items**: Video notes are anchored to `[mm:ss]` or `Intro/Mid/Outro`; image notes are anchored to `Subject/Background/Text/Logo/Overall`.
+- **Concrete translations**: Converts vague adjectives into actionable adjustments marked `(?)` (e.g., *"not premium"* → more whitespace, fewer colors; *"not punchy"* → faster cuts, add SFX).
+- **Clarifying questions**: Outputs at most 3 short closed questions (A/B or Yes/No, max 10 words each) in the same language as the feedback.
+
+---
+
 ## 3. Skill Functions & Usage Guide
 
 | Skill | Designed Function | When & How to Use |
@@ -443,6 +479,7 @@ To keep the floating dock from appearing on regular websites:
 | **02 Video Shot Craft** · `/shot` | Writes single-shot T2V prompts, concise I2V motion-only prompts, clip extensions, or multi-shot storyboards focusing on one continuous action and purposeful camera move. | Specify mode and desired motion. For I2V, provide the still image and describe motion; for storyboards, state duration and core message. |
 | **03 Edit Composite Relight** · `/edit` | Writes constrained edit prompts: single-image edits, multi-image composites, or V2V product relighting (`Change / Preserve / Integration`). | Provide source assets and clearly state what to change vs. preserve. Assign image roles (`Image 1`, `Image 2`) for composites. |
 | **04 Creative Thinking** · `/Thinking` | Develops viral hooks, SCAMPER variations, Six Thinking Hats reviews, pre-mortem risk checks, Tree of Thoughts comparisons, and First Principles deconstructions. | State the problem, goal, target audience, existing assets, and production constraints. Ask for specific outputs (e.g., 3 hooks, script review). |
+| **05 Client Feedback Filter** · `/feedback` | Condenses long, unstructured client feedback on images/videos into a short technical checklist (<150 words) anchored to `[mm:ss]` or frame areas, plus up to 3 closed A/B or Yes/No questions. | Paste raw client comments from chat/email after `/feedback` to get a `TL;DR`, `Do`, `Flags`, and `Ask client` checklist in the feedback's language. |
 
 ---
 
@@ -500,6 +537,17 @@ Click **📋 Copy Skill** to copy immediately, or click any row to expand and in
     <span>
       <button type="button" class="copy-skill-inline-btn" onclick="event.stopPropagation(); copySkillMd(this, '04_creative_thinking.md')">📋 Copy Skill</button>
       <a href="/assets/skills/04_creative_thinking.md" download="04_creative_thinking.md" onclick="event.stopPropagation()"><code>⬇ .md</code></a>
+    </span>
+  </summary>
+  <pre>Loading skill content...</pre>
+</details>
+
+<details class="skill-toggle" ontoggle="loadSkillPreview(this, '05_client_feedback_filter.md')">
+  <summary>
+    <span>▸ 05 Client Feedback Filter (<code>/feedback</code>)</span>
+    <span>
+      <button type="button" class="copy-skill-inline-btn" onclick="event.stopPropagation(); copySkillMd(this, '05_client_feedback_filter.md')">📋 Copy Skill</button>
+      <a href="/assets/skills/05_client_feedback_filter.md" download="05_client_feedback_filter.md" onclick="event.stopPropagation()"><code>⬇ .md</code></a>
     </span>
   </summary>
   <pre>Loading skill content...</pre>
