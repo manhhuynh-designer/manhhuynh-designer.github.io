@@ -233,7 +233,7 @@ In addition to **Single Image** mode, version **v1.0.3** supports batch processi
 
 <div style="max-width: 380px; margin: 28px auto; border-radius: 16px; overflow: hidden; box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.45); border: 1px solid rgba(255,255,255,0.12); background: #0d1117;">
   <video controls playsinline preload="metadata" poster="/blog/assets/da2-pbr-generator/video-poster-9x16.webp" style="width: 100%; height: auto; display: block;">
-    <source src="/blog/assets/da2-pbr-generator/tutorial-9x16.mp4" type="video/mp4">
+    <source src="/blog/assets/da2-pbr-generator/tutorial-en-9x16.mp4" type="video/mp4">
     Your browser does not support the video tag.
   </video>
 </div>
